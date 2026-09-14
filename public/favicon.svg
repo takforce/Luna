@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <radialGradient id="favGrad" cx="30%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#fff6de"/>
+      <stop offset="55%" stop-color="#f6c453"/>
+      <stop offset="100%" stop-color="#d99a2b"/>
+    </radialGradient>
+  </defs>
+  <path fill-rule="evenodd" fill="url(#favGrad)" d="
+    M29 16 A13 13 0 1 1 3 16 A13 13 0 1 1 29 16 Z
+    M30 16 A10.5 10.5 0 1 1 9 16 A10.5 10.5 0 1 1 30 16 Z
+  "/>
+</svg>
