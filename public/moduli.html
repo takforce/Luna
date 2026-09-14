@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moduli - Luna Italiano</title>
+<title>Modules - Luna Italiano</title>
 <link rel="stylesheet" href="/css/theme.css">
+<style>
+  .reset-btn {
+    background: none; border: 1px solid var(--card-border); color: var(--muted);
+    font-family:'Quicksand',sans-serif; font-size: 11px; font-weight:700;
+    padding: 5px 10px; border-radius: 16px; cursor:pointer; margin-left:auto;
+  }
+  .reset-btn:hover { border-color:#e65a5a; color:#e65a5a; }
+  .module-head { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+</style>
 </head>
 <body>
 
@@ -16,7 +25,7 @@
     </div>
     <div class="topbar-nav">
       <a href="/">Home</a>
-      <a href="/moduli.html" class="active">Moduli</a>
+      <a href="/moduli.html" class="active">Modules</a>
       <a href="/chat.html">Chat</a>
     </div>
   </div>
@@ -25,7 +34,7 @@
 
   <div class="bottom-nav">
     <a href="/"><span class="bn-icon">🌙</span>Home</a>
-    <a href="/moduli.html" class="active"><span class="bn-icon">⭐</span>Moduli</a>
+    <a href="/moduli.html" class="active"><span class="bn-icon">⭐</span>Modules</a>
     <a href="/chat.html"><span class="bn-icon">💬</span>Chat</a>
   </div>
 </div>
@@ -34,23 +43,35 @@
 <script>
 const params = new URLSearchParams(location.search);
 const openId = params.get('open');
+let progressMap = {};
 
 async function render() {
-  const modules = await fetch('/api/modules').then(r => r.json());
+  const [modules, progress] = await Promise.all([
+    fetch('/api/modules').then(r => r.json()),
+    fetch('/api/progress/summary').then(r => r.json())
+  ]);
+  progressMap = {};
+  progress.forEach(p => progressMap[p.module_id] = p);
+
   const main = document.getElementById('main');
-  main.innerHTML = `<h1 style="font-size:20px; margin-bottom:14px;">🌌 Tutti i moduli</h1>` +
-    modules.map(m => `
+  main.innerHTML = `<h1 style="font-size:20px; margin-bottom:14px;">🌌 All modules</h1>` +
+    modules.map(m => {
+      const p = progressMap[m.id];
+      const pill = p ? `${p.corretti}/${p.tentativi} correct` : 'Not started';
+      return `
       <div class="card" style="margin-bottom:14px;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+        <div class="module-head">
           <div style="font-size:32px;">${m.icon}</div>
-          <div>
+          <div style="flex:1;">
             <h3 style="font-size:16px;">${m.title}</h3>
-            <p style="font-size:13px; color:var(--muted);">${m.subtitle}</p>
+            <p style="font-size:13px; color:var(--muted);">${m.subtitle} · ${pill}</p>
           </div>
+          <button class="reset-btn" data-module="${m.id}">↺ Reset</button>
         </div>
         <div id="ex-${m.id}" style="display:flex; flex-direction:column; gap:8px;"></div>
       </div>
-    `).join('');
+    `;
+    }).join('');
 
   for (const m of modules) {
     const full = await fetch('/api/modules/' + m.id).then(r => r.json());
@@ -62,6 +83,15 @@ async function render() {
       </a>
     `).join('');
   }
+
+  document.querySelectorAll('.reset-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const modId = btn.dataset.module;
+      if (!confirm('Reset all progress for this module? This cannot be undone.')) return;
+      await fetch('/api/progress/' + modId, { method: 'DELETE' });
+      render();
+    });
+  });
 
   if (openId) {
     document.getElementById('ex-' + openId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });

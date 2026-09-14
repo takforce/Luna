@@ -147,6 +147,49 @@ h1, h2, h3, .title-font { font-family: 'Baloo 2', sans-serif; }
 .hero h1 { font-size: 22px; margin: 10px 0 4px; }
 .hero p { color: var(--muted); font-size: 14px; }
 
+/* ── Luna realistica con satellite orbitante ── */
+.moon-stage {
+  position: relative;
+  height: 112px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.moon-system {
+  position: absolute;
+  top: 8px;
+  width: 92px;
+  height: 92px;
+  animation: moonDrift 24s linear infinite;
+}
+@keyframes moonDrift {
+  0%   { left: 108%; }
+  100% { left: -22%; }
+}
+.moon-main {
+  display: block;
+  filter: drop-shadow(0 0 22px rgba(255,250,220,0.55));
+  animation: moonBob 5s ease-in-out infinite;
+}
+@keyframes moonBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.moon-orbit {
+  position: absolute;
+  inset: 0;
+  animation: orbitSpin 6s linear infinite;
+}
+.moon-satellite {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  margin: -6.5px 0 0 -6.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 32%, #ffffff, #d3d9f5 60%, #9098c9 100%);
+  box-shadow: 0 0 9px rgba(205,215,255,0.85);
+  transform: translateX(62px);
+}
+@keyframes orbitSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
 /* ── MODULE GRID ── */
 .module-grid { display:grid; grid-template-columns: 1fr; gap: 14px; margin-top: 16px; }
 .module-card {

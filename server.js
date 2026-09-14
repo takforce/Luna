@@ -10,6 +10,8 @@ const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'data', 'luna.db');
 const UPLOAD_DIR = path.join(__dirname, 'public', 'uploads');
 
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+const DB_DIR = path.dirname(DB_PATH);
+if (!fs.existsSync(DB_DIR)) fs.mkdirSync(DB_DIR, { recursive: true });
 
 // ── DB ──
 const db = new Database(DB_PATH);
@@ -37,7 +39,7 @@ CREATE TABLE IF NOT EXISTS exercise_results (
 `);
 
 // ── Contenuti moduli (JSON statico, facile da modificare) ──
-const modules = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'modules.json'), 'utf-8'));
+const modules = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'modules.json'), 'utf-8'));
 
 // ── Middleware ──
 app.use(express.json());
@@ -123,6 +125,18 @@ app.get('/api/progress/summary', (req, res) => {
     GROUP BY module_id
   `).all();
   res.json(rows);
+});
+
+// Reset progressi di un singolo modulo
+app.delete('/api/progress/:moduleId', (req, res) => {
+  db.prepare('DELETE FROM exercise_results WHERE module_id = ?').run(req.params.moduleId);
+  res.json({ ok: true });
+});
+
+// Reset di tutti i progressi
+app.delete('/api/progress', (req, res) => {
+  db.prepare('DELETE FROM exercise_results').run();
+  res.json({ ok: true });
 });
 
 app.listen(PORT, () => {

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Esercizio - Luna Italiano</title>
+<title>Exercise - Luna Italiano</title>
 <link rel="stylesheet" href="/css/theme.css">
 <style>
   .opt-btn {
@@ -47,16 +47,16 @@
     </div>
     <div class="topbar-nav">
       <a href="/">Home</a>
-      <a href="/moduli.html" class="active">Moduli</a>
+      <a href="/moduli.html" class="active">Modules</a>
       <a href="/chat.html">Chat</a>
     </div>
   </div>
 
-  <div class="main" id="main">Caricamento... 🌙</div>
+  <div class="main" id="main">Loading... 🌙</div>
 
   <div class="bottom-nav">
     <a href="/"><span class="bn-icon">🌙</span>Home</a>
-    <a href="/moduli.html" class="active"><span class="bn-icon">⭐</span>Moduli</a>
+    <a href="/moduli.html" class="active"><span class="bn-icon">⭐</span>Modules</a>
     <a href="/chat.html"><span class="bn-icon">💬</span>Chat</a>
   </div>
 </div>
@@ -73,7 +73,7 @@ let score = { ok: 0, total: 0 };
 async function load() {
   const mod = await fetch('/api/modules/' + moduloId).then(r => r.json());
   const ex = mod.exercises.find(e => e.id === esercizioId);
-  if (!ex) { main.innerHTML = '<p>Esercizio non trovato.</p>'; return; }
+  if (!ex) { main.innerHTML = '<p>Exercise not found.</p>'; return; }
 
   if (ex.type === 'scelta_multipla') runSceltaMultipla(mod, ex);
   else if (ex.type === 'abbinamento') runAbbinamento(mod, ex);
@@ -101,10 +101,10 @@ function finalScreen(mod, ex) {
   main.innerHTML = `
     <div class="card" style="text-align:center; padding:36px 20px;">
       <div style="font-size:46px; margin-bottom:8px;">🌠</div>
-      <h2 style="margin-bottom:6px;">Esercizio completato!</h2>
-      <p style="color:var(--muted); margin-bottom:20px;">${score.ok} risposte corrette su ${score.total}</p>
-      <a href="/moduli.html?open=${mod.id}" class="btn btn-primary btn-block" style="margin-bottom:10px;">Torna ai moduli</a>
-      <a href="/" class="btn btn-ghost btn-block">Torna alla home</a>
+      <h2 style="margin-bottom:6px;">Exercise complete!</h2>
+      <p style="color:var(--muted); margin-bottom:20px;">${score.ok} correct answers out of ${score.total}</p>
+      <a href="/moduli.html?open=${mod.id}" class="btn btn-primary btn-block" style="margin-bottom:10px;">Back to modules</a>
+      <a href="/" class="btn btn-ghost btn-block">Back to home</a>
     </div>`;
 }
 
@@ -120,7 +120,7 @@ function runSceltaMultipla(mod, ex) {
     main.innerHTML = header(mod, ex, idx, items.length) + `
       <div class="card">
         <div class="prompt-box">
-          <div class="hint">Come si dice in italiano?</div>
+          <div class="hint">How do you say it in Italian?</div>
           <div class="word">${item.prompt}</div>
         </div>
         <div id="opts"></div>

@@ -1,80 +1,590 @@
 [
   {
     "id": "m1",
-    "title": "Saluti e parole magiche",
-    "subtitle": "Le prime parole per iniziare",
+    "title": "Greetings & Introductions",
+    "subtitle": "Say hello and introduce yourself",
     "icon": "🌙",
     "exercises": [
       {
-        "id": "m1e1",
-        "type": "scelta_multipla",
-        "title": "Scelta multipla",
-        "instructions": "Scegli la traduzione giusta in italiano",
+        "id": "m1e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
         "items": [
-          { "id": "i1", "prompt": "Hello", "options": ["Ciao", "Grazie", "Buonanotte", "Scusa"], "answer": "Ciao" },
-          { "id": "i2", "prompt": "Good morning", "options": ["Buonasera", "Buongiorno", "Arrivederci", "Prego"], "answer": "Buongiorno" },
-          { "id": "i3", "prompt": "Good night", "options": ["Buongiorno", "Ciao", "Buonanotte", "Salve"], "answer": "Buonanotte" },
-          { "id": "i4", "prompt": "Thank you", "options": ["Prego", "Grazie", "Scusa", "Per favore"], "answer": "Grazie" },
-          { "id": "i5", "prompt": "Please", "options": ["Per favore", "Grazie", "Ciao", "Sì"], "answer": "Per favore" },
-          { "id": "i6", "prompt": "Yes", "options": ["No", "Forse", "Sì", "Boh"], "answer": "Sì" },
-          { "id": "i7", "prompt": "No", "options": ["Sì", "No", "Grazie", "Prego"], "answer": "No" },
-          { "id": "i8", "prompt": "Sorry", "options": ["Scusa", "Prego", "Ciao", "Grazie"], "answer": "Scusa" },
-          { "id": "i9", "prompt": "Goodbye", "options": ["Buongiorno", "Arrivederci", "Buonanotte", "Ciao ciao"], "answer": "Arrivederci" },
-          { "id": "i10", "prompt": "My love", "options": ["Amore mio", "Cuore mio", "Vita mia", "Tesoro mio"], "answer": "Amore mio" }
+          {"id":"i1","prompt":"Hello","options":["Ciao","Grazie","Buonanotte","Scusa"],"answer":"Ciao"},
+          {"id":"i2","prompt":"Good morning","options":["Buonasera","Buongiorno","Arrivederci","Prego"],"answer":"Buongiorno"},
+          {"id":"i3","prompt":"Good evening","options":["Buongiorno","Buonasera","Buonanotte","Ciao"],"answer":"Buonasera"},
+          {"id":"i4","prompt":"Good night","options":["Buongiorno","Ciao","Buonanotte","Salve"],"answer":"Buonanotte"},
+          {"id":"i5","prompt":"Goodbye","options":["Buongiorno","Arrivederci","Buonanotte","A dopo"],"answer":"Arrivederci"},
+          {"id":"i6","prompt":"See you later","options":["A dopo","Ciao ciao","Scusa","Prego"],"answer":"A dopo"},
+          {"id":"i7","prompt":"Please","options":["Per favore","Grazie","Ciao","Sì"],"answer":"Per favore"},
+          {"id":"i8","prompt":"Thank you","options":["Prego","Grazie","Scusa","Per favore"],"answer":"Grazie"},
+          {"id":"i9","prompt":"You're welcome","options":["Prego","Grazie","Scusa","Sì"],"answer":"Prego"},
+          {"id":"i10","prompt":"Yes","options":["No","Forse","Sì","Boh"],"answer":"Sì"},
+          {"id":"i11","prompt":"No","options":["Sì","No","Grazie","Prego"],"answer":"No"},
+          {"id":"i12","prompt":"Sorry","options":["Scusa","Prego","Ciao","Grazie"],"answer":"Scusa"},
+          {"id":"i13","prompt":"How are you?","options":["Come ti chiami?","Come stai?","Chi sei?","Dove vai?"],"answer":"Come stai?"},
+          {"id":"i14","prompt":"I'm fine","options":["Sto bene","Sto male","Sono stanco","Ho fame"],"answer":"Sto bene"}
         ]
       },
       {
-        "id": "m1e2",
-        "type": "abbinamento",
-        "title": "Abbinamento",
-        "instructions": "Collega la parola italiana al suo significato",
+        "id": "m1e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
         "pairs": [
-          { "id": "p1", "it": "Ciao", "en": "Hi / Bye" },
-          { "id": "p2", "it": "Grazie", "en": "Thank you" },
-          { "id": "p3", "it": "Per favore", "en": "Please" },
-          { "id": "p4", "it": "Sì", "en": "Yes" },
-          { "id": "p5", "it": "No", "en": "No" },
-          { "id": "p6", "it": "Buongiorno", "en": "Good morning" }
+          {"id":"p1","it":"Ciao","en":"Hi / Bye"},
+          {"id":"p2","it":"Grazie","en":"Thank you"},
+          {"id":"p3","it":"Prego","en":"You're welcome"},
+          {"id":"p4","it":"Per favore","en":"Please"},
+          {"id":"p5","it":"Sì","en":"Yes"},
+          {"id":"p6","it":"No","en":"No"},
+          {"id":"p7","it":"Scusa","en":"Sorry"},
+          {"id":"p8","it":"Buongiorno","en":"Good morning"}
         ]
       }
     ]
   },
   {
     "id": "m2",
-    "title": "Numeri e colori",
-    "subtitle": "Conta le stelle e i colori del cielo",
-    "icon": "⭐",
+    "title": "Numbers 1-20",
+    "subtitle": "Count from one to twenty",
+    "icon": "🔢",
     "exercises": [
       {
-        "id": "m2e1",
-        "type": "scelta_multipla",
-        "title": "Scelta multipla",
-        "instructions": "Scegli la traduzione giusta in italiano",
+        "id": "m2e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
         "items": [
-          { "id": "i1", "prompt": "One", "options": ["Due", "Uno", "Tre", "Zero"], "answer": "Uno" },
-          { "id": "i2", "prompt": "Two", "options": ["Due", "Quattro", "Uno", "Dieci"], "answer": "Due" },
-          { "id": "i3", "prompt": "Three", "options": ["Tre", "Sei", "Otto", "Due"], "answer": "Tre" },
-          { "id": "i4", "prompt": "Five", "options": ["Cinque", "Sette", "Nove", "Quattro"], "answer": "Cinque" },
-          { "id": "i5", "prompt": "Ten", "options": ["Dieci", "Cento", "Uno", "Sei"], "answer": "Dieci" },
-          { "id": "i6", "prompt": "Blue", "options": ["Rosso", "Blu", "Verde", "Giallo"], "answer": "Blu" },
-          { "id": "i7", "prompt": "Silver", "options": ["Oro", "Argento", "Nero", "Bianco"], "answer": "Argento" },
-          { "id": "i8", "prompt": "White", "options": ["Nero", "Bianco", "Viola", "Grigio"], "answer": "Bianco" },
-          { "id": "i9", "prompt": "Black", "options": ["Nero", "Blu", "Rosa", "Bianco"], "answer": "Nero" },
-          { "id": "i10", "prompt": "Yellow", "options": ["Giallo", "Arancione", "Verde", "Viola"], "answer": "Giallo" }
+          {"id":"i1","prompt":"One","options":["Due","Uno","Tre","Zero"],"answer":"Uno"},
+          {"id":"i2","prompt":"Two","options":["Due","Quattro","Uno","Dieci"],"answer":"Due"},
+          {"id":"i3","prompt":"Three","options":["Tre","Sei","Otto","Due"],"answer":"Tre"},
+          {"id":"i4","prompt":"Four","options":["Quattro","Sette","Nove","Due"],"answer":"Quattro"},
+          {"id":"i5","prompt":"Five","options":["Cinque","Sette","Nove","Quattro"],"answer":"Cinque"},
+          {"id":"i6","prompt":"Six","options":["Sei","Sette","Due","Otto"],"answer":"Sei"},
+          {"id":"i7","prompt":"Seven","options":["Sette","Otto","Sei","Nove"],"answer":"Sette"},
+          {"id":"i8","prompt":"Eight","options":["Otto","Sette","Nove","Dieci"],"answer":"Otto"},
+          {"id":"i9","prompt":"Nine","options":["Nove","Dieci","Otto","Sette"],"answer":"Nove"},
+          {"id":"i10","prompt":"Ten","options":["Dieci","Cento","Uno","Sei"],"answer":"Dieci"},
+          {"id":"i11","prompt":"Fifteen","options":["Quindici","Cinquanta","Cinque","Venti"],"answer":"Quindici"},
+          {"id":"i12","prompt":"Twenty","options":["Dodici","Venti","Due","Dieci"],"answer":"Venti"}
         ]
       },
       {
-        "id": "m2e2",
-        "type": "abbinamento",
-        "title": "Abbinamento",
-        "instructions": "Collega la parola italiana al suo significato",
+        "id": "m2e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
         "pairs": [
-          { "id": "p1", "it": "Uno", "en": "One" },
-          { "id": "p2", "it": "Due", "en": "Two" },
-          { "id": "p3", "it": "Tre", "en": "Three" },
-          { "id": "p4", "it": "Blu", "en": "Blue" },
-          { "id": "p5", "it": "Bianco", "en": "White" },
-          { "id": "p6", "it": "Nero", "en": "Black" }
+          {"id":"p1","it":"Uno","en":"One"},
+          {"id":"p2","it":"Due","en":"Two"},
+          {"id":"p3","it":"Tre","en":"Three"},
+          {"id":"p4","it":"Quattro","en":"Four"},
+          {"id":"p5","it":"Cinque","en":"Five"},
+          {"id":"p6","it":"Sei","en":"Six"},
+          {"id":"p7","it":"Sette","en":"Seven"},
+          {"id":"p8","it":"Dieci","en":"Ten"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m3",
+    "title": "Colors",
+    "subtitle": "Learn the colors of the sky and beyond",
+    "icon": "🎨",
+    "exercises": [
+      {
+        "id": "m3e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {"id":"i1","prompt":"Red","options":["Rosso","Blu","Verde","Giallo"],"answer":"Rosso"},
+          {"id":"i2","prompt":"Blue","options":["Rosso","Blu","Verde","Giallo"],"answer":"Blu"},
+          {"id":"i3","prompt":"Green","options":["Rosso","Blu","Verde","Giallo"],"answer":"Verde"},
+          {"id":"i4","prompt":"Yellow","options":["Rosso","Blu","Verde","Giallo"],"answer":"Giallo"},
+          {"id":"i5","prompt":"Black","options":["Nero","Bianco","Grigio","Marrone"],"answer":"Nero"},
+          {"id":"i6","prompt":"White","options":["Nero","Bianco","Viola","Grigio"],"answer":"Bianco"},
+          {"id":"i7","prompt":"Orange","options":["Arancione","Rosa","Viola","Marrone"],"answer":"Arancione"},
+          {"id":"i8","prompt":"Purple","options":["Viola","Rosa","Grigio","Arancione"],"answer":"Viola"},
+          {"id":"i9","prompt":"Pink","options":["Rosa","Viola","Marrone","Grigio"],"answer":"Rosa"},
+          {"id":"i10","prompt":"Grey","options":["Grigio","Marrone","Nero","Bianco"],"answer":"Grigio"},
+          {"id":"i11","prompt":"Brown","options":["Marrone","Grigio","Arancione","Nero"],"answer":"Marrone"}
+        ]
+      },
+      {
+        "id": "m3e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {"id":"p1","it":"Rosso","en":"Red"},
+          {"id":"p2","it":"Blu","en":"Blue"},
+          {"id":"p3","it":"Verde","en":"Green"},
+          {"id":"p4","it":"Giallo","en":"Yellow"},
+          {"id":"p5","it":"Nero","en":"Black"},
+          {"id":"p6","it":"Bianco","en":"White"},
+          {"id":"p7","it":"Rosa","en":"Pink"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m4",
+    "title": "Family",
+    "subtitle": "Talk about your family",
+    "icon": "👪",
+    "exercises": [
+      {
+        "id": "m4e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {"id":"i1","prompt":"Mother","options":["Madre","Padre","Sorella","Figlia"],"answer":"Madre"},
+          {"id":"i2","prompt":"Father","options":["Madre","Padre","Fratello","Figlio"],"answer":"Padre"},
+          {"id":"i3","prompt":"Sister","options":["Sorella","Fratello","Figlia","Nonna"],"answer":"Sorella"},
+          {"id":"i4","prompt":"Brother","options":["Sorella","Fratello","Figlio","Nonno"],"answer":"Fratello"},
+          {"id":"i5","prompt":"Daughter","options":["Figlia","Figlio","Moglie","Zia"],"answer":"Figlia"},
+          {"id":"i6","prompt":"Son","options":["Figlia","Figlio","Marito","Zio"],"answer":"Figlio"},
+          {"id":"i7","prompt":"Grandmother","options":["Nonna","Nonno","Zia","Madre"],"answer":"Nonna"},
+          {"id":"i8","prompt":"Grandfather","options":["Nonna","Nonno","Zio","Padre"],"answer":"Nonno"},
+          {"id":"i9","prompt":"Wife","options":["Moglie","Marito","Zia","Figlia"],"answer":"Moglie"},
+          {"id":"i10","prompt":"Husband","options":["Moglie","Marito","Zio","Figlio"],"answer":"Marito"},
+          {"id":"i11","prompt":"Aunt","options":["Zia","Zio","Nonna","Sorella"],"answer":"Zia"},
+          {"id":"i12","prompt":"Uncle","options":["Zia","Zio","Nonno","Fratello"],"answer":"Zio"}
+        ]
+      },
+      {
+        "id": "m4e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {"id":"p1","it":"Madre","en":"Mother"},
+          {"id":"p2","it":"Padre","en":"Father"},
+          {"id":"p3","it":"Sorella","en":"Sister"},
+          {"id":"p4","it":"Fratello","en":"Brother"},
+          {"id":"p5","it":"Nonna","en":"Grandmother"},
+          {"id":"p6","it":"Nonno","en":"Grandfather"},
+          {"id":"p7","it":"Figlia","en":"Daughter"},
+          {"id":"p8","it":"Figlio","en":"Son"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m5",
+    "title": "Days of the Week",
+    "subtitle": "Monday to Sunday",
+    "icon": "📅",
+    "exercises": [
+      {
+        "id": "m5e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {"id":"i1","prompt":"Monday","options":["Lunedì","Martedì","Mercoledì","Giovedì"],"answer":"Lunedì"},
+          {"id":"i2","prompt":"Tuesday","options":["Lunedì","Martedì","Venerdì","Sabato"],"answer":"Martedì"},
+          {"id":"i3","prompt":"Wednesday","options":["Mercoledì","Giovedì","Domenica","Lunedì"],"answer":"Mercoledì"},
+          {"id":"i4","prompt":"Thursday","options":["Giovedì","Venerdì","Martedì","Sabato"],"answer":"Giovedì"},
+          {"id":"i5","prompt":"Friday","options":["Venerdì","Sabato","Domenica","Giovedì"],"answer":"Venerdì"},
+          {"id":"i6","prompt":"Saturday","options":["Sabato","Domenica","Venerdì","Lunedì"],"answer":"Sabato"},
+          {"id":"i7","prompt":"Sunday","options":["Domenica","Sabato","Lunedì","Mercoledì"],"answer":"Domenica"}
+        ]
+      },
+      {
+        "id": "m5e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {"id":"p1","it":"Lunedì","en":"Monday"},
+          {"id":"p2","it":"Martedì","en":"Tuesday"},
+          {"id":"p3","it":"Mercoledì","en":"Wednesday"},
+          {"id":"p4","it":"Giovedì","en":"Thursday"},
+          {"id":"p5","it":"Venerdì","en":"Friday"},
+          {"id":"p6","it":"Sabato","en":"Saturday"},
+          {"id":"p7","it":"Domenica","en":"Sunday"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m6",
+    "title": "Months & Seasons",
+    "subtitle": "The calendar year in Italian",
+    "icon": "🍃",
+    "exercises": [
+      {
+        "id": "m6e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {"id":"i1","prompt":"January","options":["Gennaio","Febbraio","Giugno","Luglio"],"answer":"Gennaio"},
+          {"id":"i2","prompt":"February","options":["Gennaio","Febbraio","Marzo","Aprile"],"answer":"Febbraio"},
+          {"id":"i3","prompt":"March","options":["Marzo","Maggio","Aprile","Giugno"],"answer":"Marzo"},
+          {"id":"i4","prompt":"April","options":["Aprile","Marzo","Maggio","Giugno"],"answer":"Aprile"},
+          {"id":"i5","prompt":"May","options":["Maggio","Aprile","Giugno","Luglio"],"answer":"Maggio"},
+          {"id":"i6","prompt":"June","options":["Giugno","Luglio","Maggio","Agosto"],"answer":"Giugno"},
+          {"id":"i7","prompt":"July","options":["Luglio","Giugno","Agosto","Settembre"],"answer":"Luglio"},
+          {"id":"i8","prompt":"December","options":["Dicembre","Novembre","Ottobre","Gennaio"],"answer":"Dicembre"},
+          {"id":"i9","prompt":"Summer","options":["Estate","Inverno","Primavera","Autunno"],"answer":"Estate"},
+          {"id":"i10","prompt":"Winter","options":["Estate","Inverno","Primavera","Autunno"],"answer":"Inverno"},
+          {"id":"i11","prompt":"Spring","options":["Estate","Inverno","Primavera","Autunno"],"answer":"Primavera"},
+          {"id":"i12","prompt":"Autumn","options":["Estate","Inverno","Primavera","Autunno"],"answer":"Autunno"}
+        ]
+      },
+      {
+        "id": "m6e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {"id":"p1","it":"Gennaio","en":"January"},
+          {"id":"p2","it":"Febbraio","en":"February"},
+          {"id":"p3","it":"Marzo","en":"March"},
+          {"id":"p4","it":"Estate","en":"Summer"},
+          {"id":"p5","it":"Inverno","en":"Winter"},
+          {"id":"p6","it":"Primavera","en":"Spring"},
+          {"id":"p7","it":"Autunno","en":"Autumn"},
+          {"id":"p8","it":"Dicembre","en":"December"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m7",
+    "title": "Food & Drink",
+    "subtitle": "Order like a local",
+    "icon": "🍞",
+    "exercises": [
+      {
+        "id": "m7e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {"id":"i1","prompt":"Bread","options":["Pane","Latte","Carne","Pesce"],"answer":"Pane"},
+          {"id":"i2","prompt":"Water","options":["Vino","Acqua","Latte","Caffè"],"answer":"Acqua"},
+          {"id":"i3","prompt":"Wine","options":["Vino","Acqua","Birra","Latte"],"answer":"Vino"},
+          {"id":"i4","prompt":"Coffee","options":["Tè","Caffè","Latte","Acqua"],"answer":"Caffè"},
+          {"id":"i5","prompt":"Milk","options":["Latte","Formaggio","Uovo","Zucchero"],"answer":"Latte"},
+          {"id":"i6","prompt":"Cheese","options":["Formaggio","Carne","Pesce","Pane"],"answer":"Formaggio"},
+          {"id":"i7","prompt":"Meat","options":["Carne","Pesce","Pasta","Uovo"],"answer":"Carne"},
+          {"id":"i8","prompt":"Fish","options":["Pesce","Carne","Pollo","Pasta"],"answer":"Pesce"},
+          {"id":"i9","prompt":"Egg","options":["Uovo","Zucchero","Sale","Pane"],"answer":"Uovo"},
+          {"id":"i10","prompt":"Sugar","options":["Zucchero","Sale","Latte","Acqua"],"answer":"Zucchero"},
+          {"id":"i11","prompt":"Salt","options":["Sale","Zucchero","Pepe","Olio"],"answer":"Sale"},
+          {"id":"i12","prompt":"Breakfast","options":["Colazione","Pranzo","Cena","Merenda"],"answer":"Colazione"},
+          {"id":"i13","prompt":"Lunch","options":["Colazione","Pranzo","Cena","Merenda"],"answer":"Pranzo"},
+          {"id":"i14","prompt":"Dinner","options":["Colazione","Pranzo","Cena","Merenda"],"answer":"Cena"}
+        ]
+      },
+      {
+        "id": "m7e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {"id":"p1","it":"Pane","en":"Bread"},
+          {"id":"p2","it":"Acqua","en":"Water"},
+          {"id":"p3","it":"Vino","en":"Wine"},
+          {"id":"p4","it":"Caffè","en":"Coffee"},
+          {"id":"p5","it":"Latte","en":"Milk"},
+          {"id":"p6","it":"Formaggio","en":"Cheese"},
+          {"id":"p7","it":"Carne","en":"Meat"},
+          {"id":"p8","it":"Pesce","en":"Fish"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m8",
+    "title": "Fruits & Vegetables",
+    "subtitle": "What's in the market basket",
+    "icon": "🍎",
+    "exercises": [
+      {
+        "id": "m8e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {"id":"i1","prompt":"Apple","options":["Mela","Pera","Banana","Uva"],"answer":"Mela"},
+          {"id":"i2","prompt":"Banana","options":["Mela","Banana","Arancia","Limone"],"answer":"Banana"},
+          {"id":"i3","prompt":"Orange (fruit)","options":["Arancia","Limone","Fragola","Pera"],"answer":"Arancia"},
+          {"id":"i4","prompt":"Strawberry","options":["Fragola","Uva","Mela","Pera"],"answer":"Fragola"},
+          {"id":"i5","prompt":"Grapes","options":["Uva","Fragola","Limone","Banana"],"answer":"Uva"},
+          {"id":"i6","prompt":"Lemon","options":["Limone","Arancia","Mela","Uva"],"answer":"Limone"},
+          {"id":"i7","prompt":"Tomato","options":["Pomodoro","Patata","Carota","Cipolla"],"answer":"Pomodoro"},
+          {"id":"i8","prompt":"Potato","options":["Patata","Pomodoro","Carota","Insalata"],"answer":"Patata"},
+          {"id":"i9","prompt":"Carrot","options":["Carota","Cipolla","Patata","Pomodoro"],"answer":"Carota"},
+          {"id":"i10","prompt":"Onion","options":["Cipolla","Carota","Insalata","Patata"],"answer":"Cipolla"},
+          {"id":"i11","prompt":"Salad","options":["Insalata","Cipolla","Pomodoro","Carota"],"answer":"Insalata"},
+          {"id":"i12","prompt":"Pear","options":["Pera","Mela","Uva","Banana"],"answer":"Pera"}
+        ]
+      },
+      {
+        "id": "m8e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {"id":"p1","it":"Mela","en":"Apple"},
+          {"id":"p2","it":"Banana","en":"Banana"},
+          {"id":"p3","it":"Arancia","en":"Orange"},
+          {"id":"p4","it":"Fragola","en":"Strawberry"},
+          {"id":"p5","it":"Pomodoro","en":"Tomato"},
+          {"id":"p6","it":"Patata","en":"Potato"},
+          {"id":"p7","it":"Carota","en":"Carrot"},
+          {"id":"p8","it":"Cipolla","en":"Onion"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m9",
+    "title": "The Body",
+    "subtitle": "Head, shoulders, knees and toes",
+    "icon": "🧍",
+    "exercises": [
+      {
+        "id": "m9e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {"id":"i1","prompt":"Head","options":["Testa","Mano","Piede","Occhio"],"answer":"Testa"},
+          {"id":"i2","prompt":"Eyes","options":["Occhi","Orecchie","Naso","Bocca"],"answer":"Occhi"},
+          {"id":"i3","prompt":"Nose","options":["Naso","Bocca","Orecchio","Testa"],"answer":"Naso"},
+          {"id":"i4","prompt":"Mouth","options":["Bocca","Naso","Occhio","Mano"],"answer":"Bocca"},
+          {"id":"i5","prompt":"Ear","options":["Orecchio","Occhio","Naso","Bocca"],"answer":"Orecchio"},
+          {"id":"i6","prompt":"Hand","options":["Mano","Braccio","Gamba","Piede"],"answer":"Mano"},
+          {"id":"i7","prompt":"Arm","options":["Braccio","Gamba","Mano","Piede"],"answer":"Braccio"},
+          {"id":"i8","prompt":"Leg","options":["Gamba","Braccio","Piede","Mano"],"answer":"Gamba"},
+          {"id":"i9","prompt":"Foot","options":["Piede","Mano","Gamba","Testa"],"answer":"Piede"},
+          {"id":"i10","prompt":"Heart","options":["Cuore","Stomaco","Testa","Mano"],"answer":"Cuore"},
+          {"id":"i11","prompt":"Hair","options":["Capelli","Occhi","Mano","Naso"],"answer":"Capelli"},
+          {"id":"i12","prompt":"Stomach","options":["Stomaco","Cuore","Testa","Gamba"],"answer":"Stomaco"}
+        ]
+      },
+      {
+        "id": "m9e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {"id":"p1","it":"Testa","en":"Head"},
+          {"id":"p2","it":"Occhi","en":"Eyes"},
+          {"id":"p3","it":"Naso","en":"Nose"},
+          {"id":"p4","it":"Bocca","en":"Mouth"},
+          {"id":"p5","it":"Mano","en":"Hand"},
+          {"id":"p6","it":"Gamba","en":"Leg"},
+          {"id":"p7","it":"Piede","en":"Foot"},
+          {"id":"p8","it":"Cuore","en":"Heart"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m10",
+    "title": "Clothes",
+    "subtitle": "What are you wearing?",
+    "icon": "👕",
+    "exercises": [
+      {
+        "id": "m10e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {"id":"i1","prompt":"Shirt","options":["Camicia","Pantaloni","Scarpe","Vestito"],"answer":"Camicia"},
+          {"id":"i2","prompt":"Trousers","options":["Pantaloni","Camicia","Gonna","Giacca"],"answer":"Pantaloni"},
+          {"id":"i3","prompt":"Shoes","options":["Scarpe","Calzini","Cappello","Sciarpa"],"answer":"Scarpe"},
+          {"id":"i4","prompt":"Dress","options":["Vestito","Camicia","Gonna","Giacca"],"answer":"Vestito"},
+          {"id":"i5","prompt":"Jacket","options":["Giacca","Cappotto","Maglione","Camicia"],"answer":"Giacca"},
+          {"id":"i6","prompt":"Hat","options":["Cappello","Sciarpa","Guanti","Scarpe"],"answer":"Cappello"},
+          {"id":"i7","prompt":"Socks","options":["Calzini","Scarpe","Pantaloni","Guanti"],"answer":"Calzini"},
+          {"id":"i8","prompt":"Skirt","options":["Gonna","Vestito","Camicia","Pantaloni"],"answer":"Gonna"},
+          {"id":"i9","prompt":"Coat","options":["Cappotto","Giacca","Maglione","Sciarpa"],"answer":"Cappotto"},
+          {"id":"i10","prompt":"Scarf","options":["Sciarpa","Cappello","Guanti","Calzini"],"answer":"Sciarpa"}
+        ]
+      },
+      {
+        "id": "m10e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {"id":"p1","it":"Camicia","en":"Shirt"},
+          {"id":"p2","it":"Pantaloni","en":"Trousers"},
+          {"id":"p3","it":"Scarpe","en":"Shoes"},
+          {"id":"p4","it":"Vestito","en":"Dress"},
+          {"id":"p5","it":"Giacca","en":"Jacket"},
+          {"id":"p6","it":"Cappello","en":"Hat"},
+          {"id":"p7","it":"Calzini","en":"Socks"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m11",
+    "title": "The Home",
+    "subtitle": "Rooms and things around the house",
+    "icon": "🏠",
+    "exercises": [
+      {
+        "id": "m11e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {"id":"i1","prompt":"House","options":["Casa","Stanza","Cucina","Bagno"],"answer":"Casa"},
+          {"id":"i2","prompt":"Room","options":["Stanza","Casa","Porta","Tavolo"],"answer":"Stanza"},
+          {"id":"i3","prompt":"Kitchen","options":["Cucina","Bagno","Camera da letto","Giardino"],"answer":"Cucina"},
+          {"id":"i4","prompt":"Bathroom","options":["Bagno","Cucina","Camera da letto","Salotto"],"answer":"Bagno"},
+          {"id":"i5","prompt":"Bedroom","options":["Camera da letto","Cucina","Bagno","Giardino"],"answer":"Camera da letto"},
+          {"id":"i6","prompt":"Door","options":["Porta","Finestra","Tavolo","Sedia"],"answer":"Porta"},
+          {"id":"i7","prompt":"Window","options":["Finestra","Porta","Letto","Chiave"],"answer":"Finestra"},
+          {"id":"i8","prompt":"Table","options":["Tavolo","Sedia","Letto","Porta"],"answer":"Tavolo"},
+          {"id":"i9","prompt":"Chair","options":["Sedia","Tavolo","Finestra","Letto"],"answer":"Sedia"},
+          {"id":"i10","prompt":"Bed","options":["Letto","Sedia","Tavolo","Finestra"],"answer":"Letto"},
+          {"id":"i11","prompt":"Garden","options":["Giardino","Cucina","Bagno","Stanza"],"answer":"Giardino"},
+          {"id":"i12","prompt":"Key","options":["Chiave","Porta","Finestra","Letto"],"answer":"Chiave"}
+        ]
+      },
+      {
+        "id": "m11e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {"id":"p1","it":"Casa","en":"House"},
+          {"id":"p2","it":"Cucina","en":"Kitchen"},
+          {"id":"p3","it":"Bagno","en":"Bathroom"},
+          {"id":"p4","it":"Porta","en":"Door"},
+          {"id":"p5","it":"Finestra","en":"Window"},
+          {"id":"p6","it":"Tavolo","en":"Table"},
+          {"id":"p7","it":"Sedia","en":"Chair"},
+          {"id":"p8","it":"Letto","en":"Bed"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m12",
+    "title": "Common Verbs & Phrases",
+    "subtitle": "I am, I have, I want, I like...",
+    "icon": "💬",
+    "exercises": [
+      {
+        "id": "m12e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {"id":"i1","prompt":"I am","options":["Sono","Ho","Vado","Voglio"],"answer":"Sono"},
+          {"id":"i2","prompt":"I have","options":["Ho","Sono","Voglio","Vado"],"answer":"Ho"},
+          {"id":"i3","prompt":"I want","options":["Voglio","Ho","Sono","Mangio"],"answer":"Voglio"},
+          {"id":"i4","prompt":"I like","options":["Mi piace","Ho bisogno","Voglio","Sono"],"answer":"Mi piace"},
+          {"id":"i5","prompt":"I need","options":["Ho bisogno di","Voglio","Mi piace","So"],"answer":"Ho bisogno di"},
+          {"id":"i6","prompt":"I go","options":["Vado","Vengo","Mangio","Bevo"],"answer":"Vado"},
+          {"id":"i7","prompt":"I eat","options":["Mangio","Bevo","Vado","Parlo"],"answer":"Mangio"},
+          {"id":"i8","prompt":"I drink","options":["Bevo","Mangio","Parlo","Capisco"],"answer":"Bevo"},
+          {"id":"i9","prompt":"I speak","options":["Parlo","Capisco","So","Vado"],"answer":"Parlo"},
+          {"id":"i10","prompt":"I understand","options":["Capisco","Parlo","So","Voglio"],"answer":"Capisco"},
+          {"id":"i11","prompt":"I don't understand","options":["Non capisco","Non lo so","Non voglio","Non ho"],"answer":"Non capisco"},
+          {"id":"i12","prompt":"I know","options":["So","Capisco","Sono","Ho"],"answer":"So"}
+        ]
+      },
+      {
+        "id": "m12e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {"id":"p1","it":"Sono","en":"I am"},
+          {"id":"p2","it":"Ho","en":"I have"},
+          {"id":"p3","it":"Voglio","en":"I want"},
+          {"id":"p4","it":"Mi piace","en":"I like"},
+          {"id":"p5","it":"Vado","en":"I go"},
+          {"id":"p6","it":"Mangio","en":"I eat"},
+          {"id":"p7","it":"Bevo","en":"I drink"},
+          {"id":"p8","it":"Parlo","en":"I speak"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m13",
+    "title": "Weather",
+    "subtitle": "What's the sky doing today?",
+    "icon": "☀️",
+    "exercises": [
+      {
+        "id": "m13e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {"id":"i1","prompt":"Sun","options":["Sole","Pioggia","Vento","Neve"],"answer":"Sole"},
+          {"id":"i2","prompt":"Rain","options":["Pioggia","Sole","Neve","Nuvola"],"answer":"Pioggia"},
+          {"id":"i3","prompt":"Wind","options":["Vento","Sole","Pioggia","Nebbia"],"answer":"Vento"},
+          {"id":"i4","prompt":"Snow","options":["Neve","Pioggia","Sole","Cielo"],"answer":"Neve"},
+          {"id":"i5","prompt":"Cloud","options":["Nuvola","Cielo","Nebbia","Sole"],"answer":"Nuvola"},
+          {"id":"i6","prompt":"Hot","options":["Caldo","Freddo","Nuvoloso","Sereno"],"answer":"Caldo"},
+          {"id":"i7","prompt":"Cold","options":["Freddo","Caldo","Ventoso","Piovoso"],"answer":"Freddo"},
+          {"id":"i8","prompt":"Storm","options":["Temporale","Nebbia","Nuvola","Vento"],"answer":"Temporale"},
+          {"id":"i9","prompt":"Sky","options":["Cielo","Nuvola","Sole","Neve"],"answer":"Cielo"},
+          {"id":"i10","prompt":"Fog","options":["Nebbia","Pioggia","Vento","Neve"],"answer":"Nebbia"}
+        ]
+      },
+      {
+        "id": "m13e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {"id":"p1","it":"Sole","en":"Sun"},
+          {"id":"p2","it":"Pioggia","en":"Rain"},
+          {"id":"p3","it":"Vento","en":"Wind"},
+          {"id":"p4","it":"Neve","en":"Snow"},
+          {"id":"p5","it":"Caldo","en":"Hot"},
+          {"id":"p6","it":"Freddo","en":"Cold"},
+          {"id":"p7","it":"Cielo","en":"Sky"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m14",
+    "title": "Travel & Directions",
+    "subtitle": "Find your way around",
+    "icon": "🧭",
+    "exercises": [
+      {
+        "id": "m14e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {"id":"i1","prompt":"Left","options":["Sinistra","Destra","Dritto","Qui"],"answer":"Sinistra"},
+          {"id":"i2","prompt":"Right","options":["Destra","Sinistra","Là","Qui"],"answer":"Destra"},
+          {"id":"i3","prompt":"Straight ahead","options":["Sempre dritto","Sinistra","Destra","Là"],"answer":"Sempre dritto"},
+          {"id":"i4","prompt":"Here","options":["Qui","Là","Vicino","Lontano"],"answer":"Qui"},
+          {"id":"i5","prompt":"There","options":["Là","Qui","Dentro","Fuori"],"answer":"Là"},
+          {"id":"i6","prompt":"Train","options":["Treno","Aereo","Macchina","Autobus"],"answer":"Treno"},
+          {"id":"i7","prompt":"Airport","options":["Aeroporto","Stazione","Porto","Strada"],"answer":"Aeroporto"},
+          {"id":"i8","prompt":"Ticket","options":["Biglietto","Mappa","Passaporto","Borsa"],"answer":"Biglietto"},
+          {"id":"i9","prompt":"Car","options":["Macchina","Treno","Aereo","Bicicletta"],"answer":"Macchina"},
+          {"id":"i10","prompt":"Street","options":["Strada","Piazza","Ponte","Porto"],"answer":"Strada"},
+          {"id":"i11","prompt":"Map","options":["Mappa","Biglietto","Chiave","Borsa"],"answer":"Mappa"},
+          {"id":"i12","prompt":"Where is...?","options":["Dov'è...?","Che cos'è...?","Chi è...?","Quando è...?"],"answer":"Dov'è...?"}
+        ]
+      },
+      {
+        "id": "m14e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {"id":"p1","it":"Sinistra","en":"Left"},
+          {"id":"p2","it":"Destra","en":"Right"},
+          {"id":"p3","it":"Qui","en":"Here"},
+          {"id":"p4","it":"Là","en":"There"},
+          {"id":"p5","it":"Treno","en":"Train"},
+          {"id":"p6","it":"Aeroporto","en":"Airport"},
+          {"id":"p7","it":"Biglietto","en":"Ticket"},
+          {"id":"p8","it":"Strada","en":"Street"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m15",
+    "title": "Everyday Expressions",
+    "subtitle": "Little phrases for daily life",
+    "icon": "✨",
+    "exercises": [
+      {
+        "id": "m15e1", "type": "scelta_multipla", "title": "Multiple choice",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {"id":"i1","prompt":"I love you","options":["Ti amo","Ti piaccio","Ti voglio","Ti penso"],"answer":"Ti amo"},
+          {"id":"i2","prompt":"Good luck","options":["Buona fortuna","Buon viaggio","Buona giornata","Buon lavoro"],"answer":"Buona fortuna"},
+          {"id":"i3","prompt":"Congratulations","options":["Congratulazioni","Complimenti","Grazie","Prego"],"answer":"Congratulazioni"},
+          {"id":"i4","prompt":"Happy birthday","options":["Buon compleanno","Buon anno","Buon Natale","Buona Pasqua"],"answer":"Buon compleanno"},
+          {"id":"i5","prompt":"Cheers","options":["Salute","Saluti","Ciao","Prego"],"answer":"Salute"},
+          {"id":"i6","prompt":"Enjoy your meal","options":["Buon appetito","Buon pranzo","Buona cena","Buon gusto"],"answer":"Buon appetito"},
+          {"id":"i7","prompt":"See you soon","options":["A presto","A dopo","Ci vediamo domani","Arrivederci"],"answer":"A presto"},
+          {"id":"i8","prompt":"Have a good day","options":["Buona giornata","Buon giorno","Buona sera","Buona notte"],"answer":"Buona giornata"},
+          {"id":"i9","prompt":"Of course","options":["Certo","Forse","Magari","Boh"],"answer":"Certo"},
+          {"id":"i10","prompt":"Maybe","options":["Forse","Certo","Mai","Sempre"],"answer":"Forse"},
+          {"id":"i11","prompt":"I'm hungry","options":["Ho fame","Ho sete","Ho sonno","Ho caldo"],"answer":"Ho fame"},
+          {"id":"i12","prompt":"I'm tired","options":["Sono stanco","Sono felice","Sono triste","Sono occupato"],"answer":"Sono stanco"}
+        ]
+      },
+      {
+        "id": "m15e2", "type": "abbinamento", "title": "Matching",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {"id":"p1","it":"Ti amo","en":"I love you"},
+          {"id":"p2","it":"Buona fortuna","en":"Good luck"},
+          {"id":"p3","it":"Buon compleanno","en":"Happy birthday"},
+          {"id":"p4","it":"Salute","en":"Cheers"},
+          {"id":"p5","it":"Buon appetito","en":"Enjoy your meal"},
+          {"id":"p6","it":"A presto","en":"See you soon"},
+          {"id":"p7","it":"Ho fame","en":"I'm hungry"},
+          {"id":"p8","it":"Sono stanco","en":"I'm tired"}
         ]
       }
     ]
