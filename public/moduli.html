@@ -84,8 +84,6 @@
 const params = new URLSearchParams(location.search);
 const openId = params.get('open');
 const cat = params.get('cat') || 'vocab';
-const focusMod = params.get('mod');
-const focusGroup = params.get('group');
 let progressMap = {};
 
 const navMap = { vocab: 'nav-words', grammar: 'nav-grammar', verbs: 'nav-verbs' };
@@ -124,9 +122,24 @@ function exTile(modId, ex) {
   `;
 }
 
-async function render() {
-  if (focusMod && focusGroup !== null) return renderGroupFocus();
+function groupCard(modId, groupName, exs) {
+  const label = groupName.replace(/^\d+\.\s*/, '');
+  const icon = GROUP_ICONS[groupName] || '🌙';
+  return `
+    <div class="card" style="margin-bottom:14px;">
+      <div class="module-head">
+        <div style="font-size:32px;">${icon}</div>
+        <div style="flex:1;">
+          <h3 style="font-size:16px;">${label}</h3>
+          <p style="font-size:13px; color:var(--muted);">${exs.length} exercises</p>
+        </div>
+      </div>
+      <div class="ex-tile-grid">${exs.map(ex => exTile(modId, ex)).join('')}</div>
+    </div>
+  `;
+}
 
+async function render() {
   const [allModules, progress] = await Promise.all([
     fetch('/api/modules').then(r => r.json()),
     fetch('/api/progress/summary').then(r => r.json())
@@ -154,6 +167,7 @@ async function render() {
         </div>
         <div id="ex-${m.id}" style="display:flex; flex-direction:column; gap:8px;"></div>
       </div>
+      <div id="groups-${m.id}"></div>
     `;
     }).join('');
 
@@ -165,20 +179,11 @@ async function render() {
     if (!hasGroups) {
       box.innerHTML = `<div class="ex-tile-grid">${full.exercises.map(ex => exTile(m.id, ex)).join('')}</div>`;
     } else {
+      // Il modulo stesso non mostra tile: ogni categoria diventa una card a parte, subito sotto
       const groups = [];
       full.exercises.forEach(ex => { if (!groups.includes(ex.group)) groups.push(ex.group); });
-
-      box.innerHTML = `<div class="ex-tile-grid">` + groups.map((g, gi) => {
-        const label = g.replace(/^\d+\.\s*/, '');
-        const count = full.exercises.filter(e => e.group === g).length;
-        const icon = GROUP_ICONS[g] || '🌙';
-        return `
-          <a class="ex-tile group-tile" href="/moduli.html?cat=${cat}&mod=${m.id}&group=${gi}">
-            <div class="et-icon">${icon}</div>
-            <div class="et-title">${label}</div>
-            <div class="et-sub">${count} exercises</div>
-          </a>`;
-      }).join('') + `</div>`;
+      document.getElementById('groups-' + m.id).innerHTML =
+        groups.map(g => groupCard(m.id, g, full.exercises.filter(e => e.group === g))).join('');
     }
   }
 
@@ -194,24 +199,6 @@ async function render() {
   if (openId) {
     document.getElementById('ex-' + openId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
-}
-
-// Schermata dedicata a una singola categoria (es. i verbi di "Essentials")
-async function renderGroupFocus() {
-  const full = await fetch('/api/modules/' + focusMod).then(r => r.json());
-  const groups = [];
-  full.exercises.forEach(ex => { if (ex.group && !groups.includes(ex.group)) groups.push(ex.group); });
-  const groupName = groups[parseInt(focusGroup, 10)];
-  const label = groupName ? groupName.replace(/^\d+\.\s*/, '') : 'Exercises';
-  const icon = GROUP_ICONS[groupName] || '🌙';
-  const exs = groupName ? full.exercises.filter(e => e.group === groupName) : [];
-
-  const main = document.getElementById('main');
-  main.innerHTML = `
-    <a class="back-link" href="/moduli.html?cat=${cat}">← Back to ${full.title}</a>
-    <h1 style="font-size:20px; margin:12px 0 14px;">${icon} ${label}</h1>
-    <div class="ex-tile-grid">${exs.map(ex => exTile(focusMod, ex)).join('')}</div>
-  `;
 }
 
 render();

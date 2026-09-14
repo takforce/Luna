@@ -122,8 +122,8 @@
       <div class="chat-preview" id="chat-preview">Loading...</div>
       <div class="sender-label">Sending as:</div>
       <div class="mini-sender-toggle">
-        <button class="active" data-sender="io" id="mini-io">🌟 Io</button>
-        <button data-sender="luna" id="mini-luna">🌙 Luna</button>
+        <button data-sender="io" id="mini-io">🌟 Tak</button>
+        <button class="active" data-sender="luna" id="mini-luna">🌙 Luna</button>
       </div>
       <div class="mini-emoji-panel" id="mini-emoji-panel"></div>
       <div class="mini-composer">
@@ -160,7 +160,7 @@ async function loadHome() {
 loadHome();
 
 // ── Anteprima chat ──
-let miniSender = localStorage.getItem('luna_notif_owner') || 'io';
+let miniSender = localStorage.getItem('luna_notif_owner') || 'luna';
 const previewBox = document.getElementById('chat-preview');
 
 function fmtTimeShort(iso) {
@@ -234,9 +234,11 @@ async function sendMini() {
   const formData = new FormData();
   formData.append('sender', miniSender);
   formData.append('text', text);
-  await fetch('/api/chat/messages', { method: 'POST', body: formData });
+  const res = await fetch('/api/chat/messages', { method: 'POST', body: formData });
+  const msg = await res.json();
   input.value = '';
   loadPreview();
+  markChatRead(msg.id);
 }
 document.getElementById('mini-send').addEventListener('click', sendMini);
 document.getElementById('mini-input').addEventListener('keydown', e => {

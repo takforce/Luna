@@ -118,6 +118,54 @@ const MOON_EMOJIS = MOODS.map(([id, label, eyes, mouth, extra], i) => ({
   svg: moonSvg(i, eyes + mouth + extra)
 }));
 
+// ── Luna a forma di cuore e sole, in rosso, per esprimere affetto ──
+function heartMoonSvg(id, inner) {
+  return `<svg viewBox="0 0 32 32" width="26" height="26">
+    <defs>
+      <radialGradient id="hm${id}" cx="35%" cy="28%" r="80%">
+        <stop offset="0%" stop-color="#ffd2da"/>
+        <stop offset="45%" stop-color="#e0475f"/>
+        <stop offset="100%" stop-color="#a3293c"/>
+      </radialGradient>
+    </defs>
+    <path d="M16 28.5s-11-6.2-11-14.3A7 7 0 0 1 16 8a7 7 0 0 1 11 6.2c0 8.1-11 14.3-11 14.3z" fill="url(#hm${id})"/>
+    ${inner}
+  </svg>`;
+}
+
+function sunLoveSvg(id, inner) {
+  let rays = '';
+  for (let i = 0; i < 8; i++) {
+    const a = (i * 45) * Math.PI / 180;
+    const x1 = (16 + Math.cos(a) * 11).toFixed(1), y1 = (16 + Math.sin(a) * 11).toFixed(1);
+    const x2 = (16 + Math.cos(a) * 15).toFixed(1), y2 = (16 + Math.sin(a) * 15).toFixed(1);
+    rays += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="url(#sn${id})" stroke-width="2.6" stroke-linecap="round"/>`;
+  }
+  return `<svg viewBox="0 0 32 32" width="26" height="26">
+    <defs>
+      <radialGradient id="sn${id}" cx="35%" cy="28%" r="80%">
+        <stop offset="0%" stop-color="#ffc19e"/>
+        <stop offset="50%" stop-color="#e0655f"/>
+        <stop offset="100%" stop-color="#a3293c"/>
+      </radialGradient>
+    </defs>
+    ${rays}
+    <circle cx="16" cy="16" r="10" fill="url(#sn${id})"/>
+    ${inner}
+  </svg>`;
+}
+
+MOON_EMOJIS.push({
+  code: ':moon_heart_red:',
+  label: 'Heart moon',
+  svg: heartMoonSvg('extra1', EYES.happyArc + MOUTHS.smile)
+});
+MOON_EMOJIS.push({
+  code: ':sun_love:',
+  label: 'Warm sun',
+  svg: sunLoveSvg('extra2', EYES.happyArc + MOUTHS.smile)
+});
+
 // Sostituisce gli shortcode ":moon_xxx:" nel testo con la relativa icona SVG inline
 function replaceMoonShortcodes(text) {
   let out = text;
