@@ -147,16 +147,17 @@ h1, h2, h3, .title-font { font-family: 'Baloo 2', sans-serif; }
 .hero h1 { font-size: 22px; margin: 10px 0 4px; }
 .hero p { color: var(--muted); font-size: 14px; }
 
-/* ── Luna realistica con satellite orbitante ── */
-.moon-stage {
+/* ── Cielo condiviso: luna e aereo sulla stessa linea di volo ── */
+.sky-stage {
   position: relative;
-  height: 112px;
+  height: 100px;
   overflow: hidden;
   margin-bottom: 4px;
 }
 .moon-system {
   position: absolute;
-  top: 8px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 92px;
   height: 92px;
   animation: moonDrift 24s linear infinite;
@@ -186,23 +187,17 @@ h1, h2, h3, .title-font { font-family: 'Baloo 2', sans-serif; }
 }
 @keyframes orbitSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* ── Aereo con striscione (insegue la luna) ── */
-.plane-stage {
-  position: relative;
-  height: 52px;
-  overflow: hidden;
-  margin: 2px 0 4px;
-}
 .plane-system {
   position: absolute;
-  top: 4px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   animation: moonDrift 24s linear infinite;
   animation-delay: -9s;
 }
 .plane-icon {
-  width: 54px;
+  width: 78px;
   height: auto;
   display: block;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35));

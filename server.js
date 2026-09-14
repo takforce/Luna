@@ -52,10 +52,12 @@ CREATE TABLE IF NOT EXISTS push_subscriptions (
 
 CREATE TABLE IF NOT EXISTS banner (
   id INTEGER PRIMARY KEY CHECK (id = 1),
-  message TEXT NOT NULL DEFAULT 'Ti amo Luna! 💛'
+  message TEXT NOT NULL DEFAULT ''
 );
-INSERT OR IGNORE INTO banner (id, message) VALUES (1, 'Ti amo Luna! 💛');
+INSERT OR IGNORE INTO banner (id, message) VALUES (1, '');
 `);
+// Ripulisce il vecchio messaggio di default impostato per errore in una versione precedente
+db.prepare("UPDATE banner SET message = '' WHERE message = 'Ti amo Luna! 💛'").run();
 
 // ── Contenuti moduli (JSON statico, facile da modificare) ──
 const modules = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'modules.json'), 'utf-8'));
@@ -242,6 +244,28 @@ app.get('/api/link-preview', async (req, res) => {
   const cached = linkPreviewCache.get(url);
   if (cached && (Date.now() - cached.ts) < LINK_CACHE_TTL) {
     return res.json(cached.data);
+  }
+
+  // YouTube: usa l'endpoint oEmbed ufficiale, molto più affidabile dello scraping
+  // (la pagina normale spesso mostra un banner di consenso cookie invece del video)
+  const isYouTube = /(^|\.)youtube\.com$|(^|\.)youtu\.be$/i.test(new URL(url).hostname);
+  if (isYouTube) {
+    try {
+      const oembedUrl = 'https://www.youtube.com/oembed?url=' + encodeURIComponent(url) + '&format=json';
+      const r = await fetch(oembedUrl);
+      if (r.ok) {
+        const yt = await r.json();
+        const data = {
+          url,
+          title: yt.title || url,
+          description: yt.author_name ? 'by ' + yt.author_name : '',
+          image: yt.thumbnail_url || null,
+          siteName: 'YouTube'
+        };
+        linkPreviewCache.set(url, { data, ts: Date.now() });
+        return res.json(data);
+      }
+    } catch (e) { /* fallback allo scraping generico sotto */ }
   }
 
   try {

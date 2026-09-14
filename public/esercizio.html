@@ -71,12 +71,13 @@
   <div class="topbar">
     <div class="topbar-logo">
       <span class="moon-icon">🌙</span>
-      <span class="logo-text">Luna<span>Italiano</span></span>
+      <span class="logo-text">Luna</span>
     </div>
     <div class="topbar-nav">
       <a href="/">Home</a>
       <a href="/moduli.html" class="active">Words</a>
       <a href="/moduli.html?cat=grammar">Grammar</a>
+      <a href="/moduli.html?cat=verbs">Verbs</a>
       <a href="/liste.html">Lists</a>
       <a href="/chat.html">Chat</a>
     </div>
@@ -295,16 +296,18 @@ function runConiugazione(mod, ex) {
       const accepted = item.accepted.map(normalizeAnswer);
       const correct = accepted.includes(val);
       input.disabled = true;
-      checkBtn.disabled = true;
       input.classList.add(correct ? 'correct' : 'wrong');
       feedback.className = 'write-feedback ' + (correct ? 'ok' : 'no');
       feedback.textContent = correct ? '✅ Correct!' : `Not quite — a good answer: "${item.accepted[0]}"`;
       score.total++; if (correct) score.ok++;
       saveProgress(mod.id, ex.id, item.id, correct);
-      setTimeout(() => { idx++; renderWriting(); }, 1600);
+      checkBtn.textContent = 'Continue →';
+      checkBtn.onclick = () => { idx++; renderWriting(); };
     }
-    checkBtn.addEventListener('click', check);
-    input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); check(); } });
+    checkBtn.onclick = check;
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); if (!input.disabled) check(); }
+    });
   }
 
   renderStudy();

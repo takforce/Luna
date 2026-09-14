@@ -12,12 +12,13 @@
   <div class="topbar">
     <div class="topbar-logo">
       <span class="moon-icon">🌙</span>
-      <span class="logo-text">Luna<span>Italiano</span></span>
+      <span class="logo-text">Luna</span>
     </div>
     <div class="topbar-nav">
       <a href="/" class="active">Home</a>
       <a href="/moduli.html">Words</a>
       <a href="/moduli.html?cat=grammar">Grammar</a>
+      <a href="/moduli.html?cat=verbs">Verbs</a>
       <a href="/liste.html">Lists</a>
       <a href="/chat.html">Chat</a>
     </div>
@@ -25,7 +26,7 @@
 
   <div class="main">
     <div class="hero">
-      <div class="moon-stage">
+      <div class="sky-stage">
         <div class="moon-system">
           <svg class="moon-main" viewBox="0 0 100 100" width="92" height="92">
             <defs>
@@ -56,17 +57,15 @@
             </svg>
           </div>
         </div>
-      </div>
-      <h1>Hi Luna!</h1>
-      <p>Every new word is a star you light up in your Italian sky.</p>
-
-      <div class="plane-stage">
         <div class="plane-system">
           <img class="plane-icon" src="/img/plane-savannah.png" alt="Savannah plane">
           <div class="tow-line"></div>
           <div class="tow-banner" id="tow-banner">Loading...</div>
         </div>
       </div>
+
+      <h1>Hi Luna!</h1>
+      <p>Every new word is a star you light up in your Italian sky.</p>
 
       <div class="greeting-composer">
         <input type="text" id="greeting-input" placeholder="Write a message for the banner..." maxlength="60">
@@ -95,6 +94,13 @@
         <div class="t-info">
           <h3>Grammar</h3>
           <p>Easy basics: pronouns, verbs, articles</p>
+        </div>
+      </a>
+      <a class="topic-btn" href="/moduli.html?cat=verbs">
+        <div class="t-icon">📖</div>
+        <div class="t-info">
+          <h3>Verb Practice</h3>
+          <p>Learn the forms, then write your own sentences</p>
         </div>
       </a>
       <a class="topic-btn" href="/liste.html">
@@ -196,7 +202,7 @@ document.getElementById('mini-input').addEventListener('keydown', e => {
 // ── Messaggio striscione ──
 async function loadBanner() {
   const r = await fetch('/api/banner').then(r => r.json());
-  document.getElementById('tow-banner').textContent = r.message || 'Hi Luna! 💛';
+  document.getElementById('tow-banner').textContent = r.message || '✍️ Write a message below';
   document.getElementById('greeting-input').value = '';
   document.getElementById('greeting-input').placeholder = r.message || 'Write a message for the banner...';
 }

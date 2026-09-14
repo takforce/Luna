@@ -21,12 +21,13 @@
   <div class="topbar">
     <div class="topbar-logo">
       <span class="moon-icon">🌙</span>
-      <span class="logo-text">Luna<span>Italiano</span></span>
+      <span class="logo-text">Luna</span>
     </div>
     <div class="topbar-nav">
       <a href="/">Home</a>
       <a href="/moduli.html" class="active">Words</a>
       <a href="/moduli.html?cat=grammar">Grammar</a>
+      <a href="/moduli.html?cat=verbs">Verbs</a>
       <a href="/liste.html">Lists</a>
       <a href="/chat.html">Chat</a>
     </div>
@@ -57,7 +58,7 @@ async function render() {
   progressMap = {};
   progress.forEach(p => progressMap[p.module_id] = p);
 
-  const pageTitle = cat === 'grammar' ? '✏️ Grammar' : '📚 Learn new words';
+  const pageTitle = cat === 'grammar' ? '✏️ Grammar' : cat === 'verbs' ? '📖 Verb Practice' : '📚 Learn new words';
 
   const main = document.getElementById('main');
   main.innerHTML = `<h1 style="font-size:20px; margin-bottom:14px;">${pageTitle}</h1>` +

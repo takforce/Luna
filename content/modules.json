@@ -3634,7 +3634,7 @@
   },
   {
     "id": "g7",
-    "category": "grammar",
+    "category": "verbs",
     "title": "Verb Conjugations",
     "subtitle": "Learn the forms, then write your own sentences",
     "icon": "📖",
@@ -3862,6 +3862,1247 @@
               "parleranno domani",
               "loro parleranno domani"
             ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "h1",
+    "category": "vocab",
+    "title": "100 Essential Words",
+    "subtitle": "The building blocks for your first real sentences",
+    "icon": "💯",
+    "exercises": [
+      {
+        "id": "h1e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice (words 1–50)",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {
+            "id": "ai1",
+            "prompt": "of",
+            "options": [
+              "di",
+              "nostro",
+              "sempre",
+              "tuo"
+            ],
+            "answer": "di"
+          },
+          {
+            "id": "ai2",
+            "prompt": "to / at",
+            "options": [
+              "sempre",
+              "a",
+              "sapere",
+              "ma"
+            ],
+            "answer": "a"
+          },
+          {
+            "id": "ai3",
+            "prompt": "from",
+            "options": [
+              "con",
+              "da",
+              "mio",
+              "per"
+            ],
+            "answer": "da"
+          },
+          {
+            "id": "ai4",
+            "prompt": "in",
+            "options": [
+              "molto",
+              "venire",
+              "in",
+              "dare"
+            ],
+            "answer": "in"
+          },
+          {
+            "id": "ai5",
+            "prompt": "with",
+            "options": [
+              "tra",
+              "molto",
+              "stesso",
+              "con"
+            ],
+            "answer": "con"
+          },
+          {
+            "id": "ai6",
+            "prompt": "on",
+            "options": [
+              "poco",
+              "prendere",
+              "su",
+              "ieri"
+            ],
+            "answer": "su"
+          },
+          {
+            "id": "ai7",
+            "prompt": "for",
+            "options": [
+              "su",
+              "per",
+              "sapere",
+              "volere"
+            ],
+            "answer": "per"
+          },
+          {
+            "id": "ai8",
+            "prompt": "between",
+            "options": [
+              "o",
+              "suo",
+              "tra",
+              "ogni"
+            ],
+            "answer": "tra"
+          },
+          {
+            "id": "ai9",
+            "prompt": "and",
+            "options": [
+              "e",
+              "tuo",
+              "non",
+              "mio"
+            ],
+            "answer": "e"
+          },
+          {
+            "id": "ai10",
+            "prompt": "but",
+            "options": [
+              "prendere",
+              "ma",
+              "dire",
+              "mio"
+            ],
+            "answer": "ma"
+          },
+          {
+            "id": "ai11",
+            "prompt": "or",
+            "options": [
+              "da",
+              "sapere",
+              "vostro",
+              "o"
+            ],
+            "answer": "o"
+          },
+          {
+            "id": "ai12",
+            "prompt": "that (conjunction)",
+            "options": [
+              "vedere",
+              "fare",
+              "dire",
+              "che"
+            ],
+            "answer": "che"
+          },
+          {
+            "id": "ai13",
+            "prompt": "if",
+            "options": [
+              "se",
+              "tutto",
+              "potere",
+              "lasciare"
+            ],
+            "answer": "se"
+          },
+          {
+            "id": "ai14",
+            "prompt": "because",
+            "options": [
+              "perché",
+              "poco",
+              "cercare",
+              "altro"
+            ],
+            "answer": "perché"
+          },
+          {
+            "id": "ai15",
+            "prompt": "also / too",
+            "options": [
+              "per",
+              "adesso",
+              "anche",
+              "prendere"
+            ],
+            "answer": "anche"
+          },
+          {
+            "id": "ai16",
+            "prompt": "not",
+            "options": [
+              "di",
+              "andare",
+              "non",
+              "perché"
+            ],
+            "answer": "non"
+          },
+          {
+            "id": "ai17",
+            "prompt": "very",
+            "options": [
+              "altro",
+              "potere",
+              "mio",
+              "molto"
+            ],
+            "answer": "molto"
+          },
+          {
+            "id": "ai18",
+            "prompt": "little / few",
+            "options": [
+              "poco",
+              "andare",
+              "nostro",
+              "stesso"
+            ],
+            "answer": "poco"
+          },
+          {
+            "id": "ai19",
+            "prompt": "everything / all",
+            "options": [
+              "lasciare",
+              "che",
+              "tra",
+              "tutto"
+            ],
+            "answer": "tutto"
+          },
+          {
+            "id": "ai20",
+            "prompt": "other",
+            "options": [
+              "da",
+              "altro",
+              "andare",
+              "cercare"
+            ],
+            "answer": "altro"
+          },
+          {
+            "id": "ai21",
+            "prompt": "same",
+            "options": [
+              "cercare",
+              "domani",
+              "stesso",
+              "ma"
+            ],
+            "answer": "stesso"
+          },
+          {
+            "id": "ai22",
+            "prompt": "every",
+            "options": [
+              "o",
+              "nostro",
+              "adesso",
+              "ogni"
+            ],
+            "answer": "ogni"
+          },
+          {
+            "id": "ai23",
+            "prompt": "this",
+            "options": [
+              "non",
+              "a",
+              "e",
+              "questo"
+            ],
+            "answer": "questo"
+          },
+          {
+            "id": "ai24",
+            "prompt": "that (that one)",
+            "options": [
+              "tutto",
+              "quello",
+              "su",
+              "a"
+            ],
+            "answer": "quello"
+          },
+          {
+            "id": "ai25",
+            "prompt": "my",
+            "options": [
+              "mio",
+              "dare",
+              "oggi",
+              "tuo"
+            ],
+            "answer": "mio"
+          },
+          {
+            "id": "ai26",
+            "prompt": "your",
+            "options": [
+              "mio",
+              "di",
+              "tuo",
+              "perché"
+            ],
+            "answer": "tuo"
+          },
+          {
+            "id": "ai27",
+            "prompt": "his / her",
+            "options": [
+              "lasciare",
+              "ieri",
+              "suo",
+              "se"
+            ],
+            "answer": "suo"
+          },
+          {
+            "id": "ai28",
+            "prompt": "our",
+            "options": [
+              "nostro",
+              "trovare",
+              "potere",
+              "adesso"
+            ],
+            "answer": "nostro"
+          },
+          {
+            "id": "ai29",
+            "prompt": "your (plural)",
+            "options": [
+              "vostro",
+              "e",
+              "tra",
+              "ieri"
+            ],
+            "answer": "vostro"
+          },
+          {
+            "id": "ai30",
+            "prompt": "to do / to make",
+            "options": [
+              "fare",
+              "con",
+              "vedere",
+              "questo"
+            ],
+            "answer": "fare"
+          },
+          {
+            "id": "ai31",
+            "prompt": "to say",
+            "options": [
+              "tutto",
+              "dire",
+              "prendere",
+              "venire"
+            ],
+            "answer": "dire"
+          },
+          {
+            "id": "ai32",
+            "prompt": "to be able to / can",
+            "options": [
+              "dire",
+              "tra",
+              "di",
+              "potere"
+            ],
+            "answer": "potere"
+          },
+          {
+            "id": "ai33",
+            "prompt": "to want",
+            "options": [
+              "perché",
+              "con",
+              "volere",
+              "ma"
+            ],
+            "answer": "volere"
+          },
+          {
+            "id": "ai34",
+            "prompt": "to have to / must",
+            "options": [
+              "sapere",
+              "mettere",
+              "dovere",
+              "o"
+            ],
+            "answer": "dovere"
+          },
+          {
+            "id": "ai35",
+            "prompt": "to go",
+            "options": [
+              "questo",
+              "dare",
+              "andare",
+              "dovere"
+            ],
+            "answer": "andare"
+          },
+          {
+            "id": "ai36",
+            "prompt": "to come",
+            "options": [
+              "vedere",
+              "venire",
+              "sempre",
+              "ogni"
+            ],
+            "answer": "venire"
+          },
+          {
+            "id": "ai37",
+            "prompt": "to see",
+            "options": [
+              "in",
+              "vedere",
+              "ogni",
+              "a"
+            ],
+            "answer": "vedere"
+          },
+          {
+            "id": "ai38",
+            "prompt": "to know",
+            "options": [
+              "sapere",
+              "stare",
+              "su",
+              "cercare"
+            ],
+            "answer": "sapere"
+          },
+          {
+            "id": "ai39",
+            "prompt": "to give",
+            "options": [
+              "nostro",
+              "suo",
+              "dare",
+              "mettere"
+            ],
+            "answer": "dare"
+          },
+          {
+            "id": "ai40",
+            "prompt": "to stay / to be (somewhere)",
+            "options": [
+              "molto",
+              "mio",
+              "stare",
+              "perché"
+            ],
+            "answer": "stare"
+          },
+          {
+            "id": "ai41",
+            "prompt": "to take",
+            "options": [
+              "dovere",
+              "sapere",
+              "prendere",
+              "fare"
+            ],
+            "answer": "prendere"
+          },
+          {
+            "id": "ai42",
+            "prompt": "to put",
+            "options": [
+              "mio",
+              "anche",
+              "mettere",
+              "ogni"
+            ],
+            "answer": "mettere"
+          },
+          {
+            "id": "ai43",
+            "prompt": "to find",
+            "options": [
+              "tra",
+              "trovare",
+              "prendere",
+              "a"
+            ],
+            "answer": "trovare"
+          },
+          {
+            "id": "ai44",
+            "prompt": "to leave",
+            "options": [
+              "da",
+              "adesso",
+              "lasciare",
+              "tutto"
+            ],
+            "answer": "lasciare"
+          },
+          {
+            "id": "ai45",
+            "prompt": "to look for",
+            "options": [
+              "andare",
+              "dovere",
+              "cercare",
+              "suo"
+            ],
+            "answer": "cercare"
+          },
+          {
+            "id": "ai46",
+            "prompt": "now",
+            "options": [
+              "adesso",
+              "suo",
+              "poco",
+              "potere"
+            ],
+            "answer": "adesso"
+          },
+          {
+            "id": "ai47",
+            "prompt": "today",
+            "options": [
+              "oggi",
+              "con",
+              "da",
+              "tuo"
+            ],
+            "answer": "oggi"
+          },
+          {
+            "id": "ai48",
+            "prompt": "tomorrow",
+            "options": [
+              "questo",
+              "con",
+              "nostro",
+              "domani"
+            ],
+            "answer": "domani"
+          },
+          {
+            "id": "ai49",
+            "prompt": "yesterday",
+            "options": [
+              "stesso",
+              "venire",
+              "ieri",
+              "e"
+            ],
+            "answer": "ieri"
+          },
+          {
+            "id": "ai50",
+            "prompt": "always",
+            "options": [
+              "suo",
+              "sempre",
+              "questo",
+              "con"
+            ],
+            "answer": "sempre"
+          }
+        ]
+      },
+      {
+        "id": "h1e2",
+        "type": "scelta_multipla",
+        "title": "Multiple choice (words 51–100)",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {
+            "id": "bi1",
+            "prompt": "never",
+            "options": [
+              "mai",
+              "anno",
+              "importante",
+              "parte"
+            ],
+            "answer": "mai"
+          },
+          {
+            "id": "bi2",
+            "prompt": "already",
+            "options": [
+              "importante",
+              "già",
+              "parola",
+              "troppo"
+            ],
+            "answer": "già"
+          },
+          {
+            "id": "bi3",
+            "prompt": "still / yet",
+            "options": [
+              "tardi",
+              "ancora",
+              "vita",
+              "dopo"
+            ],
+            "answer": "ancora"
+          },
+          {
+            "id": "bi4",
+            "prompt": "soon",
+            "options": [
+              "vecchio",
+              "soldi",
+              "presto",
+              "domanda"
+            ],
+            "answer": "presto"
+          },
+          {
+            "id": "bi5",
+            "prompt": "late",
+            "options": [
+              "più",
+              "vecchio",
+              "volta",
+              "tardi"
+            ],
+            "answer": "tardi"
+          },
+          {
+            "id": "bi6",
+            "prompt": "before",
+            "options": [
+              "bello",
+              "problema",
+              "prima",
+              "difficile"
+            ],
+            "answer": "prima"
+          },
+          {
+            "id": "bi7",
+            "prompt": "after",
+            "options": [
+              "prima",
+              "dopo",
+              "parola",
+              "via"
+            ],
+            "answer": "dopo"
+          },
+          {
+            "id": "bi8",
+            "prompt": "more",
+            "options": [
+              "abbastanza",
+              "lavoro",
+              "più",
+              "modo"
+            ],
+            "answer": "più"
+          },
+          {
+            "id": "bi9",
+            "prompt": "less",
+            "options": [
+              "meno",
+              "parte",
+              "nuovo",
+              "vita"
+            ],
+            "answer": "meno"
+          },
+          {
+            "id": "bi10",
+            "prompt": "too much",
+            "options": [
+              "problema",
+              "troppo",
+              "mese",
+              "vita"
+            ],
+            "answer": "troppo"
+          },
+          {
+            "id": "bi11",
+            "prompt": "enough",
+            "options": [
+              "ancora",
+              "parola",
+              "giorno",
+              "abbastanza"
+            ],
+            "answer": "abbastanza"
+          },
+          {
+            "id": "bi12",
+            "prompt": "big",
+            "options": [
+              "nome",
+              "settimana",
+              "mese",
+              "grande"
+            ],
+            "answer": "grande"
+          },
+          {
+            "id": "bi13",
+            "prompt": "small",
+            "options": [
+              "piccolo",
+              "brutto",
+              "casa",
+              "amico"
+            ],
+            "answer": "piccolo"
+          },
+          {
+            "id": "bi14",
+            "prompt": "good",
+            "options": [
+              "buono",
+              "bello",
+              "amore",
+              "cosa"
+            ],
+            "answer": "buono"
+          },
+          {
+            "id": "bi15",
+            "prompt": "bad",
+            "options": [
+              "dopo",
+              "felice",
+              "cattivo",
+              "problema"
+            ],
+            "answer": "cattivo"
+          },
+          {
+            "id": "bi16",
+            "prompt": "new",
+            "options": [
+              "mai",
+              "paese",
+              "nuovo",
+              "buono"
+            ],
+            "answer": "nuovo"
+          },
+          {
+            "id": "bi17",
+            "prompt": "old",
+            "options": [
+              "cosa",
+              "casa",
+              "vita",
+              "vecchio"
+            ],
+            "answer": "vecchio"
+          },
+          {
+            "id": "bi18",
+            "prompt": "beautiful",
+            "options": [
+              "bello",
+              "paese",
+              "anno",
+              "volta"
+            ],
+            "answer": "bello"
+          },
+          {
+            "id": "bi19",
+            "prompt": "ugly",
+            "options": [
+              "amico",
+              "grande",
+              "più",
+              "brutto"
+            ],
+            "answer": "brutto"
+          },
+          {
+            "id": "bi20",
+            "prompt": "thing",
+            "options": [
+              "ancora",
+              "cosa",
+              "paese",
+              "amore"
+            ],
+            "answer": "cosa"
+          },
+          {
+            "id": "bi21",
+            "prompt": "time (occasion)",
+            "options": [
+              "amore",
+              "facile",
+              "volta",
+              "troppo"
+            ],
+            "answer": "volta"
+          },
+          {
+            "id": "bi22",
+            "prompt": "way / manner",
+            "options": [
+              "abbastanza",
+              "anno",
+              "felice",
+              "modo"
+            ],
+            "answer": "modo"
+          },
+          {
+            "id": "bi23",
+            "prompt": "person",
+            "options": [
+              "nuovo",
+              "già",
+              "meno",
+              "persona"
+            ],
+            "answer": "persona"
+          },
+          {
+            "id": "bi24",
+            "prompt": "world",
+            "options": [
+              "brutto",
+              "mondo",
+              "prima",
+              "già"
+            ],
+            "answer": "mondo"
+          },
+          {
+            "id": "bi25",
+            "prompt": "life",
+            "options": [
+              "vita",
+              "domanda",
+              "triste",
+              "parte"
+            ],
+            "answer": "vita"
+          },
+          {
+            "id": "bi26",
+            "prompt": "part",
+            "options": [
+              "vita",
+              "mai",
+              "parte",
+              "buono"
+            ],
+            "answer": "parte"
+          },
+          {
+            "id": "bi27",
+            "prompt": "work",
+            "options": [
+              "amico",
+              "difficile",
+              "lavoro",
+              "piccolo"
+            ],
+            "answer": "lavoro"
+          },
+          {
+            "id": "bi28",
+            "prompt": "year",
+            "options": [
+              "anno",
+              "storia",
+              "casa",
+              "felice"
+            ],
+            "answer": "anno"
+          },
+          {
+            "id": "bi29",
+            "prompt": "day",
+            "options": [
+              "giorno",
+              "meno",
+              "più",
+              "difficile"
+            ],
+            "answer": "giorno"
+          },
+          {
+            "id": "bi30",
+            "prompt": "week",
+            "options": [
+              "settimana",
+              "tardi",
+              "nome",
+              "persona"
+            ],
+            "answer": "settimana"
+          },
+          {
+            "id": "bi31",
+            "prompt": "month",
+            "options": [
+              "brutto",
+              "mese",
+              "problema",
+              "soldi"
+            ],
+            "answer": "mese"
+          },
+          {
+            "id": "bi32",
+            "prompt": "house / home",
+            "options": [
+              "mese",
+              "più",
+              "mai",
+              "casa"
+            ],
+            "answer": "casa"
+          },
+          {
+            "id": "bi33",
+            "prompt": "street / road",
+            "options": [
+              "buono",
+              "tardi",
+              "via",
+              "troppo"
+            ],
+            "answer": "via"
+          },
+          {
+            "id": "bi34",
+            "prompt": "city",
+            "options": [
+              "parola",
+              "idea",
+              "città",
+              "abbastanza"
+            ],
+            "answer": "città"
+          },
+          {
+            "id": "bi35",
+            "prompt": "country",
+            "options": [
+              "persona",
+              "domanda",
+              "paese",
+              "città"
+            ],
+            "answer": "paese"
+          },
+          {
+            "id": "bi36",
+            "prompt": "money",
+            "options": [
+              "nome",
+              "soldi",
+              "importante",
+              "modo"
+            ],
+            "answer": "soldi"
+          },
+          {
+            "id": "bi37",
+            "prompt": "name",
+            "options": [
+              "presto",
+              "nome",
+              "modo",
+              "già"
+            ],
+            "answer": "nome"
+          },
+          {
+            "id": "bi38",
+            "prompt": "word",
+            "options": [
+              "parola",
+              "risposta",
+              "prima",
+              "amore"
+            ],
+            "answer": "parola"
+          },
+          {
+            "id": "bi39",
+            "prompt": "question",
+            "options": [
+              "anno",
+              "lavoro",
+              "domanda",
+              "idea"
+            ],
+            "answer": "domanda"
+          },
+          {
+            "id": "bi40",
+            "prompt": "answer",
+            "options": [
+              "vecchio",
+              "vita",
+              "risposta",
+              "buono"
+            ],
+            "answer": "risposta"
+          },
+          {
+            "id": "bi41",
+            "prompt": "problem",
+            "options": [
+              "città",
+              "parola",
+              "problema",
+              "settimana"
+            ],
+            "answer": "problema"
+          },
+          {
+            "id": "bi42",
+            "prompt": "idea",
+            "options": [
+              "vita",
+              "cattivo",
+              "idea",
+              "modo"
+            ],
+            "answer": "idea"
+          },
+          {
+            "id": "bi43",
+            "prompt": "story",
+            "options": [
+              "più",
+              "storia",
+              "problema",
+              "già"
+            ],
+            "answer": "storia"
+          },
+          {
+            "id": "bi44",
+            "prompt": "friend",
+            "options": [
+              "ancora",
+              "felice",
+              "amico",
+              "brutto"
+            ],
+            "answer": "amico"
+          },
+          {
+            "id": "bi45",
+            "prompt": "love",
+            "options": [
+              "paese",
+              "città",
+              "amore",
+              "lavoro"
+            ],
+            "answer": "amore"
+          },
+          {
+            "id": "bi46",
+            "prompt": "happy",
+            "options": [
+              "felice",
+              "lavoro",
+              "bello",
+              "casa"
+            ],
+            "answer": "felice"
+          },
+          {
+            "id": "bi47",
+            "prompt": "sad",
+            "options": [
+              "triste",
+              "tardi",
+              "ancora",
+              "parte"
+            ],
+            "answer": "triste"
+          },
+          {
+            "id": "bi48",
+            "prompt": "easy",
+            "options": [
+              "persona",
+              "tardi",
+              "anno",
+              "facile"
+            ],
+            "answer": "facile"
+          },
+          {
+            "id": "bi49",
+            "prompt": "difficult",
+            "options": [
+              "volta",
+              "soldi",
+              "difficile",
+              "meno"
+            ],
+            "answer": "difficile"
+          },
+          {
+            "id": "bi50",
+            "prompt": "important",
+            "options": [
+              "lavoro",
+              "importante",
+              "persona",
+              "tardi"
+            ],
+            "answer": "importante"
+          }
+        ]
+      },
+      {
+        "id": "h1e3",
+        "type": "abbinamento",
+        "title": "Matching (words 1–50)",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {
+            "id": "m1p1",
+            "it": "di",
+            "en": "of"
+          },
+          {
+            "id": "m1p2",
+            "it": "con",
+            "en": "with"
+          },
+          {
+            "id": "m1p3",
+            "it": "e",
+            "en": "and"
+          },
+          {
+            "id": "m1p4",
+            "it": "anche",
+            "en": "also / too"
+          },
+          {
+            "id": "m1p5",
+            "it": "questo",
+            "en": "this"
+          },
+          {
+            "id": "m1p6",
+            "it": "fare",
+            "en": "to do / to make"
+          },
+          {
+            "id": "m1p7",
+            "it": "andare",
+            "en": "to go"
+          },
+          {
+            "id": "m1p8",
+            "it": "stare",
+            "en": "to stay / to be (somewhere)"
+          },
+          {
+            "id": "m1p9",
+            "it": "cercare",
+            "en": "to look for"
+          },
+          {
+            "id": "m1p10",
+            "it": "sempre",
+            "en": "always"
+          }
+        ]
+      },
+      {
+        "id": "h1e4",
+        "type": "abbinamento",
+        "title": "Matching (words 51–100)",
+        "instructions": "Match the Italian word to its English meaning",
+        "pairs": [
+          {
+            "id": "m2p1",
+            "it": "mai",
+            "en": "never"
+          },
+          {
+            "id": "m2p2",
+            "it": "prima",
+            "en": "before"
+          },
+          {
+            "id": "m2p3",
+            "it": "grande",
+            "en": "big"
+          },
+          {
+            "id": "m2p4",
+            "it": "bello",
+            "en": "beautiful"
+          },
+          {
+            "id": "m2p5",
+            "it": "mondo",
+            "en": "world"
+          },
+          {
+            "id": "m2p6",
+            "it": "settimana",
+            "en": "week"
+          },
+          {
+            "id": "m2p7",
+            "it": "soldi",
+            "en": "money"
+          },
+          {
+            "id": "m2p8",
+            "it": "problema",
+            "en": "problem"
+          },
+          {
+            "id": "m2p9",
+            "it": "felice",
+            "en": "happy"
+          },
+          {
+            "id": "m2p10",
+            "it": "importante",
+            "en": "important"
           }
         ]
       }
