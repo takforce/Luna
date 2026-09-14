@@ -1,0 +1,14 @@
+{
+  "name": "luna-italiano",
+  "version": "1.0.0",
+  "description": "App per insegnare l'italiano a Luna - tema luna, galassie e stelle",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "better-sqlite3": "^11.3.0",
+    "multer": "^2.0.0"
+  }
+}

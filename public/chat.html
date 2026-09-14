@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat - Luna Italiano</title>
+<link rel="stylesheet" href="/css/theme.css">
+<style>
+  .chat-wrap { display:flex; flex-direction:column; height: calc(100dvh - 62px); max-width:640px; margin:0 auto; }
+  .chat-log { flex:1; overflow-y:auto; padding: 16px; display:flex; flex-direction:column; gap:10px; }
+  .msg { max-width: 78%; padding: 10px 14px; border-radius: 16px; font-size:14px; line-height:1.4; position:relative; }
+  .msg.io { align-self:flex-end; background: linear-gradient(135deg, var(--gold), #f0a93a); color:#2a1c00; border-bottom-right-radius:4px; }
+  .msg.luna { align-self:flex-start; background: rgba(255,255,255,0.09); border:1px solid var(--card-border); border-bottom-left-radius:4px; }
+  .msg .meta { font-size:10px; opacity:.6; margin-top:4px; display:flex; gap:8px; align-items:center; }
+  .msg img.att { max-width: 100%; border-radius:10px; margin-bottom:6px; display:block; }
+  .msg a.att-file { display:flex; align-items:center; gap:6px; font-size:13px; text-decoration:underline; margin-bottom:4px; }
+  .msg .del-btn { background:none; border:none; color:inherit; opacity:.5; cursor:pointer; font-size:11px; }
+  .msg .del-btn:hover { opacity:1; }
+
+  .composer { border-top:1px solid var(--card-border); background: rgba(11,12,42,0.85); backdrop-filter: blur(10px); padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); position:relative; }
+  .sender-toggle { display:flex; gap:6px; margin-bottom:8px; }
+  .sender-toggle button { flex:1; padding:6px; border-radius:20px; border:1px solid var(--card-border); background:rgba(255,255,255,0.05); color:var(--muted); font-family:'Quicksand',sans-serif; font-weight:700; font-size:12px; cursor:pointer; }
+  .sender-toggle button.active.io { background: var(--gold); color:#2a1c00; border-color:var(--gold); }
+  .sender-toggle button.active.luna { background: var(--violet-light); color:#1a1240; border-color:var(--violet-light); }
+
+  .input-row { display:flex; align-items:flex-end; gap:8px; }
+  .input-row textarea {
+    flex:1; resize:none; max-height:100px; min-height:42px;
+    background: rgba(255,255,255,0.08); border:1px solid var(--card-border); border-radius:20px;
+    color:var(--text); font-family:'Quicksand',sans-serif; font-size:14px; padding:10px 14px;
+  }
+  .icon-btn { width:42px; height:42px; border-radius:50%; border:1px solid var(--card-border); background: rgba(255,255,255,0.08); color:var(--text); font-size:18px; cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  .send-btn { background: linear-gradient(135deg, var(--gold), #f0a93a); color:#2a1c00; border:none; }
+
+  .emoji-panel {
+    position:absolute; bottom: 100%; left:12px; right:12px;
+    background: rgba(21,18,56,0.97); border:1px solid var(--card-border); border-radius:16px;
+    padding: 10px; display:none; grid-template-columns: repeat(8, 1fr); gap:4px; max-height:160px; overflow-y:auto;
+    margin-bottom:8px;
+  }
+  .emoji-panel.open { display:grid; }
+  .emoji-panel button { background:none; border:none; font-size:20px; padding:6px; cursor:pointer; border-radius:8px; }
+  .emoji-panel button:hover { background: rgba(255,255,255,0.1); }
+
+  .attach-preview { display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.08); border-radius:12px; padding:6px 10px; margin-bottom:8px; font-size:12px; display:none; }
+  .attach-preview.show { display:flex; }
+  .attach-preview button { margin-left:auto; background:none; border:none; color:var(--muted); cursor:pointer; }
+</style>
+</head>
+<body>
+
+<div class="app-content">
+  <div class="topbar">
+    <div class="topbar-logo">
+      <span class="moon-icon">🌙</span>
+      <span class="logo-text">Luna<span>Italiano</span></span>
+    </div>
+    <div class="topbar-nav">
+      <a href="/">Home</a>
+      <a href="/moduli.html">Moduli</a>
+      <a href="/chat.html" class="active">Chat</a>
+    </div>
+  </div>
+
+  <div class="chat-wrap">
+    <div class="chat-log" id="chat-log"></div>
+
+    <div class="composer">
+      <div class="emoji-panel" id="emoji-panel"></div>
+      <div class="attach-preview" id="attach-preview">
+        <span id="attach-name"></span>
+        <button id="attach-remove">✕</button>
+      </div>
+      <div class="sender-toggle">
+        <button class="io active" data-sender="io">🌟 Io</button>
+        <button class="luna" data-sender="luna">🌙 Luna</button>
+      </div>
+      <div class="input-row">
+        <button class="icon-btn" id="emoji-toggle">✨</button>
+        <button class="icon-btn" id="attach-btn">📎</button>
+        <input type="file" id="file-input" style="display:none">
+        <textarea id="msg-input" placeholder="Scrivi un messaggio..." rows="1"></textarea>
+        <button class="icon-btn send-btn" id="send-btn">🚀</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/starfield.js"></script>
+<script>
+const EMOJI = ['🌙','🌛','🌜','🌝','🌚','🌕','🌗','🌑','⭐','🌟','✨','💫','☄️','🪐','🌌','🌠','☀️','🌈','🔭','👽','🛸','💛','💙','💜','🩷','🎉','❤️','😍','😊','😂','🥰','😴','👋','🙏','🎓','📚','✅','❌'];
+
+let currentSender = 'io';
+let pendingFile = null;
+
+const chatLog = document.getElementById('chat-log');
+const emojiPanel = document.getElementById('emoji-panel');
+const msgInput = document.getElementById('msg-input');
+const attachPreview = document.getElementById('attach-preview');
+const attachName = document.getElementById('attach-name');
+const fileInput = document.getElementById('file-input');
+
+emojiPanel.innerHTML = EMOJI.map(e => `<button type="button">${e}</button>`).join('');
+emojiPanel.querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    msgInput.value += btn.textContent;
+    msgInput.focus();
+  });
+});
+document.getElementById('emoji-toggle').addEventListener('click', () => {
+  emojiPanel.classList.toggle('open');
+});
+
+document.querySelectorAll('.sender-toggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentSender = btn.dataset.sender;
+    document.querySelectorAll('.sender-toggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+document.getElementById('attach-btn').addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', () => {
+  if (fileInput.files[0]) {
+    pendingFile = fileInput.files[0];
+    attachName.textContent = '📎 ' + pendingFile.name;
+    attachPreview.classList.add('show');
+  }
+});
+document.getElementById('attach-remove').addEventListener('click', () => {
+  pendingFile = null; fileInput.value = '';
+  attachPreview.classList.remove('show');
+});
+
+function fmtTime(iso) {
+  const d = new Date(iso + 'Z');
+  return d.toLocaleString('it-IT', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+}
+
+function renderMsg(m) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + m.sender;
+  let attHtml = '';
+  if (m.attachment_path) {
+    if (m.attachment_type && m.attachment_type.startsWith('image/')) {
+      attHtml = `<img class="att" src="${m.attachment_path}" alt="${m.attachment_name}">`;
+    } else {
+      attHtml = `<a class="att-file" href="${m.attachment_path}" target="_blank">📎 ${m.attachment_name}</a>`;
+    }
+  }
+  div.innerHTML = `
+    ${attHtml}
+    ${m.text ? `<div>${m.text.replace(/</g,'&lt;')}</div>` : ''}
+    <div class="meta"><span>${fmtTime(m.created_at)}</span><button class="del-btn" data-id="${m.id}">elimina</button></div>
+  `;
+  div.querySelector('.del-btn').addEventListener('click', async () => {
+    await fetch('/api/chat/messages/' + m.id, { method: 'DELETE' });
+    div.remove();
+  });
+  chatLog.appendChild(div);
+}
+
+async function loadMessages() {
+  const msgs = await fetch('/api/chat/messages').then(r => r.json());
+  chatLog.innerHTML = '';
+  msgs.forEach(renderMsg);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+async function sendMessage() {
+  const text = msgInput.value.trim();
+  if (!text && !pendingFile) return;
+
+  const formData = new FormData();
+  formData.append('sender', currentSender);
+  formData.append('text', text);
+  if (pendingFile) formData.append('attachment', pendingFile);
+
+  const res = await fetch('/api/chat/messages', { method: 'POST', body: formData });
+  const msg = await res.json();
+  renderMsg(msg);
+  chatLog.scrollTop = chatLog.scrollHeight;
+
+  msgInput.value = '';
+  pendingFile = null; fileInput.value = '';
+  attachPreview.classList.remove('show');
+  emojiPanel.classList.remove('open');
+}
+
+document.getElementById('send-btn').addEventListener('click', sendMessage);
+msgInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+});
+msgInput.addEventListener('input', () => {
+  msgInput.style.height = 'auto';
+  msgInput.style.height = Math.min(msgInput.scrollHeight, 100) + 'px';
+});
+
+loadMessages();
+</script>
+</body>
+</html>

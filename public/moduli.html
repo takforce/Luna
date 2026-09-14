@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moduli - Luna Italiano</title>
+<link rel="stylesheet" href="/css/theme.css">
+</head>
+<body>
+
+<div class="app-content">
+  <div class="topbar">
+    <div class="topbar-logo">
+      <span class="moon-icon">🌙</span>
+      <span class="logo-text">Luna<span>Italiano</span></span>
+    </div>
+    <div class="topbar-nav">
+      <a href="/">Home</a>
+      <a href="/moduli.html" class="active">Moduli</a>
+      <a href="/chat.html">Chat</a>
+    </div>
+  </div>
+
+  <div class="main" id="main"></div>
+
+  <div class="bottom-nav">
+    <a href="/"><span class="bn-icon">🌙</span>Home</a>
+    <a href="/moduli.html" class="active"><span class="bn-icon">⭐</span>Moduli</a>
+    <a href="/chat.html"><span class="bn-icon">💬</span>Chat</a>
+  </div>
+</div>
+
+<script src="/js/starfield.js"></script>
+<script>
+const params = new URLSearchParams(location.search);
+const openId = params.get('open');
+
+async function render() {
+  const modules = await fetch('/api/modules').then(r => r.json());
+  const main = document.getElementById('main');
+  main.innerHTML = `<h1 style="font-size:20px; margin-bottom:14px;">🌌 Tutti i moduli</h1>` +
+    modules.map(m => `
+      <div class="card" style="margin-bottom:14px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+          <div style="font-size:32px;">${m.icon}</div>
+          <div>
+            <h3 style="font-size:16px;">${m.title}</h3>
+            <p style="font-size:13px; color:var(--muted);">${m.subtitle}</p>
+          </div>
+        </div>
+        <div id="ex-${m.id}" style="display:flex; flex-direction:column; gap:8px;"></div>
+      </div>
+    `).join('');
+
+  for (const m of modules) {
+    const full = await fetch('/api/modules/' + m.id).then(r => r.json());
+    const box = document.getElementById('ex-' + m.id);
+    box.innerHTML = full.exercises.map(ex => `
+      <a class="btn btn-ghost btn-block" href="/esercizio.html?modulo=${m.id}&esercizio=${ex.id}"
+         style="justify-content:flex-start;">
+        ${ex.type === 'scelta_multipla' ? '🌟' : '🌠'} ${ex.title}
+      </a>
+    `).join('');
+  }
+
+  if (openId) {
+    document.getElementById('ex-' + openId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+render();
+</script>
+</body>
+</html>

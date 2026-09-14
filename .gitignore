@@ -1,0 +1,6 @@
+node_modules/
+data/luna.db
+data/luna.db-wal
+data/luna.db-shm
+public/uploads/*
+!public/uploads/.gitkeep

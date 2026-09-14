@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esercizio - Luna Italiano</title>
+<link rel="stylesheet" href="/css/theme.css">
+<style>
+  .opt-btn {
+    display:block; width:100%; text-align:left;
+    background: rgba(255,255,255,0.07); border:1px solid var(--card-border);
+    color: var(--text); font-family:'Quicksand',sans-serif; font-size:15px; font-weight:600;
+    padding: 14px 16px; border-radius: 12px; margin-bottom:10px; cursor:pointer;
+    transition: all .15s;
+  }
+  .opt-btn:hover { border-color: var(--violet-light); }
+  .opt-btn.correct { background: rgba(89,214,148,0.25); border-color:#59d694; }
+  .opt-btn.wrong { background: rgba(230,90,90,0.25); border-color:#e65a5a; }
+  .opt-btn:disabled { cursor:default; }
+
+  .prompt-box { text-align:center; padding: 30px 16px; }
+  .prompt-box .word { font-size: 28px; font-weight:700; font-family:'Baloo 2',sans-serif; }
+  .prompt-box .hint { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;}
+
+  .match-cols { display:flex; gap: 12px; }
+  .match-col { flex:1; display:flex; flex-direction:column; gap:8px; }
+  .match-item {
+    background: rgba(255,255,255,0.07); border:1px solid var(--card-border);
+    padding: 12px 10px; border-radius: 12px; text-align:center;
+    font-weight:600; cursor:pointer; font-size:14px; transition: all .15s;
+  }
+  .match-item.selected { border-color: var(--gold); background: rgba(246,196,83,0.15); }
+  .match-item.matched { border-color:#59d694; background: rgba(89,214,148,0.2); cursor:default; opacity:.7; }
+  .match-item.wrong-flash { border-color:#e65a5a; background: rgba(230,90,90,0.25); }
+
+  .progress-bar-outer { height:6px; border-radius:4px; background: rgba(255,255,255,0.1); overflow:hidden; margin-bottom:18px; }
+  .progress-bar-inner { height:100%; background: linear-gradient(90deg, var(--gold), var(--pink)); transition: width .25s; }
+</style>
+</head>
+<body>
+
+<div class="app-content">
+  <div class="topbar">
+    <div class="topbar-logo">
+      <span class="moon-icon">🌙</span>
+      <span class="logo-text">Luna<span>Italiano</span></span>
+    </div>
+    <div class="topbar-nav">
+      <a href="/">Home</a>
+      <a href="/moduli.html" class="active">Moduli</a>
+      <a href="/chat.html">Chat</a>
+    </div>
+  </div>
+
+  <div class="main" id="main">Caricamento... 🌙</div>
+
+  <div class="bottom-nav">
+    <a href="/"><span class="bn-icon">🌙</span>Home</a>
+    <a href="/moduli.html" class="active"><span class="bn-icon">⭐</span>Moduli</a>
+    <a href="/chat.html"><span class="bn-icon">💬</span>Chat</a>
+  </div>
+</div>
+
+<script src="/js/starfield.js"></script>
+<script>
+const params = new URLSearchParams(location.search);
+const moduloId = params.get('modulo');
+const esercizioId = params.get('esercizio');
+const main = document.getElementById('main');
+
+let score = { ok: 0, total: 0 };
+
+async function load() {
+  const mod = await fetch('/api/modules/' + moduloId).then(r => r.json());
+  const ex = mod.exercises.find(e => e.id === esercizioId);
+  if (!ex) { main.innerHTML = '<p>Esercizio non trovato.</p>'; return; }
+
+  if (ex.type === 'scelta_multipla') runSceltaMultipla(mod, ex);
+  else if (ex.type === 'abbinamento') runAbbinamento(mod, ex);
+}
+
+function header(mod, ex, currentIdx, totalIdx) {
+  const pct = totalIdx ? Math.round((currentIdx / totalIdx) * 100) : 0;
+  return `
+    <h2 style="font-size:16px; margin-bottom:4px;">${mod.icon} ${mod.title}</h2>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">${ex.title} · ${ex.instructions}</p>
+    <div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${pct}%"></div></div>
+  `;
+}
+
+async function saveProgress(moduleId, exerciseId, itemId, correct) {
+  try {
+    await fetch('/api/progress', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ module_id: moduleId, exercise_id: exerciseId, item_id: itemId, correct })
+    });
+  } catch(e) {}
+}
+
+function finalScreen(mod, ex) {
+  main.innerHTML = `
+    <div class="card" style="text-align:center; padding:36px 20px;">
+      <div style="font-size:46px; margin-bottom:8px;">🌠</div>
+      <h2 style="margin-bottom:6px;">Esercizio completato!</h2>
+      <p style="color:var(--muted); margin-bottom:20px;">${score.ok} risposte corrette su ${score.total}</p>
+      <a href="/moduli.html?open=${mod.id}" class="btn btn-primary btn-block" style="margin-bottom:10px;">Torna ai moduli</a>
+      <a href="/" class="btn btn-ghost btn-block">Torna alla home</a>
+    </div>`;
+}
+
+// ── Scelta multipla ──
+function runSceltaMultipla(mod, ex) {
+  let idx = 0;
+  const items = [...ex.items].sort(() => Math.random() - 0.5);
+
+  function renderItem() {
+    if (idx >= items.length) { finalScreen(mod, ex); return; }
+    const item = items[idx];
+    const opts = [...item.options].sort(() => Math.random() - 0.5);
+    main.innerHTML = header(mod, ex, idx, items.length) + `
+      <div class="card">
+        <div class="prompt-box">
+          <div class="hint">Come si dice in italiano?</div>
+          <div class="word">${item.prompt}</div>
+        </div>
+        <div id="opts"></div>
+      </div>`;
+    const optsBox = document.getElementById('opts');
+    optsBox.innerHTML = opts.map(o => `<button class="opt-btn" data-val="${o}">${o}</button>`).join('');
+    optsBox.querySelectorAll('.opt-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const chosen = btn.dataset.val;
+        const correct = chosen === item.answer;
+        optsBox.querySelectorAll('.opt-btn').forEach(b => {
+          b.disabled = true;
+          if (b.dataset.val === item.answer) b.classList.add('correct');
+          else if (b === btn) b.classList.add('wrong');
+        });
+        score.total++; if (correct) score.ok++;
+        saveProgress(mod.id, ex.id, item.id, correct);
+        setTimeout(() => { idx++; renderItem(); }, 900);
+      });
+    });
+  }
+  renderItem();
+}
+
+// ── Abbinamento ──
+function runAbbinamento(mod, ex) {
+  const pairs = ex.pairs;
+  const left = [...pairs].sort(() => Math.random() - 0.5);
+  const right = [...pairs].sort(() => Math.random() - 0.5);
+  let selectedLeft = null, selectedRight = null, matchedCount = 0;
+
+  main.innerHTML = header(mod, ex, 0, pairs.length) + `
+    <div class="card">
+      <div class="match-cols">
+        <div class="match-col" id="col-left"></div>
+        <div class="match-col" id="col-right"></div>
+      </div>
+    </div>`;
+
+  const colLeft = document.getElementById('col-left');
+  const colRight = document.getElementById('col-right');
+  colLeft.innerHTML = left.map(p => `<div class="match-item" data-id="${p.id}" data-side="l">${p.it}</div>`).join('');
+  colRight.innerHTML = right.map(p => `<div class="match-item" data-id="${p.id}" data-side="r">${p.en}</div>`).join('');
+
+  function checkPair() {
+    if (!selectedLeft || !selectedRight) return;
+    const correct = selectedLeft.dataset.id === selectedRight.dataset.id;
+    score.total++;
+    if (correct) {
+      score.ok++;
+      matchedCount++;
+      selectedLeft.classList.remove('selected'); selectedLeft.classList.add('matched');
+      selectedRight.classList.remove('selected'); selectedRight.classList.add('matched');
+      saveProgress(mod.id, ex.id, selectedLeft.dataset.id, true);
+      selectedLeft = null; selectedRight = null;
+      if (matchedCount === pairs.length) setTimeout(() => finalScreen(mod, ex), 700);
+    } else {
+      saveProgress(mod.id, ex.id, selectedLeft.dataset.id, false);
+      selectedLeft.classList.add('wrong-flash');
+      selectedRight.classList.add('wrong-flash');
+      setTimeout(() => {
+        selectedLeft.classList.remove('selected', 'wrong-flash');
+        selectedRight.classList.remove('selected', 'wrong-flash');
+        selectedLeft = null; selectedRight = null;
+      }, 600);
+    }
+  }
+
+  document.querySelectorAll('.match-item').forEach(el => {
+    el.addEventListener('click', () => {
+      if (el.classList.contains('matched')) return;
+      const side = el.dataset.side;
+      if (side === 'l') {
+        if (selectedLeft) selectedLeft.classList.remove('selected');
+        selectedLeft = el; el.classList.add('selected');
+      } else {
+        if (selectedRight) selectedRight.classList.remove('selected');
+        selectedRight = el; el.classList.add('selected');
+      }
+      checkPair();
+    });
+  });
+}
+
+load();
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luna Italiano</title>
+<link rel="stylesheet" href="/css/theme.css">
+</head>
+<body>
+
+<div class="app-content">
+  <div class="topbar">
+    <div class="topbar-logo">
+      <span class="moon-icon">🌙</span>
+      <span class="logo-text">Luna<span>Italiano</span></span>
+    </div>
+    <div class="topbar-nav">
+      <a href="/" class="active">Home</a>
+      <a href="/moduli.html">Moduli</a>
+      <a href="/chat.html">Chat</a>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="hero">
+      <div class="big-moon">🌙✨</div>
+      <h1>Ciao Luna!</h1>
+      <p>Ogni parola nuova è una stella che accendi nel tuo cielo dell'italiano.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:16px; display:flex; align-items:center; gap:14px;">
+      <div style="font-size:34px;">🪐</div>
+      <div style="flex:1;">
+        <h3 style="font-size:15px; margin-bottom:2px;">I tuoi progressi</h3>
+        <p id="progress-text" style="font-size:13px; color:var(--muted);">Caricamento...</p>
+      </div>
+    </div>
+
+    <h2 style="font-size:16px; margin-bottom:4px;">🌌 I tuoi moduli</h2>
+    <div class="module-grid" id="module-grid"></div>
+
+    <a href="/chat.html" class="btn btn-primary btn-block" style="margin-top:22px;">
+      💬 Vai alla chat con Luna
+    </a>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="/" class="active"><span class="bn-icon">🌙</span>Home</a>
+    <a href="/moduli.html"><span class="bn-icon">⭐</span>Moduli</a>
+    <a href="/chat.html"><span class="bn-icon">💬</span>Chat</a>
+  </div>
+</div>
+
+<script src="/js/starfield.js"></script>
+<script>
+async function loadHome() {
+  const [modules, progress] = await Promise.all([
+    fetch('/api/modules').then(r => r.json()),
+    fetch('/api/progress/summary').then(r => r.json())
+  ]);
+
+  const progMap = {};
+  progress.forEach(p => progMap[p.module_id] = p);
+  const totalTent = progress.reduce((a,p) => a + p.tentativi, 0);
+  const totalOk = progress.reduce((a,p) => a + p.corretti, 0);
+  document.getElementById('progress-text').textContent =
+    totalTent === 0 ? 'Non hai ancora iniziato: parti dal primo modulo!' :
+    `${totalOk} risposte corrette su ${totalTent} esercizi svolti`;
+
+  const grid = document.getElementById('module-grid');
+  grid.innerHTML = modules.map(m => {
+    const p = progMap[m.id];
+    const pill = p ? `${p.corretti}/${p.tentativi}` : 'Da iniziare';
+    return `
+      <a class="module-card" href="/moduli.html?open=${m.id}">
+        <div class="icon">${m.icon}</div>
+        <div class="info">
+          <h3>${m.title}</h3>
+          <p>${m.subtitle}</p>
+        </div>
+        <div class="progress-pill">${pill}</div>
+      </a>`;
+  }).join('');
+}
+loadHome();
+</script>
+</body>
+</html>

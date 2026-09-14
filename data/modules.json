@@ -1,0 +1,82 @@
+[
+  {
+    "id": "m1",
+    "title": "Saluti e parole magiche",
+    "subtitle": "Le prime parole per iniziare",
+    "icon": "🌙",
+    "exercises": [
+      {
+        "id": "m1e1",
+        "type": "scelta_multipla",
+        "title": "Scelta multipla",
+        "instructions": "Scegli la traduzione giusta in italiano",
+        "items": [
+          { "id": "i1", "prompt": "Hello", "options": ["Ciao", "Grazie", "Buonanotte", "Scusa"], "answer": "Ciao" },
+          { "id": "i2", "prompt": "Good morning", "options": ["Buonasera", "Buongiorno", "Arrivederci", "Prego"], "answer": "Buongiorno" },
+          { "id": "i3", "prompt": "Good night", "options": ["Buongiorno", "Ciao", "Buonanotte", "Salve"], "answer": "Buonanotte" },
+          { "id": "i4", "prompt": "Thank you", "options": ["Prego", "Grazie", "Scusa", "Per favore"], "answer": "Grazie" },
+          { "id": "i5", "prompt": "Please", "options": ["Per favore", "Grazie", "Ciao", "Sì"], "answer": "Per favore" },
+          { "id": "i6", "prompt": "Yes", "options": ["No", "Forse", "Sì", "Boh"], "answer": "Sì" },
+          { "id": "i7", "prompt": "No", "options": ["Sì", "No", "Grazie", "Prego"], "answer": "No" },
+          { "id": "i8", "prompt": "Sorry", "options": ["Scusa", "Prego", "Ciao", "Grazie"], "answer": "Scusa" },
+          { "id": "i9", "prompt": "Goodbye", "options": ["Buongiorno", "Arrivederci", "Buonanotte", "Ciao ciao"], "answer": "Arrivederci" },
+          { "id": "i10", "prompt": "My love", "options": ["Amore mio", "Cuore mio", "Vita mia", "Tesoro mio"], "answer": "Amore mio" }
+        ]
+      },
+      {
+        "id": "m1e2",
+        "type": "abbinamento",
+        "title": "Abbinamento",
+        "instructions": "Collega la parola italiana al suo significato",
+        "pairs": [
+          { "id": "p1", "it": "Ciao", "en": "Hi / Bye" },
+          { "id": "p2", "it": "Grazie", "en": "Thank you" },
+          { "id": "p3", "it": "Per favore", "en": "Please" },
+          { "id": "p4", "it": "Sì", "en": "Yes" },
+          { "id": "p5", "it": "No", "en": "No" },
+          { "id": "p6", "it": "Buongiorno", "en": "Good morning" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m2",
+    "title": "Numeri e colori",
+    "subtitle": "Conta le stelle e i colori del cielo",
+    "icon": "⭐",
+    "exercises": [
+      {
+        "id": "m2e1",
+        "type": "scelta_multipla",
+        "title": "Scelta multipla",
+        "instructions": "Scegli la traduzione giusta in italiano",
+        "items": [
+          { "id": "i1", "prompt": "One", "options": ["Due", "Uno", "Tre", "Zero"], "answer": "Uno" },
+          { "id": "i2", "prompt": "Two", "options": ["Due", "Quattro", "Uno", "Dieci"], "answer": "Due" },
+          { "id": "i3", "prompt": "Three", "options": ["Tre", "Sei", "Otto", "Due"], "answer": "Tre" },
+          { "id": "i4", "prompt": "Five", "options": ["Cinque", "Sette", "Nove", "Quattro"], "answer": "Cinque" },
+          { "id": "i5", "prompt": "Ten", "options": ["Dieci", "Cento", "Uno", "Sei"], "answer": "Dieci" },
+          { "id": "i6", "prompt": "Blue", "options": ["Rosso", "Blu", "Verde", "Giallo"], "answer": "Blu" },
+          { "id": "i7", "prompt": "Silver", "options": ["Oro", "Argento", "Nero", "Bianco"], "answer": "Argento" },
+          { "id": "i8", "prompt": "White", "options": ["Nero", "Bianco", "Viola", "Grigio"], "answer": "Bianco" },
+          { "id": "i9", "prompt": "Black", "options": ["Nero", "Blu", "Rosa", "Bianco"], "answer": "Nero" },
+          { "id": "i10", "prompt": "Yellow", "options": ["Giallo", "Arancione", "Verde", "Viola"], "answer": "Giallo" }
+        ]
+      },
+      {
+        "id": "m2e2",
+        "type": "abbinamento",
+        "title": "Abbinamento",
+        "instructions": "Collega la parola italiana al suo significato",
+        "pairs": [
+          { "id": "p1", "it": "Uno", "en": "One" },
+          { "id": "p2", "it": "Due", "en": "Two" },
+          { "id": "p3", "it": "Tre", "en": "Three" },
+          { "id": "p4", "it": "Blu", "en": "Blue" },
+          { "id": "p5", "it": "Bianco", "en": "White" },
+          { "id": "p6", "it": "Nero", "en": "Black" }
+        ]
+      }
+    ]
+  }
+]
