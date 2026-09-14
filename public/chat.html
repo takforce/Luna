@@ -39,8 +39,9 @@
     margin-bottom:8px;
   }
   .emoji-panel.open { display:grid; }
-  .emoji-panel button { background:none; border:none; font-size:20px; padding:6px; cursor:pointer; border-radius:8px; }
+  .emoji-panel button { background:none; border:none; font-size:20px; padding:6px; cursor:pointer; border-radius:8px; display:flex; align-items:center; justify-content:center; }
   .emoji-panel button:hover { background: rgba(255,255,255,0.1); }
+  .emoji-panel button.moon-emoji-btn { background: rgba(255,255,255,0.04); }
 
   .attach-preview { display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.08); border-radius:12px; padding:6px 10px; margin-bottom:8px; font-size:12px; display:none; }
   .attach-preview.show { display:flex; }
@@ -58,16 +59,6 @@
   }
 
   .chat-link { color: inherit; text-decoration: underline; word-break: break-all; }
-  .link-preview-card {
-    display:block; margin-top:8px; text-decoration:none; color: inherit;
-    background: rgba(0,0,0,0.15); border:1px solid rgba(255,255,255,0.15); border-radius:10px;
-    overflow:hidden;
-  }
-  .link-preview-card .lp-img { width:100%; max-height:130px; object-fit:cover; display:block; }
-  .link-preview-card .lp-info { padding:8px 10px; }
-  .link-preview-card .lp-title { font-size:12.5px; font-weight:700; line-height:1.3; }
-  .link-preview-card .lp-desc { font-size:11px; opacity:.75; margin-top:3px; line-height:1.3; }
-  .link-preview-card .lp-site { font-size:10px; opacity:.55; margin-top:4px; text-transform:uppercase; letter-spacing:.5px; }
 </style>
 </head>
 <body>
@@ -117,8 +108,10 @@
 </div>
 
 <script src="/js/starfield.js"></script>
+<script src="/js/moon-emojis.js"></script>
+<script src="/js/chat-shared.js"></script>
 <script>
-const EMOJI = ['🌙','🌛','🌜','🌝','🌚','🌕','🌗','🌑','⭐','🌟','✨','💫','☄️','🪐','🌌','🌠','☀️','🌈','🔭','👽','🛸','💛','💙','💜','🩷','🎉','❤️','😍','😊','😂','🥰','😴','👋','🙏','🎓','📚','✅','❌'];
+const EMOJI = ['🌙','⭐','✨','💫','☄️','🪐','🌌','🌠','☀️','🌈','🔭','👽','🛸','🎉','👋','🙏','🎓','📚','✅','❌'];
 
 let currentSender = 'io';
 let pendingFile = null;
@@ -130,10 +123,13 @@ const attachPreview = document.getElementById('attach-preview');
 const attachName = document.getElementById('attach-name');
 const fileInput = document.getElementById('file-input');
 
-emojiPanel.innerHTML = EMOJI.map(e => `<button type="button">${e}</button>`).join('');
+const emojiButtonsHtml =
+  MOON_EMOJIS.map(m => `<button type="button" class="moon-emoji-btn" data-code="${m.code}" title="${m.label}">${m.svg}</button>`).join('') +
+  EMOJI.map(e => `<button type="button" data-code="${e}">${e}</button>`).join('');
+emojiPanel.innerHTML = emojiButtonsHtml;
 emojiPanel.querySelectorAll('button').forEach(btn => {
   btn.addEventListener('click', () => {
-    msgInput.value += btn.textContent;
+    msgInput.value += btn.dataset.code;
     msgInput.focus();
   });
 });
@@ -167,44 +163,6 @@ function fmtTime(iso) {
   return d.toLocaleString('it-IT', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
 }
 
-const URL_RE = /(https?:\/\/[^\s<]+)/g;
-
-function linkify(text) {
-  const escaped = text.replace(/</g, '&lt;');
-  return escaped.replace(URL_RE, url => `<a href="${url}" target="_blank" rel="noopener" class="chat-link">${url}</a>`);
-}
-
-const previewCache = new Map();
-async function loadLinkPreview(url, container) {
-  if (previewCache.has(url)) {
-    renderPreviewCard(previewCache.get(url), container);
-    return;
-  }
-  try {
-    const data = await fetch('/api/link-preview?url=' + encodeURIComponent(url)).then(r => r.json());
-    if (data.error) return;
-    previewCache.set(url, data);
-    renderPreviewCard(data, container);
-  } catch (e) {}
-}
-
-function renderPreviewCard(data, container) {
-  const card = document.createElement('a');
-  card.href = data.url;
-  card.target = '_blank';
-  card.rel = 'noopener';
-  card.className = 'link-preview-card';
-  card.innerHTML = `
-    ${data.image ? `<img class="lp-img" src="${data.image}" alt="">` : ''}
-    <div class="lp-info">
-      <div class="lp-title">${data.title || data.url}</div>
-      ${data.description ? `<div class="lp-desc">${data.description.slice(0,100)}</div>` : ''}
-      <div class="lp-site">${data.siteName || ''}</div>
-    </div>
-  `;
-  container.appendChild(card);
-}
-
 function renderMsg(m) {
   const div = document.createElement('div');
   div.className = 'msg ' + m.sender;
@@ -218,7 +176,7 @@ function renderMsg(m) {
   }
   div.innerHTML = `
     ${attHtml}
-    ${m.text ? `<div>${linkify(m.text)}</div>` : ''}
+    ${m.text ? `<div>${chatFormatText(m.text)}</div>` : ''}
     <div class="meta"><span>${fmtTime(m.created_at)}</span><button class="del-btn" data-id="${m.id}">delete</button></div>
   `;
   div.querySelector('.del-btn').addEventListener('click', async () => {
@@ -227,10 +185,7 @@ function renderMsg(m) {
   });
   chatLog.appendChild(div);
 
-  if (m.text) {
-    const urls = m.text.match(URL_RE);
-    if (urls && urls[0]) loadLinkPreview(urls[0], div);
-  }
+  if (m.text) chatAttachPreview(m.text, div);
 }
 
 async function loadMessages() {

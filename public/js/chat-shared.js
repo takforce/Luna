@@ -1,0 +1,51 @@
+// Funzioni condivise per il rendering dei messaggi chat (usate da chat.html e index.html)
+
+const CHAT_URL_RE = /(https?:\/\/[^\s<]+)/g;
+
+function chatLinkify(text) {
+  const escaped = text.replace(/</g, '&lt;');
+  return escaped.replace(CHAT_URL_RE, url => `<a href="${url}" target="_blank" rel="noopener" class="chat-link">${url}</a>`);
+}
+
+const chatPreviewCache = new Map();
+
+async function chatLoadLinkPreview(url, container) {
+  if (chatPreviewCache.has(url)) {
+    chatRenderPreviewCard(chatPreviewCache.get(url), container);
+    return;
+  }
+  try {
+    const data = await fetch('/api/link-preview?url=' + encodeURIComponent(url)).then(r => r.json());
+    if (data.error) return;
+    chatPreviewCache.set(url, data);
+    chatRenderPreviewCard(data, container);
+  } catch (e) {}
+}
+
+function chatRenderPreviewCard(data, container) {
+  const card = document.createElement('a');
+  card.href = data.url;
+  card.target = '_blank';
+  card.rel = 'noopener';
+  card.className = 'link-preview-card';
+  card.innerHTML = `
+    ${data.image ? `<img class="lp-img" src="${data.image}" alt="">` : ''}
+    <div class="lp-info">
+      <div class="lp-title">${data.title || data.url}</div>
+      ${data.description ? `<div class="lp-desc">${data.description.slice(0,100)}</div>` : ''}
+      <div class="lp-site">${data.siteName || ''}</div>
+    </div>
+  `;
+  container.appendChild(card);
+}
+
+// Combina emoji lunari + link cliccabili per il testo di un messaggio
+function chatFormatText(text) {
+  return replaceMoonShortcodes(chatLinkify(text));
+}
+
+// Aggancia il caricamento dell'anteprima link (se presente) a un elemento messaggio gia' nel DOM
+function chatAttachPreview(text, container) {
+  const urls = text.match(CHAT_URL_RE);
+  if (urls && urls[0]) chatLoadLinkPreview(urls[0], container);
+}

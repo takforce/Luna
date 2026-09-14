@@ -123,7 +123,9 @@
         <button class="active" data-sender="io" id="mini-io">🌟 Io</button>
         <button data-sender="luna" id="mini-luna">🌙 Luna</button>
       </div>
+      <div class="mini-emoji-panel" id="mini-emoji-panel"></div>
       <div class="mini-composer">
+        <button id="mini-emoji-toggle" class="mini-emoji-btn">✨</button>
         <input type="text" id="mini-input" placeholder="Write a quick message...">
         <button id="mini-send">🚀</button>
       </div>
@@ -139,6 +141,8 @@
 </div>
 
 <script src="/js/starfield.js"></script>
+<script src="/js/moon-emojis.js"></script>
+<script src="/js/chat-shared.js"></script>
 <script>
 async function loadHome() {
   const progress = await fetch('/api/progress/summary').then(r => r.json());
@@ -166,15 +170,45 @@ async function loadPreview() {
     previewBox.innerHTML = '<div class="cp-empty">No messages yet — say hi! 👋</div>';
     return;
   }
-  previewBox.innerHTML = last.map(m => `
-    <div class="cp-msg ${m.sender}">
-      ${m.attachment_path ? '📎 ' : ''}${m.text ? m.text.replace(/</g,'&lt;') : (m.attachment_name || '')}
-    </div>
-  `).join('');
+  previewBox.innerHTML = last.map(m => {
+    let attHtml = '';
+    if (m.attachment_path) {
+      if (m.attachment_type && m.attachment_type.startsWith('image/')) {
+        attHtml = `<img class="cp-att" src="${m.attachment_path}" alt="${m.attachment_name}">`;
+      } else {
+        attHtml = `<a class="cp-att-file" href="${m.attachment_path}" target="_blank">📎 ${m.attachment_name}</a>`;
+      }
+    }
+    return `<div class="cp-msg ${m.sender}" data-text="${m.text ? encodeURIComponent(m.text) : ''}">
+      ${attHtml}
+      ${m.text ? chatFormatText(m.text) : ''}
+    </div>`;
+  }).join('');
   previewBox.scrollTop = previewBox.scrollHeight;
+
+  previewBox.querySelectorAll('.cp-msg').forEach(el => {
+    const raw = el.dataset.text;
+    if (raw) chatAttachPreview(decodeURIComponent(raw), el);
+  });
 }
 loadPreview();
 setInterval(loadPreview, 20000);
+
+// ── Pannello emoji lunare (mini-composer) ──
+const miniEmojiPanel = document.getElementById('mini-emoji-panel');
+const miniInput = document.getElementById('mini-input');
+miniEmojiPanel.innerHTML = MOON_EMOJIS.map(m =>
+  `<button type="button" class="moon-emoji-btn" data-code="${m.code}" title="${m.label}">${m.svg}</button>`
+).join('');
+miniEmojiPanel.querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    miniInput.value += btn.dataset.code;
+    miniInput.focus();
+  });
+});
+document.getElementById('mini-emoji-toggle').addEventListener('click', () => {
+  miniEmojiPanel.classList.toggle('open');
+});
 
 document.getElementById('mini-io').addEventListener('click', () => setMiniSender('io'));
 document.getElementById('mini-luna').addEventListener('click', () => setMiniSender('luna'));
