@@ -1,9 +1,12 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
+const crypto = require('crypto');
 const multer = require('multer');
 const Database = require('better-sqlite3');
 const webpush = require('web-push');
+const { EdgeTTS } = require('node-edge-tts');
 
 const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY || 'BCfICr47eV88GBQSqPXyreRiFHgI5d2ZhFkXzX9EIWxvDCmD9Nux6FTEZ7QtTVkZSzVK8UyNlRwneQfA99y3dpE';
 const VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY || '_7VFuXY3LPVejqL--Y62zlzWFoOBCuE9TbhrJU491Z8';
@@ -178,6 +181,26 @@ app.delete('/api/progress/:moduleId', (req, res) => {
 app.delete('/api/progress', (req, res) => {
   db.prepare('DELETE FROM exercise_results').run();
   res.json({ ok: true });
+});
+
+// Voce neurale italiana (Edge TTS, gratuito, nessuna chiave richiesta)
+app.get('/api/speak', async (req, res) => {
+  const text = (req.query.text || '').trim().slice(0, 500);
+  if (!text) return res.status(400).json({ error: 'testo mancante' });
+  const voice = req.query.voice === 'diego' ? 'it-IT-DiegoNeural' : 'it-IT-ElsaNeural';
+  const tmpFile = path.join(os.tmpdir(), `tts-${crypto.randomUUID()}.mp3`);
+  try {
+    const tts = new EdgeTTS({ voice, lang: 'it-IT', outputFormat: 'audio-24khz-96kbitrate-mono-mp3', timeout: 12000 });
+    await tts.ttsPromise(text, tmpFile);
+    const audio = fs.readFileSync(tmpFile);
+    res.set({ 'Content-Type': 'audio/mpeg', 'Cache-Control': 'no-store' });
+    res.send(audio);
+  } catch (e) {
+    console.error('Errore TTS:', e.message);
+    res.status(500).json({ error: 'voce non disponibile' });
+  } finally {
+    fs.unlink(tmpFile, () => {});
+  }
 });
 
 // Traduzione inglese -> italiano (per la pagina Liste), tramite MyMemory (gratuito)

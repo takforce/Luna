@@ -48,7 +48,10 @@
 
   <div class="bottom-nav">
     <a href="/"><span class="bn-icon">🌙</span>Home</a>
-    <a href="/moduli.html"><span class="bn-icon">⭐</span>Words</a>
+    <a href="/moduli.html"><span class="bn-icon">📚</span>Words</a>
+    <a href="/moduli.html?cat=grammar"><span class="bn-icon">✏️</span>Grammar</a>
+    <a href="/moduli.html?cat=verbs"><span class="bn-icon">📖</span>Verbs</a>
+    <a href="/liste.html" class="active"><span class="bn-icon">🔊</span>Lists</a>
     <a href="/chat.html"><span class="bn-icon">💬</span>Chat</a>
   </div>
 </div>
@@ -66,16 +69,38 @@ function setMode(m) {
   document.getElementById('mode-en').classList.toggle('active', m === 'en');
 }
 
-function speak(text) {
-  if (!('speechSynthesis' in window)) {
-    alert("This browser can't speak text out loud. Try Chrome or Safari.");
-    return;
-  }
+function speakBrowserFallback(text) {
+  if (!('speechSynthesis' in window)) return;
   const u = new SpeechSynthesisUtterance(text);
   u.lang = 'it-IT';
   u.rate = 0.9;
-  speechSynthesis.cancel();
   speechSynthesis.speak(u);
+}
+
+function speak(text) {
+  const audio = new Audio('/api/speak?text=' + encodeURIComponent(text));
+  audio.addEventListener('error', () => speakBrowserFallback(text));
+  audio.play().catch(() => speakBrowserFallback(text));
+}
+
+// Pronuncia una lista di frasi in sequenza (aspetta che ognuna finisca prima della successiva)
+async function speakSequence(texts) {
+  for (const t of texts) {
+    await new Promise(resolve => {
+      let done = false;
+      const finish = () => { if (!done) { done = true; resolve(); } };
+      const audio = new Audio('/api/speak?text=' + encodeURIComponent(t));
+      audio.addEventListener('ended', finish);
+      audio.addEventListener('error', () => {
+        speakBrowserFallback(t);
+        setTimeout(finish, Math.max(800, t.length * 70));
+      });
+      audio.play().catch(() => {
+        speakBrowserFallback(t);
+        setTimeout(finish, Math.max(800, t.length * 70));
+      });
+    });
+  }
 }
 
 function renderResults() {
@@ -123,23 +148,11 @@ document.getElementById('go-btn').addEventListener('click', async () => {
   goBtn.disabled = false;
   goBtn.textContent = '✨ Show & Pronounce';
 
-  // Pronuncia automaticamente in sequenza
-  currentWords.forEach(w => {
-    const u = new SpeechSynthesisUtterance(w.it);
-    u.lang = 'it-IT';
-    u.rate = 0.9;
-    speechSynthesis.speak(u);
-  });
+  speakSequence(currentWords.map(w => w.it));
 });
 
 document.getElementById('play-all-btn').addEventListener('click', () => {
-  speechSynthesis.cancel();
-  currentWords.forEach(w => {
-    const u = new SpeechSynthesisUtterance(w.it);
-    u.lang = 'it-IT';
-    u.rate = 0.9;
-    speechSynthesis.speak(u);
-  });
+  speakSequence(currentWords.map(w => w.it));
 });
 </script>
 </body>

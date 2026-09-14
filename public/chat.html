@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="/css/theme.css">
 <style>
   .chat-wrap { display:flex; flex-direction:column; height: calc(100dvh - 62px); max-width:640px; margin:0 auto; }
+  @media (max-width: 639px) {
+    .chat-wrap { height: calc(100dvh - 62px - 60px); }
+  }
   .chat-log { flex:1; overflow-y:auto; padding: 16px; display:flex; flex-direction:column; gap:10px; }
   .msg { max-width: 78%; padding: 10px 14px; border-radius: 16px; font-size:14px; line-height:1.4; position:relative; }
   .msg.io { align-self:flex-end; background: linear-gradient(135deg, var(--gold), #f0a93a); color:#2a1c00; border-bottom-right-radius:4px; }
@@ -31,6 +34,9 @@
   }
   .icon-btn { width:42px; height:42px; border-radius:50%; border:1px solid var(--card-border); background: rgba(255,255,255,0.08); color:var(--text); font-size:18px; cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
   .send-btn { background: linear-gradient(135deg, var(--gold), #f0a93a); color:#2a1c00; border:none; }
+  #mic-btn.recording { background: #e0475f; border-color:#e0475f; animation: micPulse 1.1s ease-in-out infinite; }
+  @keyframes micPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(224,71,95,0.55); } 50% { box-shadow: 0 0 0 8px rgba(224,71,95,0); } }
+  .rec-timer { font-size:11px; color:#e0475f; font-weight:700; align-self:center; min-width:30px; }
 
   .emoji-panel {
     position:absolute; bottom: 100%; left:12px; right:12px;
@@ -99,11 +105,21 @@
       <div class="input-row">
         <button class="icon-btn" id="emoji-toggle">✨</button>
         <button class="icon-btn" id="attach-btn">📎</button>
+        <button class="icon-btn" id="mic-btn">🎤</button>
         <input type="file" id="file-input" style="display:none">
         <textarea id="msg-input" placeholder="Write a message..." rows="1"></textarea>
         <button class="icon-btn send-btn" id="send-btn">🚀</button>
       </div>
     </div>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="/"><span class="bn-icon">🌙</span>Home</a>
+    <a href="/moduli.html"><span class="bn-icon">📚</span>Words</a>
+    <a href="/moduli.html?cat=grammar"><span class="bn-icon">✏️</span>Grammar</a>
+    <a href="/moduli.html?cat=verbs"><span class="bn-icon">📖</span>Verbs</a>
+    <a href="/liste.html"><span class="bn-icon">🔊</span>Lists</a>
+    <a href="/chat.html" class="active"><span class="bn-icon">💬</span>Chat</a>
   </div>
 </div>
 
@@ -158,6 +174,56 @@ document.getElementById('attach-remove').addEventListener('click', () => {
   attachPreview.classList.remove('show');
 });
 
+// ── Messaggi vocali ──
+let mediaRecorder = null;
+let audioChunks = [];
+let recStream = null;
+let recTimerInterval = null;
+let recSeconds = 0;
+const micBtn = document.getElementById('mic-btn');
+
+async function startRecording() {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    alert("Voice recording isn't supported on this browser.");
+    return;
+  }
+  try {
+    recStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  } catch (e) {
+    alert("Couldn't access the microphone. Check your browser/site permissions.");
+    return;
+  }
+  audioChunks = [];
+  const mimeType = MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : '';
+  mediaRecorder = new MediaRecorder(recStream, mimeType ? { mimeType } : undefined);
+  mediaRecorder.addEventListener('dataavailable', e => { if (e.data.size > 0) audioChunks.push(e.data); });
+  mediaRecorder.addEventListener('stop', () => {
+    const blob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+    const ext = blob.type.includes('mp4') ? 'm4a' : (blob.type.includes('ogg') ? 'ogg' : 'webm');
+    pendingFile = new File([blob], `voice-message.${ext}`, { type: blob.type });
+    attachName.textContent = '🎤 Voice message (' + recSeconds + 's)';
+    attachPreview.classList.add('show');
+    recStream.getTracks().forEach(t => t.stop());
+  });
+  mediaRecorder.start();
+  recSeconds = 0;
+  micBtn.classList.add('recording');
+  micBtn.textContent = '⏹️';
+  recTimerInterval = setInterval(() => { recSeconds++; }, 1000);
+}
+
+function stopRecording() {
+  if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+  clearInterval(recTimerInterval);
+  micBtn.classList.remove('recording');
+  micBtn.textContent = '🎤';
+}
+
+micBtn.addEventListener('click', () => {
+  if (micBtn.classList.contains('recording')) stopRecording();
+  else startRecording();
+});
+
 function fmtTime(iso) {
   const d = new Date(iso + 'Z');
   return d.toLocaleString('it-IT', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
@@ -170,6 +236,8 @@ function renderMsg(m) {
   if (m.attachment_path) {
     if (m.attachment_type && m.attachment_type.startsWith('image/')) {
       attHtml = `<img class="att" src="${m.attachment_path}" alt="${m.attachment_name}">`;
+    } else if (m.attachment_type && m.attachment_type.startsWith('audio/')) {
+      attHtml = `<audio class="att-audio" controls src="${m.attachment_path}"></audio>`;
     } else {
       attHtml = `<a class="att-file" href="${m.attachment_path}" target="_blank">📎 ${m.attachment_name}</a>`;
     }
@@ -182,19 +250,30 @@ function renderMsg(m) {
   div.querySelector('.del-btn').addEventListener('click', async () => {
     await fetch('/api/chat/messages/' + m.id, { method: 'DELETE' });
     div.remove();
+    lastMsgCount = Math.max(0, lastMsgCount - 1);
   });
   chatLog.appendChild(div);
 
   if (m.text) chatAttachPreview(m.text, div);
 }
 
-async function loadMessages() {
+let lastMsgCount = -1;
+let lastMsgId = -1;
+
+async function loadMessages(force) {
   const msgs = await fetch('/api/chat/messages').then(r => r.json());
+  const newestId = msgs.length ? msgs[msgs.length - 1].id : 0;
+  if (!force && msgs.length === lastMsgCount && newestId === lastMsgId) return; // nulla di nuovo, non ridisegnare
+  lastMsgCount = msgs.length;
+  lastMsgId = newestId;
+
+  const wasNearBottom = (chatLog.scrollHeight - chatLog.scrollTop - chatLog.clientHeight) < 80;
   chatLog.innerHTML = '';
   msgs.forEach(renderMsg);
-  chatLog.scrollTop = chatLog.scrollHeight;
+  if (force || wasNearBottom) chatLog.scrollTop = chatLog.scrollHeight;
 }
 
+setInterval(() => loadMessages(false), 5000);
 async function sendMessage() {
   const text = msgInput.value.trim();
   if (!text && !pendingFile) return;
@@ -208,6 +287,7 @@ async function sendMessage() {
   const msg = await res.json();
   renderMsg(msg);
   chatLog.scrollTop = chatLog.scrollHeight;
+  lastMsgCount++; lastMsgId = msg.id;
 
   msgInput.value = '';
   pendingFile = null; fileInput.value = '';
@@ -224,7 +304,7 @@ msgInput.addEventListener('input', () => {
   msgInput.style.height = Math.min(msgInput.scrollHeight, 100) + 'px';
 });
 
-loadMessages();
+loadMessages(true);
 
 // ── Notifiche push ──
 function urlBase64ToUint8Array(base64String) {
