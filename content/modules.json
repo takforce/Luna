@@ -5107,5 +5107,1246 @@
         ]
       }
     ]
+  },
+  {
+    "id": "h2",
+    "category": "verbs",
+    "title": "100 Verbs",
+    "subtitle": "The most common Italian verbs, in their infinitive form",
+    "icon": "🔁",
+    "exercises": [
+      {
+        "id": "h2e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice (verbs 1–50)",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {
+            "id": "ai1",
+            "prompt": "to be",
+            "options": [
+              "essere",
+              "mandare",
+              "sedersi",
+              "amare"
+            ],
+            "answer": "essere"
+          },
+          {
+            "id": "ai2",
+            "prompt": "to have",
+            "options": [
+              "avere",
+              "mandare",
+              "correre",
+              "sapere"
+            ],
+            "answer": "avere"
+          },
+          {
+            "id": "ai3",
+            "prompt": "to do / to make",
+            "options": [
+              "fare",
+              "piangere",
+              "comprare",
+              "incontrare"
+            ],
+            "answer": "fare"
+          },
+          {
+            "id": "ai4",
+            "prompt": "to say",
+            "options": [
+              "costruire",
+              "dire",
+              "insegnare",
+              "morire"
+            ],
+            "answer": "dire"
+          },
+          {
+            "id": "ai5",
+            "prompt": "to go",
+            "options": [
+              "fermarsi",
+              "andare",
+              "piangere",
+              "trovare"
+            ],
+            "answer": "andare"
+          },
+          {
+            "id": "ai6",
+            "prompt": "can / to be able to",
+            "options": [
+              "aspettare",
+              "ballare",
+              "pagare",
+              "potere"
+            ],
+            "answer": "potere"
+          },
+          {
+            "id": "ai7",
+            "prompt": "to want",
+            "options": [
+              "sapere",
+              "dormire",
+              "spiegare",
+              "volere"
+            ],
+            "answer": "volere"
+          },
+          {
+            "id": "ai8",
+            "prompt": "must / to have to",
+            "options": [
+              "incontrare",
+              "andare",
+              "dovere",
+              "tornare"
+            ],
+            "answer": "dovere"
+          },
+          {
+            "id": "ai9",
+            "prompt": "to know (a fact)",
+            "options": [
+              "sperare",
+              "sapere",
+              "rispondere",
+              "comprare"
+            ],
+            "answer": "sapere"
+          },
+          {
+            "id": "ai10",
+            "prompt": "to give",
+            "options": [
+              "dare",
+              "avere",
+              "cambiare",
+              "sembrare"
+            ],
+            "answer": "dare"
+          },
+          {
+            "id": "ai11",
+            "prompt": "to stay / to be (somewhere)",
+            "options": [
+              "stare",
+              "capire",
+              "salutare",
+              "sedersi"
+            ],
+            "answer": "stare"
+          },
+          {
+            "id": "ai12",
+            "prompt": "to see",
+            "options": [
+              "dire",
+              "leggere",
+              "insegnare",
+              "vedere"
+            ],
+            "answer": "vedere"
+          },
+          {
+            "id": "ai13",
+            "prompt": "to come",
+            "options": [
+              "entrare",
+              "portare",
+              "rispondere",
+              "venire"
+            ],
+            "answer": "venire"
+          },
+          {
+            "id": "ai14",
+            "prompt": "to speak",
+            "options": [
+              "parlare",
+              "cambiare",
+              "leggere",
+              "mandare"
+            ],
+            "answer": "parlare"
+          },
+          {
+            "id": "ai15",
+            "prompt": "to find",
+            "options": [
+              "trovare",
+              "essere",
+              "usare",
+              "sentire"
+            ],
+            "answer": "trovare"
+          },
+          {
+            "id": "ai16",
+            "prompt": "to take",
+            "options": [
+              "parlare",
+              "mandare",
+              "cominciare",
+              "prendere"
+            ],
+            "answer": "prendere"
+          },
+          {
+            "id": "ai17",
+            "prompt": "to leave (something)",
+            "options": [
+              "preparare",
+              "insegnare",
+              "lasciare",
+              "giocare"
+            ],
+            "answer": "lasciare"
+          },
+          {
+            "id": "ai18",
+            "prompt": "to think",
+            "options": [
+              "amare",
+              "pensare",
+              "aspettare",
+              "volare"
+            ],
+            "answer": "pensare"
+          },
+          {
+            "id": "ai19",
+            "prompt": "to put",
+            "options": [
+              "guidare",
+              "cantare",
+              "ricevere",
+              "mettere"
+            ],
+            "answer": "mettere"
+          },
+          {
+            "id": "ai20",
+            "prompt": "to bring / to carry",
+            "options": [
+              "mangiare",
+              "chiedere",
+              "portare",
+              "andare"
+            ],
+            "answer": "portare"
+          },
+          {
+            "id": "ai21",
+            "prompt": "to pass / to spend (time)",
+            "options": [
+              "dire",
+              "trovare",
+              "dimenticare",
+              "passare"
+            ],
+            "answer": "passare"
+          },
+          {
+            "id": "ai22",
+            "prompt": "to enter",
+            "options": [
+              "vendere",
+              "tornare",
+              "entrare",
+              "usare"
+            ],
+            "answer": "entrare"
+          },
+          {
+            "id": "ai23",
+            "prompt": "to go out",
+            "options": [
+              "uscire",
+              "ridere",
+              "lasciare",
+              "incontrare"
+            ],
+            "answer": "uscire"
+          },
+          {
+            "id": "ai24",
+            "prompt": "to return",
+            "options": [
+              "credere",
+              "divertirsi",
+              "cambiare",
+              "tornare"
+            ],
+            "answer": "tornare"
+          },
+          {
+            "id": "ai25",
+            "prompt": "to seem",
+            "options": [
+              "aspettare",
+              "fare",
+              "sembrare",
+              "giocare"
+            ],
+            "answer": "sembrare"
+          },
+          {
+            "id": "ai26",
+            "prompt": "to remain",
+            "options": [
+              "potere",
+              "camminare",
+              "restare",
+              "dovere"
+            ],
+            "answer": "restare"
+          },
+          {
+            "id": "ai27",
+            "prompt": "to run",
+            "options": [
+              "dire",
+              "cercare",
+              "ascoltare",
+              "correre"
+            ],
+            "answer": "correre"
+          },
+          {
+            "id": "ai28",
+            "prompt": "to walk",
+            "options": [
+              "trovare",
+              "stare",
+              "fare",
+              "camminare"
+            ],
+            "answer": "camminare"
+          },
+          {
+            "id": "ai29",
+            "prompt": "to eat",
+            "options": [
+              "mangiare",
+              "incontrare",
+              "dimenticare",
+              "cantare"
+            ],
+            "answer": "mangiare"
+          },
+          {
+            "id": "ai30",
+            "prompt": "to drink",
+            "options": [
+              "salutare",
+              "bere",
+              "vestirsi",
+              "finire"
+            ],
+            "answer": "bere"
+          },
+          {
+            "id": "ai31",
+            "prompt": "to sleep",
+            "options": [
+              "dormire",
+              "dovere",
+              "ricevere",
+              "amare"
+            ],
+            "answer": "dormire"
+          },
+          {
+            "id": "ai32",
+            "prompt": "to hear / to feel",
+            "options": [
+              "vivere",
+              "crescere",
+              "sentire",
+              "vestirsi"
+            ],
+            "answer": "sentire"
+          },
+          {
+            "id": "ai33",
+            "prompt": "to understand",
+            "options": [
+              "costare",
+              "cadere",
+              "giocare",
+              "capire"
+            ],
+            "answer": "capire"
+          },
+          {
+            "id": "ai34",
+            "prompt": "to read",
+            "options": [
+              "leggere",
+              "guidare",
+              "correre",
+              "preparare"
+            ],
+            "answer": "leggere"
+          },
+          {
+            "id": "ai35",
+            "prompt": "to write",
+            "options": [
+              "vedere",
+              "viaggiare",
+              "scrivere",
+              "andare"
+            ],
+            "answer": "scrivere"
+          },
+          {
+            "id": "ai36",
+            "prompt": "to listen",
+            "options": [
+              "sperare",
+              "mandare",
+              "ascoltare",
+              "cadere"
+            ],
+            "answer": "ascoltare"
+          },
+          {
+            "id": "ai37",
+            "prompt": "to watch / to look",
+            "options": [
+              "vestirsi",
+              "guardare",
+              "preparare",
+              "piangere"
+            ],
+            "answer": "guardare"
+          },
+          {
+            "id": "ai38",
+            "prompt": "to open",
+            "options": [
+              "sperare",
+              "stare",
+              "svegliarsi",
+              "aprire"
+            ],
+            "answer": "aprire"
+          },
+          {
+            "id": "ai39",
+            "prompt": "to close",
+            "options": [
+              "capire",
+              "chiudere",
+              "trovare",
+              "dare"
+            ],
+            "answer": "chiudere"
+          },
+          {
+            "id": "ai40",
+            "prompt": "to begin",
+            "options": [
+              "cominciare",
+              "svegliarsi",
+              "tornare",
+              "sedersi"
+            ],
+            "answer": "cominciare"
+          },
+          {
+            "id": "ai41",
+            "prompt": "to finish",
+            "options": [
+              "cominciare",
+              "finire",
+              "nascere",
+              "uscire"
+            ],
+            "answer": "finire"
+          },
+          {
+            "id": "ai42",
+            "prompt": "to continue",
+            "options": [
+              "passare",
+              "ricordare",
+              "sperare",
+              "continuare"
+            ],
+            "answer": "continuare"
+          },
+          {
+            "id": "ai43",
+            "prompt": "to call",
+            "options": [
+              "chiamare",
+              "imparare",
+              "mettere",
+              "sentire"
+            ],
+            "answer": "chiamare"
+          },
+          {
+            "id": "ai44",
+            "prompt": "to ask",
+            "options": [
+              "insegnare",
+              "continuare",
+              "diventare",
+              "chiedere"
+            ],
+            "answer": "chiedere"
+          },
+          {
+            "id": "ai45",
+            "prompt": "to answer",
+            "options": [
+              "imparare",
+              "mangiare",
+              "credere",
+              "rispondere"
+            ],
+            "answer": "rispondere"
+          },
+          {
+            "id": "ai46",
+            "prompt": "to explain",
+            "options": [
+              "svegliarsi",
+              "vestirsi",
+              "andare",
+              "spiegare"
+            ],
+            "answer": "spiegare"
+          },
+          {
+            "id": "ai47",
+            "prompt": "to learn",
+            "options": [
+              "imparare",
+              "costruire",
+              "incontrare",
+              "dimenticare"
+            ],
+            "answer": "imparare"
+          },
+          {
+            "id": "ai48",
+            "prompt": "to teach",
+            "options": [
+              "stare",
+              "insegnare",
+              "leggere",
+              "lavorare"
+            ],
+            "answer": "insegnare"
+          },
+          {
+            "id": "ai49",
+            "prompt": "to study",
+            "options": [
+              "studiare",
+              "passare",
+              "scrivere",
+              "ascoltare"
+            ],
+            "answer": "studiare"
+          },
+          {
+            "id": "ai50",
+            "prompt": "to work",
+            "options": [
+              "sedersi",
+              "diventare",
+              "addormentarsi",
+              "lavorare"
+            ],
+            "answer": "lavorare"
+          }
+        ]
+      },
+      {
+        "id": "h2e2",
+        "type": "scelta_multipla",
+        "title": "Multiple choice (verbs 51–100)",
+        "instructions": "Choose the correct Italian translation",
+        "items": [
+          {
+            "id": "bi1",
+            "prompt": "to play",
+            "options": [
+              "piangere",
+              "continuare",
+              "arrivare",
+              "giocare"
+            ],
+            "answer": "giocare"
+          },
+          {
+            "id": "bi2",
+            "prompt": "to sing",
+            "options": [
+              "cantare",
+              "volere",
+              "svegliarsi",
+              "trovare"
+            ],
+            "answer": "cantare"
+          },
+          {
+            "id": "bi3",
+            "prompt": "to dance",
+            "options": [
+              "ballare",
+              "volare",
+              "portare",
+              "prendere"
+            ],
+            "answer": "ballare"
+          },
+          {
+            "id": "bi4",
+            "prompt": "to laugh",
+            "options": [
+              "rispondere",
+              "aiutare",
+              "ridere",
+              "spiegare"
+            ],
+            "answer": "ridere"
+          },
+          {
+            "id": "bi5",
+            "prompt": "to cry",
+            "options": [
+              "essere",
+              "piangere",
+              "prendere",
+              "vendere"
+            ],
+            "answer": "piangere"
+          },
+          {
+            "id": "bi6",
+            "prompt": "to love",
+            "options": [
+              "vedere",
+              "rispondere",
+              "amare",
+              "venire"
+            ],
+            "answer": "amare"
+          },
+          {
+            "id": "bi7",
+            "prompt": "to hate",
+            "options": [
+              "trovare",
+              "insegnare",
+              "odiare",
+              "uscire"
+            ],
+            "answer": "odiare"
+          },
+          {
+            "id": "bi8",
+            "prompt": "to hope",
+            "options": [
+              "passare",
+              "morire",
+              "vivere",
+              "sperare"
+            ],
+            "answer": "sperare"
+          },
+          {
+            "id": "bi9",
+            "prompt": "to believe",
+            "options": [
+              "lasciare",
+              "credere",
+              "chiudere",
+              "crescere"
+            ],
+            "answer": "credere"
+          },
+          {
+            "id": "bi10",
+            "prompt": "to remember",
+            "options": [
+              "parlare",
+              "incontrare",
+              "ricordare",
+              "potere"
+            ],
+            "answer": "ricordare"
+          },
+          {
+            "id": "bi11",
+            "prompt": "to forget",
+            "options": [
+              "restare",
+              "dimenticare",
+              "fare",
+              "sentire"
+            ],
+            "answer": "dimenticare"
+          },
+          {
+            "id": "bi12",
+            "prompt": "to look for",
+            "options": [
+              "pagare",
+              "continuare",
+              "cercare",
+              "chiedere"
+            ],
+            "answer": "cercare"
+          },
+          {
+            "id": "bi13",
+            "prompt": "to wait",
+            "options": [
+              "mangiare",
+              "aspettare",
+              "spiegare",
+              "trovare"
+            ],
+            "answer": "aspettare"
+          },
+          {
+            "id": "bi14",
+            "prompt": "to change",
+            "options": [
+              "portare",
+              "restare",
+              "preparare",
+              "cambiare"
+            ],
+            "answer": "cambiare"
+          },
+          {
+            "id": "bi15",
+            "prompt": "to build",
+            "options": [
+              "partire",
+              "sentire",
+              "costruire",
+              "dovere"
+            ],
+            "answer": "costruire"
+          },
+          {
+            "id": "bi16",
+            "prompt": "to create",
+            "options": [
+              "creare",
+              "lavarsi",
+              "insegnare",
+              "prendere"
+            ],
+            "answer": "creare"
+          },
+          {
+            "id": "bi17",
+            "prompt": "to use",
+            "options": [
+              "sperare",
+              "vendere",
+              "fermarsi",
+              "usare"
+            ],
+            "answer": "usare"
+          },
+          {
+            "id": "bi18",
+            "prompt": "to buy",
+            "options": [
+              "avere",
+              "lavorare",
+              "comprare",
+              "guardare"
+            ],
+            "answer": "comprare"
+          },
+          {
+            "id": "bi19",
+            "prompt": "to sell",
+            "options": [
+              "ridere",
+              "aspettare",
+              "correre",
+              "vendere"
+            ],
+            "answer": "vendere"
+          },
+          {
+            "id": "bi20",
+            "prompt": "to pay",
+            "options": [
+              "fermarsi",
+              "portare",
+              "spiegare",
+              "pagare"
+            ],
+            "answer": "pagare"
+          },
+          {
+            "id": "bi21",
+            "prompt": "to cost",
+            "options": [
+              "vedere",
+              "fermarsi",
+              "rispondere",
+              "costare"
+            ],
+            "answer": "costare"
+          },
+          {
+            "id": "bi22",
+            "prompt": "to live",
+            "options": [
+              "cambiare",
+              "vivere",
+              "odiare",
+              "trovare"
+            ],
+            "answer": "vivere"
+          },
+          {
+            "id": "bi23",
+            "prompt": "to die",
+            "options": [
+              "fare",
+              "cambiare",
+              "lavorare",
+              "morire"
+            ],
+            "answer": "morire"
+          },
+          {
+            "id": "bi24",
+            "prompt": "to be born",
+            "options": [
+              "vestirsi",
+              "continuare",
+              "nascere",
+              "essere"
+            ],
+            "answer": "nascere"
+          },
+          {
+            "id": "bi25",
+            "prompt": "to grow",
+            "options": [
+              "crescere",
+              "finire",
+              "volare",
+              "studiare"
+            ],
+            "answer": "crescere"
+          },
+          {
+            "id": "bi26",
+            "prompt": "to become",
+            "options": [
+              "diventare",
+              "andare",
+              "camminare",
+              "amare"
+            ],
+            "answer": "diventare"
+          },
+          {
+            "id": "bi27",
+            "prompt": "to know (a person/place)",
+            "options": [
+              "spiegare",
+              "portare",
+              "andare",
+              "conoscere"
+            ],
+            "answer": "conoscere"
+          },
+          {
+            "id": "bi28",
+            "prompt": "to meet",
+            "options": [
+              "svegliarsi",
+              "incontrare",
+              "volere",
+              "mangiare"
+            ],
+            "answer": "incontrare"
+          },
+          {
+            "id": "bi29",
+            "prompt": "to greet",
+            "options": [
+              "venire",
+              "lasciare",
+              "odiare",
+              "salutare"
+            ],
+            "answer": "salutare"
+          },
+          {
+            "id": "bi30",
+            "prompt": "to arrive",
+            "options": [
+              "cucinare",
+              "arrivare",
+              "cercare",
+              "vendere"
+            ],
+            "answer": "arrivare"
+          },
+          {
+            "id": "bi31",
+            "prompt": "to leave / to depart",
+            "options": [
+              "scrivere",
+              "vivere",
+              "partire",
+              "cambiare"
+            ],
+            "answer": "partire"
+          },
+          {
+            "id": "bi32",
+            "prompt": "to travel",
+            "options": [
+              "chiudere",
+              "viaggiare",
+              "costruire",
+              "dimenticare"
+            ],
+            "answer": "viaggiare"
+          },
+          {
+            "id": "bi33",
+            "prompt": "to fly",
+            "options": [
+              "volare",
+              "pagare",
+              "vendere",
+              "sembrare"
+            ],
+            "answer": "volare"
+          },
+          {
+            "id": "bi34",
+            "prompt": "to drive",
+            "options": [
+              "guidare",
+              "camminare",
+              "aprire",
+              "cercare"
+            ],
+            "answer": "guidare"
+          },
+          {
+            "id": "bi35",
+            "prompt": "to fall",
+            "options": [
+              "volare",
+              "cucinare",
+              "potere",
+              "cadere"
+            ],
+            "answer": "cadere"
+          },
+          {
+            "id": "bi36",
+            "prompt": "to get up",
+            "options": [
+              "sedersi",
+              "volare",
+              "alzarsi",
+              "addormentarsi"
+            ],
+            "answer": "alzarsi"
+          },
+          {
+            "id": "bi37",
+            "prompt": "to sit down",
+            "options": [
+              "crescere",
+              "alzarsi",
+              "sedersi",
+              "studiare"
+            ],
+            "answer": "sedersi"
+          },
+          {
+            "id": "bi38",
+            "prompt": "to wake up",
+            "options": [
+              "chiudere",
+              "fare",
+              "restare",
+              "svegliarsi"
+            ],
+            "answer": "svegliarsi"
+          },
+          {
+            "id": "bi39",
+            "prompt": "to fall asleep",
+            "options": [
+              "vendere",
+              "costruire",
+              "cadere",
+              "addormentarsi"
+            ],
+            "answer": "addormentarsi"
+          },
+          {
+            "id": "bi40",
+            "prompt": "to wash oneself",
+            "options": [
+              "finire",
+              "usare",
+              "ricordare",
+              "lavarsi"
+            ],
+            "answer": "lavarsi"
+          },
+          {
+            "id": "bi41",
+            "prompt": "to get dressed",
+            "options": [
+              "portare",
+              "sperare",
+              "vestirsi",
+              "giocare"
+            ],
+            "answer": "vestirsi"
+          },
+          {
+            "id": "bi42",
+            "prompt": "to feel (oneself)",
+            "options": [
+              "andare",
+              "imparare",
+              "sentirsi",
+              "svegliarsi"
+            ],
+            "answer": "sentirsi"
+          },
+          {
+            "id": "bi43",
+            "prompt": "to have fun",
+            "options": [
+              "costruire",
+              "divertirsi",
+              "incontrare",
+              "dimenticare"
+            ],
+            "answer": "divertirsi"
+          },
+          {
+            "id": "bi44",
+            "prompt": "to stop",
+            "options": [
+              "chiedere",
+              "cadere",
+              "conoscere",
+              "fermarsi"
+            ],
+            "answer": "fermarsi"
+          },
+          {
+            "id": "bi45",
+            "prompt": "to prepare",
+            "options": [
+              "insegnare",
+              "volare",
+              "pagare",
+              "preparare"
+            ],
+            "answer": "preparare"
+          },
+          {
+            "id": "bi46",
+            "prompt": "to cook",
+            "options": [
+              "prendere",
+              "camminare",
+              "sentire",
+              "cucinare"
+            ],
+            "answer": "cucinare"
+          },
+          {
+            "id": "bi47",
+            "prompt": "to clean",
+            "options": [
+              "prendere",
+              "viaggiare",
+              "piangere",
+              "pulire"
+            ],
+            "answer": "pulire"
+          },
+          {
+            "id": "bi48",
+            "prompt": "to help",
+            "options": [
+              "comprare",
+              "venire",
+              "fare",
+              "aiutare"
+            ],
+            "answer": "aiutare"
+          },
+          {
+            "id": "bi49",
+            "prompt": "to send",
+            "options": [
+              "uscire",
+              "capire",
+              "mandare",
+              "comprare"
+            ],
+            "answer": "mandare"
+          },
+          {
+            "id": "bi50",
+            "prompt": "to receive",
+            "options": [
+              "cantare",
+              "alzarsi",
+              "ricevere",
+              "sentire"
+            ],
+            "answer": "ricevere"
+          }
+        ]
+      },
+      {
+        "id": "h2e3",
+        "type": "abbinamento",
+        "title": "Matching (verbs 1–50)",
+        "instructions": "Match the Italian verb to its English meaning",
+        "pairs": [
+          {
+            "id": "m1p1",
+            "it": "essere",
+            "en": "to be"
+          },
+          {
+            "id": "m1p2",
+            "it": "potere",
+            "en": "can / to be able to"
+          },
+          {
+            "id": "m1p3",
+            "it": "stare",
+            "en": "to stay / to be (somewhere)"
+          },
+          {
+            "id": "m1p4",
+            "it": "prendere",
+            "en": "to take"
+          },
+          {
+            "id": "m1p5",
+            "it": "passare",
+            "en": "to pass / to spend (time)"
+          },
+          {
+            "id": "m1p6",
+            "it": "restare",
+            "en": "to remain"
+          },
+          {
+            "id": "m1p7",
+            "it": "dormire",
+            "en": "to sleep"
+          },
+          {
+            "id": "m1p8",
+            "it": "ascoltare",
+            "en": "to listen"
+          },
+          {
+            "id": "m1p9",
+            "it": "finire",
+            "en": "to finish"
+          },
+          {
+            "id": "m1p10",
+            "it": "spiegare",
+            "en": "to explain"
+          }
+        ]
+      },
+      {
+        "id": "h2e4",
+        "type": "abbinamento",
+        "title": "Matching (verbs 51–100)",
+        "instructions": "Match the Italian verb to its English meaning",
+        "pairs": [
+          {
+            "id": "m2p1",
+            "it": "giocare",
+            "en": "to play"
+          },
+          {
+            "id": "m2p2",
+            "it": "amare",
+            "en": "to love"
+          },
+          {
+            "id": "m2p3",
+            "it": "dimenticare",
+            "en": "to forget"
+          },
+          {
+            "id": "m2p4",
+            "it": "creare",
+            "en": "to create"
+          },
+          {
+            "id": "m2p5",
+            "it": "costare",
+            "en": "to cost"
+          },
+          {
+            "id": "m2p6",
+            "it": "diventare",
+            "en": "to become"
+          },
+          {
+            "id": "m2p7",
+            "it": "partire",
+            "en": "to leave / to depart"
+          },
+          {
+            "id": "m2p8",
+            "it": "alzarsi",
+            "en": "to get up"
+          },
+          {
+            "id": "m2p9",
+            "it": "vestirsi",
+            "en": "to get dressed"
+          },
+          {
+            "id": "m2p10",
+            "it": "cucinare",
+            "en": "to cook"
+          }
+        ]
+      }
+    ]
   }
 ]
