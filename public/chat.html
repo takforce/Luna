@@ -127,7 +127,6 @@
 <script src="/js/moon-emojis.js"></script>
 <script src="/js/chat-shared.js"></script>
 <script>
-const EMOJI = ['🌙','⭐','✨','💫','☄️','🪐','🌌','🌠','☀️','🌈','🔭','👽','🛸','🎉','👋','🙏','🎓','📚','✅','❌'];
 
 let currentSender = 'io';
 let pendingFile = null;
@@ -140,8 +139,7 @@ const attachName = document.getElementById('attach-name');
 const fileInput = document.getElementById('file-input');
 
 const emojiButtonsHtml =
-  MOON_EMOJIS.map(m => `<button type="button" class="moon-emoji-btn" data-code="${m.code}" title="${m.label}">${m.svg}</button>`).join('') +
-  EMOJI.map(e => `<button type="button" data-code="${e}">${e}</button>`).join('');
+  MOON_EMOJIS.map(m => `<button type="button" class="moon-emoji-btn" data-code="${m.code}" title="${m.label}">${m.svg}</button>`).join('');
 emojiPanel.innerHTML = emojiButtonsHtml;
 emojiPanel.querySelectorAll('button').forEach(btn => {
   btn.addEventListener('click', () => {

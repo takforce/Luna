@@ -11298,5 +11298,2321 @@
         ]
       }
     ]
+  },
+  {
+    "id": "h3",
+    "category": "vocab",
+    "title": "More Words",
+    "subtitle": "Everyday life topics: feelings, tech, nature, school, money and more",
+    "icon": "🌍",
+    "exercises": [
+      {
+        "id": "h3c1e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice — Emotions & Feelings",
+        "instructions": "Choose the correct Italian translation",
+        "group": "1. Emotions & Feelings",
+        "items": [
+          {
+            "id": "h3c1i1",
+            "prompt": "Angry",
+            "options": [
+              "deluso",
+              "fiducioso",
+              "imbarazzato",
+              "arrabbiato"
+            ],
+            "answer": "arrabbiato"
+          },
+          {
+            "id": "h3c1i2",
+            "prompt": "Scared",
+            "options": [
+              "sicuro di sé",
+              "sollevato",
+              "spaventato",
+              "contento"
+            ],
+            "answer": "spaventato"
+          },
+          {
+            "id": "h3c1i3",
+            "prompt": "Surprised",
+            "options": [
+              "grato",
+              "arrabbiato",
+              "spaventato",
+              "sorpreso"
+            ],
+            "answer": "sorpreso"
+          },
+          {
+            "id": "h3c1i4",
+            "prompt": "Proud",
+            "options": [
+              "calmo",
+              "deluso",
+              "sicuro di sé",
+              "orgoglioso"
+            ],
+            "answer": "orgoglioso"
+          },
+          {
+            "id": "h3c1i5",
+            "prompt": "Jealous",
+            "options": [
+              "solo",
+              "contento",
+              "geloso",
+              "grato"
+            ],
+            "answer": "geloso"
+          },
+          {
+            "id": "h3c1i6",
+            "prompt": "Curious",
+            "options": [
+              "nervoso",
+              "spaventato",
+              "curioso",
+              "contento"
+            ],
+            "answer": "curioso"
+          },
+          {
+            "id": "h3c1i7",
+            "prompt": "Calm",
+            "options": [
+              "sorpreso",
+              "calmo",
+              "curioso",
+              "geloso"
+            ],
+            "answer": "calmo"
+          },
+          {
+            "id": "h3c1i8",
+            "prompt": "Nervous",
+            "options": [
+              "nervoso",
+              "geloso",
+              "fiducioso",
+              "motivato"
+            ],
+            "answer": "nervoso"
+          },
+          {
+            "id": "h3c1i9",
+            "prompt": "Embarrassed",
+            "options": [
+              "sicuro di sé",
+              "arrabbiato",
+              "imbarazzato",
+              "curioso"
+            ],
+            "answer": "imbarazzato"
+          },
+          {
+            "id": "h3c1i10",
+            "prompt": "Grateful",
+            "options": [
+              "grato",
+              "solo",
+              "ansioso",
+              "nervoso"
+            ],
+            "answer": "grato"
+          },
+          {
+            "id": "h3c1i11",
+            "prompt": "Confident",
+            "options": [
+              "sicuro di sé",
+              "grato",
+              "confuso",
+              "arrabbiato"
+            ],
+            "answer": "sicuro di sé"
+          },
+          {
+            "id": "h3c1i12",
+            "prompt": "Lonely",
+            "options": [
+              "curioso",
+              "ansioso",
+              "solo",
+              "calmo"
+            ],
+            "answer": "solo"
+          },
+          {
+            "id": "h3c1i13",
+            "prompt": "Hopeful",
+            "options": [
+              "contento",
+              "solo",
+              "fiducioso",
+              "sorpreso"
+            ],
+            "answer": "fiducioso"
+          },
+          {
+            "id": "h3c1i14",
+            "prompt": "Disappointed",
+            "options": [
+              "imbarazzato",
+              "confuso",
+              "motivato",
+              "deluso"
+            ],
+            "answer": "deluso"
+          },
+          {
+            "id": "h3c1i15",
+            "prompt": "Relieved",
+            "options": [
+              "nervoso",
+              "curioso",
+              "sollevato",
+              "fiducioso"
+            ],
+            "answer": "sollevato"
+          },
+          {
+            "id": "h3c1i16",
+            "prompt": "Confused",
+            "options": [
+              "annoiato",
+              "arrabbiato",
+              "solo",
+              "confuso"
+            ],
+            "answer": "confuso"
+          },
+          {
+            "id": "h3c1i17",
+            "prompt": "Bored",
+            "options": [
+              "contento",
+              "annoiato",
+              "geloso",
+              "motivato"
+            ],
+            "answer": "annoiato"
+          },
+          {
+            "id": "h3c1i18",
+            "prompt": "Motivated",
+            "options": [
+              "orgoglioso",
+              "solo",
+              "nervoso",
+              "motivato"
+            ],
+            "answer": "motivato"
+          },
+          {
+            "id": "h3c1i19",
+            "prompt": "Anxious",
+            "options": [
+              "calmo",
+              "ansioso",
+              "grato",
+              "orgoglioso"
+            ],
+            "answer": "ansioso"
+          },
+          {
+            "id": "h3c1i20",
+            "prompt": "Content",
+            "options": [
+              "calmo",
+              "motivato",
+              "arrabbiato",
+              "contento"
+            ],
+            "answer": "contento"
+          }
+        ]
+      },
+      {
+        "id": "h3c1e2",
+        "type": "abbinamento",
+        "title": "Matching — Emotions & Feelings",
+        "instructions": "Match the Italian word to its English meaning",
+        "group": "1. Emotions & Feelings",
+        "pairs": [
+          {
+            "id": "h3c1p1",
+            "it": "arrabbiato",
+            "en": "Angry"
+          },
+          {
+            "id": "h3c1p2",
+            "it": "sorpreso",
+            "en": "Surprised"
+          },
+          {
+            "id": "h3c1p3",
+            "it": "geloso",
+            "en": "Jealous"
+          },
+          {
+            "id": "h3c1p4",
+            "it": "calmo",
+            "en": "Calm"
+          },
+          {
+            "id": "h3c1p5",
+            "it": "imbarazzato",
+            "en": "Embarrassed"
+          },
+          {
+            "id": "h3c1p6",
+            "it": "sicuro di sé",
+            "en": "Confident"
+          },
+          {
+            "id": "h3c1p7",
+            "it": "fiducioso",
+            "en": "Hopeful"
+          },
+          {
+            "id": "h3c1p8",
+            "it": "sollevato",
+            "en": "Relieved"
+          }
+        ]
+      },
+      {
+        "id": "h3c2e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice — Technology & Media",
+        "instructions": "Choose the correct Italian translation",
+        "group": "2. Technology & Media",
+        "items": [
+          {
+            "id": "h3c2i1",
+            "prompt": "Computer",
+            "options": [
+              "fotocamera",
+              "foto",
+              "app",
+              "computer"
+            ],
+            "answer": "computer"
+          },
+          {
+            "id": "h3c2i2",
+            "prompt": "Phone",
+            "options": [
+              "video",
+              "batteria",
+              "telefono",
+              "social media"
+            ],
+            "answer": "telefono"
+          },
+          {
+            "id": "h3c2i3",
+            "prompt": "Internet",
+            "options": [
+              "sito web",
+              "computer",
+              "telefono",
+              "internet"
+            ],
+            "answer": "internet"
+          },
+          {
+            "id": "h3c2i4",
+            "prompt": "Email",
+            "options": [
+              "tastiera",
+              "fotocamera",
+              "video",
+              "email"
+            ],
+            "answer": "email"
+          },
+          {
+            "id": "h3c2i5",
+            "prompt": "Password",
+            "options": [
+              "musica",
+              "social media",
+              "password",
+              "sito web"
+            ],
+            "answer": "password"
+          },
+          {
+            "id": "h3c2i6",
+            "prompt": "Screen",
+            "options": [
+              "mouse",
+              "telefono",
+              "schermo",
+              "social media"
+            ],
+            "answer": "schermo"
+          },
+          {
+            "id": "h3c2i7",
+            "prompt": "Keyboard",
+            "options": [
+              "internet",
+              "tastiera",
+              "schermo",
+              "password"
+            ],
+            "answer": "tastiera"
+          },
+          {
+            "id": "h3c2i8",
+            "prompt": "Mouse (computer)",
+            "options": [
+              "mouse",
+              "password",
+              "foto",
+              "file"
+            ],
+            "answer": "mouse"
+          },
+          {
+            "id": "h3c2i9",
+            "prompt": "App",
+            "options": [
+              "video",
+              "computer",
+              "app",
+              "schermo"
+            ],
+            "answer": "app"
+          },
+          {
+            "id": "h3c2i10",
+            "prompt": "Website",
+            "options": [
+              "sito web",
+              "musica",
+              "messaggio",
+              "mouse"
+            ],
+            "answer": "sito web"
+          },
+          {
+            "id": "h3c2i11",
+            "prompt": "Video",
+            "options": [
+              "video",
+              "sito web",
+              "caricabatterie",
+              "computer"
+            ],
+            "answer": "video"
+          },
+          {
+            "id": "h3c2i12",
+            "prompt": "Music",
+            "options": [
+              "schermo",
+              "messaggio",
+              "musica",
+              "tastiera"
+            ],
+            "answer": "musica"
+          },
+          {
+            "id": "h3c2i13",
+            "prompt": "Photo",
+            "options": [
+              "social media",
+              "musica",
+              "foto",
+              "internet"
+            ],
+            "answer": "foto"
+          },
+          {
+            "id": "h3c2i14",
+            "prompt": "Camera",
+            "options": [
+              "app",
+              "caricabatterie",
+              "file",
+              "fotocamera"
+            ],
+            "answer": "fotocamera"
+          },
+          {
+            "id": "h3c2i15",
+            "prompt": "Battery",
+            "options": [
+              "mouse",
+              "schermo",
+              "batteria",
+              "foto"
+            ],
+            "answer": "batteria"
+          },
+          {
+            "id": "h3c2i16",
+            "prompt": "Charger",
+            "options": [
+              "wifi",
+              "computer",
+              "musica",
+              "caricabatterie"
+            ],
+            "answer": "caricabatterie"
+          },
+          {
+            "id": "h3c2i17",
+            "prompt": "Wifi",
+            "options": [
+              "social media",
+              "wifi",
+              "password",
+              "file"
+            ],
+            "answer": "wifi"
+          },
+          {
+            "id": "h3c2i18",
+            "prompt": "File",
+            "options": [
+              "email",
+              "musica",
+              "mouse",
+              "file"
+            ],
+            "answer": "file"
+          },
+          {
+            "id": "h3c2i19",
+            "prompt": "Message",
+            "options": [
+              "tastiera",
+              "messaggio",
+              "sito web",
+              "email"
+            ],
+            "answer": "messaggio"
+          },
+          {
+            "id": "h3c2i20",
+            "prompt": "Social media",
+            "options": [
+              "tastiera",
+              "file",
+              "computer",
+              "social media"
+            ],
+            "answer": "social media"
+          }
+        ]
+      },
+      {
+        "id": "h3c2e2",
+        "type": "abbinamento",
+        "title": "Matching — Technology & Media",
+        "instructions": "Match the Italian word to its English meaning",
+        "group": "2. Technology & Media",
+        "pairs": [
+          {
+            "id": "h3c2p1",
+            "it": "computer",
+            "en": "Computer"
+          },
+          {
+            "id": "h3c2p2",
+            "it": "internet",
+            "en": "Internet"
+          },
+          {
+            "id": "h3c2p3",
+            "it": "password",
+            "en": "Password"
+          },
+          {
+            "id": "h3c2p4",
+            "it": "tastiera",
+            "en": "Keyboard"
+          },
+          {
+            "id": "h3c2p5",
+            "it": "app",
+            "en": "App"
+          },
+          {
+            "id": "h3c2p6",
+            "it": "video",
+            "en": "Video"
+          },
+          {
+            "id": "h3c2p7",
+            "it": "foto",
+            "en": "Photo"
+          },
+          {
+            "id": "h3c2p8",
+            "it": "batteria",
+            "en": "Battery"
+          }
+        ]
+      },
+      {
+        "id": "h3c3e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice — Nature & Animals",
+        "instructions": "Choose the correct Italian translation",
+        "group": "3. Nature & Animals",
+        "items": [
+          {
+            "id": "h3c3i1",
+            "prompt": "Tree",
+            "options": [
+              "cavallo",
+              "pesce",
+              "stella",
+              "albero"
+            ],
+            "answer": "albero"
+          },
+          {
+            "id": "h3c3i2",
+            "prompt": "Flower",
+            "options": [
+              "gatto",
+              "mucca",
+              "fiore",
+              "serpente"
+            ],
+            "answer": "fiore"
+          },
+          {
+            "id": "h3c3i3",
+            "prompt": "Forest",
+            "options": [
+              "cane",
+              "albero",
+              "fiore",
+              "foresta"
+            ],
+            "answer": "foresta"
+          },
+          {
+            "id": "h3c3i4",
+            "prompt": "Mountain",
+            "options": [
+              "cielo",
+              "cavallo",
+              "gatto",
+              "montagna"
+            ],
+            "answer": "montagna"
+          },
+          {
+            "id": "h3c3i5",
+            "prompt": "River",
+            "options": [
+              "uccello",
+              "serpente",
+              "fiume",
+              "cane"
+            ],
+            "answer": "fiume"
+          },
+          {
+            "id": "h3c3i6",
+            "prompt": "Sea",
+            "options": [
+              "sole",
+              "fiore",
+              "mare",
+              "serpente"
+            ],
+            "answer": "mare"
+          },
+          {
+            "id": "h3c3i7",
+            "prompt": "Sky",
+            "options": [
+              "foresta",
+              "cielo",
+              "mare",
+              "fiume"
+            ],
+            "answer": "cielo"
+          },
+          {
+            "id": "h3c3i8",
+            "prompt": "Sun",
+            "options": [
+              "sole",
+              "fiume",
+              "pesce",
+              "coniglio"
+            ],
+            "answer": "sole"
+          },
+          {
+            "id": "h3c3i9",
+            "prompt": "Star",
+            "options": [
+              "gatto",
+              "albero",
+              "stella",
+              "mare"
+            ],
+            "answer": "stella"
+          },
+          {
+            "id": "h3c3i10",
+            "prompt": "Dog",
+            "options": [
+              "cane",
+              "uccello",
+              "topo",
+              "sole"
+            ],
+            "answer": "cane"
+          },
+          {
+            "id": "h3c3i11",
+            "prompt": "Cat",
+            "options": [
+              "gatto",
+              "cane",
+              "leone",
+              "albero"
+            ],
+            "answer": "gatto"
+          },
+          {
+            "id": "h3c3i12",
+            "prompt": "Bird",
+            "options": [
+              "mare",
+              "topo",
+              "uccello",
+              "cielo"
+            ],
+            "answer": "uccello"
+          },
+          {
+            "id": "h3c3i13",
+            "prompt": "Fish",
+            "options": [
+              "serpente",
+              "uccello",
+              "pesce",
+              "foresta"
+            ],
+            "answer": "pesce"
+          },
+          {
+            "id": "h3c3i14",
+            "prompt": "Horse",
+            "options": [
+              "stella",
+              "leone",
+              "coniglio",
+              "cavallo"
+            ],
+            "answer": "cavallo"
+          },
+          {
+            "id": "h3c3i15",
+            "prompt": "Cow",
+            "options": [
+              "sole",
+              "mare",
+              "mucca",
+              "pesce"
+            ],
+            "answer": "mucca"
+          },
+          {
+            "id": "h3c3i16",
+            "prompt": "Lion",
+            "options": [
+              "elefante",
+              "albero",
+              "uccello",
+              "leone"
+            ],
+            "answer": "leone"
+          },
+          {
+            "id": "h3c3i17",
+            "prompt": "Elephant",
+            "options": [
+              "serpente",
+              "elefante",
+              "fiume",
+              "coniglio"
+            ],
+            "answer": "elefante"
+          },
+          {
+            "id": "h3c3i18",
+            "prompt": "Rabbit",
+            "options": [
+              "montagna",
+              "uccello",
+              "sole",
+              "coniglio"
+            ],
+            "answer": "coniglio"
+          },
+          {
+            "id": "h3c3i19",
+            "prompt": "Mouse (animal)",
+            "options": [
+              "cielo",
+              "topo",
+              "cane",
+              "montagna"
+            ],
+            "answer": "topo"
+          },
+          {
+            "id": "h3c3i20",
+            "prompt": "Snake",
+            "options": [
+              "cielo",
+              "coniglio",
+              "albero",
+              "serpente"
+            ],
+            "answer": "serpente"
+          }
+        ]
+      },
+      {
+        "id": "h3c3e2",
+        "type": "abbinamento",
+        "title": "Matching — Nature & Animals",
+        "instructions": "Match the Italian word to its English meaning",
+        "group": "3. Nature & Animals",
+        "pairs": [
+          {
+            "id": "h3c3p1",
+            "it": "albero",
+            "en": "Tree"
+          },
+          {
+            "id": "h3c3p2",
+            "it": "foresta",
+            "en": "Forest"
+          },
+          {
+            "id": "h3c3p3",
+            "it": "fiume",
+            "en": "River"
+          },
+          {
+            "id": "h3c3p4",
+            "it": "cielo",
+            "en": "Sky"
+          },
+          {
+            "id": "h3c3p5",
+            "it": "stella",
+            "en": "Star"
+          },
+          {
+            "id": "h3c3p6",
+            "it": "gatto",
+            "en": "Cat"
+          },
+          {
+            "id": "h3c3p7",
+            "it": "pesce",
+            "en": "Fish"
+          },
+          {
+            "id": "h3c3p8",
+            "it": "mucca",
+            "en": "Cow"
+          }
+        ]
+      },
+      {
+        "id": "h3c4e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice — School & Learning",
+        "instructions": "Choose the correct Italian translation",
+        "group": "4. School & Learning",
+        "items": [
+          {
+            "id": "h3c4i1",
+            "prompt": "School",
+            "options": [
+              "voto",
+              "compiti",
+              "quaderno",
+              "scuola"
+            ],
+            "answer": "scuola"
+          },
+          {
+            "id": "h3c4i2",
+            "prompt": "Teacher",
+            "options": [
+              "laurea",
+              "esame",
+              "insegnante",
+              "università"
+            ],
+            "answer": "insegnante"
+          },
+          {
+            "id": "h3c4i3",
+            "prompt": "Student",
+            "options": [
+              "banco",
+              "biblioteca",
+              "studente",
+              "lezione"
+            ],
+            "answer": "studente"
+          },
+          {
+            "id": "h3c4i4",
+            "prompt": "Classroom",
+            "options": [
+              "quaderno",
+              "materia",
+              "voto",
+              "aula"
+            ],
+            "answer": "aula"
+          },
+          {
+            "id": "h3c4i5",
+            "prompt": "Pen",
+            "options": [
+              "banco",
+              "laurea",
+              "penna",
+              "matita"
+            ],
+            "answer": "penna"
+          },
+          {
+            "id": "h3c4i6",
+            "prompt": "Pencil",
+            "options": [
+              "esame",
+              "scuola",
+              "matita",
+              "aula"
+            ],
+            "answer": "matita"
+          },
+          {
+            "id": "h3c4i7",
+            "prompt": "Notebook",
+            "options": [
+              "quaderno",
+              "laurea",
+              "matita",
+              "voto"
+            ],
+            "answer": "quaderno"
+          },
+          {
+            "id": "h3c4i8",
+            "prompt": "Exam",
+            "options": [
+              "esame",
+              "penna",
+              "matita",
+              "università"
+            ],
+            "answer": "esame"
+          },
+          {
+            "id": "h3c4i9",
+            "prompt": "Homework",
+            "options": [
+              "compiti",
+              "università",
+              "scuola",
+              "studente"
+            ],
+            "answer": "compiti"
+          },
+          {
+            "id": "h3c4i10",
+            "prompt": "Lesson",
+            "options": [
+              "lezione",
+              "materia",
+              "laurea",
+              "aula"
+            ],
+            "answer": "lezione"
+          },
+          {
+            "id": "h3c4i11",
+            "prompt": "University",
+            "options": [
+              "università",
+              "lezione",
+              "esame",
+              "scuola"
+            ],
+            "answer": "università"
+          },
+          {
+            "id": "h3c4i12",
+            "prompt": "Degree",
+            "options": [
+              "laurea",
+              "quaderno",
+              "compiti",
+              "università"
+            ],
+            "answer": "laurea"
+          },
+          {
+            "id": "h3c4i13",
+            "prompt": "Subject",
+            "options": [
+              "biblioteca",
+              "materia",
+              "università",
+              "studente"
+            ],
+            "answer": "materia"
+          },
+          {
+            "id": "h3c4i14",
+            "prompt": "Grade",
+            "options": [
+              "compiti",
+              "lavagna",
+              "materia",
+              "voto"
+            ],
+            "answer": "voto"
+          },
+          {
+            "id": "h3c4i15",
+            "prompt": "Library",
+            "options": [
+              "aula",
+              "matita",
+              "biblioteca",
+              "quaderno"
+            ],
+            "answer": "biblioteca"
+          },
+          {
+            "id": "h3c4i16",
+            "prompt": "Desk",
+            "options": [
+              "voto",
+              "banco",
+              "esame",
+              "laurea"
+            ],
+            "answer": "banco"
+          },
+          {
+            "id": "h3c4i17",
+            "prompt": "Board (chalkboard)",
+            "options": [
+              "penna",
+              "compiti",
+              "lavagna",
+              "banco"
+            ],
+            "answer": "lavagna"
+          }
+        ]
+      },
+      {
+        "id": "h3c4e2",
+        "type": "abbinamento",
+        "title": "Matching — School & Learning",
+        "instructions": "Match the Italian word to its English meaning",
+        "group": "4. School & Learning",
+        "pairs": [
+          {
+            "id": "h3c4p1",
+            "it": "scuola",
+            "en": "School"
+          },
+          {
+            "id": "h3c4p2",
+            "it": "studente",
+            "en": "Student"
+          },
+          {
+            "id": "h3c4p3",
+            "it": "penna",
+            "en": "Pen"
+          },
+          {
+            "id": "h3c4p4",
+            "it": "quaderno",
+            "en": "Notebook"
+          },
+          {
+            "id": "h3c4p5",
+            "it": "compiti",
+            "en": "Homework"
+          },
+          {
+            "id": "h3c4p6",
+            "it": "università",
+            "en": "University"
+          },
+          {
+            "id": "h3c4p7",
+            "it": "materia",
+            "en": "Subject"
+          },
+          {
+            "id": "h3c4p8",
+            "it": "biblioteca",
+            "en": "Library"
+          }
+        ]
+      },
+      {
+        "id": "h3c5e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice — Money & Shopping",
+        "instructions": "Choose the correct Italian translation",
+        "group": "5. Money & Shopping",
+        "items": [
+          {
+            "id": "h3c5i1",
+            "prompt": "Money",
+            "options": [
+              "sconto",
+              "scontrino",
+              "contanti",
+              "soldi"
+            ],
+            "answer": "soldi"
+          },
+          {
+            "id": "h3c5i2",
+            "prompt": "Price",
+            "options": [
+              "carta",
+              "saldi",
+              "portafoglio",
+              "prezzo"
+            ],
+            "answer": "prezzo"
+          },
+          {
+            "id": "h3c5i3",
+            "prompt": "Shop",
+            "options": [
+              "negozio",
+              "carta",
+              "soldi",
+              "portafoglio"
+            ],
+            "answer": "negozio"
+          },
+          {
+            "id": "h3c5i4",
+            "prompt": "Market",
+            "options": [
+              "negozio",
+              "borsa",
+              "cassiere",
+              "mercato"
+            ],
+            "answer": "mercato"
+          },
+          {
+            "id": "h3c5i5",
+            "prompt": "Cash",
+            "options": [
+              "scontrino",
+              "resto",
+              "contanti",
+              "carta"
+            ],
+            "answer": "contanti"
+          },
+          {
+            "id": "h3c5i6",
+            "prompt": "Card (credit)",
+            "options": [
+              "mercato",
+              "soldi",
+              "carta",
+              "resto"
+            ],
+            "answer": "carta"
+          },
+          {
+            "id": "h3c5i7",
+            "prompt": "Receipt",
+            "options": [
+              "scontrino",
+              "portafoglio",
+              "negozio",
+              "cassiere"
+            ],
+            "answer": "scontrino"
+          },
+          {
+            "id": "h3c5i8",
+            "prompt": "Discount",
+            "options": [
+              "sconto",
+              "negozio",
+              "carta",
+              "saldi"
+            ],
+            "answer": "sconto"
+          },
+          {
+            "id": "h3c5i9",
+            "prompt": "Expensive",
+            "options": [
+              "caro",
+              "saldi",
+              "soldi",
+              "negozio"
+            ],
+            "answer": "caro"
+          },
+          {
+            "id": "h3c5i10",
+            "prompt": "Cheap",
+            "options": [
+              "caro",
+              "economico",
+              "borsa",
+              "carta"
+            ],
+            "answer": "economico"
+          },
+          {
+            "id": "h3c5i11",
+            "prompt": "Sale",
+            "options": [
+              "saldi",
+              "contanti",
+              "sconto",
+              "soldi"
+            ],
+            "answer": "saldi"
+          },
+          {
+            "id": "h3c5i12",
+            "prompt": "Wallet",
+            "options": [
+              "portafoglio",
+              "saldi",
+              "resto",
+              "mercato"
+            ],
+            "answer": "portafoglio"
+          },
+          {
+            "id": "h3c5i13",
+            "prompt": "Bag",
+            "options": [
+              "saldi",
+              "prezzo",
+              "borsa",
+              "resto"
+            ],
+            "answer": "borsa"
+          },
+          {
+            "id": "h3c5i14",
+            "prompt": "Cashier",
+            "options": [
+              "contanti",
+              "sconto",
+              "caro",
+              "cassiere"
+            ],
+            "answer": "cassiere"
+          },
+          {
+            "id": "h3c5i15",
+            "prompt": "Change (money)",
+            "options": [
+              "mercato",
+              "negozio",
+              "resto",
+              "scontrino"
+            ],
+            "answer": "resto"
+          }
+        ]
+      },
+      {
+        "id": "h3c5e2",
+        "type": "abbinamento",
+        "title": "Matching — Money & Shopping",
+        "instructions": "Match the Italian word to its English meaning",
+        "group": "5. Money & Shopping",
+        "pairs": [
+          {
+            "id": "h3c5p1",
+            "it": "soldi",
+            "en": "Money"
+          },
+          {
+            "id": "h3c5p2",
+            "it": "prezzo",
+            "en": "Price"
+          },
+          {
+            "id": "h3c5p3",
+            "it": "negozio",
+            "en": "Shop"
+          },
+          {
+            "id": "h3c5p4",
+            "it": "mercato",
+            "en": "Market"
+          },
+          {
+            "id": "h3c5p5",
+            "it": "contanti",
+            "en": "Cash"
+          },
+          {
+            "id": "h3c5p6",
+            "it": "carta",
+            "en": "Card (credit)"
+          },
+          {
+            "id": "h3c5p7",
+            "it": "scontrino",
+            "en": "Receipt"
+          },
+          {
+            "id": "h3c5p8",
+            "it": "sconto",
+            "en": "Discount"
+          }
+        ]
+      },
+      {
+        "id": "h3c6e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice — Health & Body Care",
+        "instructions": "Choose the correct Italian translation",
+        "group": "6. Health & Body Care",
+        "items": [
+          {
+            "id": "h3c6i1",
+            "prompt": "Doctor",
+            "options": [
+              "sano",
+              "farmacia",
+              "mal di testa",
+              "dottore"
+            ],
+            "answer": "dottore"
+          },
+          {
+            "id": "h3c6i2",
+            "prompt": "Hospital",
+            "options": [
+              "febbre",
+              "dieta",
+              "sonno",
+              "ospedale"
+            ],
+            "answer": "ospedale"
+          },
+          {
+            "id": "h3c6i3",
+            "prompt": "Medicine",
+            "options": [
+              "medicina",
+              "febbre",
+              "dottore",
+              "sonno"
+            ],
+            "answer": "medicina"
+          },
+          {
+            "id": "h3c6i4",
+            "prompt": "Pain",
+            "options": [
+              "medicina",
+              "spazzolino",
+              "dolore",
+              "sano"
+            ],
+            "answer": "dolore"
+          },
+          {
+            "id": "h3c6i5",
+            "prompt": "Headache",
+            "options": [
+              "farmacia",
+              "doccia",
+              "mal di testa",
+              "febbre"
+            ],
+            "answer": "mal di testa"
+          },
+          {
+            "id": "h3c6i6",
+            "prompt": "Fever",
+            "options": [
+              "dolore",
+              "dottore",
+              "febbre",
+              "doccia"
+            ],
+            "answer": "febbre"
+          },
+          {
+            "id": "h3c6i7",
+            "prompt": "Pharmacy",
+            "options": [
+              "farmacia",
+              "spazzolino",
+              "medicina",
+              "sonno"
+            ],
+            "answer": "farmacia"
+          },
+          {
+            "id": "h3c6i8",
+            "prompt": "Healthy",
+            "options": [
+              "sano",
+              "medicina",
+              "febbre",
+              "dieta"
+            ],
+            "answer": "sano"
+          },
+          {
+            "id": "h3c6i9",
+            "prompt": "Rest",
+            "options": [
+              "riposo",
+              "dieta",
+              "dottore",
+              "medicina"
+            ],
+            "answer": "riposo"
+          },
+          {
+            "id": "h3c6i10",
+            "prompt": "Exercise",
+            "options": [
+              "esercizio",
+              "febbre",
+              "riposo",
+              "dolore"
+            ],
+            "answer": "esercizio"
+          },
+          {
+            "id": "h3c6i11",
+            "prompt": "Diet",
+            "options": [
+              "dieta",
+              "mal di testa",
+              "sano",
+              "dottore"
+            ],
+            "answer": "dieta"
+          },
+          {
+            "id": "h3c6i12",
+            "prompt": "Sleep (noun)",
+            "options": [
+              "sonno",
+              "dieta",
+              "doccia",
+              "dolore"
+            ],
+            "answer": "sonno"
+          },
+          {
+            "id": "h3c6i13",
+            "prompt": "Toothbrush",
+            "options": [
+              "dieta",
+              "ospedale",
+              "spazzolino",
+              "doccia"
+            ],
+            "answer": "spazzolino"
+          },
+          {
+            "id": "h3c6i14",
+            "prompt": "Shower",
+            "options": [
+              "mal di testa",
+              "sano",
+              "riposo",
+              "doccia"
+            ],
+            "answer": "doccia"
+          }
+        ]
+      },
+      {
+        "id": "h3c6e2",
+        "type": "abbinamento",
+        "title": "Matching — Health & Body Care",
+        "instructions": "Match the Italian word to its English meaning",
+        "group": "6. Health & Body Care",
+        "pairs": [
+          {
+            "id": "h3c6p1",
+            "it": "dottore",
+            "en": "Doctor"
+          },
+          {
+            "id": "h3c6p2",
+            "it": "ospedale",
+            "en": "Hospital"
+          },
+          {
+            "id": "h3c6p3",
+            "it": "medicina",
+            "en": "Medicine"
+          },
+          {
+            "id": "h3c6p4",
+            "it": "dolore",
+            "en": "Pain"
+          },
+          {
+            "id": "h3c6p5",
+            "it": "mal di testa",
+            "en": "Headache"
+          },
+          {
+            "id": "h3c6p6",
+            "it": "febbre",
+            "en": "Fever"
+          },
+          {
+            "id": "h3c6p7",
+            "it": "farmacia",
+            "en": "Pharmacy"
+          },
+          {
+            "id": "h3c6p8",
+            "it": "sano",
+            "en": "Healthy"
+          }
+        ]
+      },
+      {
+        "id": "h3c7e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice — Places in Town",
+        "instructions": "Choose the correct Italian translation",
+        "group": "7. Places in Town",
+        "items": [
+          {
+            "id": "h3c7i1",
+            "prompt": "Square (piazza)",
+            "options": [
+              "ristorante",
+              "banca",
+              "ponte",
+              "piazza"
+            ],
+            "answer": "piazza"
+          },
+          {
+            "id": "h3c7i2",
+            "prompt": "Church",
+            "options": [
+              "stazione",
+              "ristorante",
+              "chiesa",
+              "teatro"
+            ],
+            "answer": "chiesa"
+          },
+          {
+            "id": "h3c7i3",
+            "prompt": "Museum",
+            "options": [
+              "museo",
+              "stazione",
+              "piazza",
+              "cinema"
+            ],
+            "answer": "museo"
+          },
+          {
+            "id": "h3c7i4",
+            "prompt": "Park",
+            "options": [
+              "museo",
+              "ristorante",
+              "stazione",
+              "parco"
+            ],
+            "answer": "parco"
+          },
+          {
+            "id": "h3c7i5",
+            "prompt": "Bridge",
+            "options": [
+              "banca",
+              "cinema",
+              "ponte",
+              "stazione"
+            ],
+            "answer": "ponte"
+          },
+          {
+            "id": "h3c7i6",
+            "prompt": "Station",
+            "options": [
+              "parco",
+              "piazza",
+              "stazione",
+              "cinema"
+            ],
+            "answer": "stazione"
+          },
+          {
+            "id": "h3c7i7",
+            "prompt": "Bank",
+            "options": [
+              "chiesa",
+              "banca",
+              "museo",
+              "cinema"
+            ],
+            "answer": "banca"
+          },
+          {
+            "id": "h3c7i8",
+            "prompt": "Restaurant",
+            "options": [
+              "ristorante",
+              "museo",
+              "stazione",
+              "hotel"
+            ],
+            "answer": "ristorante"
+          },
+          {
+            "id": "h3c7i9",
+            "prompt": "Bar",
+            "options": [
+              "bar",
+              "teatro",
+              "piazza",
+              "museo"
+            ],
+            "answer": "bar"
+          },
+          {
+            "id": "h3c7i10",
+            "prompt": "Hotel",
+            "options": [
+              "hotel",
+              "stazione",
+              "bar",
+              "parco"
+            ],
+            "answer": "hotel"
+          },
+          {
+            "id": "h3c7i11",
+            "prompt": "Theater",
+            "options": [
+              "teatro",
+              "ponte",
+              "ristorante",
+              "piazza"
+            ],
+            "answer": "teatro"
+          },
+          {
+            "id": "h3c7i12",
+            "prompt": "Cinema",
+            "options": [
+              "cinema",
+              "teatro",
+              "bar",
+              "parco"
+            ],
+            "answer": "cinema"
+          }
+        ]
+      },
+      {
+        "id": "h3c7e2",
+        "type": "abbinamento",
+        "title": "Matching — Places in Town",
+        "instructions": "Match the Italian word to its English meaning",
+        "group": "7. Places in Town",
+        "pairs": [
+          {
+            "id": "h3c7p1",
+            "it": "piazza",
+            "en": "Square (piazza)"
+          },
+          {
+            "id": "h3c7p2",
+            "it": "chiesa",
+            "en": "Church"
+          },
+          {
+            "id": "h3c7p3",
+            "it": "museo",
+            "en": "Museum"
+          },
+          {
+            "id": "h3c7p4",
+            "it": "parco",
+            "en": "Park"
+          },
+          {
+            "id": "h3c7p5",
+            "it": "ponte",
+            "en": "Bridge"
+          },
+          {
+            "id": "h3c7p6",
+            "it": "stazione",
+            "en": "Station"
+          },
+          {
+            "id": "h3c7p7",
+            "it": "banca",
+            "en": "Bank"
+          },
+          {
+            "id": "h3c7p8",
+            "it": "ristorante",
+            "en": "Restaurant"
+          }
+        ]
+      },
+      {
+        "id": "h3c8e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice — Society & Relationships",
+        "instructions": "Choose the correct Italian translation",
+        "group": "8. Society & Relationships",
+        "items": [
+          {
+            "id": "h3c8i1",
+            "prompt": "Friend",
+            "options": [
+              "anniversario",
+              "matrimonio",
+              "squadra",
+              "amico"
+            ],
+            "answer": "amico"
+          },
+          {
+            "id": "h3c8i2",
+            "prompt": "Neighbor",
+            "options": [
+              "comunità",
+              "regalo",
+              "invito",
+              "vicino di casa"
+            ],
+            "answer": "vicino di casa"
+          },
+          {
+            "id": "h3c8i3",
+            "prompt": "Colleague",
+            "options": [
+              "collega",
+              "comunità",
+              "amico",
+              "invito"
+            ],
+            "answer": "collega"
+          },
+          {
+            "id": "h3c8i4",
+            "prompt": "Boss",
+            "options": [
+              "collega",
+              "ospite",
+              "capo",
+              "anniversario"
+            ],
+            "answer": "capo"
+          },
+          {
+            "id": "h3c8i5",
+            "prompt": "Team",
+            "options": [
+              "matrimonio",
+              "padrone di casa",
+              "squadra",
+              "comunità"
+            ],
+            "answer": "squadra"
+          },
+          {
+            "id": "h3c8i6",
+            "prompt": "Community",
+            "options": [
+              "capo",
+              "amico",
+              "comunità",
+              "padrone di casa"
+            ],
+            "answer": "comunità"
+          },
+          {
+            "id": "h3c8i7",
+            "prompt": "Marriage",
+            "options": [
+              "matrimonio",
+              "ospite",
+              "collega",
+              "invito"
+            ],
+            "answer": "matrimonio"
+          },
+          {
+            "id": "h3c8i8",
+            "prompt": "Anniversary",
+            "options": [
+              "anniversario",
+              "collega",
+              "comunità",
+              "regalo"
+            ],
+            "answer": "anniversario"
+          },
+          {
+            "id": "h3c8i9",
+            "prompt": "Birthday",
+            "options": [
+              "compleanno",
+              "regalo",
+              "amico",
+              "collega"
+            ],
+            "answer": "compleanno"
+          },
+          {
+            "id": "h3c8i10",
+            "prompt": "Party",
+            "options": [
+              "festa",
+              "comunità",
+              "compleanno",
+              "capo"
+            ],
+            "answer": "festa"
+          },
+          {
+            "id": "h3c8i11",
+            "prompt": "Gift",
+            "options": [
+              "regalo",
+              "squadra",
+              "anniversario",
+              "amico"
+            ],
+            "answer": "regalo"
+          },
+          {
+            "id": "h3c8i12",
+            "prompt": "Invitation",
+            "options": [
+              "invito",
+              "regalo",
+              "padrone di casa",
+              "capo"
+            ],
+            "answer": "invito"
+          },
+          {
+            "id": "h3c8i13",
+            "prompt": "Guest",
+            "options": [
+              "regalo",
+              "vicino di casa",
+              "ospite",
+              "padrone di casa"
+            ],
+            "answer": "ospite"
+          },
+          {
+            "id": "h3c8i14",
+            "prompt": "Host",
+            "options": [
+              "squadra",
+              "anniversario",
+              "compleanno",
+              "padrone di casa"
+            ],
+            "answer": "padrone di casa"
+          }
+        ]
+      },
+      {
+        "id": "h3c8e2",
+        "type": "abbinamento",
+        "title": "Matching — Society & Relationships",
+        "instructions": "Match the Italian word to its English meaning",
+        "group": "8. Society & Relationships",
+        "pairs": [
+          {
+            "id": "h3c8p1",
+            "it": "amico",
+            "en": "Friend"
+          },
+          {
+            "id": "h3c8p2",
+            "it": "vicino di casa",
+            "en": "Neighbor"
+          },
+          {
+            "id": "h3c8p3",
+            "it": "collega",
+            "en": "Colleague"
+          },
+          {
+            "id": "h3c8p4",
+            "it": "capo",
+            "en": "Boss"
+          },
+          {
+            "id": "h3c8p5",
+            "it": "squadra",
+            "en": "Team"
+          },
+          {
+            "id": "h3c8p6",
+            "it": "comunità",
+            "en": "Community"
+          },
+          {
+            "id": "h3c8p7",
+            "it": "matrimonio",
+            "en": "Marriage"
+          },
+          {
+            "id": "h3c8p8",
+            "it": "anniversario",
+            "en": "Anniversary"
+          }
+        ]
+      },
+      {
+        "id": "h3c9e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice — Materials & Objects",
+        "instructions": "Choose the correct Italian translation",
+        "group": "9. Materials & Objects",
+        "items": [
+          {
+            "id": "h3c9i1",
+            "prompt": "Wood",
+            "options": [
+              "argento",
+              "oro",
+              "carta",
+              "legno"
+            ],
+            "answer": "legno"
+          },
+          {
+            "id": "h3c9i2",
+            "prompt": "Metal",
+            "options": [
+              "pietra",
+              "argento",
+              "metallo",
+              "scatola"
+            ],
+            "answer": "metallo"
+          },
+          {
+            "id": "h3c9i3",
+            "prompt": "Glass (material)",
+            "options": [
+              "vetro",
+              "pietra",
+              "legno",
+              "bottiglia"
+            ],
+            "answer": "vetro"
+          },
+          {
+            "id": "h3c9i4",
+            "prompt": "Plastic",
+            "options": [
+              "vetro",
+              "argento",
+              "pietra",
+              "plastica"
+            ],
+            "answer": "plastica"
+          },
+          {
+            "id": "h3c9i5",
+            "prompt": "Paper",
+            "options": [
+              "oro",
+              "bottiglia",
+              "carta",
+              "pietra"
+            ],
+            "answer": "carta"
+          },
+          {
+            "id": "h3c9i6",
+            "prompt": "Stone",
+            "options": [
+              "plastica",
+              "legno",
+              "pietra",
+              "bottiglia"
+            ],
+            "answer": "pietra"
+          },
+          {
+            "id": "h3c9i7",
+            "prompt": "Gold",
+            "options": [
+              "metallo",
+              "oro",
+              "vetro",
+              "bottiglia"
+            ],
+            "answer": "oro"
+          },
+          {
+            "id": "h3c9i8",
+            "prompt": "Silver",
+            "options": [
+              "argento",
+              "vetro",
+              "pietra",
+              "pelle"
+            ],
+            "answer": "argento"
+          },
+          {
+            "id": "h3c9i9",
+            "prompt": "Cotton",
+            "options": [
+              "cotone",
+              "scatola",
+              "legno",
+              "vetro"
+            ],
+            "answer": "cotone"
+          },
+          {
+            "id": "h3c9i10",
+            "prompt": "Leather",
+            "options": [
+              "pelle",
+              "pietra",
+              "cotone",
+              "plastica"
+            ],
+            "answer": "pelle"
+          },
+          {
+            "id": "h3c9i11",
+            "prompt": "Box",
+            "options": [
+              "scatola",
+              "carta",
+              "argento",
+              "legno"
+            ],
+            "answer": "scatola"
+          },
+          {
+            "id": "h3c9i12",
+            "prompt": "Bottle",
+            "options": [
+              "bottiglia",
+              "scatola",
+              "cotone",
+              "plastica"
+            ],
+            "answer": "bottiglia"
+          }
+        ]
+      },
+      {
+        "id": "h3c9e2",
+        "type": "abbinamento",
+        "title": "Matching — Materials & Objects",
+        "instructions": "Match the Italian word to its English meaning",
+        "group": "9. Materials & Objects",
+        "pairs": [
+          {
+            "id": "h3c9p1",
+            "it": "legno",
+            "en": "Wood"
+          },
+          {
+            "id": "h3c9p2",
+            "it": "metallo",
+            "en": "Metal"
+          },
+          {
+            "id": "h3c9p3",
+            "it": "vetro",
+            "en": "Glass (material)"
+          },
+          {
+            "id": "h3c9p4",
+            "it": "plastica",
+            "en": "Plastic"
+          },
+          {
+            "id": "h3c9p5",
+            "it": "carta",
+            "en": "Paper"
+          },
+          {
+            "id": "h3c9p6",
+            "it": "pietra",
+            "en": "Stone"
+          },
+          {
+            "id": "h3c9p7",
+            "it": "oro",
+            "en": "Gold"
+          },
+          {
+            "id": "h3c9p8",
+            "it": "argento",
+            "en": "Silver"
+          }
+        ]
+      },
+      {
+        "id": "h3c10e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice — Time Expressions & Frequency",
+        "instructions": "Choose the correct Italian translation",
+        "group": "10. Time Expressions & Frequency",
+        "items": [
+          {
+            "id": "h3c10i1",
+            "prompt": "Often",
+            "options": [
+              "alla fine",
+              "recentemente",
+              "immediatamente",
+              "spesso"
+            ],
+            "answer": "spesso"
+          },
+          {
+            "id": "h3c10i2",
+            "prompt": "Rarely",
+            "options": [
+              "più tardi",
+              "alla fine",
+              "raramente",
+              "mentre"
+            ],
+            "answer": "raramente"
+          },
+          {
+            "id": "h3c10i3",
+            "prompt": "Sometimes",
+            "options": [
+              "a volte",
+              "più tardi",
+              "spesso",
+              "da quando"
+            ],
+            "answer": "a volte"
+          },
+          {
+            "id": "h3c10i4",
+            "prompt": "Usually",
+            "options": [
+              "a volte",
+              "alla fine",
+              "più tardi",
+              "di solito"
+            ],
+            "answer": "di solito"
+          },
+          {
+            "id": "h3c10i5",
+            "prompt": "Immediately",
+            "options": [
+              "recentemente",
+              "fino a",
+              "immediatamente",
+              "più tardi"
+            ],
+            "answer": "immediatamente"
+          },
+          {
+            "id": "h3c10i6",
+            "prompt": "Later",
+            "options": [
+              "di solito",
+              "spesso",
+              "più tardi",
+              "fino a"
+            ],
+            "answer": "più tardi"
+          },
+          {
+            "id": "h3c10i7",
+            "prompt": "Recently",
+            "options": [
+              "da quando",
+              "recentemente",
+              "fino a",
+              "a volte"
+            ],
+            "answer": "recentemente"
+          },
+          {
+            "id": "h3c10i8",
+            "prompt": "Eventually",
+            "options": [
+              "alla fine",
+              "a volte",
+              "più tardi",
+              "mentre"
+            ],
+            "answer": "alla fine"
+          },
+          {
+            "id": "h3c10i9",
+            "prompt": "Meanwhile",
+            "options": [
+              "nel frattempo",
+              "mentre",
+              "spesso",
+              "a volte"
+            ],
+            "answer": "nel frattempo"
+          },
+          {
+            "id": "h3c10i10",
+            "prompt": "During",
+            "options": [
+              "durante",
+              "più tardi",
+              "nel frattempo",
+              "di solito"
+            ],
+            "answer": "durante"
+          },
+          {
+            "id": "h3c10i11",
+            "prompt": "While",
+            "options": [
+              "mentre",
+              "immediatamente",
+              "alla fine",
+              "spesso"
+            ],
+            "answer": "mentre"
+          },
+          {
+            "id": "h3c10i12",
+            "prompt": "Since",
+            "options": [
+              "da quando",
+              "mentre",
+              "nel frattempo",
+              "di solito"
+            ],
+            "answer": "da quando"
+          },
+          {
+            "id": "h3c10i13",
+            "prompt": "Until",
+            "options": [
+              "mentre",
+              "raramente",
+              "fino a",
+              "da quando"
+            ],
+            "answer": "fino a"
+          }
+        ]
+      },
+      {
+        "id": "h3c10e2",
+        "type": "abbinamento",
+        "title": "Matching — Time Expressions & Frequency",
+        "instructions": "Match the Italian word to its English meaning",
+        "group": "10. Time Expressions & Frequency",
+        "pairs": [
+          {
+            "id": "h3c10p1",
+            "it": "spesso",
+            "en": "Often"
+          },
+          {
+            "id": "h3c10p2",
+            "it": "raramente",
+            "en": "Rarely"
+          },
+          {
+            "id": "h3c10p3",
+            "it": "a volte",
+            "en": "Sometimes"
+          },
+          {
+            "id": "h3c10p4",
+            "it": "di solito",
+            "en": "Usually"
+          },
+          {
+            "id": "h3c10p5",
+            "it": "immediatamente",
+            "en": "Immediately"
+          },
+          {
+            "id": "h3c10p6",
+            "it": "più tardi",
+            "en": "Later"
+          },
+          {
+            "id": "h3c10p7",
+            "it": "recentemente",
+            "en": "Recently"
+          },
+          {
+            "id": "h3c10p8",
+            "it": "alla fine",
+            "en": "Eventually"
+          }
+        ]
+      }
+    ]
   }
 ]
