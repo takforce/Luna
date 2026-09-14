@@ -16,7 +16,9 @@
     </div>
     <div class="topbar-nav">
       <a href="/" class="active">Home</a>
-      <a href="/moduli.html">Modules</a>
+      <a href="/moduli.html">Words</a>
+      <a href="/moduli.html?cat=grammar">Grammar</a>
+      <a href="/liste.html">Lists</a>
       <a href="/chat.html">Chat</a>
     </div>
   </div>
@@ -28,20 +30,31 @@
           <svg class="moon-main" viewBox="0 0 100 100" width="92" height="92">
             <defs>
               <radialGradient id="moonGrad" cx="35%" cy="32%" r="72%">
-                <stop offset="0%" stop-color="#fffdf3"/>
-                <stop offset="50%" stop-color="#efe6c8"/>
-                <stop offset="100%" stop-color="#b8ac82"/>
+                <stop offset="0%" stop-color="#f2f2ef"/>
+                <stop offset="50%" stop-color="#c9c9c2"/>
+                <stop offset="100%" stop-color="#8d8d86"/>
               </radialGradient>
             </defs>
             <circle cx="50" cy="50" r="46" fill="url(#moonGrad)"/>
-            <circle cx="34" cy="30" r="7" fill="#00000014"/>
-            <circle cx="61" cy="40" r="10" fill="#00000012"/>
-            <circle cx="46" cy="66" r="6" fill="#0000000f"/>
-            <circle cx="67" cy="66" r="4" fill="#0000000f"/>
-            <circle cx="27" cy="56" r="3.5" fill="#0000000f"/>
-            <circle cx="55" cy="26" r="2.5" fill="#0000000d"/>
+            <circle cx="34" cy="30" r="7" fill="#00000018"/>
+            <circle cx="61" cy="40" r="10" fill="#00000016"/>
+            <circle cx="46" cy="66" r="6" fill="#00000013"/>
+            <circle cx="67" cy="66" r="4" fill="#00000013"/>
+            <circle cx="27" cy="56" r="3.5" fill="#00000013"/>
+            <circle cx="55" cy="26" r="2.5" fill="#00000010"/>
           </svg>
-          <div class="moon-orbit"><div class="moon-satellite"></div></div>
+          <div class="moon-orbit">
+            <svg class="moon-satellite" viewBox="0 0 24 24">
+              <defs>
+                <radialGradient id="heartGrad" cx="35%" cy="30%" r="75%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="60%" stop-color="#f2b8d6"/>
+                  <stop offset="100%" stop-color="#d980af"/>
+                </radialGradient>
+              </defs>
+              <path d="M12 21s-8-4.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 6.5-8 11-8 11z" fill="url(#heartGrad)"/>
+            </svg>
+          </div>
         </div>
       </div>
       <h1>Hi Luna!</h1>
@@ -56,17 +69,38 @@
       </div>
     </div>
 
-    <h2 style="font-size:16px; margin-bottom:4px;">🌌 Your modules</h2>
-    <div class="module-grid" id="module-grid"></div>
+    <div class="topic-grid">
+      <a class="topic-btn" href="/moduli.html?cat=vocab">
+        <div class="t-icon">📚</div>
+        <div class="t-info">
+          <h3>Learn new words</h3>
+          <p>Vocabulary modules, from greetings to travel</p>
+        </div>
+      </a>
+      <a class="topic-btn" href="/moduli.html?cat=grammar">
+        <div class="t-icon">✏️</div>
+        <div class="t-info">
+          <h3>Grammar</h3>
+          <p>Easy basics: pronouns, verbs, articles</p>
+        </div>
+      </a>
+      <a class="topic-btn" href="/liste.html">
+        <div class="t-icon">🔊</div>
+        <div class="t-info">
+          <h3>Word lists</h3>
+          <p>Type words and hear them said in Italian</p>
+        </div>
+      </a>
+    </div>
 
-    <a href="/chat.html" class="btn btn-primary btn-block" style="margin-top:22px;">
+    <a href="/chat.html" class="btn btn-primary btn-block" style="margin-top:6px;">
       💬 Go to chat with Luna
     </a>
   </div>
 
   <div class="bottom-nav">
     <a href="/" class="active"><span class="bn-icon">🌙</span>Home</a>
-    <a href="/moduli.html"><span class="bn-icon">⭐</span>Modules</a>
+    <a href="/moduli.html"><span class="bn-icon">⭐</span>Words</a>
     <a href="/chat.html"><span class="bn-icon">💬</span>Chat</a>
   </div>
 </div>
@@ -74,33 +108,12 @@
 <script src="/js/starfield.js"></script>
 <script>
 async function loadHome() {
-  const [modules, progress] = await Promise.all([
-    fetch('/api/modules').then(r => r.json()),
-    fetch('/api/progress/summary').then(r => r.json())
-  ]);
-
-  const progMap = {};
-  progress.forEach(p => progMap[p.module_id] = p);
+  const progress = await fetch('/api/progress/summary').then(r => r.json());
   const totalTent = progress.reduce((a,p) => a + p.tentativi, 0);
   const totalOk = progress.reduce((a,p) => a + p.corretti, 0);
   document.getElementById('progress-text').textContent =
-    totalTent === 0 ? "You haven't started yet: pick your first module!" :
+    totalTent === 0 ? "You haven't started yet: pick a topic below!" :
     `${totalOk} correct answers out of ${totalTent} exercises done`;
-
-  const grid = document.getElementById('module-grid');
-  grid.innerHTML = modules.map(m => {
-    const p = progMap[m.id];
-    const pill = p ? `${p.corretti}/${p.tentativi}` : 'Not started';
-    return `
-      <a class="module-card" href="/moduli.html?open=${m.id}">
-        <div class="icon">${m.icon}</div>
-        <div class="info">
-          <h3>${m.title}</h3>
-          <p>${m.subtitle}</p>
-        </div>
-        <div class="progress-pill">${pill}</div>
-      </a>`;
-  }).join('');
 }
 loadHome();
 </script>

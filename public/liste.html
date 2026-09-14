@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Lists - Luna Italiano</title>
+<link rel="stylesheet" href="/css/theme.css">
+</head>
+<body>
+
+<div class="app-content">
+  <div class="topbar">
+    <div class="topbar-logo">
+      <span class="moon-icon">🌙</span>
+      <span class="logo-text">Luna<span>Italiano</span></span>
+    </div>
+    <div class="topbar-nav">
+      <a href="/">Home</a>
+      <a href="/moduli.html">Words</a>
+      <a href="/moduli.html?cat=grammar">Grammar</a>
+      <a href="/liste.html" class="active">Lists</a>
+      <a href="/chat.html">Chat</a>
+    </div>
+  </div>
+
+  <div class="main">
+    <h1 style="font-size:20px; margin-bottom:6px;">🔊 Word Lists</h1>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:16px;">
+      Type one word or phrase per line. Choose the language you're typing in, then listen to the Italian pronunciation.
+    </p>
+
+    <div class="card">
+      <div class="mode-toggle">
+        <button id="mode-it" class="active" data-mode="it">🇮🇹 I'm writing in Italian</button>
+        <button id="mode-en" data-mode="en">🇬🇧 I'm writing in English</button>
+      </div>
+      <textarea id="input-text" class="liste-textarea" placeholder="One word or phrase per line, e.g.&#10;hello&#10;good morning&#10;thank you"></textarea>
+      <button id="go-btn" class="btn btn-primary btn-block">✨ Show &amp; Pronounce</button>
+    </div>
+
+    <div id="results" style="margin-top:18px;"></div>
+
+    <div id="play-all-wrap" style="display:none; margin-top:14px;">
+      <button id="play-all-btn" class="btn btn-ghost btn-block">▶️ Play whole list</button>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="/"><span class="bn-icon">🌙</span>Home</a>
+    <a href="/moduli.html"><span class="bn-icon">⭐</span>Words</a>
+    <a href="/chat.html"><span class="bn-icon">💬</span>Chat</a>
+  </div>
+</div>
+
+<script src="/js/starfield.js"></script>
+<script>
+let mode = 'it';
+let currentWords = []; // [{it, en}]
+
+document.getElementById('mode-it').addEventListener('click', () => setMode('it'));
+document.getElementById('mode-en').addEventListener('click', () => setMode('en'));
+function setMode(m) {
+  mode = m;
+  document.getElementById('mode-it').classList.toggle('active', m === 'it');
+  document.getElementById('mode-en').classList.toggle('active', m === 'en');
+}
+
+function speak(text) {
+  if (!('speechSynthesis' in window)) {
+    alert("This browser can't speak text out loud. Try Chrome or Safari.");
+    return;
+  }
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'it-IT';
+  u.rate = 0.9;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+function renderResults() {
+  const box = document.getElementById('results');
+  box.innerHTML = currentWords.map((w, idx) => `
+    <div class="word-card">
+      <div class="w-text">
+        <div class="w-it">${w.it}</div>
+        ${w.en ? `<div class="w-en">${w.en}</div>` : ''}
+      </div>
+      <button class="w-speak" data-idx="${idx}">🔊</button>
+    </div>
+  `).join('');
+  box.querySelectorAll('.w-speak').forEach(btn => {
+    btn.addEventListener('click', () => speak(currentWords[btn.dataset.idx].it));
+  });
+  document.getElementById('play-all-wrap').style.display = currentWords.length ? 'block' : 'none';
+}
+
+document.getElementById('go-btn').addEventListener('click', async () => {
+  const raw = document.getElementById('input-text').value;
+  const lines = raw.split('\n').map(l => l.trim()).filter(Boolean);
+  if (!lines.length) return;
+
+  const goBtn = document.getElementById('go-btn');
+  goBtn.disabled = true;
+  goBtn.textContent = 'Working...';
+
+  if (mode === 'it') {
+    currentWords = lines.map(l => ({ it: l, en: '' }));
+    renderResults();
+  } else {
+    currentWords = [];
+    for (const line of lines) {
+      try {
+        const r = await fetch('/api/translate?text=' + encodeURIComponent(line)).then(r => r.json());
+        currentWords.push({ it: r.translated || line, en: line });
+      } catch (e) {
+        currentWords.push({ it: line, en: 'translation failed' });
+      }
+    }
+    renderResults();
+  }
+
+  goBtn.disabled = false;
+  goBtn.textContent = '✨ Show & Pronounce';
+
+  // Pronuncia automaticamente in sequenza
+  currentWords.forEach(w => {
+    const u = new SpeechSynthesisUtterance(w.it);
+    u.lang = 'it-IT';
+    u.rate = 0.9;
+    speechSynthesis.speak(u);
+  });
+});
+
+document.getElementById('play-all-btn').addEventListener('click', () => {
+  speechSynthesis.cancel();
+  currentWords.forEach(w => {
+    const u = new SpeechSynthesisUtterance(w.it);
+    u.lang = 'it-IT';
+    u.rate = 0.9;
+    speechSynthesis.speak(u);
+  });
+});
+</script>
+</body>
+</html>

@@ -92,6 +92,7 @@ app.delete('/api/chat/messages/:id', (req, res) => {
 app.get('/api/modules', (req, res) => {
   const summary = modules.map(m => ({
     id: m.id, title: m.title, subtitle: m.subtitle, icon: m.icon,
+    category: m.category || 'vocab',
     exerciseCount: m.exercises.length
   }));
   res.json(summary);
@@ -137,6 +138,21 @@ app.delete('/api/progress/:moduleId', (req, res) => {
 app.delete('/api/progress', (req, res) => {
   db.prepare('DELETE FROM exercise_results').run();
   res.json({ ok: true });
+});
+
+// Traduzione inglese -> italiano (per la pagina Liste), tramite MyMemory (gratuito)
+app.get('/api/translate', async (req, res) => {
+  const text = (req.query.text || '').trim();
+  if (!text) return res.status(400).json({ error: 'testo mancante' });
+  try {
+    const url = 'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(text) + '&langpair=en|it';
+    const r = await fetch(url);
+    const data = await r.json();
+    const translated = data?.responseData?.translatedText || '';
+    res.json({ original: text, translated });
+  } catch (e) {
+    res.status(500).json({ error: 'traduzione non disponibile' });
+  }
 });
 
 app.listen(PORT, () => {

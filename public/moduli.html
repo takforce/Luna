@@ -25,7 +25,9 @@
     </div>
     <div class="topbar-nav">
       <a href="/">Home</a>
-      <a href="/moduli.html" class="active">Modules</a>
+      <a href="/moduli.html" class="active">Words</a>
+      <a href="/moduli.html?cat=grammar">Grammar</a>
+      <a href="/liste.html">Lists</a>
       <a href="/chat.html">Chat</a>
     </div>
   </div>
@@ -34,7 +36,7 @@
 
   <div class="bottom-nav">
     <a href="/"><span class="bn-icon">🌙</span>Home</a>
-    <a href="/moduli.html" class="active"><span class="bn-icon">⭐</span>Modules</a>
+    <a href="/moduli.html" class="active"><span class="bn-icon">⭐</span>Words</a>
     <a href="/chat.html"><span class="bn-icon">💬</span>Chat</a>
   </div>
 </div>
@@ -43,18 +45,22 @@
 <script>
 const params = new URLSearchParams(location.search);
 const openId = params.get('open');
+const cat = params.get('cat') || 'vocab';
 let progressMap = {};
 
 async function render() {
-  const [modules, progress] = await Promise.all([
+  const [allModules, progress] = await Promise.all([
     fetch('/api/modules').then(r => r.json()),
     fetch('/api/progress/summary').then(r => r.json())
   ]);
+  const modules = allModules.filter(m => (m.category || 'vocab') === cat);
   progressMap = {};
   progress.forEach(p => progressMap[p.module_id] = p);
 
+  const pageTitle = cat === 'grammar' ? '✏️ Grammar' : '📚 Learn new words';
+
   const main = document.getElementById('main');
-  main.innerHTML = `<h1 style="font-size:20px; margin-bottom:14px;">🌌 All modules</h1>` +
+  main.innerHTML = `<h1 style="font-size:20px; margin-bottom:14px;">${pageTitle}</h1>` +
     modules.map(m => {
       const p = progressMap[m.id];
       const pill = p ? `${p.corretti}/${p.tentativi} correct` : 'Not started';
