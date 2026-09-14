@@ -59,6 +59,19 @@
       </div>
       <h1>Hi Luna!</h1>
       <p>Every new word is a star you light up in your Italian sky.</p>
+
+      <div class="plane-stage">
+        <div class="plane-system">
+          <img class="plane-icon" src="/img/plane-savannah.png" alt="Savannah plane">
+          <div class="tow-line"></div>
+          <div class="tow-banner" id="tow-banner">Loading...</div>
+        </div>
+      </div>
+
+      <div class="greeting-composer">
+        <input type="text" id="greeting-input" placeholder="Write a message for the banner..." maxlength="60">
+        <button id="greeting-send">🚀</button>
+      </div>
     </div>
 
     <div class="card" style="margin-bottom:16px; display:flex; align-items:center; gap:14px;">
@@ -93,9 +106,21 @@
       </a>
     </div>
 
-    <a href="/chat.html" class="btn btn-primary btn-block" style="margin-top:6px;">
-      💬 Go to chat with Luna
-    </a>
+    <div class="card" style="margin-top:16px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+        <h3 style="font-size:15px;">💬 Latest messages</h3>
+        <a href="/chat.html" style="font-size:12px; color:var(--gold); text-decoration:none; font-weight:700;">Open chat →</a>
+      </div>
+      <div class="chat-preview" id="chat-preview">Loading...</div>
+      <div class="mini-sender-toggle">
+        <button class="active" data-sender="io" id="mini-io">🌟 Io</button>
+        <button data-sender="luna" id="mini-luna">🌙 Luna</button>
+      </div>
+      <div class="mini-composer">
+        <input type="text" id="mini-input" placeholder="Write a quick message...">
+        <button id="mini-send">🚀</button>
+      </div>
+    </div>
   </div>
 
   <div class="bottom-nav">
@@ -116,6 +141,80 @@ async function loadHome() {
     `${totalOk} correct answers out of ${totalTent} exercises done`;
 }
 loadHome();
+
+// ── Anteprima chat ──
+let miniSender = localStorage.getItem('luna_notif_owner') || 'io';
+const previewBox = document.getElementById('chat-preview');
+
+function fmtTimeShort(iso) {
+  const d = new Date(iso + 'Z');
+  return d.toLocaleString('en-GB', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+}
+
+async function loadPreview() {
+  const msgs = await fetch('/api/chat/messages').then(r => r.json());
+  const last = msgs.slice(-8);
+  if (!last.length) {
+    previewBox.innerHTML = '<div class="cp-empty">No messages yet — say hi! 👋</div>';
+    return;
+  }
+  previewBox.innerHTML = last.map(m => `
+    <div class="cp-msg ${m.sender}">
+      ${m.attachment_path ? '📎 ' : ''}${m.text ? m.text.replace(/</g,'&lt;') : (m.attachment_name || '')}
+    </div>
+  `).join('');
+  previewBox.scrollTop = previewBox.scrollHeight;
+}
+loadPreview();
+setInterval(loadPreview, 20000);
+
+document.getElementById('mini-io').addEventListener('click', () => setMiniSender('io'));
+document.getElementById('mini-luna').addEventListener('click', () => setMiniSender('luna'));
+function setMiniSender(s) {
+  miniSender = s;
+  document.getElementById('mini-io').classList.toggle('active', s === 'io');
+  document.getElementById('mini-luna').classList.toggle('active', s === 'luna');
+}
+setMiniSender(miniSender);
+
+async function sendMini() {
+  const input = document.getElementById('mini-input');
+  const text = input.value.trim();
+  if (!text) return;
+  const formData = new FormData();
+  formData.append('sender', miniSender);
+  formData.append('text', text);
+  await fetch('/api/chat/messages', { method: 'POST', body: formData });
+  input.value = '';
+  loadPreview();
+}
+document.getElementById('mini-send').addEventListener('click', sendMini);
+document.getElementById('mini-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') { e.preventDefault(); sendMini(); }
+});
+
+// ── Messaggio striscione ──
+async function loadBanner() {
+  const r = await fetch('/api/banner').then(r => r.json());
+  document.getElementById('tow-banner').textContent = r.message || 'Hi Luna! 💛';
+  document.getElementById('greeting-input').value = '';
+  document.getElementById('greeting-input').placeholder = r.message || 'Write a message for the banner...';
+}
+loadBanner();
+
+document.getElementById('greeting-send').addEventListener('click', async () => {
+  const input = document.getElementById('greeting-input');
+  const text = input.value.trim();
+  if (!text) return;
+  await fetch('/api/banner', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: text })
+  });
+  loadBanner();
+});
+document.getElementById('greeting-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') { e.preventDefault(); document.getElementById('greeting-send').click(); }
+});
 </script>
 </body>
 </html>

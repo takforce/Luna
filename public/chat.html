@@ -45,6 +45,29 @@
   .attach-preview { display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.08); border-radius:12px; padding:6px 10px; margin-bottom:8px; font-size:12px; display:none; }
   .attach-preview.show { display:flex; }
   .attach-preview button { margin-left:auto; background:none; border:none; color:var(--muted); cursor:pointer; }
+
+  .notif-bar {
+    display:flex; align-items:center; gap:8px; padding:8px 16px;
+    background: rgba(246,196,83,0.1); border-bottom:1px solid var(--card-border);
+    font-size:12px; color: var(--muted);
+  }
+  .notif-bar button {
+    background: rgba(246,196,83,0.2); color: var(--gold); border:none; border-radius:16px;
+    padding:5px 12px; font-family:'Quicksand',sans-serif; font-weight:700; font-size:11px; cursor:pointer;
+    margin-left:auto; white-space:nowrap;
+  }
+
+  .chat-link { color: inherit; text-decoration: underline; word-break: break-all; }
+  .link-preview-card {
+    display:block; margin-top:8px; text-decoration:none; color: inherit;
+    background: rgba(0,0,0,0.15); border:1px solid rgba(255,255,255,0.15); border-radius:10px;
+    overflow:hidden;
+  }
+  .link-preview-card .lp-img { width:100%; max-height:130px; object-fit:cover; display:block; }
+  .link-preview-card .lp-info { padding:8px 10px; }
+  .link-preview-card .lp-title { font-size:12.5px; font-weight:700; line-height:1.3; }
+  .link-preview-card .lp-desc { font-size:11px; opacity:.75; margin-top:3px; line-height:1.3; }
+  .link-preview-card .lp-site { font-size:10px; opacity:.55; margin-top:4px; text-transform:uppercase; letter-spacing:.5px; }
 </style>
 </head>
 <body>
@@ -65,6 +88,10 @@
   </div>
 
   <div class="chat-wrap">
+    <div class="notif-bar" id="notif-bar">
+      <span id="notif-status">🔔 Get notified here when a new message arrives</span>
+      <button id="notif-btn">Enable</button>
+    </div>
     <div class="chat-log" id="chat-log"></div>
 
     <div class="composer">
@@ -139,6 +166,44 @@ function fmtTime(iso) {
   return d.toLocaleString('it-IT', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
 }
 
+const URL_RE = /(https?:\/\/[^\s<]+)/g;
+
+function linkify(text) {
+  const escaped = text.replace(/</g, '&lt;');
+  return escaped.replace(URL_RE, url => `<a href="${url}" target="_blank" rel="noopener" class="chat-link">${url}</a>`);
+}
+
+const previewCache = new Map();
+async function loadLinkPreview(url, container) {
+  if (previewCache.has(url)) {
+    renderPreviewCard(previewCache.get(url), container);
+    return;
+  }
+  try {
+    const data = await fetch('/api/link-preview?url=' + encodeURIComponent(url)).then(r => r.json());
+    if (data.error) return;
+    previewCache.set(url, data);
+    renderPreviewCard(data, container);
+  } catch (e) {}
+}
+
+function renderPreviewCard(data, container) {
+  const card = document.createElement('a');
+  card.href = data.url;
+  card.target = '_blank';
+  card.rel = 'noopener';
+  card.className = 'link-preview-card';
+  card.innerHTML = `
+    ${data.image ? `<img class="lp-img" src="${data.image}" alt="">` : ''}
+    <div class="lp-info">
+      <div class="lp-title">${data.title || data.url}</div>
+      ${data.description ? `<div class="lp-desc">${data.description.slice(0,100)}</div>` : ''}
+      <div class="lp-site">${data.siteName || ''}</div>
+    </div>
+  `;
+  container.appendChild(card);
+}
+
 function renderMsg(m) {
   const div = document.createElement('div');
   div.className = 'msg ' + m.sender;
@@ -152,7 +217,7 @@ function renderMsg(m) {
   }
   div.innerHTML = `
     ${attHtml}
-    ${m.text ? `<div>${m.text.replace(/</g,'&lt;')}</div>` : ''}
+    ${m.text ? `<div>${linkify(m.text)}</div>` : ''}
     <div class="meta"><span>${fmtTime(m.created_at)}</span><button class="del-btn" data-id="${m.id}">delete</button></div>
   `;
   div.querySelector('.del-btn').addEventListener('click', async () => {
@@ -160,6 +225,11 @@ function renderMsg(m) {
     div.remove();
   });
   chatLog.appendChild(div);
+
+  if (m.text) {
+    const urls = m.text.match(URL_RE);
+    if (urls && urls[0]) loadLinkPreview(urls[0], div);
+  }
 }
 
 async function loadMessages() {
@@ -199,6 +269,74 @@ msgInput.addEventListener('input', () => {
 });
 
 loadMessages();
+
+// ── Notifiche push ──
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const rawData = atob(base64);
+  return Uint8Array.from([...rawData].map(c => c.charCodeAt(0)));
+}
+
+const notifBtn = document.getElementById('notif-btn');
+const notifStatus = document.getElementById('notif-status');
+const notifBar = document.getElementById('notif-bar');
+
+async function checkNotifStatus() {
+  if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+    notifBar.style.display = 'none';
+    return;
+  }
+  try {
+    const reg = await navigator.serviceWorker.register('/service-worker.js');
+    const sub = await reg.pushManager.getSubscription();
+    if (sub) {
+      const owner = localStorage.getItem('luna_notif_owner') || currentSender;
+      notifStatus.textContent = `🔔 Notifications on for ${owner === 'io' ? 'Io' : 'Luna'} on this device`;
+      notifBtn.textContent = 'Turn off';
+      notifBtn.onclick = () => disableNotifications(sub);
+    } else {
+      notifStatus.textContent = '🔔 Get notified here when a new message arrives';
+      notifBtn.textContent = 'Enable';
+      notifBtn.onclick = () => enableNotifications();
+    }
+  } catch (e) {
+    notifBar.style.display = 'none';
+  }
+}
+
+async function enableNotifications() {
+  const owner = currentSender; // usa il toggle Io/Luna attualmente selezionato
+  try {
+    const perm = await Notification.requestPermission();
+    if (perm !== 'granted') { alert('Notifications permission was not granted.'); return; }
+    const reg = await navigator.serviceWorker.ready;
+    const vapidKey = await fetch('/api/push/vapid-public-key').then(r => r.text());
+    const sub = await reg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(vapidKey)
+    });
+    await fetch('/api/push/subscribe', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ owner, subscription: sub })
+    });
+    localStorage.setItem('luna_notif_owner', owner);
+    checkNotifStatus();
+  } catch (e) {
+    alert("Couldn't enable notifications on this device/browser.");
+  }
+}
+
+async function disableNotifications(sub) {
+  await fetch('/api/push/unsubscribe', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ endpoint: sub.endpoint })
+  });
+  await sub.unsubscribe();
+  checkNotifStatus();
+}
+
+checkNotifStatus();
 </script>
 </body>
 </html>

@@ -186,6 +186,56 @@ h1, h2, h3, .title-font { font-family: 'Baloo 2', sans-serif; }
 }
 @keyframes orbitSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
+/* ── Aereo con striscione (insegue la luna) ── */
+.plane-stage {
+  position: relative;
+  height: 52px;
+  overflow: hidden;
+  margin: 2px 0 4px;
+}
+.plane-system {
+  position: absolute;
+  top: 4px;
+  display: flex;
+  align-items: center;
+  animation: moonDrift 24s linear infinite;
+  animation-delay: -9s;
+}
+.plane-icon {
+  width: 54px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35));
+  flex-shrink: 0;
+}
+.tow-line {
+  width: 14px;
+  height: 1px;
+  background: rgba(238,240,255,0.5);
+  flex-shrink: 0;
+}
+.tow-banner {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.greeting-composer { display:flex; gap:8px; margin-top:6px; }
+.greeting-composer input {
+  flex:1; background: rgba(255,255,255,0.08); border:1px solid var(--card-border); border-radius:20px;
+  padding: 9px 14px; color: var(--text); font-family:'Quicksand',sans-serif; font-size:13px;
+}
+.greeting-composer button {
+  width:38px; height:38px; border-radius:50%; border:none; flex-shrink:0;
+  background: linear-gradient(135deg, var(--gold), #f0a93a); color:#2a1c00; font-size:15px; cursor:pointer;
+}
+
 /* ── MODULE GRID ── */
 .module-grid { display:grid; grid-template-columns: 1fr; gap: 14px; margin-top: 16px; }
 .module-card {
@@ -300,3 +350,30 @@ h1, h2, h3, .title-font { font-family: 'Baloo 2', sans-serif; }
   display:flex; align-items:center; justify-content:center; flex-shrink:0;
 }
 .word-card .w-speak:hover { background: rgba(246,196,83,0.35); }
+
+/* ── Chat preview (home) ── */
+.chat-preview {
+  max-height: 220px; overflow-y: auto;
+  display:flex; flex-direction:column; gap:8px;
+  padding: 4px 2px; margin-bottom: 10px;
+}
+.cp-msg { max-width: 82%; padding: 8px 12px; border-radius: 14px; font-size: 13px; line-height:1.35; }
+.cp-msg.io { align-self:flex-end; background: linear-gradient(135deg, var(--gold), #f0a93a); color:#2a1c00; }
+.cp-msg.luna { align-self:flex-start; background: rgba(255,255,255,0.09); border:1px solid var(--card-border); }
+.cp-empty { font-size:13px; color:var(--muted); text-align:center; padding: 14px 0; }
+.mini-sender-toggle { display:flex; gap:6px; margin-bottom:8px; }
+.mini-sender-toggle button {
+  flex:1; padding:6px; border-radius:16px; border:1px solid var(--card-border);
+  background: rgba(255,255,255,0.05); color: var(--muted);
+  font-family:'Quicksand',sans-serif; font-weight:700; font-size:11px; cursor:pointer;
+}
+.mini-sender-toggle button.active { background: var(--gold); color:#2a1c00; border-color:var(--gold); }
+.mini-composer { display:flex; gap:8px; }
+.mini-composer input {
+  flex:1; background: rgba(255,255,255,0.08); border:1px solid var(--card-border); border-radius:20px;
+  padding: 9px 14px; color: var(--text); font-family:'Quicksand',sans-serif; font-size:13px;
+}
+.mini-composer button {
+  width:38px; height:38px; border-radius:50%; border:none; flex-shrink:0;
+  background: linear-gradient(135deg, var(--gold), #f0a93a); color:#2a1c00; font-size:15px; cursor:pointer;
+}

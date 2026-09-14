@@ -3,6 +3,11 @@ const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
 const Database = require('better-sqlite3');
+const webpush = require('web-push');
+
+const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY || 'BCfICr47eV88GBQSqPXyreRiFHgI5d2ZhFkXzX9EIWxvDCmD9Nux6FTEZ7QtTVkZSzVK8UyNlRwneQfA99y3dpE';
+const VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY || '_7VFuXY3LPVejqL--Y62zlzWFoOBCuE9TbhrJU491Z8';
+webpush.setVapidDetails('mailto:luna-italiano@example.com', VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,6 +41,20 @@ CREATE TABLE IF NOT EXISTS exercise_results (
   correct INTEGER NOT NULL,
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
+
+CREATE TABLE IF NOT EXISTS push_subscriptions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  owner TEXT NOT NULL,               -- 'io' | 'luna'
+  endpoint TEXT NOT NULL UNIQUE,
+  subscription TEXT NOT NULL,        -- JSON completo della subscription
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE TABLE IF NOT EXISTS banner (
+  id INTEGER PRIMARY KEY CHECK (id = 1),
+  message TEXT NOT NULL DEFAULT 'Ti amo Luna! 💛'
+);
+INSERT OR IGNORE INTO banner (id, message) VALUES (1, 'Ti amo Luna! 💛');
 `);
 
 // ── Contenuti moduli (JSON statico, facile da modificare) ──
@@ -76,7 +95,26 @@ app.post('/api/chat/messages', upload.single('attachment'), (req, res) => {
 
   const row = db.prepare('SELECT * FROM chat_messages WHERE id = ?').get(info.lastInsertRowid);
   res.json(row);
+
+  // Notifica push a chi non ha scritto il messaggio
+  notifyNewMessage(row).catch(() => {});
 });
+
+async function notifyNewMessage(row) {
+  const subs = db.prepare('SELECT * FROM push_subscriptions WHERE owner != ?').all(row.sender);
+  const title = row.sender === 'io' ? 'New message from Ivano' : 'New message from Luna';
+  const body = row.text ? row.text.slice(0, 120) : '📎 Sent an attachment';
+  for (const s of subs) {
+    try {
+      const subscription = JSON.parse(s.subscription);
+      await webpush.sendNotification(subscription, JSON.stringify({ title, body }));
+    } catch (err) {
+      if (err.statusCode === 404 || err.statusCode === 410) {
+        db.prepare('DELETE FROM push_subscriptions WHERE id = ?').run(s.id);
+      }
+    }
+  }
+}
 
 app.delete('/api/chat/messages/:id', (req, res) => {
   const row = db.prepare('SELECT * FROM chat_messages WHERE id = ?').get(req.params.id);
@@ -152,6 +190,88 @@ app.get('/api/translate', async (req, res) => {
     res.json({ original: text, translated });
   } catch (e) {
     res.status(500).json({ error: 'traduzione non disponibile' });
+  }
+});
+
+// ── Notifiche push ──
+app.get('/api/push/vapid-public-key', (req, res) => {
+  res.type('text/plain').send(VAPID_PUBLIC_KEY);
+});
+
+app.post('/api/push/subscribe', (req, res) => {
+  const { owner, subscription } = req.body;
+  if (!owner || !subscription || !subscription.endpoint) {
+    return res.status(400).json({ error: 'dati mancanti' });
+  }
+  db.prepare(`
+    INSERT INTO push_subscriptions (owner, endpoint, subscription)
+    VALUES (?, ?, ?)
+    ON CONFLICT(endpoint) DO UPDATE SET owner = excluded.owner, subscription = excluded.subscription
+  `).run(owner, subscription.endpoint, JSON.stringify(subscription));
+  res.json({ ok: true });
+});
+
+app.post('/api/push/unsubscribe', (req, res) => {
+  const { endpoint } = req.body;
+  if (endpoint) db.prepare('DELETE FROM push_subscriptions WHERE endpoint = ?').run(endpoint);
+  res.json({ ok: true });
+});
+
+// ── Messaggio dello striscione trainato dall'aereo in home ──
+app.get('/api/banner', (req, res) => {
+  const row = db.prepare('SELECT message FROM banner WHERE id = 1').get();
+  res.json({ message: row ? row.message : '' });
+});
+
+app.post('/api/banner', (req, res) => {
+  const { message } = req.body;
+  if (!message || !message.trim()) return res.status(400).json({ error: 'messaggio mancante' });
+  const trimmed = message.trim().slice(0, 60);
+  db.prepare('UPDATE banner SET message = ? WHERE id = 1').run(trimmed);
+  res.json({ message: trimmed });
+});
+
+// ── Anteprima link (per la chat) ──
+const linkPreviewCache = new Map(); // url -> { data, ts }
+const LINK_CACHE_TTL = 1000 * 60 * 60 * 12; // 12 ore
+
+app.get('/api/link-preview', async (req, res) => {
+  const url = req.query.url || '';
+  if (!/^https?:\/\//i.test(url)) return res.status(400).json({ error: 'url non valido' });
+
+  const cached = linkPreviewCache.get(url);
+  if (cached && (Date.now() - cached.ts) < LINK_CACHE_TTL) {
+    return res.json(cached.data);
+  }
+
+  try {
+    const r = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; LunaItalianoBot/1.0)' },
+      redirect: 'follow'
+    });
+    const html = (await r.text()).slice(0, 300000); // limite di sicurezza
+
+    const meta = (prop) => {
+      const re = new RegExp('<meta[^>]+(?:property|name)=["\']' + prop + '["\'][^>]+content=["\']([^"\']*)["\']', 'i');
+      const m1 = html.match(re);
+      if (m1) return m1[1];
+      const re2 = new RegExp('<meta[^>]+content=["\']([^"\']*)["\'][^>]+(?:property|name)=["\']' + prop + '["\']', 'i');
+      const m2 = html.match(re2);
+      return m2 ? m2[1] : null;
+    };
+    const titleTag = html.match(/<title[^>]*>([^<]*)<\/title>/i);
+
+    const data = {
+      url,
+      title: meta('og:title') || (titleTag ? titleTag[1].trim() : url),
+      description: meta('og:description') || meta('description') || '',
+      image: meta('og:image') || null,
+      siteName: meta('og:site_name') || new URL(url).hostname
+    };
+    linkPreviewCache.set(url, { data, ts: Date.now() });
+    res.json(data);
+  } catch (e) {
+    res.status(500).json({ error: 'anteprima non disponibile' });
   }
 });
 

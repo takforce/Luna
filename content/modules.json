@@ -3631,5 +3631,240 @@
         ]
       }
     ]
+  },
+  {
+    "id": "g7",
+    "category": "grammar",
+    "title": "Verb Conjugations",
+    "subtitle": "Learn the forms, then write your own sentences",
+    "icon": "📖",
+    "exercises": [
+      {
+        "id": "g7e1",
+        "type": "coniugazione",
+        "title": "Essere (to be)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "sono",
+            "Tu": "sei",
+            "Lui/Lei": "è",
+            "Noi": "siamo",
+            "Voi": "siete",
+            "Loro": "sono"
+          },
+          "passato_prossimo": {
+            "Io": "sono stato/a",
+            "Tu": "sei stato/a",
+            "Lui/Lei": "è stato/a",
+            "Noi": "siamo stati/e",
+            "Voi": "siete stati/e",
+            "Loro": "sono stati/e"
+          },
+          "futuro_semplice": {
+            "Io": "sarò",
+            "Tu": "sarai",
+            "Lui/Lei": "sarà",
+            "Noi": "saremo",
+            "Voi": "sarete",
+            "Loro": "saranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I am happy",
+            "accepted": [
+              "sono felice",
+              "io sono felice"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You are tired",
+            "accepted": [
+              "sei stanco",
+              "sei stanca",
+              "tu sei stanco",
+              "tu sei stanca"
+            ]
+          },
+          {
+            "id": "w3",
+            "prompt": "She is my friend",
+            "accepted": [
+              "lei è la mia amica",
+              "è la mia amica"
+            ]
+          },
+          {
+            "id": "w4",
+            "prompt": "I was at home (past)",
+            "accepted": [
+              "sono stato a casa",
+              "sono stata a casa",
+              "io sono stato a casa",
+              "io sono stata a casa"
+            ]
+          },
+          {
+            "id": "w5",
+            "prompt": "They will be here (future)",
+            "accepted": [
+              "saranno qui",
+              "loro saranno qui"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "g7e2",
+        "type": "coniugazione",
+        "title": "Avere (to have)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "ho",
+            "Tu": "hai",
+            "Lui/Lei": "ha",
+            "Noi": "abbiamo",
+            "Voi": "avete",
+            "Loro": "hanno"
+          },
+          "passato_prossimo": {
+            "Io": "ho avuto",
+            "Tu": "hai avuto",
+            "Lui/Lei": "ha avuto",
+            "Noi": "abbiamo avuto",
+            "Voi": "avete avuto",
+            "Loro": "hanno avuto"
+          },
+          "futuro_semplice": {
+            "Io": "avrò",
+            "Tu": "avrai",
+            "Lui/Lei": "avrà",
+            "Noi": "avremo",
+            "Voi": "avrete",
+            "Loro": "avranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I have a dog",
+            "accepted": [
+              "ho un cane",
+              "io ho un cane"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You have two brothers",
+            "accepted": [
+              "hai due fratelli",
+              "tu hai due fratelli"
+            ]
+          },
+          {
+            "id": "w3",
+            "prompt": "He has a car",
+            "accepted": [
+              "ha una macchina",
+              "lui ha una macchina"
+            ]
+          },
+          {
+            "id": "w4",
+            "prompt": "We had a coffee (past)",
+            "accepted": [
+              "abbiamo avuto un caffè",
+              "noi abbiamo avuto un caffè"
+            ]
+          },
+          {
+            "id": "w5",
+            "prompt": "They will have time (future)",
+            "accepted": [
+              "avranno tempo",
+              "loro avranno tempo"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "g7e3",
+        "type": "coniugazione",
+        "title": "Parlare (to speak) — regular -are verb",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "parlo",
+            "Tu": "parli",
+            "Lui/Lei": "parla",
+            "Noi": "parliamo",
+            "Voi": "parlate",
+            "Loro": "parlano"
+          },
+          "passato_prossimo": {
+            "Io": "ho parlato",
+            "Tu": "hai parlato",
+            "Lui/Lei": "ha parlato",
+            "Noi": "abbiamo parlato",
+            "Voi": "avete parlato",
+            "Loro": "hanno parlato"
+          },
+          "futuro_semplice": {
+            "Io": "parlerò",
+            "Tu": "parlerai",
+            "Lui/Lei": "parlerà",
+            "Noi": "parleremo",
+            "Voi": "parlerete",
+            "Loro": "parleranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I speak Italian",
+            "accepted": [
+              "parlo italiano",
+              "io parlo italiano"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You speak English",
+            "accepted": [
+              "parli inglese",
+              "tu parli inglese"
+            ]
+          },
+          {
+            "id": "w3",
+            "prompt": "She speaks slowly",
+            "accepted": [
+              "lei parla lentamente",
+              "parla lentamente"
+            ]
+          },
+          {
+            "id": "w4",
+            "prompt": "We spoke yesterday (past)",
+            "accepted": [
+              "abbiamo parlato ieri",
+              "noi abbiamo parlato ieri"
+            ]
+          },
+          {
+            "id": "w5",
+            "prompt": "They will speak tomorrow (future)",
+            "accepted": [
+              "parleranno domani",
+              "loro parleranno domani"
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]

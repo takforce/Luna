@@ -85,7 +85,7 @@ async function render() {
     box.innerHTML = full.exercises.map(ex => `
       <a class="btn btn-ghost btn-block" href="/esercizio.html?modulo=${m.id}&esercizio=${ex.id}"
          style="justify-content:flex-start;">
-        ${ex.type === 'scelta_multipla' ? '🌟' : '🌠'} ${ex.title}
+        ${ex.type === 'scelta_multipla' ? '🌟' : ex.type === 'coniugazione' ? '✍️' : '🌠'} ${ex.title}
       </a>
     `).join('');
   }
