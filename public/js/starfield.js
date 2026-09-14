@@ -20,11 +20,11 @@ function buildStarfield() {
   for (let i = 0; i < shootCount; i++) {
     const sh = document.createElement('div');
     sh.className = 'shooting-star';
-    sh.style.left = (5 + Math.random() * 70) + '%';
-    sh.style.top = (2 + Math.random() * 45) + '%';
-    sh.style.setProperty('--travel-x', (150 + Math.random() * 100) + 'px');
-    sh.style.setProperty('--travel-y', (90 + Math.random() * 70) + 'px');
-    sh.style.animationDuration = (5 + Math.random() * 3) + 's';
+    sh.style.left = (5 + Math.random() * 60) + '%';
+    sh.style.top = (2 + Math.random() * 40) + '%';
+    sh.style.setProperty('--dist', (180 + Math.random() * 110) + 'px');
+    sh.style.setProperty('--angle', (26 + Math.random() * 18) + 'deg');
+    sh.style.animationDuration = (4 + Math.random() * 2.5) + 's';
     sh.style.animationDelay = (i * 3 + Math.random() * 4) + 's';
     field.appendChild(sh);
   }

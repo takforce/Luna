@@ -62,24 +62,26 @@ h1, h2, h3, .title-font { font-family: 'Baloo 2', sans-serif; }
   50% { opacity: 1; transform: scale(1.15); }
 }
 .shooting-star {
-  --travel-x: 240px;
-  --travel-y: 140px;
+  --dist: 220px;
+  --angle: 35deg;
   position: absolute;
-  width: 2px;
+  width: 90px;
   height: 2px;
-  background: linear-gradient(90deg, #fff, transparent);
-  border-radius: 50%;
-  filter: drop-shadow(0 0 6px #fff);
+  background: linear-gradient(90deg, #fff, rgba(255,255,255,0));
+  border-radius: 2px;
+  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px rgba(255,255,255,0.6));
+  transform: rotate(var(--angle));
+  transform-origin: left center;
   animation-name: shoot;
-  animation-timing-function: linear;
+  animation-timing-function: ease-in;
   animation-iteration-count: infinite;
   opacity: 0;
 }
 @keyframes shoot {
-  0% { opacity: 0; transform: translate(0,0); }
-  2% { opacity: 1; }
-  15% { opacity: 0; transform: translate(var(--travel-x), var(--travel-y)); }
-  100% { opacity: 0; }
+  0%   { opacity: 0;   transform: rotate(var(--angle)) translateX(0); }
+  4%   { opacity: 1; }
+  22%  { opacity: 0;   transform: rotate(var(--angle)) translateX(var(--dist)); }
+  100% { opacity: 0;   transform: rotate(var(--angle)) translateX(var(--dist)); }
 }
 
 .app-content { position: relative; z-index: 1; }
