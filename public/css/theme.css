@@ -50,26 +50,35 @@ h1, h2, h3, .title-font { font-family: 'Baloo 2', sans-serif; }
   background: #fff;
   border-radius: 50%;
   opacity: .7;
-  animation: twinkle 3.5s ease-in-out infinite;
+  animation-name: twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.star-big {
+  box-shadow: 0 0 6px 1px rgba(255,255,255,0.75);
 }
 @keyframes twinkle {
   0%, 100% { opacity: .2; transform: scale(0.8); }
   50% { opacity: 1; transform: scale(1.15); }
 }
 .shooting-star {
+  --travel-x: 240px;
+  --travel-y: 140px;
   position: absolute;
   width: 2px;
   height: 2px;
   background: linear-gradient(90deg, #fff, transparent);
   border-radius: 50%;
   filter: drop-shadow(0 0 6px #fff);
-  animation: shoot 6s linear infinite;
+  animation-name: shoot;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
   opacity: 0;
 }
 @keyframes shoot {
   0% { opacity: 0; transform: translate(0,0); }
   2% { opacity: 1; }
-  15% { opacity: 0; transform: translate(240px, 140px); }
+  15% { opacity: 0; transform: translate(var(--travel-x), var(--travel-y)); }
   100% { opacity: 0; }
 }
 

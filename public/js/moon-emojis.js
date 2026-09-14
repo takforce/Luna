@@ -166,6 +166,111 @@ MOON_EMOJIS.push({
   svg: sunLoveSvg('extra2', EYES.happyArc + MOUTHS.smile)
 });
 
+
+// -- 6 in piu' a tema affetto, per completare la fila --
+const HEART_PATH = 'M16 28.5s-11-6.2-11-14.3A7 7 0 0 1 16 8a7 7 0 0 1 11 6.2c0 8.1-11 14.3-11 14.3z';
+
+function plainHeartSvg(id, grad, extra) {
+  return `<svg viewBox="0 0 32 32" width="26" height="26">
+    <defs>${grad}</defs>
+    <path d="${HEART_PATH}" fill="url(#${id})"/>
+    ${extra || ''}
+  </svg>`;
+}
+
+// Cuore che brilla (glow)
+MOON_EMOJIS.push({
+  code: ':heart_glow:',
+  label: 'Glowing heart',
+  svg: `<svg viewBox="0 0 32 32" width="26" height="26">
+    <defs>
+      <radialGradient id="hg1" cx="35%" cy="28%" r="85%">
+        <stop offset="0%" stop-color="#fff0c2"/>
+        <stop offset="35%" stop-color="#ff8a5b"/>
+        <stop offset="100%" stop-color="#e0475f"/>
+      </radialGradient>
+    </defs>
+    <path d="${HEART_PATH}" fill="url(#hg1)" style="filter:drop-shadow(0 0 4px rgba(255,150,120,0.65))"/>
+  </svg>`
+});
+
+// Cuore con stelline
+MOON_EMOJIS.push({
+  code: ':heart_sparkle:',
+  label: 'Sparkling heart',
+  svg: plainHeartSvg('hs1', `
+    <radialGradient id="hs1" cx="35%" cy="28%" r="80%">
+      <stop offset="0%" stop-color="#ffd2da"/>
+      <stop offset="45%" stop-color="#f06d8c"/>
+      <stop offset="100%" stop-color="#c23a5a"/>
+    </radialGradient>
+  `, `
+    <path d="M25 6l0.7 1.7 1.7 0.7-1.7 0.7-0.7 1.7-0.7-1.7-1.7-0.7 1.7-0.7z" fill="#fff6de"/>
+    <path d="M6 20l0.5 1.2 1.2 0.5-1.2 0.5-0.5 1.2-0.5-1.2-1.2-0.5 1.2-0.5z" fill="#fff6de"/>
+  `)
+});
+
+// Cuore rosa
+MOON_EMOJIS.push({
+  code: ':heart_pink:',
+  label: 'Pink heart',
+  svg: plainHeartSvg('hp1', `
+    <radialGradient id="hp1" cx="35%" cy="28%" r="80%">
+      <stop offset="0%" stop-color="#ffe4ec"/>
+      <stop offset="50%" stop-color="#f2a0c4"/>
+      <stop offset="100%" stop-color="#d1639a"/>
+    </radialGradient>
+  `)
+});
+
+// Faccina lunare innamorata, circondata di cuoricini
+MOON_EMOJIS.push({
+  code: ':moon_surrounded_hearts:',
+  label: 'Surrounded by love',
+  svg: moonSvg('lv1', EYES.heart + MOUTHS.smile + `
+    <path d="M26 8c-0.6-0.8-1.9-0.4-1.9 0.5 0 0.9 1.9 1.7 1.9 1.7s1.9-0.8 1.9-1.7c0-0.9-1.3-1.3-1.9-0.5z" fill="#e0475f"/>
+    <path d="M6 10c-0.5-0.7-1.6-0.3-1.6 0.4 0 0.7 1.6 1.4 1.6 1.4s1.6-0.7 1.6-1.4c0-0.7-1.1-1.1-1.6-0.4z" fill="#e0475f"/>
+    <path d="M8 24c-0.5-0.7-1.6-0.3-1.6 0.4 0 0.7 1.6 1.4 1.6 1.4s1.6-0.7 1.6-1.4c0-0.7-1.1-1.1-1.6-0.4z" fill="#e0475f"/>
+  `)
+});
+
+// Doppio cuore
+MOON_EMOJIS.push({
+  code: ':heart_double:',
+  label: 'Double heart',
+  svg: `<svg viewBox="0 0 32 32" width="26" height="26">
+    <defs>
+      <radialGradient id="hd1" cx="35%" cy="28%" r="80%">
+        <stop offset="0%" stop-color="#ffd2da"/>
+        <stop offset="45%" stop-color="#f2a0c4"/>
+        <stop offset="100%" stop-color="#c96a94"/>
+      </radialGradient>
+      <radialGradient id="hd2" cx="35%" cy="28%" r="80%">
+        <stop offset="0%" stop-color="#ffd2da"/>
+        <stop offset="45%" stop-color="#e0475f"/>
+        <stop offset="100%" stop-color="#a3293c"/>
+      </radialGradient>
+    </defs>
+    <path d="${HEART_PATH}" fill="url(#hd1)" opacity="0.85" transform="translate(-4,-3) scale(0.72)"/>
+    <path d="${HEART_PATH}" fill="url(#hd2)" transform="translate(3,3) scale(0.8)"/>
+  </svg>`
+});
+
+// Cuore spezzato
+MOON_EMOJIS.push({
+  code: ':heart_broken:',
+  label: 'Broken heart',
+  svg: plainHeartSvg('hb1', `
+    <radialGradient id="hb1" cx="35%" cy="28%" r="80%">
+      <stop offset="0%" stop-color="#ffd2da"/>
+      <stop offset="45%" stop-color="#e0475f"/>
+      <stop offset="100%" stop-color="#a3293c"/>
+    </radialGradient>
+  `, `
+    <path d="M17.5 9 L14 15 L18.5 17.5 L13.5 23.5 L16.5 28.5" stroke="#1c1a3a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  `)
+});
+
 // Sostituisce gli shortcode ":moon_xxx:" nel testo con la relativa icona SVG inline
 function replaceMoonShortcodes(text) {
   let out = text;
