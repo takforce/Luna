@@ -13,6 +13,11 @@
   }
   .reset-btn:hover { border-color:#e65a5a; color:#e65a5a; }
   .module-head { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .ex-group-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
+    color: var(--gold); margin: 14px 0 2px; padding-left: 2px;
+  }
+  .ex-group-label:first-child { margin-top: 0; }
 </style>
 </head>
 <body>
@@ -25,9 +30,9 @@
     </div>
     <div class="topbar-nav">
       <a href="/">Home</a>
-      <a href="/moduli.html" class="active">Words</a>
-      <a href="/moduli.html?cat=grammar">Grammar</a>
-      <a href="/moduli.html?cat=verbs">Verbs</a>
+      <a href="/moduli.html" id="nav-words">Words</a>
+      <a href="/moduli.html?cat=grammar" id="nav-grammar">Grammar</a>
+      <a href="/moduli.html?cat=verbs" id="nav-verbs">Verbs</a>
       <a href="/liste.html">Lists</a>
       <a href="/chat.html">Chat</a>
     </div>
@@ -37,7 +42,7 @@
 
   <div class="bottom-nav">
     <a href="/"><span class="bn-icon">🌙</span>Home</a>
-    <a href="/moduli.html" class="active"><span class="bn-icon">⭐</span>Words</a>
+    <a href="/moduli.html" id="bn-words"><span class="bn-icon">⭐</span>Words</a>
     <a href="/chat.html"><span class="bn-icon">💬</span>Chat</a>
   </div>
 </div>
@@ -48,6 +53,10 @@ const params = new URLSearchParams(location.search);
 const openId = params.get('open');
 const cat = params.get('cat') || 'vocab';
 let progressMap = {};
+
+const navMap = { vocab: 'nav-words', grammar: 'nav-grammar', verbs: 'nav-verbs' };
+if (navMap[cat]) document.getElementById(navMap[cat])?.classList.add('active');
+if (cat === 'vocab') document.getElementById('bn-words')?.classList.add('active');
 
 async function render() {
   const [allModules, progress] = await Promise.all([
@@ -83,12 +92,33 @@ async function render() {
   for (const m of modules) {
     const full = await fetch('/api/modules/' + m.id).then(r => r.json());
     const box = document.getElementById('ex-' + m.id);
-    box.innerHTML = full.exercises.map(ex => `
-      <a class="btn btn-ghost btn-block" href="/esercizio.html?modulo=${m.id}&esercizio=${ex.id}"
+
+    const hasGroups = full.exercises.some(ex => ex.group);
+    if (!hasGroups) {
+      box.innerHTML = full.exercises.map(ex => exBtn(m.id, ex)).join('');
+    } else {
+      const seen = [];
+      let html = '';
+      full.exercises.forEach(ex => {
+        if (!seen.includes(ex.group)) {
+          seen.push(ex.group);
+          const label = ex.group.replace(/^\d+\.\s*/, '');
+          html += `<div class="ex-group-label">${label}</div>`;
+        }
+        html += exBtn(m.id, ex);
+      });
+      box.innerHTML = html;
+    }
+  }
+
+  function exBtn(modId, ex) {
+    const icon = ex.type === 'scelta_multipla' ? '🌟' : ex.type === 'coniugazione' ? '✍️' : '🌠';
+    return `
+      <a class="btn btn-ghost btn-block" href="/esercizio.html?modulo=${modId}&esercizio=${ex.id}"
          style="justify-content:flex-start;">
-        ${ex.type === 'scelta_multipla' ? '🌟' : ex.type === 'coniugazione' ? '✍️' : '🌠'} ${ex.title}
+        ${icon} ${ex.title}
       </a>
-    `).join('');
+    `;
   }
 
   document.querySelectorAll('.reset-btn').forEach(btn => {

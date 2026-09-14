@@ -3636,9 +3636,288 @@
     "id": "g7",
     "category": "verbs",
     "title": "Verb Conjugations",
-    "subtitle": "Learn the forms, then write your own sentences",
+    "subtitle": "All 100 verbs, fully conjugated — study the forms, then write your own sentences",
     "icon": "📖",
     "exercises": [
+      {
+        "id": "g7v_andare",
+        "type": "coniugazione",
+        "title": "Andare (to go)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "vado",
+            "Tu": "vai",
+            "Lui/Lei": "va",
+            "Noi": "andiamo",
+            "Voi": "andate",
+            "Loro": "vanno"
+          },
+          "passato_prossimo": {
+            "Io": "sono andato/a",
+            "Tu": "sei andato/a",
+            "Lui/Lei": "è andato/a",
+            "Noi": "siamo andati/e",
+            "Voi": "siete andati/e",
+            "Loro": "sono andati/e"
+          },
+          "futuro_semplice": {
+            "Io": "andrò",
+            "Tu": "andrai",
+            "Lui/Lei": "andrà",
+            "Noi": "andremo",
+            "Voi": "andrete",
+            "Loro": "andranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "vado ogni giorno",
+              "io vado ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "vai molto",
+              "tu vai molto"
+            ]
+          }
+        ],
+        "group": "1. Essentials"
+      },
+      {
+        "id": "g7e2",
+        "type": "coniugazione",
+        "title": "Avere (to have)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "ho",
+            "Tu": "hai",
+            "Lui/Lei": "ha",
+            "Noi": "abbiamo",
+            "Voi": "avete",
+            "Loro": "hanno"
+          },
+          "passato_prossimo": {
+            "Io": "ho avuto",
+            "Tu": "hai avuto",
+            "Lui/Lei": "ha avuto",
+            "Noi": "abbiamo avuto",
+            "Voi": "avete avuto",
+            "Loro": "hanno avuto"
+          },
+          "futuro_semplice": {
+            "Io": "avrò",
+            "Tu": "avrai",
+            "Lui/Lei": "avrà",
+            "Noi": "avremo",
+            "Voi": "avrete",
+            "Loro": "avranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I have a dog",
+            "accepted": [
+              "ho un cane",
+              "io ho un cane"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You have two brothers",
+            "accepted": [
+              "hai due fratelli",
+              "tu hai due fratelli"
+            ]
+          },
+          {
+            "id": "w3",
+            "prompt": "He has a car",
+            "accepted": [
+              "ha una macchina",
+              "lui ha una macchina"
+            ]
+          },
+          {
+            "id": "w4",
+            "prompt": "We had a coffee (past)",
+            "accepted": [
+              "abbiamo avuto un caffè",
+              "noi abbiamo avuto un caffè"
+            ]
+          },
+          {
+            "id": "w5",
+            "prompt": "They will have time (future)",
+            "accepted": [
+              "avranno tempo",
+              "loro avranno tempo"
+            ]
+          }
+        ],
+        "group": "1. Essentials"
+      },
+      {
+        "id": "g7v_dare",
+        "type": "coniugazione",
+        "title": "Dare (to give)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "do",
+            "Tu": "dai",
+            "Lui/Lei": "dà",
+            "Noi": "diamo",
+            "Voi": "date",
+            "Loro": "danno"
+          },
+          "passato_prossimo": {
+            "Io": "ho dato",
+            "Tu": "hai dato",
+            "Lui/Lei": "ha dato",
+            "Noi": "abbiamo dato",
+            "Voi": "avete dato",
+            "Loro": "hanno dato"
+          },
+          "futuro_semplice": {
+            "Io": "darò",
+            "Tu": "darai",
+            "Lui/Lei": "darà",
+            "Noi": "daremo",
+            "Voi": "darete",
+            "Loro": "daranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "do ogni giorno",
+              "io do ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "dai molto",
+              "tu dai molto"
+            ]
+          }
+        ],
+        "group": "1. Essentials"
+      },
+      {
+        "id": "g7v_dire",
+        "type": "coniugazione",
+        "title": "Dire (to say)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "dico",
+            "Tu": "dici",
+            "Lui/Lei": "dice",
+            "Noi": "diciamo",
+            "Voi": "dite",
+            "Loro": "dicono"
+          },
+          "passato_prossimo": {
+            "Io": "ho detto",
+            "Tu": "hai detto",
+            "Lui/Lei": "ha detto",
+            "Noi": "abbiamo detto",
+            "Voi": "avete detto",
+            "Loro": "hanno detto"
+          },
+          "futuro_semplice": {
+            "Io": "dirò",
+            "Tu": "dirai",
+            "Lui/Lei": "dirà",
+            "Noi": "diremo",
+            "Voi": "direte",
+            "Loro": "diranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "dico ogni giorno",
+              "io dico ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "dici molto",
+              "tu dici molto"
+            ]
+          }
+        ],
+        "group": "1. Essentials"
+      },
+      {
+        "id": "g7v_dovere",
+        "type": "coniugazione",
+        "title": "Dovere (must / to have to)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "devo",
+            "Tu": "devi",
+            "Lui/Lei": "deve",
+            "Noi": "dobbiamo",
+            "Voi": "dovete",
+            "Loro": "devono"
+          },
+          "passato_prossimo": {
+            "Io": "ho dovuto",
+            "Tu": "hai dovuto",
+            "Lui/Lei": "ha dovuto",
+            "Noi": "abbiamo dovuto",
+            "Voi": "avete dovuto",
+            "Loro": "hanno dovuto"
+          },
+          "futuro_semplice": {
+            "Io": "dovrò",
+            "Tu": "dovrai",
+            "Lui/Lei": "dovrà",
+            "Noi": "dovremo",
+            "Voi": "dovrete",
+            "Loro": "dovranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "devo ogni giorno",
+              "io devo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "devi molto",
+              "tu devi molto"
+            ]
+          }
+        ],
+        "group": "1. Essentials"
+      },
       {
         "id": "g7e1",
         "type": "coniugazione",
@@ -3715,81 +3994,59 @@
               "loro saranno qui"
             ]
           }
-        ]
+        ],
+        "group": "1. Essentials"
       },
       {
-        "id": "g7e2",
+        "id": "g7v_fare",
         "type": "coniugazione",
-        "title": "Avere (to have)",
+        "title": "Fare (to do / to make)",
         "instructions": "Study the table, then write sentences",
         "table": {
           "presente": {
-            "Io": "ho",
-            "Tu": "hai",
-            "Lui/Lei": "ha",
-            "Noi": "abbiamo",
-            "Voi": "avete",
-            "Loro": "hanno"
+            "Io": "faccio",
+            "Tu": "fai",
+            "Lui/Lei": "fa",
+            "Noi": "facciamo",
+            "Voi": "fate",
+            "Loro": "fanno"
           },
           "passato_prossimo": {
-            "Io": "ho avuto",
-            "Tu": "hai avuto",
-            "Lui/Lei": "ha avuto",
-            "Noi": "abbiamo avuto",
-            "Voi": "avete avuto",
-            "Loro": "hanno avuto"
+            "Io": "ho fatto",
+            "Tu": "hai fatto",
+            "Lui/Lei": "ha fatto",
+            "Noi": "abbiamo fatto",
+            "Voi": "avete fatto",
+            "Loro": "hanno fatto"
           },
           "futuro_semplice": {
-            "Io": "avrò",
-            "Tu": "avrai",
-            "Lui/Lei": "avrà",
-            "Noi": "avremo",
-            "Voi": "avrete",
-            "Loro": "avranno"
+            "Io": "farò",
+            "Tu": "farai",
+            "Lui/Lei": "farà",
+            "Noi": "faremo",
+            "Voi": "farete",
+            "Loro": "faranno"
           }
         },
         "writing": [
           {
             "id": "w1",
-            "prompt": "I have a dog",
+            "prompt": "I ... every day",
             "accepted": [
-              "ho un cane",
-              "io ho un cane"
+              "faccio ogni giorno",
+              "io faccio ogni giorno"
             ]
           },
           {
             "id": "w2",
-            "prompt": "You have two brothers",
+            "prompt": "You ... a lot",
             "accepted": [
-              "hai due fratelli",
-              "tu hai due fratelli"
-            ]
-          },
-          {
-            "id": "w3",
-            "prompt": "He has a car",
-            "accepted": [
-              "ha una macchina",
-              "lui ha una macchina"
-            ]
-          },
-          {
-            "id": "w4",
-            "prompt": "We had a coffee (past)",
-            "accepted": [
-              "abbiamo avuto un caffè",
-              "noi abbiamo avuto un caffè"
-            ]
-          },
-          {
-            "id": "w5",
-            "prompt": "They will have time (future)",
-            "accepted": [
-              "avranno tempo",
-              "loro avranno tempo"
+              "fai molto",
+              "tu fai molto"
             ]
           }
-        ]
+        ],
+        "group": "1. Essentials"
       },
       {
         "id": "g7e3",
@@ -3863,7 +4120,4700 @@
               "loro parleranno domani"
             ]
           }
-        ]
+        ],
+        "group": "1. Essentials"
+      },
+      {
+        "id": "g7v_potere",
+        "type": "coniugazione",
+        "title": "Potere (can / to be able to)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "posso",
+            "Tu": "puoi",
+            "Lui/Lei": "può",
+            "Noi": "possiamo",
+            "Voi": "potete",
+            "Loro": "possono"
+          },
+          "passato_prossimo": {
+            "Io": "ho potuto",
+            "Tu": "hai potuto",
+            "Lui/Lei": "ha potuto",
+            "Noi": "abbiamo potuto",
+            "Voi": "avete potuto",
+            "Loro": "hanno potuto"
+          },
+          "futuro_semplice": {
+            "Io": "potrò",
+            "Tu": "potrai",
+            "Lui/Lei": "potrà",
+            "Noi": "potremo",
+            "Voi": "potrete",
+            "Loro": "potranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "posso ogni giorno",
+              "io posso ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "puoi molto",
+              "tu puoi molto"
+            ]
+          }
+        ],
+        "group": "1. Essentials"
+      },
+      {
+        "id": "g7v_sapere",
+        "type": "coniugazione",
+        "title": "Sapere (to know (a fact))",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "so",
+            "Tu": "sai",
+            "Lui/Lei": "sa",
+            "Noi": "sappiamo",
+            "Voi": "sapete",
+            "Loro": "sanno"
+          },
+          "passato_prossimo": {
+            "Io": "ho saputo",
+            "Tu": "hai saputo",
+            "Lui/Lei": "ha saputo",
+            "Noi": "abbiamo saputo",
+            "Voi": "avete saputo",
+            "Loro": "hanno saputo"
+          },
+          "futuro_semplice": {
+            "Io": "saprò",
+            "Tu": "saprai",
+            "Lui/Lei": "saprà",
+            "Noi": "sapremo",
+            "Voi": "saprete",
+            "Loro": "sapranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "so ogni giorno",
+              "io so ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "sai molto",
+              "tu sai molto"
+            ]
+          }
+        ],
+        "group": "1. Essentials"
+      },
+      {
+        "id": "g7v_stare",
+        "type": "coniugazione",
+        "title": "Stare (to stay / to be (somewhere))",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "sto",
+            "Tu": "stai",
+            "Lui/Lei": "sta",
+            "Noi": "stiamo",
+            "Voi": "state",
+            "Loro": "stanno"
+          },
+          "passato_prossimo": {
+            "Io": "sono stato/a",
+            "Tu": "sei stato/a",
+            "Lui/Lei": "è stato/a",
+            "Noi": "siamo stati/e",
+            "Voi": "siete stati/e",
+            "Loro": "sono stati/e"
+          },
+          "futuro_semplice": {
+            "Io": "starò",
+            "Tu": "starai",
+            "Lui/Lei": "starà",
+            "Noi": "staremo",
+            "Voi": "starete",
+            "Loro": "staranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "sto ogni giorno",
+              "io sto ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "stai molto",
+              "tu stai molto"
+            ]
+          }
+        ],
+        "group": "1. Essentials"
+      },
+      {
+        "id": "g7v_vedere",
+        "type": "coniugazione",
+        "title": "Vedere (to see)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "vedo",
+            "Tu": "vedi",
+            "Lui/Lei": "vede",
+            "Noi": "vediamo",
+            "Voi": "vedete",
+            "Loro": "vedono"
+          },
+          "passato_prossimo": {
+            "Io": "ho visto",
+            "Tu": "hai visto",
+            "Lui/Lei": "ha visto",
+            "Noi": "abbiamo visto",
+            "Voi": "avete visto",
+            "Loro": "hanno visto"
+          },
+          "futuro_semplice": {
+            "Io": "vedrò",
+            "Tu": "vedrai",
+            "Lui/Lei": "vedrà",
+            "Noi": "vedremo",
+            "Voi": "vedrete",
+            "Loro": "vedranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "vedo ogni giorno",
+              "io vedo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "vedi molto",
+              "tu vedi molto"
+            ]
+          }
+        ],
+        "group": "1. Essentials"
+      },
+      {
+        "id": "g7v_venire",
+        "type": "coniugazione",
+        "title": "Venire (to come)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "vengo",
+            "Tu": "vieni",
+            "Lui/Lei": "viene",
+            "Noi": "veniamo",
+            "Voi": "venite",
+            "Loro": "vengono"
+          },
+          "passato_prossimo": {
+            "Io": "sono venuto/a",
+            "Tu": "sei venuto/a",
+            "Lui/Lei": "è venuto/a",
+            "Noi": "siamo venuti/e",
+            "Voi": "siete venuti/e",
+            "Loro": "sono venuti/e"
+          },
+          "futuro_semplice": {
+            "Io": "verrò",
+            "Tu": "verrai",
+            "Lui/Lei": "verrà",
+            "Noi": "verremo",
+            "Voi": "verrete",
+            "Loro": "verranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "vengo ogni giorno",
+              "io vengo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "vieni molto",
+              "tu vieni molto"
+            ]
+          }
+        ],
+        "group": "1. Essentials"
+      },
+      {
+        "id": "g7v_volere",
+        "type": "coniugazione",
+        "title": "Volere (to want)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "voglio",
+            "Tu": "vuoi",
+            "Lui/Lei": "vuole",
+            "Noi": "vogliamo",
+            "Voi": "volete",
+            "Loro": "vogliono"
+          },
+          "passato_prossimo": {
+            "Io": "ho voluto",
+            "Tu": "hai voluto",
+            "Lui/Lei": "ha voluto",
+            "Noi": "abbiamo voluto",
+            "Voi": "avete voluto",
+            "Loro": "hanno voluto"
+          },
+          "futuro_semplice": {
+            "Io": "vorrò",
+            "Tu": "vorrai",
+            "Lui/Lei": "vorrà",
+            "Noi": "vorremo",
+            "Voi": "vorrete",
+            "Loro": "vorranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "voglio ogni giorno",
+              "io voglio ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "vuoi molto",
+              "tu vuoi molto"
+            ]
+          }
+        ],
+        "group": "1. Essentials"
+      },
+      {
+        "id": "g7v_arrivare",
+        "type": "coniugazione",
+        "title": "Arrivare (to arrive)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "arrivo",
+            "Tu": "arrivi",
+            "Lui/Lei": "arriva",
+            "Noi": "arriviamo",
+            "Voi": "arrivate",
+            "Loro": "arrivano"
+          },
+          "passato_prossimo": {
+            "Io": "sono arrivato/a",
+            "Tu": "sei arrivato/a",
+            "Lui/Lei": "è arrivato/a",
+            "Noi": "siamo arrivati/e",
+            "Voi": "siete arrivati/e",
+            "Loro": "sono arrivati/e"
+          },
+          "futuro_semplice": {
+            "Io": "arriverò",
+            "Tu": "arriverai",
+            "Lui/Lei": "arriverà",
+            "Noi": "arriveremo",
+            "Voi": "arriverete",
+            "Loro": "arriveranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "arrivo ogni giorno",
+              "io arrivo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "arrivi molto",
+              "tu arrivi molto"
+            ]
+          }
+        ],
+        "group": "2. Movement & Travel"
+      },
+      {
+        "id": "g7v_cadere",
+        "type": "coniugazione",
+        "title": "Cadere (to fall)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "cado",
+            "Tu": "cadi",
+            "Lui/Lei": "cade",
+            "Noi": "cadiamo",
+            "Voi": "cadete",
+            "Loro": "cadono"
+          },
+          "passato_prossimo": {
+            "Io": "sono caduto/a",
+            "Tu": "sei caduto/a",
+            "Lui/Lei": "è caduto/a",
+            "Noi": "siamo caduti/e",
+            "Voi": "siete caduti/e",
+            "Loro": "sono caduti/e"
+          },
+          "futuro_semplice": {
+            "Io": "cadrò",
+            "Tu": "cadrai",
+            "Lui/Lei": "cadrà",
+            "Noi": "cadremo",
+            "Voi": "cadrete",
+            "Loro": "cadranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "cado ogni giorno",
+              "io cado ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "cadi molto",
+              "tu cadi molto"
+            ]
+          }
+        ],
+        "group": "2. Movement & Travel"
+      },
+      {
+        "id": "g7v_camminare",
+        "type": "coniugazione",
+        "title": "Camminare (to walk)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "cammino",
+            "Tu": "cammini",
+            "Lui/Lei": "cammina",
+            "Noi": "camminiamo",
+            "Voi": "camminate",
+            "Loro": "camminano"
+          },
+          "passato_prossimo": {
+            "Io": "ho camminato",
+            "Tu": "hai camminato",
+            "Lui/Lei": "ha camminato",
+            "Noi": "abbiamo camminato",
+            "Voi": "avete camminato",
+            "Loro": "hanno camminato"
+          },
+          "futuro_semplice": {
+            "Io": "camminerò",
+            "Tu": "camminerai",
+            "Lui/Lei": "camminerà",
+            "Noi": "cammineremo",
+            "Voi": "camminerete",
+            "Loro": "cammineranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "cammino ogni giorno",
+              "io cammino ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "cammini molto",
+              "tu cammini molto"
+            ]
+          }
+        ],
+        "group": "2. Movement & Travel"
+      },
+      {
+        "id": "g7v_correre",
+        "type": "coniugazione",
+        "title": "Correre (to run)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "corro",
+            "Tu": "corri",
+            "Lui/Lei": "corre",
+            "Noi": "corriamo",
+            "Voi": "correte",
+            "Loro": "corrono"
+          },
+          "passato_prossimo": {
+            "Io": "ho corso",
+            "Tu": "hai corso",
+            "Lui/Lei": "ha corso",
+            "Noi": "abbiamo corso",
+            "Voi": "avete corso",
+            "Loro": "hanno corso"
+          },
+          "futuro_semplice": {
+            "Io": "correrò",
+            "Tu": "correrai",
+            "Lui/Lei": "correrà",
+            "Noi": "correremo",
+            "Voi": "correrete",
+            "Loro": "correranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "corro ogni giorno",
+              "io corro ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "corri molto",
+              "tu corri molto"
+            ]
+          }
+        ],
+        "group": "2. Movement & Travel"
+      },
+      {
+        "id": "g7v_entrare",
+        "type": "coniugazione",
+        "title": "Entrare (to enter)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "entro",
+            "Tu": "entri",
+            "Lui/Lei": "entra",
+            "Noi": "entriamo",
+            "Voi": "entrate",
+            "Loro": "entrano"
+          },
+          "passato_prossimo": {
+            "Io": "sono entrato/a",
+            "Tu": "sei entrato/a",
+            "Lui/Lei": "è entrato/a",
+            "Noi": "siamo entrati/e",
+            "Voi": "siete entrati/e",
+            "Loro": "sono entrati/e"
+          },
+          "futuro_semplice": {
+            "Io": "entrerò",
+            "Tu": "entrerai",
+            "Lui/Lei": "entrerà",
+            "Noi": "entreremo",
+            "Voi": "entrerete",
+            "Loro": "entreranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "entro ogni giorno",
+              "io entro ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "entri molto",
+              "tu entri molto"
+            ]
+          }
+        ],
+        "group": "2. Movement & Travel"
+      },
+      {
+        "id": "g7v_guidare",
+        "type": "coniugazione",
+        "title": "Guidare (to drive)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "guido",
+            "Tu": "guidi",
+            "Lui/Lei": "guida",
+            "Noi": "guidiamo",
+            "Voi": "guidate",
+            "Loro": "guidano"
+          },
+          "passato_prossimo": {
+            "Io": "ho guidato",
+            "Tu": "hai guidato",
+            "Lui/Lei": "ha guidato",
+            "Noi": "abbiamo guidato",
+            "Voi": "avete guidato",
+            "Loro": "hanno guidato"
+          },
+          "futuro_semplice": {
+            "Io": "guiderò",
+            "Tu": "guiderai",
+            "Lui/Lei": "guiderà",
+            "Noi": "guideremo",
+            "Voi": "guiderete",
+            "Loro": "guideranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "guido ogni giorno",
+              "io guido ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "guidi molto",
+              "tu guidi molto"
+            ]
+          }
+        ],
+        "group": "2. Movement & Travel"
+      },
+      {
+        "id": "g7v_partire",
+        "type": "coniugazione",
+        "title": "Partire (to leave / to depart)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "parto",
+            "Tu": "parti",
+            "Lui/Lei": "parte",
+            "Noi": "partiamo",
+            "Voi": "partite",
+            "Loro": "partono"
+          },
+          "passato_prossimo": {
+            "Io": "sono partito/a",
+            "Tu": "sei partito/a",
+            "Lui/Lei": "è partito/a",
+            "Noi": "siamo partiti/e",
+            "Voi": "siete partiti/e",
+            "Loro": "sono partiti/e"
+          },
+          "futuro_semplice": {
+            "Io": "partirò",
+            "Tu": "partirai",
+            "Lui/Lei": "partirà",
+            "Noi": "partiremo",
+            "Voi": "partirete",
+            "Loro": "partiranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "parto ogni giorno",
+              "io parto ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "parti molto",
+              "tu parti molto"
+            ]
+          }
+        ],
+        "group": "2. Movement & Travel"
+      },
+      {
+        "id": "g7v_passare",
+        "type": "coniugazione",
+        "title": "Passare (to pass / to spend (time))",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "passo",
+            "Tu": "passi",
+            "Lui/Lei": "passa",
+            "Noi": "passiamo",
+            "Voi": "passate",
+            "Loro": "passano"
+          },
+          "passato_prossimo": {
+            "Io": "ho passato",
+            "Tu": "hai passato",
+            "Lui/Lei": "ha passato",
+            "Noi": "abbiamo passato",
+            "Voi": "avete passato",
+            "Loro": "hanno passato"
+          },
+          "futuro_semplice": {
+            "Io": "passerò",
+            "Tu": "passerai",
+            "Lui/Lei": "passerà",
+            "Noi": "passeremo",
+            "Voi": "passerete",
+            "Loro": "passeranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "passo ogni giorno",
+              "io passo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "passi molto",
+              "tu passi molto"
+            ]
+          }
+        ],
+        "group": "2. Movement & Travel"
+      },
+      {
+        "id": "g7v_portare",
+        "type": "coniugazione",
+        "title": "Portare (to bring / to carry)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "porto",
+            "Tu": "porti",
+            "Lui/Lei": "porta",
+            "Noi": "portiamo",
+            "Voi": "portate",
+            "Loro": "portano"
+          },
+          "passato_prossimo": {
+            "Io": "ho portato",
+            "Tu": "hai portato",
+            "Lui/Lei": "ha portato",
+            "Noi": "abbiamo portato",
+            "Voi": "avete portato",
+            "Loro": "hanno portato"
+          },
+          "futuro_semplice": {
+            "Io": "porterò",
+            "Tu": "porterai",
+            "Lui/Lei": "porterà",
+            "Noi": "porteremo",
+            "Voi": "porterete",
+            "Loro": "porteranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "porto ogni giorno",
+              "io porto ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "porti molto",
+              "tu porti molto"
+            ]
+          }
+        ],
+        "group": "2. Movement & Travel"
+      },
+      {
+        "id": "g7v_tornare",
+        "type": "coniugazione",
+        "title": "Tornare (to return)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "torno",
+            "Tu": "torni",
+            "Lui/Lei": "torna",
+            "Noi": "torniamo",
+            "Voi": "tornate",
+            "Loro": "tornano"
+          },
+          "passato_prossimo": {
+            "Io": "sono tornato/a",
+            "Tu": "sei tornato/a",
+            "Lui/Lei": "è tornato/a",
+            "Noi": "siamo tornati/e",
+            "Voi": "siete tornati/e",
+            "Loro": "sono tornati/e"
+          },
+          "futuro_semplice": {
+            "Io": "tornerò",
+            "Tu": "tornerai",
+            "Lui/Lei": "tornerà",
+            "Noi": "torneremo",
+            "Voi": "tornerete",
+            "Loro": "torneranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "torno ogni giorno",
+              "io torno ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "torni molto",
+              "tu torni molto"
+            ]
+          }
+        ],
+        "group": "2. Movement & Travel"
+      },
+      {
+        "id": "g7v_uscire",
+        "type": "coniugazione",
+        "title": "Uscire (to go out)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "esco",
+            "Tu": "esci",
+            "Lui/Lei": "esce",
+            "Noi": "usciamo",
+            "Voi": "uscite",
+            "Loro": "escono"
+          },
+          "passato_prossimo": {
+            "Io": "sono uscito/a",
+            "Tu": "sei uscito/a",
+            "Lui/Lei": "è uscito/a",
+            "Noi": "siamo usciti/e",
+            "Voi": "siete usciti/e",
+            "Loro": "sono usciti/e"
+          },
+          "futuro_semplice": {
+            "Io": "uscirò",
+            "Tu": "uscirai",
+            "Lui/Lei": "uscirà",
+            "Noi": "usciremo",
+            "Voi": "uscirete",
+            "Loro": "usciranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "esco ogni giorno",
+              "io esco ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "esci molto",
+              "tu esci molto"
+            ]
+          }
+        ],
+        "group": "2. Movement & Travel"
+      },
+      {
+        "id": "g7v_viaggiare",
+        "type": "coniugazione",
+        "title": "Viaggiare (to travel)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "viaggio",
+            "Tu": "viaggi",
+            "Lui/Lei": "viaggia",
+            "Noi": "viaggiamo",
+            "Voi": "viaggiate",
+            "Loro": "viaggiano"
+          },
+          "passato_prossimo": {
+            "Io": "ho viaggiato",
+            "Tu": "hai viaggiato",
+            "Lui/Lei": "ha viaggiato",
+            "Noi": "abbiamo viaggiato",
+            "Voi": "avete viaggiato",
+            "Loro": "hanno viaggiato"
+          },
+          "futuro_semplice": {
+            "Io": "viaggerò",
+            "Tu": "viaggerai",
+            "Lui/Lei": "viaggerà",
+            "Noi": "viaggeremo",
+            "Voi": "viaggerete",
+            "Loro": "viaggeranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "viaggio ogni giorno",
+              "io viaggio ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "viaggi molto",
+              "tu viaggi molto"
+            ]
+          }
+        ],
+        "group": "2. Movement & Travel"
+      },
+      {
+        "id": "g7v_volare",
+        "type": "coniugazione",
+        "title": "Volare (to fly)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "volo",
+            "Tu": "voli",
+            "Lui/Lei": "vola",
+            "Noi": "voliamo",
+            "Voi": "volate",
+            "Loro": "volano"
+          },
+          "passato_prossimo": {
+            "Io": "ho volato",
+            "Tu": "hai volato",
+            "Lui/Lei": "ha volato",
+            "Noi": "abbiamo volato",
+            "Voi": "avete volato",
+            "Loro": "hanno volato"
+          },
+          "futuro_semplice": {
+            "Io": "volerò",
+            "Tu": "volerai",
+            "Lui/Lei": "volerà",
+            "Noi": "voleremo",
+            "Voi": "volerete",
+            "Loro": "voleranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "volo ogni giorno",
+              "io volo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "voli molto",
+              "tu voli molto"
+            ]
+          }
+        ],
+        "group": "2. Movement & Travel"
+      },
+      {
+        "id": "g7v_addormentarsi",
+        "type": "coniugazione",
+        "title": "Addormentarsi (to fall asleep)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "mi addormento",
+            "Tu": "ti addormenti",
+            "Lui/Lei": "si addormenta",
+            "Noi": "ci addormentiamo",
+            "Voi": "vi addormentate",
+            "Loro": "si addormentano"
+          },
+          "passato_prossimo": {
+            "Io": "mi sono addormentato/a",
+            "Tu": "ti sei addormentato/a",
+            "Lui/Lei": "si è addormentato/a",
+            "Noi": "ci siamo addormentati/e",
+            "Voi": "vi siete addormentati/e",
+            "Loro": "si sono addormentati/e"
+          },
+          "futuro_semplice": {
+            "Io": "mi addormenterò",
+            "Tu": "ti addormenterai",
+            "Lui/Lei": "si addormenterà",
+            "Noi": "ci addormenteremo",
+            "Voi": "vi addormenterete",
+            "Loro": "si addormenteranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "mi addormento ogni giorno",
+              "io mi addormento ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ti addormenti molto",
+              "tu ti addormenti molto"
+            ]
+          }
+        ],
+        "group": "3. Daily Routine & Senses"
+      },
+      {
+        "id": "g7v_alzarsi",
+        "type": "coniugazione",
+        "title": "Alzarsi (to get up)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "mi alzo",
+            "Tu": "ti alzi",
+            "Lui/Lei": "si alza",
+            "Noi": "ci alziamo",
+            "Voi": "vi alzate",
+            "Loro": "si alzano"
+          },
+          "passato_prossimo": {
+            "Io": "mi sono alzato/a",
+            "Tu": "ti sei alzato/a",
+            "Lui/Lei": "si è alzato/a",
+            "Noi": "ci siamo alzati/e",
+            "Voi": "vi siete alzati/e",
+            "Loro": "si sono alzati/e"
+          },
+          "futuro_semplice": {
+            "Io": "mi alzerò",
+            "Tu": "ti alzerai",
+            "Lui/Lei": "si alzerà",
+            "Noi": "ci alzeremo",
+            "Voi": "vi alzerete",
+            "Loro": "si alzeranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "mi alzo ogni giorno",
+              "io mi alzo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ti alzi molto",
+              "tu ti alzi molto"
+            ]
+          }
+        ],
+        "group": "3. Daily Routine & Senses"
+      },
+      {
+        "id": "g7v_aprire",
+        "type": "coniugazione",
+        "title": "Aprire (to open)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "apro",
+            "Tu": "apri",
+            "Lui/Lei": "apre",
+            "Noi": "apriamo",
+            "Voi": "aprite",
+            "Loro": "aprono"
+          },
+          "passato_prossimo": {
+            "Io": "ho aperto",
+            "Tu": "hai aperto",
+            "Lui/Lei": "ha aperto",
+            "Noi": "abbiamo aperto",
+            "Voi": "avete aperto",
+            "Loro": "hanno aperto"
+          },
+          "futuro_semplice": {
+            "Io": "aprirò",
+            "Tu": "aprirai",
+            "Lui/Lei": "aprirà",
+            "Noi": "apriremo",
+            "Voi": "aprirete",
+            "Loro": "apriranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "apro ogni giorno",
+              "io apro ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "apri molto",
+              "tu apri molto"
+            ]
+          }
+        ],
+        "group": "3. Daily Routine & Senses"
+      },
+      {
+        "id": "g7v_bere",
+        "type": "coniugazione",
+        "title": "Bere (to drink)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "bevo",
+            "Tu": "bevi",
+            "Lui/Lei": "beve",
+            "Noi": "beviamo",
+            "Voi": "bevete",
+            "Loro": "bevono"
+          },
+          "passato_prossimo": {
+            "Io": "ho bevuto",
+            "Tu": "hai bevuto",
+            "Lui/Lei": "ha bevuto",
+            "Noi": "abbiamo bevuto",
+            "Voi": "avete bevuto",
+            "Loro": "hanno bevuto"
+          },
+          "futuro_semplice": {
+            "Io": "berrò",
+            "Tu": "berrai",
+            "Lui/Lei": "berrà",
+            "Noi": "berremo",
+            "Voi": "berrete",
+            "Loro": "berranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "bevo ogni giorno",
+              "io bevo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "bevi molto",
+              "tu bevi molto"
+            ]
+          }
+        ],
+        "group": "3. Daily Routine & Senses"
+      },
+      {
+        "id": "g7v_chiudere",
+        "type": "coniugazione",
+        "title": "Chiudere (to close)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "chiudo",
+            "Tu": "chiudi",
+            "Lui/Lei": "chiude",
+            "Noi": "chiudiamo",
+            "Voi": "chiudete",
+            "Loro": "chiudono"
+          },
+          "passato_prossimo": {
+            "Io": "ho chiuso",
+            "Tu": "hai chiuso",
+            "Lui/Lei": "ha chiuso",
+            "Noi": "abbiamo chiuso",
+            "Voi": "avete chiuso",
+            "Loro": "hanno chiuso"
+          },
+          "futuro_semplice": {
+            "Io": "chiuderò",
+            "Tu": "chiuderai",
+            "Lui/Lei": "chiuderà",
+            "Noi": "chiuderemo",
+            "Voi": "chiuderete",
+            "Loro": "chiuderanno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "chiudo ogni giorno",
+              "io chiudo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "chiudi molto",
+              "tu chiudi molto"
+            ]
+          }
+        ],
+        "group": "3. Daily Routine & Senses"
+      },
+      {
+        "id": "g7v_dormire",
+        "type": "coniugazione",
+        "title": "Dormire (to sleep)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "dormo",
+            "Tu": "dormi",
+            "Lui/Lei": "dorme",
+            "Noi": "dormiamo",
+            "Voi": "dormite",
+            "Loro": "dormono"
+          },
+          "passato_prossimo": {
+            "Io": "ho dormito",
+            "Tu": "hai dormito",
+            "Lui/Lei": "ha dormito",
+            "Noi": "abbiamo dormito",
+            "Voi": "avete dormito",
+            "Loro": "hanno dormito"
+          },
+          "futuro_semplice": {
+            "Io": "dormirò",
+            "Tu": "dormirai",
+            "Lui/Lei": "dormirà",
+            "Noi": "dormiremo",
+            "Voi": "dormirete",
+            "Loro": "dormiranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "dormo ogni giorno",
+              "io dormo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "dormi molto",
+              "tu dormi molto"
+            ]
+          }
+        ],
+        "group": "3. Daily Routine & Senses"
+      },
+      {
+        "id": "g7v_fermarsi",
+        "type": "coniugazione",
+        "title": "Fermarsi (to stop)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "mi fermo",
+            "Tu": "ti fermi",
+            "Lui/Lei": "si ferma",
+            "Noi": "ci fermiamo",
+            "Voi": "vi fermate",
+            "Loro": "si fermano"
+          },
+          "passato_prossimo": {
+            "Io": "mi sono fermato/a",
+            "Tu": "ti sei fermato/a",
+            "Lui/Lei": "si è fermato/a",
+            "Noi": "ci siamo fermati/e",
+            "Voi": "vi siete fermati/e",
+            "Loro": "si sono fermati/e"
+          },
+          "futuro_semplice": {
+            "Io": "mi fermerò",
+            "Tu": "ti fermerai",
+            "Lui/Lei": "si fermerà",
+            "Noi": "ci fermeremo",
+            "Voi": "vi fermerete",
+            "Loro": "si fermeranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "mi fermo ogni giorno",
+              "io mi fermo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ti fermi molto",
+              "tu ti fermi molto"
+            ]
+          }
+        ],
+        "group": "3. Daily Routine & Senses"
+      },
+      {
+        "id": "g7v_lavarsi",
+        "type": "coniugazione",
+        "title": "Lavarsi (to wash oneself)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "mi lavo",
+            "Tu": "ti lavi",
+            "Lui/Lei": "si lava",
+            "Noi": "ci laviamo",
+            "Voi": "vi lavate",
+            "Loro": "si lavano"
+          },
+          "passato_prossimo": {
+            "Io": "mi sono lavato/a",
+            "Tu": "ti sei lavato/a",
+            "Lui/Lei": "si è lavato/a",
+            "Noi": "ci siamo lavati/e",
+            "Voi": "vi siete lavati/e",
+            "Loro": "si sono lavati/e"
+          },
+          "futuro_semplice": {
+            "Io": "mi laverò",
+            "Tu": "ti laverai",
+            "Lui/Lei": "si laverà",
+            "Noi": "ci laveremo",
+            "Voi": "vi laverete",
+            "Loro": "si laveranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "mi lavo ogni giorno",
+              "io mi lavo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ti lavi molto",
+              "tu ti lavi molto"
+            ]
+          }
+        ],
+        "group": "3. Daily Routine & Senses"
+      },
+      {
+        "id": "g7v_mangiare",
+        "type": "coniugazione",
+        "title": "Mangiare (to eat)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "mangio",
+            "Tu": "mangi",
+            "Lui/Lei": "mangia",
+            "Noi": "mangiamo",
+            "Voi": "mangiate",
+            "Loro": "mangiano"
+          },
+          "passato_prossimo": {
+            "Io": "ho mangiato",
+            "Tu": "hai mangiato",
+            "Lui/Lei": "ha mangiato",
+            "Noi": "abbiamo mangiato",
+            "Voi": "avete mangiato",
+            "Loro": "hanno mangiato"
+          },
+          "futuro_semplice": {
+            "Io": "mangerò",
+            "Tu": "mangerai",
+            "Lui/Lei": "mangerà",
+            "Noi": "mangeremo",
+            "Voi": "mangerete",
+            "Loro": "mangeranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "mangio ogni giorno",
+              "io mangio ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "mangi molto",
+              "tu mangi molto"
+            ]
+          }
+        ],
+        "group": "3. Daily Routine & Senses"
+      },
+      {
+        "id": "g7v_sedersi",
+        "type": "coniugazione",
+        "title": "Sedersi (to sit down)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "mi siedo",
+            "Tu": "ti siedi",
+            "Lui/Lei": "si siede",
+            "Noi": "ci sediamo",
+            "Voi": "vi sedete",
+            "Loro": "si siedono"
+          },
+          "passato_prossimo": {
+            "Io": "mi sono seduto/a",
+            "Tu": "ti sei seduto/a",
+            "Lui/Lei": "si è seduto/a",
+            "Noi": "ci siamo seduti/e",
+            "Voi": "vi siete seduti/e",
+            "Loro": "si sono seduti/e"
+          },
+          "futuro_semplice": {
+            "Io": "mi siederò",
+            "Tu": "ti siederai",
+            "Lui/Lei": "si siederà",
+            "Noi": "ci siederemo",
+            "Voi": "vi siederete",
+            "Loro": "si siederanno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "mi siedo ogni giorno",
+              "io mi siedo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ti siedi molto",
+              "tu ti siedi molto"
+            ]
+          }
+        ],
+        "group": "3. Daily Routine & Senses"
+      },
+      {
+        "id": "g7v_sentire",
+        "type": "coniugazione",
+        "title": "Sentire (to hear / to feel)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "sento",
+            "Tu": "senti",
+            "Lui/Lei": "sente",
+            "Noi": "sentiamo",
+            "Voi": "sentite",
+            "Loro": "sentono"
+          },
+          "passato_prossimo": {
+            "Io": "ho sentito",
+            "Tu": "hai sentito",
+            "Lui/Lei": "ha sentito",
+            "Noi": "abbiamo sentito",
+            "Voi": "avete sentito",
+            "Loro": "hanno sentito"
+          },
+          "futuro_semplice": {
+            "Io": "sentirò",
+            "Tu": "sentirai",
+            "Lui/Lei": "sentirà",
+            "Noi": "sentiremo",
+            "Voi": "sentirete",
+            "Loro": "sentiranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "sento ogni giorno",
+              "io sento ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "senti molto",
+              "tu senti molto"
+            ]
+          }
+        ],
+        "group": "3. Daily Routine & Senses"
+      },
+      {
+        "id": "g7v_svegliarsi",
+        "type": "coniugazione",
+        "title": "Svegliarsi (to wake up)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "mi sveglio",
+            "Tu": "ti svegli",
+            "Lui/Lei": "si sveglia",
+            "Noi": "ci svegliamo",
+            "Voi": "vi svegliate",
+            "Loro": "si svegliano"
+          },
+          "passato_prossimo": {
+            "Io": "mi sono svegliato/a",
+            "Tu": "ti sei svegliato/a",
+            "Lui/Lei": "si è svegliato/a",
+            "Noi": "ci siamo svegliati/e",
+            "Voi": "vi siete svegliati/e",
+            "Loro": "si sono svegliati/e"
+          },
+          "futuro_semplice": {
+            "Io": "mi sveglierò",
+            "Tu": "ti sveglierai",
+            "Lui/Lei": "si sveglierà",
+            "Noi": "ci sveglieremo",
+            "Voi": "vi sveglierete",
+            "Loro": "si sveglieranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "mi sveglio ogni giorno",
+              "io mi sveglio ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ti svegli molto",
+              "tu ti svegli molto"
+            ]
+          }
+        ],
+        "group": "3. Daily Routine & Senses"
+      },
+      {
+        "id": "g7v_vestirsi",
+        "type": "coniugazione",
+        "title": "Vestirsi (to get dressed)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "mi vesto",
+            "Tu": "ti vesti",
+            "Lui/Lei": "si veste",
+            "Noi": "ci vestiamo",
+            "Voi": "vi vestite",
+            "Loro": "si vestono"
+          },
+          "passato_prossimo": {
+            "Io": "mi sono vestito/a",
+            "Tu": "ti sei vestito/a",
+            "Lui/Lei": "si è vestito/a",
+            "Noi": "ci siamo vestiti/e",
+            "Voi": "vi siete vestiti/e",
+            "Loro": "si sono vestiti/e"
+          },
+          "futuro_semplice": {
+            "Io": "mi vestirò",
+            "Tu": "ti vestirai",
+            "Lui/Lei": "si vestirà",
+            "Noi": "ci vestiremo",
+            "Voi": "vi vestirete",
+            "Loro": "si vestiranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "mi vesto ogni giorno",
+              "io mi vesto ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ti vesti molto",
+              "tu ti vesti molto"
+            ]
+          }
+        ],
+        "group": "3. Daily Routine & Senses"
+      },
+      {
+        "id": "g7v_ascoltare",
+        "type": "coniugazione",
+        "title": "Ascoltare (to listen)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "ascolto",
+            "Tu": "ascolti",
+            "Lui/Lei": "ascolta",
+            "Noi": "ascoltiamo",
+            "Voi": "ascoltate",
+            "Loro": "ascoltano"
+          },
+          "passato_prossimo": {
+            "Io": "ho ascoltato",
+            "Tu": "hai ascoltato",
+            "Lui/Lei": "ha ascoltato",
+            "Noi": "abbiamo ascoltato",
+            "Voi": "avete ascoltato",
+            "Loro": "hanno ascoltato"
+          },
+          "futuro_semplice": {
+            "Io": "ascolterò",
+            "Tu": "ascolterai",
+            "Lui/Lei": "ascolterà",
+            "Noi": "ascolteremo",
+            "Voi": "ascolterete",
+            "Loro": "ascolteranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "ascolto ogni giorno",
+              "io ascolto ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ascolti molto",
+              "tu ascolti molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_capire",
+        "type": "coniugazione",
+        "title": "Capire (to understand)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "capisco",
+            "Tu": "capisci",
+            "Lui/Lei": "capisce",
+            "Noi": "capiamo",
+            "Voi": "capite",
+            "Loro": "capiscono"
+          },
+          "passato_prossimo": {
+            "Io": "ho capito",
+            "Tu": "hai capito",
+            "Lui/Lei": "ha capito",
+            "Noi": "abbiamo capito",
+            "Voi": "avete capito",
+            "Loro": "hanno capito"
+          },
+          "futuro_semplice": {
+            "Io": "capirò",
+            "Tu": "capirai",
+            "Lui/Lei": "capirà",
+            "Noi": "capiremo",
+            "Voi": "capirete",
+            "Loro": "capiranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "capisco ogni giorno",
+              "io capisco ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "capisci molto",
+              "tu capisci molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_chiamare",
+        "type": "coniugazione",
+        "title": "Chiamare (to call)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "chiamo",
+            "Tu": "chiami",
+            "Lui/Lei": "chiama",
+            "Noi": "chiamiamo",
+            "Voi": "chiamate",
+            "Loro": "chiamano"
+          },
+          "passato_prossimo": {
+            "Io": "ho chiamato",
+            "Tu": "hai chiamato",
+            "Lui/Lei": "ha chiamato",
+            "Noi": "abbiamo chiamato",
+            "Voi": "avete chiamato",
+            "Loro": "hanno chiamato"
+          },
+          "futuro_semplice": {
+            "Io": "chiamerò",
+            "Tu": "chiamerai",
+            "Lui/Lei": "chiamerà",
+            "Noi": "chiameremo",
+            "Voi": "chiamerete",
+            "Loro": "chiameranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "chiamo ogni giorno",
+              "io chiamo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "chiami molto",
+              "tu chiami molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_chiedere",
+        "type": "coniugazione",
+        "title": "Chiedere (to ask)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "chiedo",
+            "Tu": "chiedi",
+            "Lui/Lei": "chiede",
+            "Noi": "chiediamo",
+            "Voi": "chiedete",
+            "Loro": "chiedono"
+          },
+          "passato_prossimo": {
+            "Io": "ho chiesto",
+            "Tu": "hai chiesto",
+            "Lui/Lei": "ha chiesto",
+            "Noi": "abbiamo chiesto",
+            "Voi": "avete chiesto",
+            "Loro": "hanno chiesto"
+          },
+          "futuro_semplice": {
+            "Io": "chiederò",
+            "Tu": "chiederai",
+            "Lui/Lei": "chiederà",
+            "Noi": "chiederemo",
+            "Voi": "chiederete",
+            "Loro": "chiederanno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "chiedo ogni giorno",
+              "io chiedo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "chiedi molto",
+              "tu chiedi molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_credere",
+        "type": "coniugazione",
+        "title": "Credere (to believe)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "credo",
+            "Tu": "credi",
+            "Lui/Lei": "crede",
+            "Noi": "crediamo",
+            "Voi": "credete",
+            "Loro": "credono"
+          },
+          "passato_prossimo": {
+            "Io": "ho creduto",
+            "Tu": "hai creduto",
+            "Lui/Lei": "ha creduto",
+            "Noi": "abbiamo creduto",
+            "Voi": "avete creduto",
+            "Loro": "hanno creduto"
+          },
+          "futuro_semplice": {
+            "Io": "crederò",
+            "Tu": "crederai",
+            "Lui/Lei": "crederà",
+            "Noi": "crederemo",
+            "Voi": "crederete",
+            "Loro": "crederanno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "credo ogni giorno",
+              "io credo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "credi molto",
+              "tu credi molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_dimenticare",
+        "type": "coniugazione",
+        "title": "Dimenticare (to forget)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "dimentico",
+            "Tu": "dimentichi",
+            "Lui/Lei": "dimentica",
+            "Noi": "dimentichiamo",
+            "Voi": "dimenticate",
+            "Loro": "dimenticano"
+          },
+          "passato_prossimo": {
+            "Io": "ho dimenticato",
+            "Tu": "hai dimenticato",
+            "Lui/Lei": "ha dimenticato",
+            "Noi": "abbiamo dimenticato",
+            "Voi": "avete dimenticato",
+            "Loro": "hanno dimenticato"
+          },
+          "futuro_semplice": {
+            "Io": "dimenticherò",
+            "Tu": "dimenticherai",
+            "Lui/Lei": "dimenticherà",
+            "Noi": "dimenticheremo",
+            "Voi": "dimenticherete",
+            "Loro": "dimenticheranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "dimentico ogni giorno",
+              "io dimentico ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "dimentichi molto",
+              "tu dimentichi molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_guardare",
+        "type": "coniugazione",
+        "title": "Guardare (to watch / to look)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "guardo",
+            "Tu": "guardi",
+            "Lui/Lei": "guarda",
+            "Noi": "guardiamo",
+            "Voi": "guardate",
+            "Loro": "guardano"
+          },
+          "passato_prossimo": {
+            "Io": "ho guardato",
+            "Tu": "hai guardato",
+            "Lui/Lei": "ha guardato",
+            "Noi": "abbiamo guardato",
+            "Voi": "avete guardato",
+            "Loro": "hanno guardato"
+          },
+          "futuro_semplice": {
+            "Io": "guarderò",
+            "Tu": "guarderai",
+            "Lui/Lei": "guarderà",
+            "Noi": "guarderemo",
+            "Voi": "guarderete",
+            "Loro": "guarderanno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "guardo ogni giorno",
+              "io guardo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "guardi molto",
+              "tu guardi molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_imparare",
+        "type": "coniugazione",
+        "title": "Imparare (to learn)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "imparo",
+            "Tu": "impari",
+            "Lui/Lei": "impara",
+            "Noi": "impariamo",
+            "Voi": "imparate",
+            "Loro": "imparano"
+          },
+          "passato_prossimo": {
+            "Io": "ho imparato",
+            "Tu": "hai imparato",
+            "Lui/Lei": "ha imparato",
+            "Noi": "abbiamo imparato",
+            "Voi": "avete imparato",
+            "Loro": "hanno imparato"
+          },
+          "futuro_semplice": {
+            "Io": "imparerò",
+            "Tu": "imparerai",
+            "Lui/Lei": "imparerà",
+            "Noi": "impareremo",
+            "Voi": "imparerete",
+            "Loro": "impareranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "imparo ogni giorno",
+              "io imparo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "impari molto",
+              "tu impari molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_insegnare",
+        "type": "coniugazione",
+        "title": "Insegnare (to teach)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "insegno",
+            "Tu": "insegni",
+            "Lui/Lei": "insegna",
+            "Noi": "insegniamo",
+            "Voi": "insegnate",
+            "Loro": "insegnano"
+          },
+          "passato_prossimo": {
+            "Io": "ho insegnato",
+            "Tu": "hai insegnato",
+            "Lui/Lei": "ha insegnato",
+            "Noi": "abbiamo insegnato",
+            "Voi": "avete insegnato",
+            "Loro": "hanno insegnato"
+          },
+          "futuro_semplice": {
+            "Io": "insegnerò",
+            "Tu": "insegnerai",
+            "Lui/Lei": "insegnerà",
+            "Noi": "insegneremo",
+            "Voi": "insegnerete",
+            "Loro": "insegneranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "insegno ogni giorno",
+              "io insegno ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "insegni molto",
+              "tu insegni molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_leggere",
+        "type": "coniugazione",
+        "title": "Leggere (to read)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "leggo",
+            "Tu": "leggi",
+            "Lui/Lei": "legge",
+            "Noi": "leggiamo",
+            "Voi": "leggete",
+            "Loro": "leggono"
+          },
+          "passato_prossimo": {
+            "Io": "ho letto",
+            "Tu": "hai letto",
+            "Lui/Lei": "ha letto",
+            "Noi": "abbiamo letto",
+            "Voi": "avete letto",
+            "Loro": "hanno letto"
+          },
+          "futuro_semplice": {
+            "Io": "leggerò",
+            "Tu": "leggerai",
+            "Lui/Lei": "leggerà",
+            "Noi": "leggeremo",
+            "Voi": "leggerete",
+            "Loro": "leggeranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "leggo ogni giorno",
+              "io leggo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "leggi molto",
+              "tu leggi molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_pensare",
+        "type": "coniugazione",
+        "title": "Pensare (to think)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "penso",
+            "Tu": "pensi",
+            "Lui/Lei": "pensa",
+            "Noi": "pensiamo",
+            "Voi": "pensate",
+            "Loro": "pensano"
+          },
+          "passato_prossimo": {
+            "Io": "ho pensato",
+            "Tu": "hai pensato",
+            "Lui/Lei": "ha pensato",
+            "Noi": "abbiamo pensato",
+            "Voi": "avete pensato",
+            "Loro": "hanno pensato"
+          },
+          "futuro_semplice": {
+            "Io": "penserò",
+            "Tu": "penserai",
+            "Lui/Lei": "penserà",
+            "Noi": "penseremo",
+            "Voi": "penserete",
+            "Loro": "penseranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "penso ogni giorno",
+              "io penso ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "pensi molto",
+              "tu pensi molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_ricordare",
+        "type": "coniugazione",
+        "title": "Ricordare (to remember)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "ricordo",
+            "Tu": "ricordi",
+            "Lui/Lei": "ricorda",
+            "Noi": "ricordiamo",
+            "Voi": "ricordate",
+            "Loro": "ricordano"
+          },
+          "passato_prossimo": {
+            "Io": "ho ricordato",
+            "Tu": "hai ricordato",
+            "Lui/Lei": "ha ricordato",
+            "Noi": "abbiamo ricordato",
+            "Voi": "avete ricordato",
+            "Loro": "hanno ricordato"
+          },
+          "futuro_semplice": {
+            "Io": "ricorderò",
+            "Tu": "ricorderai",
+            "Lui/Lei": "ricorderà",
+            "Noi": "ricorderemo",
+            "Voi": "ricorderete",
+            "Loro": "ricorderanno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "ricordo ogni giorno",
+              "io ricordo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ricordi molto",
+              "tu ricordi molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_rispondere",
+        "type": "coniugazione",
+        "title": "Rispondere (to answer)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "rispondo",
+            "Tu": "rispondi",
+            "Lui/Lei": "risponde",
+            "Noi": "rispondiamo",
+            "Voi": "rispondete",
+            "Loro": "rispondono"
+          },
+          "passato_prossimo": {
+            "Io": "ho risposto",
+            "Tu": "hai risposto",
+            "Lui/Lei": "ha risposto",
+            "Noi": "abbiamo risposto",
+            "Voi": "avete risposto",
+            "Loro": "hanno risposto"
+          },
+          "futuro_semplice": {
+            "Io": "risponderò",
+            "Tu": "risponderai",
+            "Lui/Lei": "risponderà",
+            "Noi": "risponderemo",
+            "Voi": "risponderete",
+            "Loro": "risponderanno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "rispondo ogni giorno",
+              "io rispondo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "rispondi molto",
+              "tu rispondi molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_scrivere",
+        "type": "coniugazione",
+        "title": "Scrivere (to write)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "scrivo",
+            "Tu": "scrivi",
+            "Lui/Lei": "scrive",
+            "Noi": "scriviamo",
+            "Voi": "scrivete",
+            "Loro": "scrivono"
+          },
+          "passato_prossimo": {
+            "Io": "ho scritto",
+            "Tu": "hai scritto",
+            "Lui/Lei": "ha scritto",
+            "Noi": "abbiamo scritto",
+            "Voi": "avete scritto",
+            "Loro": "hanno scritto"
+          },
+          "futuro_semplice": {
+            "Io": "scriverò",
+            "Tu": "scriverai",
+            "Lui/Lei": "scriverà",
+            "Noi": "scriveremo",
+            "Voi": "scriverete",
+            "Loro": "scriveranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "scrivo ogni giorno",
+              "io scrivo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "scrivi molto",
+              "tu scrivi molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_spiegare",
+        "type": "coniugazione",
+        "title": "Spiegare (to explain)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "spiego",
+            "Tu": "spieghi",
+            "Lui/Lei": "spiega",
+            "Noi": "spieghiamo",
+            "Voi": "spiegate",
+            "Loro": "spiegano"
+          },
+          "passato_prossimo": {
+            "Io": "ho spiegato",
+            "Tu": "hai spiegato",
+            "Lui/Lei": "ha spiegato",
+            "Noi": "abbiamo spiegato",
+            "Voi": "avete spiegato",
+            "Loro": "hanno spiegato"
+          },
+          "futuro_semplice": {
+            "Io": "spiegherò",
+            "Tu": "spiegherai",
+            "Lui/Lei": "spiegherà",
+            "Noi": "spiegheremo",
+            "Voi": "spiegherete",
+            "Loro": "spiegheranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "spiego ogni giorno",
+              "io spiego ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "spieghi molto",
+              "tu spieghi molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_studiare",
+        "type": "coniugazione",
+        "title": "Studiare (to study)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "studio",
+            "Tu": "studi",
+            "Lui/Lei": "studia",
+            "Noi": "studiamo",
+            "Voi": "studiate",
+            "Loro": "studiano"
+          },
+          "passato_prossimo": {
+            "Io": "ho studiato",
+            "Tu": "hai studiato",
+            "Lui/Lei": "ha studiato",
+            "Noi": "abbiamo studiato",
+            "Voi": "avete studiato",
+            "Loro": "hanno studiato"
+          },
+          "futuro_semplice": {
+            "Io": "studierò",
+            "Tu": "studierai",
+            "Lui/Lei": "studierà",
+            "Noi": "studieremo",
+            "Voi": "studierete",
+            "Loro": "studieranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "studio ogni giorno",
+              "io studio ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "studi molto",
+              "tu studi molto"
+            ]
+          }
+        ],
+        "group": "4. Communication & Thought"
+      },
+      {
+        "id": "g7v_aiutare",
+        "type": "coniugazione",
+        "title": "Aiutare (to help)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "aiuto",
+            "Tu": "aiuti",
+            "Lui/Lei": "aiuta",
+            "Noi": "aiutiamo",
+            "Voi": "aiutate",
+            "Loro": "aiutano"
+          },
+          "passato_prossimo": {
+            "Io": "ho aiutato",
+            "Tu": "hai aiutato",
+            "Lui/Lei": "ha aiutato",
+            "Noi": "abbiamo aiutato",
+            "Voi": "avete aiutato",
+            "Loro": "hanno aiutato"
+          },
+          "futuro_semplice": {
+            "Io": "aiuterò",
+            "Tu": "aiuterai",
+            "Lui/Lei": "aiuterà",
+            "Noi": "aiuteremo",
+            "Voi": "aiuterete",
+            "Loro": "aiuteranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "aiuto ogni giorno",
+              "io aiuto ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "aiuti molto",
+              "tu aiuti molto"
+            ]
+          }
+        ],
+        "group": "5. Feelings & Relationships"
+      },
+      {
+        "id": "g7v_amare",
+        "type": "coniugazione",
+        "title": "Amare (to love)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "amo",
+            "Tu": "ami",
+            "Lui/Lei": "ama",
+            "Noi": "amiamo",
+            "Voi": "amate",
+            "Loro": "amano"
+          },
+          "passato_prossimo": {
+            "Io": "ho amato",
+            "Tu": "hai amato",
+            "Lui/Lei": "ha amato",
+            "Noi": "abbiamo amato",
+            "Voi": "avete amato",
+            "Loro": "hanno amato"
+          },
+          "futuro_semplice": {
+            "Io": "amerò",
+            "Tu": "amerai",
+            "Lui/Lei": "amerà",
+            "Noi": "ameremo",
+            "Voi": "amerete",
+            "Loro": "ameranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "amo ogni giorno",
+              "io amo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ami molto",
+              "tu ami molto"
+            ]
+          }
+        ],
+        "group": "5. Feelings & Relationships"
+      },
+      {
+        "id": "g7v_divertirsi",
+        "type": "coniugazione",
+        "title": "Divertirsi (to have fun)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "mi diverto",
+            "Tu": "ti diverti",
+            "Lui/Lei": "si diverte",
+            "Noi": "ci divertiamo",
+            "Voi": "vi divertite",
+            "Loro": "si divertono"
+          },
+          "passato_prossimo": {
+            "Io": "mi sono divertito/a",
+            "Tu": "ti sei divertito/a",
+            "Lui/Lei": "si è divertito/a",
+            "Noi": "ci siamo divertiti/e",
+            "Voi": "vi siete divertiti/e",
+            "Loro": "si sono divertiti/e"
+          },
+          "futuro_semplice": {
+            "Io": "mi divertirò",
+            "Tu": "ti divertirai",
+            "Lui/Lei": "si divertirà",
+            "Noi": "ci divertiremo",
+            "Voi": "vi divertirete",
+            "Loro": "si divertiranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "mi diverto ogni giorno",
+              "io mi diverto ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ti diverti molto",
+              "tu ti diverti molto"
+            ]
+          }
+        ],
+        "group": "5. Feelings & Relationships"
+      },
+      {
+        "id": "g7v_incontrare",
+        "type": "coniugazione",
+        "title": "Incontrare (to meet)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "incontro",
+            "Tu": "incontri",
+            "Lui/Lei": "incontra",
+            "Noi": "incontriamo",
+            "Voi": "incontrate",
+            "Loro": "incontrano"
+          },
+          "passato_prossimo": {
+            "Io": "ho incontrato",
+            "Tu": "hai incontrato",
+            "Lui/Lei": "ha incontrato",
+            "Noi": "abbiamo incontrato",
+            "Voi": "avete incontrato",
+            "Loro": "hanno incontrato"
+          },
+          "futuro_semplice": {
+            "Io": "incontrerò",
+            "Tu": "incontrerai",
+            "Lui/Lei": "incontrerà",
+            "Noi": "incontreremo",
+            "Voi": "incontrerete",
+            "Loro": "incontreranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "incontro ogni giorno",
+              "io incontro ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "incontri molto",
+              "tu incontri molto"
+            ]
+          }
+        ],
+        "group": "5. Feelings & Relationships"
+      },
+      {
+        "id": "g7v_odiare",
+        "type": "coniugazione",
+        "title": "Odiare (to hate)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "odio",
+            "Tu": "odi",
+            "Lui/Lei": "odia",
+            "Noi": "odiamo",
+            "Voi": "odiate",
+            "Loro": "odiano"
+          },
+          "passato_prossimo": {
+            "Io": "ho odiato",
+            "Tu": "hai odiato",
+            "Lui/Lei": "ha odiato",
+            "Noi": "abbiamo odiato",
+            "Voi": "avete odiato",
+            "Loro": "hanno odiato"
+          },
+          "futuro_semplice": {
+            "Io": "odierò",
+            "Tu": "odierai",
+            "Lui/Lei": "odierà",
+            "Noi": "odieremo",
+            "Voi": "odierete",
+            "Loro": "odieranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "odio ogni giorno",
+              "io odio ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "odi molto",
+              "tu odi molto"
+            ]
+          }
+        ],
+        "group": "5. Feelings & Relationships"
+      },
+      {
+        "id": "g7v_piangere",
+        "type": "coniugazione",
+        "title": "Piangere (to cry)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "piango",
+            "Tu": "piangi",
+            "Lui/Lei": "piange",
+            "Noi": "piangiamo",
+            "Voi": "piangete",
+            "Loro": "piangono"
+          },
+          "passato_prossimo": {
+            "Io": "ho pianto",
+            "Tu": "hai pianto",
+            "Lui/Lei": "ha pianto",
+            "Noi": "abbiamo pianto",
+            "Voi": "avete pianto",
+            "Loro": "hanno pianto"
+          },
+          "futuro_semplice": {
+            "Io": "piangerò",
+            "Tu": "piangerai",
+            "Lui/Lei": "piangerà",
+            "Noi": "piangeremo",
+            "Voi": "piangerete",
+            "Loro": "piangeranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "piango ogni giorno",
+              "io piango ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "piangi molto",
+              "tu piangi molto"
+            ]
+          }
+        ],
+        "group": "5. Feelings & Relationships"
+      },
+      {
+        "id": "g7v_ridere",
+        "type": "coniugazione",
+        "title": "Ridere (to laugh)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "rido",
+            "Tu": "ridi",
+            "Lui/Lei": "ride",
+            "Noi": "ridiamo",
+            "Voi": "ridete",
+            "Loro": "ridono"
+          },
+          "passato_prossimo": {
+            "Io": "ho riso",
+            "Tu": "hai riso",
+            "Lui/Lei": "ha riso",
+            "Noi": "abbiamo riso",
+            "Voi": "avete riso",
+            "Loro": "hanno riso"
+          },
+          "futuro_semplice": {
+            "Io": "riderò",
+            "Tu": "riderai",
+            "Lui/Lei": "riderà",
+            "Noi": "rideremo",
+            "Voi": "riderete",
+            "Loro": "rideranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "rido ogni giorno",
+              "io rido ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ridi molto",
+              "tu ridi molto"
+            ]
+          }
+        ],
+        "group": "5. Feelings & Relationships"
+      },
+      {
+        "id": "g7v_salutare",
+        "type": "coniugazione",
+        "title": "Salutare (to greet)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "saluto",
+            "Tu": "saluti",
+            "Lui/Lei": "saluta",
+            "Noi": "salutiamo",
+            "Voi": "salutate",
+            "Loro": "salutano"
+          },
+          "passato_prossimo": {
+            "Io": "ho salutato",
+            "Tu": "hai salutato",
+            "Lui/Lei": "ha salutato",
+            "Noi": "abbiamo salutato",
+            "Voi": "avete salutato",
+            "Loro": "hanno salutato"
+          },
+          "futuro_semplice": {
+            "Io": "saluterò",
+            "Tu": "saluterai",
+            "Lui/Lei": "saluterà",
+            "Noi": "saluteremo",
+            "Voi": "saluterete",
+            "Loro": "saluteranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "saluto ogni giorno",
+              "io saluto ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "saluti molto",
+              "tu saluti molto"
+            ]
+          }
+        ],
+        "group": "5. Feelings & Relationships"
+      },
+      {
+        "id": "g7v_sentirsi",
+        "type": "coniugazione",
+        "title": "Sentirsi (to feel (oneself))",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "mi sento",
+            "Tu": "ti senti",
+            "Lui/Lei": "si sente",
+            "Noi": "ci sentiamo",
+            "Voi": "vi sentite",
+            "Loro": "si sentono"
+          },
+          "passato_prossimo": {
+            "Io": "mi sono sentito/a",
+            "Tu": "ti sei sentito/a",
+            "Lui/Lei": "si è sentito/a",
+            "Noi": "ci siamo sentiti/e",
+            "Voi": "vi siete sentiti/e",
+            "Loro": "si sono sentiti/e"
+          },
+          "futuro_semplice": {
+            "Io": "mi sentirò",
+            "Tu": "ti sentirai",
+            "Lui/Lei": "si sentirà",
+            "Noi": "ci sentiremo",
+            "Voi": "vi sentirete",
+            "Loro": "si sentiranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "mi sento ogni giorno",
+              "io mi sento ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ti senti molto",
+              "tu ti senti molto"
+            ]
+          }
+        ],
+        "group": "5. Feelings & Relationships"
+      },
+      {
+        "id": "g7v_sperare",
+        "type": "coniugazione",
+        "title": "Sperare (to hope)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "spero",
+            "Tu": "speri",
+            "Lui/Lei": "spera",
+            "Noi": "speriamo",
+            "Voi": "sperate",
+            "Loro": "sperano"
+          },
+          "passato_prossimo": {
+            "Io": "ho sperato",
+            "Tu": "hai sperato",
+            "Lui/Lei": "ha sperato",
+            "Noi": "abbiamo sperato",
+            "Voi": "avete sperato",
+            "Loro": "hanno sperato"
+          },
+          "futuro_semplice": {
+            "Io": "spererò",
+            "Tu": "spererai",
+            "Lui/Lei": "spererà",
+            "Noi": "spereremo",
+            "Voi": "spererete",
+            "Loro": "spereranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "spero ogni giorno",
+              "io spero ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "speri molto",
+              "tu speri molto"
+            ]
+          }
+        ],
+        "group": "5. Feelings & Relationships"
+      },
+      {
+        "id": "g7v_aspettare",
+        "type": "coniugazione",
+        "title": "Aspettare (to wait)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "aspetto",
+            "Tu": "aspetti",
+            "Lui/Lei": "aspetta",
+            "Noi": "aspettiamo",
+            "Voi": "aspettate",
+            "Loro": "aspettano"
+          },
+          "passato_prossimo": {
+            "Io": "ho aspettato",
+            "Tu": "hai aspettato",
+            "Lui/Lei": "ha aspettato",
+            "Noi": "abbiamo aspettato",
+            "Voi": "avete aspettato",
+            "Loro": "hanno aspettato"
+          },
+          "futuro_semplice": {
+            "Io": "aspetterò",
+            "Tu": "aspetterai",
+            "Lui/Lei": "aspetterà",
+            "Noi": "aspetteremo",
+            "Voi": "aspetterete",
+            "Loro": "aspetteranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "aspetto ogni giorno",
+              "io aspetto ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "aspetti molto",
+              "tu aspetti molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_cambiare",
+        "type": "coniugazione",
+        "title": "Cambiare (to change)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "cambio",
+            "Tu": "cambi",
+            "Lui/Lei": "cambia",
+            "Noi": "cambiamo",
+            "Voi": "cambiate",
+            "Loro": "cambiano"
+          },
+          "passato_prossimo": {
+            "Io": "ho cambiato",
+            "Tu": "hai cambiato",
+            "Lui/Lei": "ha cambiato",
+            "Noi": "abbiamo cambiato",
+            "Voi": "avete cambiato",
+            "Loro": "hanno cambiato"
+          },
+          "futuro_semplice": {
+            "Io": "cambierò",
+            "Tu": "cambierai",
+            "Lui/Lei": "cambierà",
+            "Noi": "cambieremo",
+            "Voi": "cambierete",
+            "Loro": "cambieranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "cambio ogni giorno",
+              "io cambio ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "cambi molto",
+              "tu cambi molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_cercare",
+        "type": "coniugazione",
+        "title": "Cercare (to look for)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "cerco",
+            "Tu": "cerchi",
+            "Lui/Lei": "cerca",
+            "Noi": "cerchiamo",
+            "Voi": "cercate",
+            "Loro": "cercano"
+          },
+          "passato_prossimo": {
+            "Io": "ho cercato",
+            "Tu": "hai cercato",
+            "Lui/Lei": "ha cercato",
+            "Noi": "abbiamo cercato",
+            "Voi": "avete cercato",
+            "Loro": "hanno cercato"
+          },
+          "futuro_semplice": {
+            "Io": "cercherò",
+            "Tu": "cercherai",
+            "Lui/Lei": "cercherà",
+            "Noi": "cercheremo",
+            "Voi": "cercherete",
+            "Loro": "cercheranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "cerco ogni giorno",
+              "io cerco ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "cerchi molto",
+              "tu cerchi molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_cominciare",
+        "type": "coniugazione",
+        "title": "Cominciare (to begin)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "comincio",
+            "Tu": "cominci",
+            "Lui/Lei": "comincia",
+            "Noi": "cominciamo",
+            "Voi": "cominciate",
+            "Loro": "cominciano"
+          },
+          "passato_prossimo": {
+            "Io": "ho cominciato",
+            "Tu": "hai cominciato",
+            "Lui/Lei": "ha cominciato",
+            "Noi": "abbiamo cominciato",
+            "Voi": "avete cominciato",
+            "Loro": "hanno cominciato"
+          },
+          "futuro_semplice": {
+            "Io": "comincerò",
+            "Tu": "comincerai",
+            "Lui/Lei": "comincerà",
+            "Noi": "cominceremo",
+            "Voi": "comincerete",
+            "Loro": "cominceranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "comincio ogni giorno",
+              "io comincio ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "cominci molto",
+              "tu cominci molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_comprare",
+        "type": "coniugazione",
+        "title": "Comprare (to buy)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "compro",
+            "Tu": "compri",
+            "Lui/Lei": "compra",
+            "Noi": "compriamo",
+            "Voi": "comprate",
+            "Loro": "comprano"
+          },
+          "passato_prossimo": {
+            "Io": "ho comprato",
+            "Tu": "hai comprato",
+            "Lui/Lei": "ha comprato",
+            "Noi": "abbiamo comprato",
+            "Voi": "avete comprato",
+            "Loro": "hanno comprato"
+          },
+          "futuro_semplice": {
+            "Io": "comprerò",
+            "Tu": "comprerai",
+            "Lui/Lei": "comprerà",
+            "Noi": "compreremo",
+            "Voi": "comprerete",
+            "Loro": "compreranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "compro ogni giorno",
+              "io compro ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "compri molto",
+              "tu compri molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_continuare",
+        "type": "coniugazione",
+        "title": "Continuare (to continue)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "continuo",
+            "Tu": "continui",
+            "Lui/Lei": "continua",
+            "Noi": "continuiamo",
+            "Voi": "continuate",
+            "Loro": "continuano"
+          },
+          "passato_prossimo": {
+            "Io": "ho continuato",
+            "Tu": "hai continuato",
+            "Lui/Lei": "ha continuato",
+            "Noi": "abbiamo continuato",
+            "Voi": "avete continuato",
+            "Loro": "hanno continuato"
+          },
+          "futuro_semplice": {
+            "Io": "continuerò",
+            "Tu": "continuerai",
+            "Lui/Lei": "continuerà",
+            "Noi": "continueremo",
+            "Voi": "continuerete",
+            "Loro": "continueranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "continuo ogni giorno",
+              "io continuo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "continui molto",
+              "tu continui molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_costare",
+        "type": "coniugazione",
+        "title": "Costare (to cost)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "costo",
+            "Tu": "costi",
+            "Lui/Lei": "costa",
+            "Noi": "costiamo",
+            "Voi": "costate",
+            "Loro": "costano"
+          },
+          "passato_prossimo": {
+            "Io": "sono costato/a",
+            "Tu": "sei costato/a",
+            "Lui/Lei": "è costato/a",
+            "Noi": "siamo costati/e",
+            "Voi": "siete costati/e",
+            "Loro": "sono costati/e"
+          },
+          "futuro_semplice": {
+            "Io": "costerò",
+            "Tu": "costerai",
+            "Lui/Lei": "costerà",
+            "Noi": "costeremo",
+            "Voi": "costerete",
+            "Loro": "costeranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "costo ogni giorno",
+              "io costo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "costi molto",
+              "tu costi molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_costruire",
+        "type": "coniugazione",
+        "title": "Costruire (to build)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "costruisco",
+            "Tu": "costruisci",
+            "Lui/Lei": "costruisce",
+            "Noi": "costruiamo",
+            "Voi": "costruite",
+            "Loro": "costruiscono"
+          },
+          "passato_prossimo": {
+            "Io": "ho costruito",
+            "Tu": "hai costruito",
+            "Lui/Lei": "ha costruito",
+            "Noi": "abbiamo costruito",
+            "Voi": "avete costruito",
+            "Loro": "hanno costruito"
+          },
+          "futuro_semplice": {
+            "Io": "costruirò",
+            "Tu": "costruirai",
+            "Lui/Lei": "costruirà",
+            "Noi": "costruiremo",
+            "Voi": "costruirete",
+            "Loro": "costruiranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "costruisco ogni giorno",
+              "io costruisco ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "costruisci molto",
+              "tu costruisci molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_creare",
+        "type": "coniugazione",
+        "title": "Creare (to create)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "creo",
+            "Tu": "crei",
+            "Lui/Lei": "crea",
+            "Noi": "creiamo",
+            "Voi": "create",
+            "Loro": "creano"
+          },
+          "passato_prossimo": {
+            "Io": "ho creato",
+            "Tu": "hai creato",
+            "Lui/Lei": "ha creato",
+            "Noi": "abbiamo creato",
+            "Voi": "avete creato",
+            "Loro": "hanno creato"
+          },
+          "futuro_semplice": {
+            "Io": "creerò",
+            "Tu": "creerai",
+            "Lui/Lei": "creerà",
+            "Noi": "creeremo",
+            "Voi": "creerete",
+            "Loro": "creeranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "creo ogni giorno",
+              "io creo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "crei molto",
+              "tu crei molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_cucinare",
+        "type": "coniugazione",
+        "title": "Cucinare (to cook)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "cucino",
+            "Tu": "cucini",
+            "Lui/Lei": "cucina",
+            "Noi": "cuciniamo",
+            "Voi": "cucinate",
+            "Loro": "cucinano"
+          },
+          "passato_prossimo": {
+            "Io": "ho cucinato",
+            "Tu": "hai cucinato",
+            "Lui/Lei": "ha cucinato",
+            "Noi": "abbiamo cucinato",
+            "Voi": "avete cucinato",
+            "Loro": "hanno cucinato"
+          },
+          "futuro_semplice": {
+            "Io": "cucinerò",
+            "Tu": "cucinerai",
+            "Lui/Lei": "cucinerà",
+            "Noi": "cucineremo",
+            "Voi": "cucinerete",
+            "Loro": "cucineranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "cucino ogni giorno",
+              "io cucino ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "cucini molto",
+              "tu cucini molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_finire",
+        "type": "coniugazione",
+        "title": "Finire (to finish)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "finisco",
+            "Tu": "finisci",
+            "Lui/Lei": "finisce",
+            "Noi": "finiamo",
+            "Voi": "finite",
+            "Loro": "finiscono"
+          },
+          "passato_prossimo": {
+            "Io": "ho finito",
+            "Tu": "hai finito",
+            "Lui/Lei": "ha finito",
+            "Noi": "abbiamo finito",
+            "Voi": "avete finito",
+            "Loro": "hanno finito"
+          },
+          "futuro_semplice": {
+            "Io": "finirò",
+            "Tu": "finirai",
+            "Lui/Lei": "finirà",
+            "Noi": "finiremo",
+            "Voi": "finirete",
+            "Loro": "finiranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "finisco ogni giorno",
+              "io finisco ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "finisci molto",
+              "tu finisci molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_lasciare",
+        "type": "coniugazione",
+        "title": "Lasciare (to leave (something))",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "lascio",
+            "Tu": "lasci",
+            "Lui/Lei": "lascia",
+            "Noi": "lasciamo",
+            "Voi": "lasciate",
+            "Loro": "lasciano"
+          },
+          "passato_prossimo": {
+            "Io": "ho lasciato",
+            "Tu": "hai lasciato",
+            "Lui/Lei": "ha lasciato",
+            "Noi": "abbiamo lasciato",
+            "Voi": "avete lasciato",
+            "Loro": "hanno lasciato"
+          },
+          "futuro_semplice": {
+            "Io": "lascerò",
+            "Tu": "lascerai",
+            "Lui/Lei": "lascerà",
+            "Noi": "lasceremo",
+            "Voi": "lascerete",
+            "Loro": "lasceranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "lascio ogni giorno",
+              "io lascio ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "lasci molto",
+              "tu lasci molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_lavorare",
+        "type": "coniugazione",
+        "title": "Lavorare (to work)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "lavoro",
+            "Tu": "lavori",
+            "Lui/Lei": "lavora",
+            "Noi": "lavoriamo",
+            "Voi": "lavorate",
+            "Loro": "lavorano"
+          },
+          "passato_prossimo": {
+            "Io": "ho lavorato",
+            "Tu": "hai lavorato",
+            "Lui/Lei": "ha lavorato",
+            "Noi": "abbiamo lavorato",
+            "Voi": "avete lavorato",
+            "Loro": "hanno lavorato"
+          },
+          "futuro_semplice": {
+            "Io": "lavorerò",
+            "Tu": "lavorerai",
+            "Lui/Lei": "lavorerà",
+            "Noi": "lavoreremo",
+            "Voi": "lavorerete",
+            "Loro": "lavoreranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "lavoro ogni giorno",
+              "io lavoro ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "lavori molto",
+              "tu lavori molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_mandare",
+        "type": "coniugazione",
+        "title": "Mandare (to send)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "mando",
+            "Tu": "mandi",
+            "Lui/Lei": "manda",
+            "Noi": "mandiamo",
+            "Voi": "mandate",
+            "Loro": "mandano"
+          },
+          "passato_prossimo": {
+            "Io": "ho mandato",
+            "Tu": "hai mandato",
+            "Lui/Lei": "ha mandato",
+            "Noi": "abbiamo mandato",
+            "Voi": "avete mandato",
+            "Loro": "hanno mandato"
+          },
+          "futuro_semplice": {
+            "Io": "manderò",
+            "Tu": "manderai",
+            "Lui/Lei": "manderà",
+            "Noi": "manderemo",
+            "Voi": "manderete",
+            "Loro": "manderanno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "mando ogni giorno",
+              "io mando ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "mandi molto",
+              "tu mandi molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_mettere",
+        "type": "coniugazione",
+        "title": "Mettere (to put)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "metto",
+            "Tu": "metti",
+            "Lui/Lei": "mette",
+            "Noi": "mettiamo",
+            "Voi": "mettete",
+            "Loro": "mettono"
+          },
+          "passato_prossimo": {
+            "Io": "ho messo",
+            "Tu": "hai messo",
+            "Lui/Lei": "ha messo",
+            "Noi": "abbiamo messo",
+            "Voi": "avete messo",
+            "Loro": "hanno messo"
+          },
+          "futuro_semplice": {
+            "Io": "metterò",
+            "Tu": "metterai",
+            "Lui/Lei": "metterà",
+            "Noi": "metteremo",
+            "Voi": "metterete",
+            "Loro": "metteranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "metto ogni giorno",
+              "io metto ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "metti molto",
+              "tu metti molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_pagare",
+        "type": "coniugazione",
+        "title": "Pagare (to pay)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "pago",
+            "Tu": "paghi",
+            "Lui/Lei": "paga",
+            "Noi": "paghiamo",
+            "Voi": "pagate",
+            "Loro": "pagano"
+          },
+          "passato_prossimo": {
+            "Io": "ho pagato",
+            "Tu": "hai pagato",
+            "Lui/Lei": "ha pagato",
+            "Noi": "abbiamo pagato",
+            "Voi": "avete pagato",
+            "Loro": "hanno pagato"
+          },
+          "futuro_semplice": {
+            "Io": "pagherò",
+            "Tu": "pagherai",
+            "Lui/Lei": "pagherà",
+            "Noi": "pagheremo",
+            "Voi": "pagherete",
+            "Loro": "pagheranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "pago ogni giorno",
+              "io pago ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "paghi molto",
+              "tu paghi molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_prendere",
+        "type": "coniugazione",
+        "title": "Prendere (to take)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "prendo",
+            "Tu": "prendi",
+            "Lui/Lei": "prende",
+            "Noi": "prendiamo",
+            "Voi": "prendete",
+            "Loro": "prendono"
+          },
+          "passato_prossimo": {
+            "Io": "ho preso",
+            "Tu": "hai preso",
+            "Lui/Lei": "ha preso",
+            "Noi": "abbiamo preso",
+            "Voi": "avete preso",
+            "Loro": "hanno preso"
+          },
+          "futuro_semplice": {
+            "Io": "prenderò",
+            "Tu": "prenderai",
+            "Lui/Lei": "prenderà",
+            "Noi": "prenderemo",
+            "Voi": "prenderete",
+            "Loro": "prenderanno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "prendo ogni giorno",
+              "io prendo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "prendi molto",
+              "tu prendi molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_preparare",
+        "type": "coniugazione",
+        "title": "Preparare (to prepare)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "preparo",
+            "Tu": "prepari",
+            "Lui/Lei": "prepara",
+            "Noi": "prepariamo",
+            "Voi": "preparate",
+            "Loro": "preparano"
+          },
+          "passato_prossimo": {
+            "Io": "ho preparato",
+            "Tu": "hai preparato",
+            "Lui/Lei": "ha preparato",
+            "Noi": "abbiamo preparato",
+            "Voi": "avete preparato",
+            "Loro": "hanno preparato"
+          },
+          "futuro_semplice": {
+            "Io": "preparerò",
+            "Tu": "preparerai",
+            "Lui/Lei": "preparerà",
+            "Noi": "prepareremo",
+            "Voi": "preparerete",
+            "Loro": "prepareranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "preparo ogni giorno",
+              "io preparo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "prepari molto",
+              "tu prepari molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_pulire",
+        "type": "coniugazione",
+        "title": "Pulire (to clean)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "pulisco",
+            "Tu": "pulisci",
+            "Lui/Lei": "pulisce",
+            "Noi": "puliamo",
+            "Voi": "pulite",
+            "Loro": "puliscono"
+          },
+          "passato_prossimo": {
+            "Io": "ho pulito",
+            "Tu": "hai pulito",
+            "Lui/Lei": "ha pulito",
+            "Noi": "abbiamo pulito",
+            "Voi": "avete pulito",
+            "Loro": "hanno pulito"
+          },
+          "futuro_semplice": {
+            "Io": "pulirò",
+            "Tu": "pulirai",
+            "Lui/Lei": "pulirà",
+            "Noi": "puliremo",
+            "Voi": "pulirete",
+            "Loro": "puliranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "pulisco ogni giorno",
+              "io pulisco ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "pulisci molto",
+              "tu pulisci molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_ricevere",
+        "type": "coniugazione",
+        "title": "Ricevere (to receive)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "ricevo",
+            "Tu": "ricevi",
+            "Lui/Lei": "riceve",
+            "Noi": "riceviamo",
+            "Voi": "ricevete",
+            "Loro": "ricevono"
+          },
+          "passato_prossimo": {
+            "Io": "ho ricevuto",
+            "Tu": "hai ricevuto",
+            "Lui/Lei": "ha ricevuto",
+            "Noi": "abbiamo ricevuto",
+            "Voi": "avete ricevuto",
+            "Loro": "hanno ricevuto"
+          },
+          "futuro_semplice": {
+            "Io": "riceverò",
+            "Tu": "riceverai",
+            "Lui/Lei": "riceverà",
+            "Noi": "riceveremo",
+            "Voi": "riceverete",
+            "Loro": "riceveranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "ricevo ogni giorno",
+              "io ricevo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "ricevi molto",
+              "tu ricevi molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_trovare",
+        "type": "coniugazione",
+        "title": "Trovare (to find)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "trovo",
+            "Tu": "trovi",
+            "Lui/Lei": "trova",
+            "Noi": "troviamo",
+            "Voi": "trovate",
+            "Loro": "trovano"
+          },
+          "passato_prossimo": {
+            "Io": "ho trovato",
+            "Tu": "hai trovato",
+            "Lui/Lei": "ha trovato",
+            "Noi": "abbiamo trovato",
+            "Voi": "avete trovato",
+            "Loro": "hanno trovato"
+          },
+          "futuro_semplice": {
+            "Io": "troverò",
+            "Tu": "troverai",
+            "Lui/Lei": "troverà",
+            "Noi": "troveremo",
+            "Voi": "troverete",
+            "Loro": "troveranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "trovo ogni giorno",
+              "io trovo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "trovi molto",
+              "tu trovi molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_usare",
+        "type": "coniugazione",
+        "title": "Usare (to use)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "uso",
+            "Tu": "usi",
+            "Lui/Lei": "usa",
+            "Noi": "usiamo",
+            "Voi": "usate",
+            "Loro": "usano"
+          },
+          "passato_prossimo": {
+            "Io": "ho usato",
+            "Tu": "hai usato",
+            "Lui/Lei": "ha usato",
+            "Noi": "abbiamo usato",
+            "Voi": "avete usato",
+            "Loro": "hanno usato"
+          },
+          "futuro_semplice": {
+            "Io": "userò",
+            "Tu": "userai",
+            "Lui/Lei": "userà",
+            "Noi": "useremo",
+            "Voi": "userete",
+            "Loro": "useranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "uso ogni giorno",
+              "io uso ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "usi molto",
+              "tu usi molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_vendere",
+        "type": "coniugazione",
+        "title": "Vendere (to sell)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "vendo",
+            "Tu": "vendi",
+            "Lui/Lei": "vende",
+            "Noi": "vendiamo",
+            "Voi": "vendete",
+            "Loro": "vendono"
+          },
+          "passato_prossimo": {
+            "Io": "ho venduto",
+            "Tu": "hai venduto",
+            "Lui/Lei": "ha venduto",
+            "Noi": "abbiamo venduto",
+            "Voi": "avete venduto",
+            "Loro": "hanno venduto"
+          },
+          "futuro_semplice": {
+            "Io": "venderò",
+            "Tu": "venderai",
+            "Lui/Lei": "venderà",
+            "Noi": "venderemo",
+            "Voi": "venderete",
+            "Loro": "venderanno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "vendo ogni giorno",
+              "io vendo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "vendi molto",
+              "tu vendi molto"
+            ]
+          }
+        ],
+        "group": "6. Work & Daily Tasks"
+      },
+      {
+        "id": "g7v_conoscere",
+        "type": "coniugazione",
+        "title": "Conoscere (to know (a person/place))",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "conosco",
+            "Tu": "conosci",
+            "Lui/Lei": "conosce",
+            "Noi": "conosciamo",
+            "Voi": "conoscete",
+            "Loro": "conoscono"
+          },
+          "passato_prossimo": {
+            "Io": "ho conosciuto",
+            "Tu": "hai conosciuto",
+            "Lui/Lei": "ha conosciuto",
+            "Noi": "abbiamo conosciuto",
+            "Voi": "avete conosciuto",
+            "Loro": "hanno conosciuto"
+          },
+          "futuro_semplice": {
+            "Io": "conoscerò",
+            "Tu": "conoscerai",
+            "Lui/Lei": "conoscerà",
+            "Noi": "conosceremo",
+            "Voi": "conoscerete",
+            "Loro": "conosceranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "conosco ogni giorno",
+              "io conosco ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "conosci molto",
+              "tu conosci molto"
+            ]
+          }
+        ],
+        "group": "7. Life & Existence"
+      },
+      {
+        "id": "g7v_crescere",
+        "type": "coniugazione",
+        "title": "Crescere (to grow)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "cresco",
+            "Tu": "cresci",
+            "Lui/Lei": "cresce",
+            "Noi": "cresciamo",
+            "Voi": "crescete",
+            "Loro": "crescono"
+          },
+          "passato_prossimo": {
+            "Io": "sono cresciuto/a",
+            "Tu": "sei cresciuto/a",
+            "Lui/Lei": "è cresciuto/a",
+            "Noi": "siamo cresciuti/e",
+            "Voi": "siete cresciuti/e",
+            "Loro": "sono cresciuti/e"
+          },
+          "futuro_semplice": {
+            "Io": "crescerò",
+            "Tu": "crescerai",
+            "Lui/Lei": "crescerà",
+            "Noi": "cresceremo",
+            "Voi": "crescerete",
+            "Loro": "cresceranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "cresco ogni giorno",
+              "io cresco ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "cresci molto",
+              "tu cresci molto"
+            ]
+          }
+        ],
+        "group": "7. Life & Existence"
+      },
+      {
+        "id": "g7v_diventare",
+        "type": "coniugazione",
+        "title": "Diventare (to become)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "divento",
+            "Tu": "diventi",
+            "Lui/Lei": "diventa",
+            "Noi": "diventiamo",
+            "Voi": "diventate",
+            "Loro": "diventano"
+          },
+          "passato_prossimo": {
+            "Io": "sono diventato/a",
+            "Tu": "sei diventato/a",
+            "Lui/Lei": "è diventato/a",
+            "Noi": "siamo diventati/e",
+            "Voi": "siete diventati/e",
+            "Loro": "sono diventati/e"
+          },
+          "futuro_semplice": {
+            "Io": "diventerò",
+            "Tu": "diventerai",
+            "Lui/Lei": "diventerà",
+            "Noi": "diventeremo",
+            "Voi": "diventerete",
+            "Loro": "diventeranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "divento ogni giorno",
+              "io divento ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "diventi molto",
+              "tu diventi molto"
+            ]
+          }
+        ],
+        "group": "7. Life & Existence"
+      },
+      {
+        "id": "g7v_morire",
+        "type": "coniugazione",
+        "title": "Morire (to die)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "muoio",
+            "Tu": "muori",
+            "Lui/Lei": "muore",
+            "Noi": "moriamo",
+            "Voi": "morite",
+            "Loro": "muoiono"
+          },
+          "passato_prossimo": {
+            "Io": "sono morto/a",
+            "Tu": "sei morto/a",
+            "Lui/Lei": "è morto/a",
+            "Noi": "siamo morti/e",
+            "Voi": "siete morti/e",
+            "Loro": "sono morti/e"
+          },
+          "futuro_semplice": {
+            "Io": "morirò",
+            "Tu": "morirai",
+            "Lui/Lei": "morirà",
+            "Noi": "moriremo",
+            "Voi": "morirete",
+            "Loro": "moriranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "muoio ogni giorno",
+              "io muoio ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "muori molto",
+              "tu muori molto"
+            ]
+          }
+        ],
+        "group": "7. Life & Existence"
+      },
+      {
+        "id": "g7v_nascere",
+        "type": "coniugazione",
+        "title": "Nascere (to be born)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "nasco",
+            "Tu": "nasci",
+            "Lui/Lei": "nasce",
+            "Noi": "nasciamo",
+            "Voi": "nascete",
+            "Loro": "nascono"
+          },
+          "passato_prossimo": {
+            "Io": "sono nato/a",
+            "Tu": "sei nato/a",
+            "Lui/Lei": "è nato/a",
+            "Noi": "siamo nati/e",
+            "Voi": "siete nati/e",
+            "Loro": "sono nati/e"
+          },
+          "futuro_semplice": {
+            "Io": "nascerò",
+            "Tu": "nascerai",
+            "Lui/Lei": "nascerà",
+            "Noi": "nasceremo",
+            "Voi": "nascerete",
+            "Loro": "nasceranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "nasco ogni giorno",
+              "io nasco ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "nasci molto",
+              "tu nasci molto"
+            ]
+          }
+        ],
+        "group": "7. Life & Existence"
+      },
+      {
+        "id": "g7v_restare",
+        "type": "coniugazione",
+        "title": "Restare (to remain)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "resto",
+            "Tu": "resti",
+            "Lui/Lei": "resta",
+            "Noi": "restiamo",
+            "Voi": "restate",
+            "Loro": "restano"
+          },
+          "passato_prossimo": {
+            "Io": "sono restato/a",
+            "Tu": "sei restato/a",
+            "Lui/Lei": "è restato/a",
+            "Noi": "siamo restati/e",
+            "Voi": "siete restati/e",
+            "Loro": "sono restati/e"
+          },
+          "futuro_semplice": {
+            "Io": "resterò",
+            "Tu": "resterai",
+            "Lui/Lei": "resterà",
+            "Noi": "resteremo",
+            "Voi": "resterete",
+            "Loro": "resteranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "resto ogni giorno",
+              "io resto ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "resti molto",
+              "tu resti molto"
+            ]
+          }
+        ],
+        "group": "7. Life & Existence"
+      },
+      {
+        "id": "g7v_sembrare",
+        "type": "coniugazione",
+        "title": "Sembrare (to seem)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "sembro",
+            "Tu": "sembri",
+            "Lui/Lei": "sembra",
+            "Noi": "sembriamo",
+            "Voi": "sembrate",
+            "Loro": "sembrano"
+          },
+          "passato_prossimo": {
+            "Io": "sono sembrato/a",
+            "Tu": "sei sembrato/a",
+            "Lui/Lei": "è sembrato/a",
+            "Noi": "siamo sembrati/e",
+            "Voi": "siete sembrati/e",
+            "Loro": "sono sembrati/e"
+          },
+          "futuro_semplice": {
+            "Io": "sembrerò",
+            "Tu": "sembrerai",
+            "Lui/Lei": "sembrerà",
+            "Noi": "sembreremo",
+            "Voi": "sembrerete",
+            "Loro": "sembreranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "sembro ogni giorno",
+              "io sembro ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "sembri molto",
+              "tu sembri molto"
+            ]
+          }
+        ],
+        "group": "7. Life & Existence"
+      },
+      {
+        "id": "g7v_vivere",
+        "type": "coniugazione",
+        "title": "Vivere (to live)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "vivo",
+            "Tu": "vivi",
+            "Lui/Lei": "vive",
+            "Noi": "viviamo",
+            "Voi": "vivete",
+            "Loro": "vivono"
+          },
+          "passato_prossimo": {
+            "Io": "ho vissuto",
+            "Tu": "hai vissuto",
+            "Lui/Lei": "ha vissuto",
+            "Noi": "abbiamo vissuto",
+            "Voi": "avete vissuto",
+            "Loro": "hanno vissuto"
+          },
+          "futuro_semplice": {
+            "Io": "vivrò",
+            "Tu": "vivrai",
+            "Lui/Lei": "vivrà",
+            "Noi": "vivremo",
+            "Voi": "vivrete",
+            "Loro": "vivranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "vivo ogni giorno",
+              "io vivo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "vivi molto",
+              "tu vivi molto"
+            ]
+          }
+        ],
+        "group": "7. Life & Existence"
+      },
+      {
+        "id": "g7v_ballare",
+        "type": "coniugazione",
+        "title": "Ballare (to dance)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "ballo",
+            "Tu": "balli",
+            "Lui/Lei": "balla",
+            "Noi": "balliamo",
+            "Voi": "ballate",
+            "Loro": "ballano"
+          },
+          "passato_prossimo": {
+            "Io": "ho ballato",
+            "Tu": "hai ballato",
+            "Lui/Lei": "ha ballato",
+            "Noi": "abbiamo ballato",
+            "Voi": "avete ballato",
+            "Loro": "hanno ballato"
+          },
+          "futuro_semplice": {
+            "Io": "ballerò",
+            "Tu": "ballerai",
+            "Lui/Lei": "ballerà",
+            "Noi": "balleremo",
+            "Voi": "ballerete",
+            "Loro": "balleranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "ballo ogni giorno",
+              "io ballo ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "balli molto",
+              "tu balli molto"
+            ]
+          }
+        ],
+        "group": "8. Leisure & Play"
+      },
+      {
+        "id": "g7v_cantare",
+        "type": "coniugazione",
+        "title": "Cantare (to sing)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "canto",
+            "Tu": "canti",
+            "Lui/Lei": "canta",
+            "Noi": "cantiamo",
+            "Voi": "cantate",
+            "Loro": "cantano"
+          },
+          "passato_prossimo": {
+            "Io": "ho cantato",
+            "Tu": "hai cantato",
+            "Lui/Lei": "ha cantato",
+            "Noi": "abbiamo cantato",
+            "Voi": "avete cantato",
+            "Loro": "hanno cantato"
+          },
+          "futuro_semplice": {
+            "Io": "canterò",
+            "Tu": "canterai",
+            "Lui/Lei": "canterà",
+            "Noi": "canteremo",
+            "Voi": "canterete",
+            "Loro": "canteranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "canto ogni giorno",
+              "io canto ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "canti molto",
+              "tu canti molto"
+            ]
+          }
+        ],
+        "group": "8. Leisure & Play"
+      },
+      {
+        "id": "g7v_giocare",
+        "type": "coniugazione",
+        "title": "Giocare (to play)",
+        "instructions": "Study the table, then write sentences",
+        "table": {
+          "presente": {
+            "Io": "gioco",
+            "Tu": "giochi",
+            "Lui/Lei": "gioca",
+            "Noi": "giochiamo",
+            "Voi": "giocate",
+            "Loro": "giocano"
+          },
+          "passato_prossimo": {
+            "Io": "ho giocato",
+            "Tu": "hai giocato",
+            "Lui/Lei": "ha giocato",
+            "Noi": "abbiamo giocato",
+            "Voi": "avete giocato",
+            "Loro": "hanno giocato"
+          },
+          "futuro_semplice": {
+            "Io": "giocherò",
+            "Tu": "giocherai",
+            "Lui/Lei": "giocherà",
+            "Noi": "giocheremo",
+            "Voi": "giocherete",
+            "Loro": "giocheranno"
+          }
+        },
+        "writing": [
+          {
+            "id": "w1",
+            "prompt": "I ... every day",
+            "accepted": [
+              "gioco ogni giorno",
+              "io gioco ogni giorno"
+            ]
+          },
+          {
+            "id": "w2",
+            "prompt": "You ... a lot",
+            "accepted": [
+              "giochi molto",
+              "tu giochi molto"
+            ]
+          }
+        ],
+        "group": "8. Leisure & Play"
       }
     ]
   },
