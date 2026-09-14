@@ -10,8 +10,6 @@ const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'data', 'luna.db');
 const UPLOAD_DIR = path.join(__dirname, 'public', 'uploads');
 
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
-const DB_DIR = path.dirname(DB_PATH);
-if (!fs.existsSync(DB_DIR)) fs.mkdirSync(DB_DIR, { recursive: true });
 
 // ── DB ──
 const db = new Database(DB_PATH);
@@ -39,7 +37,7 @@ CREATE TABLE IF NOT EXISTS exercise_results (
 `);
 
 // ── Contenuti moduli (JSON statico, facile da modificare) ──
-const modules = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'modules.json'), 'utf-8'));
+const modules = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'modules.json'), 'utf-8'));
 
 // ── Middleware ──
 app.use(express.json());
