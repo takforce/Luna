@@ -13614,5 +13614,1446 @@
         ]
       }
     ]
+  },
+  {
+    "id": "n1",
+    "category": "vocab",
+    "title": "False Friends",
+    "subtitle": "Italian words that look English but trick you",
+    "icon": "🎭",
+    "exercises": [
+      {
+        "id": "n1e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice",
+        "instructions": "What does this word actually mean in Italian?",
+        "items": [
+          {
+            "id": "ai1",
+            "prompt": "Pretendere",
+            "options": [
+              "farm (NOT a factory)",
+              "to demand / to expect (NOT to pretend)",
+              "good / skilled (NOT brave)",
+              "soft (NOT morbid)"
+            ],
+            "answer": "to demand / to expect (NOT to pretend)"
+          },
+          {
+            "id": "ai2",
+            "prompt": "Argomento",
+            "options": [
+              "topic / subject (NOT an argument/fight)",
+              "polite / well-mannered (NOT educated)",
+              "sugared almonds (NOT paper confetti)",
+              "currently / at the moment (NOT actually)"
+            ],
+            "answer": "topic / subject (NOT an argument/fight)"
+          },
+          {
+            "id": "ai3",
+            "prompt": "Attualmente",
+            "options": [
+              "sugared almonds (NOT paper confetti)",
+              "soft (NOT morbid)",
+              "currently / at the moment (NOT actually)",
+              "noise (NOT a rumor)"
+            ],
+            "answer": "currently / at the moment (NOT actually)"
+          },
+          {
+            "id": "ai4",
+            "prompt": "Libreria",
+            "options": [
+              "end (NOT fine/OK)",
+              "noise (NOT a rumor)",
+              "bookshop (NOT a library)",
+              "hot (NOT cold)"
+            ],
+            "answer": "bookshop (NOT a library)"
+          },
+          {
+            "id": "ai5",
+            "prompt": "Fabbrica",
+            "options": [
+              "factory (NOT fabric)",
+              "to wait (NOT to attend)",
+              "signature (NOT a firm/company)",
+              "to demand / to expect (NOT to pretend)"
+            ],
+            "answer": "factory (NOT fabric)"
+          },
+          {
+            "id": "ai6",
+            "prompt": "Simpatico",
+            "options": [
+              "to wait (NOT to attend)",
+              "nice / likeable (NOT sympathetic)",
+              "soft (NOT morbid)",
+              "topic / subject (NOT an argument/fight)"
+            ],
+            "answer": "nice / likeable (NOT sympathetic)"
+          },
+          {
+            "id": "ai7",
+            "prompt": "Camera",
+            "options": [
+              "possibly / if needed (NOT eventually)",
+              "room / bedroom (NOT a camera)",
+              "currently / at the moment (NOT actually)",
+              "reading (NOT a lecture)"
+            ],
+            "answer": "room / bedroom (NOT a camera)"
+          },
+          {
+            "id": "ai8",
+            "prompt": "Parenti",
+            "options": [
+              "farm (NOT a factory)",
+              "relatives (NOT parents)",
+              "room / bedroom (NOT a camera)",
+              "bookshop (NOT a library)"
+            ],
+            "answer": "relatives (NOT parents)"
+          },
+          {
+            "id": "ai9",
+            "prompt": "Magazzino",
+            "options": [
+              "good / skilled (NOT brave)",
+              "sensitive (NOT sensible)",
+              "to wait (NOT to attend)",
+              "warehouse (NOT a magazine)"
+            ],
+            "answer": "warehouse (NOT a magazine)"
+          },
+          {
+            "id": "ai10",
+            "prompt": "Confetti (IT)",
+            "options": [
+              "polite / well-mannered (NOT educated)",
+              "signature (NOT a firm/company)",
+              "sugared almonds (NOT paper confetti)",
+              "relatives (NOT parents)"
+            ],
+            "answer": "sugared almonds (NOT paper confetti)"
+          },
+          {
+            "id": "ai11",
+            "prompt": "Educato",
+            "options": [
+              "summer (NOT an estate/property)",
+              "bookshop (NOT a library)",
+              "polite / well-mannered (NOT educated)",
+              "relatives (NOT parents)"
+            ],
+            "answer": "polite / well-mannered (NOT educated)"
+          },
+          {
+            "id": "ai12",
+            "prompt": "Fattoria",
+            "options": [
+              "annoying (NOT fastidious)",
+              "farm (NOT a factory)",
+              "accident (NOT a minor incident)",
+              "summer (NOT an estate/property)"
+            ],
+            "answer": "farm (NOT a factory)"
+          },
+          {
+            "id": "ai13",
+            "prompt": "Morbido",
+            "options": [
+              "farm (NOT a factory)",
+              "soft (NOT morbid)",
+              "accident (NOT a minor incident)",
+              "noise (NOT a rumor)"
+            ],
+            "answer": "soft (NOT morbid)"
+          },
+          {
+            "id": "ai14",
+            "prompt": "Eventualmente",
+            "options": [
+              "sugared almonds (NOT paper confetti)",
+              "accident (NOT a minor incident)",
+              "farm (NOT a factory)",
+              "possibly / if needed (NOT eventually)"
+            ],
+            "answer": "possibly / if needed (NOT eventually)"
+          },
+          {
+            "id": "ai15",
+            "prompt": "Sensibile",
+            "options": [
+              "accident (NOT a minor incident)",
+              "sensitive (NOT sensible)",
+              "polite / well-mannered (NOT educated)",
+              "signature (NOT a firm/company)"
+            ],
+            "answer": "sensitive (NOT sensible)"
+          },
+          {
+            "id": "ai16",
+            "prompt": "Attendere",
+            "options": [
+              "to wait (NOT to attend)",
+              "end (NOT fine/OK)",
+              "noise (NOT a rumor)",
+              "topic / subject (NOT an argument/fight)"
+            ],
+            "answer": "to wait (NOT to attend)"
+          },
+          {
+            "id": "ai17",
+            "prompt": "Firma",
+            "options": [
+              "relatives (NOT parents)",
+              "possibly / if needed (NOT eventually)",
+              "signature (NOT a firm/company)",
+              "wide (NOT large)"
+            ],
+            "answer": "signature (NOT a firm/company)"
+          },
+          {
+            "id": "ai18",
+            "prompt": "Largo",
+            "options": [
+              "good / skilled (NOT brave)",
+              "signature (NOT a firm/company)",
+              "wide (NOT large)",
+              "room / bedroom (NOT a camera)"
+            ],
+            "answer": "wide (NOT large)"
+          },
+          {
+            "id": "ai19",
+            "prompt": "Fastidioso",
+            "options": [
+              "signature (NOT a firm/company)",
+              "sensitive (NOT sensible)",
+              "warehouse (NOT a magazine)",
+              "annoying (NOT fastidious)"
+            ],
+            "answer": "annoying (NOT fastidious)"
+          },
+          {
+            "id": "ai20",
+            "prompt": "Caldo",
+            "options": [
+              "to demand / to expect (NOT to pretend)",
+              "possibly / if needed (NOT eventually)",
+              "factory (NOT fabric)",
+              "hot (NOT cold)"
+            ],
+            "answer": "hot (NOT cold)"
+          },
+          {
+            "id": "ai21",
+            "prompt": "Bravo",
+            "options": [
+              "farm (NOT a factory)",
+              "wide (NOT large)",
+              "currently / at the moment (NOT actually)",
+              "good / skilled (NOT brave)"
+            ],
+            "answer": "good / skilled (NOT brave)"
+          },
+          {
+            "id": "ai22",
+            "prompt": "Rumore",
+            "options": [
+              "noise (NOT a rumor)",
+              "currently / at the moment (NOT actually)",
+              "room / bedroom (NOT a camera)",
+              "to wait (NOT to attend)"
+            ],
+            "answer": "noise (NOT a rumor)"
+          },
+          {
+            "id": "ai23",
+            "prompt": "Contesto",
+            "options": [
+              "end (NOT fine/OK)",
+              "context (NOT a contest)",
+              "factory (NOT fabric)",
+              "polite / well-mannered (NOT educated)"
+            ],
+            "answer": "context (NOT a contest)"
+          },
+          {
+            "id": "ai24",
+            "prompt": "Estate",
+            "options": [
+              "currently / at the moment (NOT actually)",
+              "wide (NOT large)",
+              "signature (NOT a firm/company)",
+              "summer (NOT an estate/property)"
+            ],
+            "answer": "summer (NOT an estate/property)"
+          },
+          {
+            "id": "ai25",
+            "prompt": "Incidente",
+            "options": [
+              "accident (NOT a minor incident)",
+              "signature (NOT a firm/company)",
+              "factory (NOT fabric)",
+              "to demand / to expect (NOT to pretend)"
+            ],
+            "answer": "accident (NOT a minor incident)"
+          },
+          {
+            "id": "ai26",
+            "prompt": "Lettura",
+            "options": [
+              "room / bedroom (NOT a camera)",
+              "relatives (NOT parents)",
+              "reading (NOT a lecture)",
+              "to demand / to expect (NOT to pretend)"
+            ],
+            "answer": "reading (NOT a lecture)"
+          },
+          {
+            "id": "ai27",
+            "prompt": "Fine",
+            "options": [
+              "end (NOT fine/OK)",
+              "warehouse (NOT a magazine)",
+              "polite / well-mannered (NOT educated)",
+              "accident (NOT a minor incident)"
+            ],
+            "answer": "end (NOT fine/OK)"
+          }
+        ]
+      },
+      {
+        "id": "n1e2",
+        "type": "abbinamento",
+        "title": "Matching",
+        "instructions": "Match the Italian word to its real English meaning",
+        "pairs": [
+          {
+            "id": "mp1",
+            "it": "Pretendere",
+            "en": "to demand / to expect (NOT to pretend)"
+          },
+          {
+            "id": "mp2",
+            "it": "Fabbrica",
+            "en": "factory (NOT fabric)"
+          },
+          {
+            "id": "mp3",
+            "it": "Magazzino",
+            "en": "warehouse (NOT a magazine)"
+          },
+          {
+            "id": "mp4",
+            "it": "Morbido",
+            "en": "soft (NOT morbid)"
+          },
+          {
+            "id": "mp5",
+            "it": "Firma",
+            "en": "signature (NOT a firm/company)"
+          },
+          {
+            "id": "mp6",
+            "it": "Caldo",
+            "en": "hot (NOT cold)"
+          },
+          {
+            "id": "mp7",
+            "it": "Contesto",
+            "en": "context (NOT a contest)"
+          },
+          {
+            "id": "mp8",
+            "it": "Lettura",
+            "en": "reading (NOT a lecture)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "n2",
+    "category": "vocab",
+    "title": "Everyday Slang",
+    "subtitle": "How Italians actually talk to each other",
+    "icon": "💬",
+    "exercises": [
+      {
+        "id": "n2e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice",
+        "instructions": "What does this everyday phrase mean?",
+        "items": [
+          {
+            "id": "bi1",
+            "prompt": "Boh!",
+            "options": [
+              "Thank goodness",
+              "I don't know / who knows",
+              "No worries / it's nothing",
+              "See you"
+            ],
+            "answer": "I don't know / who knows"
+          },
+          {
+            "id": "bi2",
+            "prompt": "Magari!",
+            "options": [
+              "I wish! / If only!",
+              "No worries / it's nothing",
+              "Good luck",
+              "Come on!"
+            ],
+            "answer": "I wish! / If only!"
+          },
+          {
+            "id": "bi3",
+            "prompt": "Dai!",
+            "options": [
+              "I don't believe it / No way",
+              "Thank goodness",
+              "Come on!",
+              "See you"
+            ],
+            "answer": "Come on!"
+          },
+          {
+            "id": "bi4",
+            "prompt": "Vabbè",
+            "options": [
+              "I wish! / If only!",
+              "I don't know / who knows",
+              "OK, whatever / fine",
+              "I don't believe it / No way"
+            ],
+            "answer": "OK, whatever / fine"
+          },
+          {
+            "id": "bi5",
+            "prompt": "Non vedo l'ora",
+            "options": [
+              "I can't wait",
+              "I'm in!",
+              "Seriously?",
+              "Relax / no worries"
+            ],
+            "answer": "I can't wait"
+          },
+          {
+            "id": "bi6",
+            "prompt": "In bocca al lupo",
+            "options": [
+              "Relax / no worries",
+              "Good luck",
+              "See you",
+              "I don't know / who knows"
+            ],
+            "answer": "Good luck"
+          },
+          {
+            "id": "bi7",
+            "prompt": "Crepi",
+            "options": [
+              "Don't mention it / no worries",
+              "Thanks (reply to \"good luck\")",
+              "Come on!",
+              "How come?"
+            ],
+            "answer": "Thanks (reply to \"good luck\")"
+          },
+          {
+            "id": "bi8",
+            "prompt": "Che ne dici?",
+            "options": [
+              "Thank goodness",
+              "What do you think?",
+              "Seriously?",
+              "OK, whatever / fine"
+            ],
+            "answer": "What do you think?"
+          },
+          {
+            "id": "bi9",
+            "prompt": "Ci sto!",
+            "options": [
+              "Relax / no worries",
+              "How come?",
+              "I'm in!",
+              "What do you think?"
+            ],
+            "answer": "I'm in!"
+          },
+          {
+            "id": "bi10",
+            "prompt": "Non ci credo",
+            "options": [
+              "No worries / it's nothing",
+              "Seriously?",
+              "I don't believe it / No way",
+              "What do you think?"
+            ],
+            "answer": "I don't believe it / No way"
+          },
+          {
+            "id": "bi11",
+            "prompt": "Fa niente",
+            "options": [
+              "See you",
+              "OK, whatever / fine",
+              "No worries / it's nothing",
+              "What do you think?"
+            ],
+            "answer": "No worries / it's nothing"
+          },
+          {
+            "id": "bi12",
+            "prompt": "Meno male",
+            "options": [
+              "Shall we grab a coffee?",
+              "See you",
+              "I can't wait",
+              "Thank goodness"
+            ],
+            "answer": "Thank goodness"
+          },
+          {
+            "id": "bi13",
+            "prompt": "Ci vediamo",
+            "options": [
+              "See you",
+              "Shall we grab a coffee?",
+              "Thank goodness",
+              "What do you think?"
+            ],
+            "answer": "See you"
+          },
+          {
+            "id": "bi14",
+            "prompt": "Figurati",
+            "options": [
+              "How come?",
+              "I don't believe it / No way",
+              "Thank goodness",
+              "Don't mention it / no worries"
+            ],
+            "answer": "Don't mention it / no worries"
+          },
+          {
+            "id": "bi15",
+            "prompt": "Come mai?",
+            "options": [
+              "Seriously?",
+              "How come?",
+              "No worries / it's nothing",
+              "Shall we grab a coffee?"
+            ],
+            "answer": "How come?"
+          },
+          {
+            "id": "bi16",
+            "prompt": "Tranquillo",
+            "options": [
+              "How come?",
+              "Relax / no worries",
+              "I don't believe it / No way",
+              "I wish! / If only!"
+            ],
+            "answer": "Relax / no worries"
+          },
+          {
+            "id": "bi17",
+            "prompt": "Sul serio?",
+            "options": [
+              "What do you think?",
+              "Don't mention it / no worries",
+              "Seriously?",
+              "I'm in!"
+            ],
+            "answer": "Seriously?"
+          },
+          {
+            "id": "bi18",
+            "prompt": "Prendiamo un caffè?",
+            "options": [
+              "I can't wait",
+              "Shall we grab a coffee?",
+              "Seriously?",
+              "Thanks (reply to \"good luck\")"
+            ],
+            "answer": "Shall we grab a coffee?"
+          }
+        ]
+      },
+      {
+        "id": "n2e2",
+        "type": "abbinamento",
+        "title": "Matching",
+        "instructions": "Match the Italian phrase to its meaning",
+        "pairs": [
+          {
+            "id": "mp1",
+            "it": "Boh!",
+            "en": "I don't know / who knows"
+          },
+          {
+            "id": "mp2",
+            "it": "Vabbè",
+            "en": "OK, whatever / fine"
+          },
+          {
+            "id": "mp3",
+            "it": "In bocca al lupo",
+            "en": "Good luck"
+          },
+          {
+            "id": "mp4",
+            "it": "Che ne dici?",
+            "en": "What do you think?"
+          },
+          {
+            "id": "mp5",
+            "it": "Non ci credo",
+            "en": "I don't believe it / No way"
+          },
+          {
+            "id": "mp6",
+            "it": "Meno male",
+            "en": "Thank goodness"
+          },
+          {
+            "id": "mp7",
+            "it": "Figurati",
+            "en": "Don't mention it / no worries"
+          },
+          {
+            "id": "mp8",
+            "it": "Sul serio?",
+            "en": "Seriously?"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "n3",
+    "category": "grammar",
+    "title": "Tu vs. Lei",
+    "subtitle": "Formal or informal? Pick the right one for the situation",
+    "icon": "🎩",
+    "exercises": [
+      {
+        "id": "n3e1",
+        "type": "scelta_multipla",
+        "title": "Multiple choice",
+        "instructions": "Choose the right phrase for this situation",
+        "items": [
+          {
+            "id": "c1",
+            "prompt": "Talking to a waiter you don't know",
+            "options": [
+              "Cosa mi consiglia?",
+              "Cosa mi consigli?"
+            ],
+            "answer": "Cosa mi consiglia?"
+          },
+          {
+            "id": "c2",
+            "prompt": "Talking to your best friend",
+            "options": [
+              "Dove vai stasera?",
+              "Dove va stasera?"
+            ],
+            "answer": "Dove vai stasera?"
+          },
+          {
+            "id": "c3",
+            "prompt": "Talking to your doctor",
+            "options": [
+              "Come si sente oggi?",
+              "Come ti senti oggi?"
+            ],
+            "answer": "Come si sente oggi?"
+          },
+          {
+            "id": "c4",
+            "prompt": "Talking to your younger cousin",
+            "options": [
+              "Hai fame?",
+              "Ha fame?"
+            ],
+            "answer": "Hai fame?"
+          },
+          {
+            "id": "c5",
+            "prompt": "Asking a police officer for directions",
+            "options": [
+              "Mi può aiutare?",
+              "Mi puoi aiutare?"
+            ],
+            "answer": "Mi può aiutare?"
+          },
+          {
+            "id": "c6",
+            "prompt": "Talking to a classmate",
+            "options": [
+              "Hai capito la lezione?",
+              "Ha capito la lezione?"
+            ],
+            "answer": "Hai capito la lezione?"
+          },
+          {
+            "id": "c7",
+            "prompt": "Talking to your boss",
+            "options": [
+              "È libero domani?",
+              "Sei libero domani?"
+            ],
+            "answer": "È libero domani?"
+          },
+          {
+            "id": "c8",
+            "prompt": "Talking to a young child",
+            "options": [
+              "Come ti chiami?",
+              "Come si chiama?"
+            ],
+            "answer": "Come ti chiami?"
+          },
+          {
+            "id": "c9",
+            "prompt": "Talking to a hotel receptionist",
+            "options": [
+              "Ha una camera libera?",
+              "Hai una camera libera?"
+            ],
+            "answer": "Ha una camera libera?"
+          },
+          {
+            "id": "c10",
+            "prompt": "Talking to your grandmother",
+            "options": [
+              "Come stai, nonna?",
+              "Come sta, nonna?"
+            ],
+            "answer": "Come stai, nonna?"
+          },
+          {
+            "id": "c11",
+            "prompt": "Asking a university professor a question",
+            "options": [
+              "Posso farle una domanda?",
+              "Posso farti una domanda?"
+            ],
+            "answer": "Posso farle una domanda?"
+          },
+          {
+            "id": "c12",
+            "prompt": "Talking to someone your age at a party",
+            "options": [
+              "Ti va un altro drink?",
+              "Le va un altro drink?"
+            ],
+            "answer": "Ti va un altro drink?"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "n4",
+    "category": "grammar",
+    "title": "Il or La?",
+    "subtitle": "Sort each word into the right gender bucket",
+    "icon": "⚖️",
+    "exercises": [
+      {
+        "id": "n4e1",
+        "type": "genere_dnd",
+        "title": "Gender sort",
+        "instructions": "Drag (or tap) each word into IL or LA",
+        "items": [
+          {
+            "id": "g1",
+            "word": "Vino",
+            "gender": "il"
+          },
+          {
+            "id": "g2",
+            "word": "Cane",
+            "gender": "il"
+          },
+          {
+            "id": "g3",
+            "word": "Pane",
+            "gender": "il"
+          },
+          {
+            "id": "g4",
+            "word": "Porta",
+            "gender": "la"
+          },
+          {
+            "id": "g5",
+            "word": "Notte",
+            "gender": "la"
+          },
+          {
+            "id": "g6",
+            "word": "Teatro",
+            "gender": "il"
+          },
+          {
+            "id": "g7",
+            "word": "Musica",
+            "gender": "la"
+          },
+          {
+            "id": "g8",
+            "word": "Casa",
+            "gender": "la"
+          },
+          {
+            "id": "g9",
+            "word": "Gatto",
+            "gender": "il"
+          },
+          {
+            "id": "g10",
+            "word": "Mano",
+            "gender": "la"
+          },
+          {
+            "id": "g11",
+            "word": "Sistema",
+            "gender": "il"
+          },
+          {
+            "id": "g12",
+            "word": "Formaggio",
+            "gender": "il"
+          },
+          {
+            "id": "g13",
+            "word": "Chiave",
+            "gender": "la"
+          },
+          {
+            "id": "g14",
+            "word": "Cinema",
+            "gender": "il"
+          },
+          {
+            "id": "g15",
+            "word": "Tempo",
+            "gender": "il"
+          },
+          {
+            "id": "g16",
+            "word": "Sedia",
+            "gender": "la"
+          },
+          {
+            "id": "g17",
+            "word": "Radio",
+            "gender": "la"
+          },
+          {
+            "id": "g18",
+            "word": "Moto",
+            "gender": "la"
+          },
+          {
+            "id": "g19",
+            "word": "Città",
+            "gender": "la"
+          },
+          {
+            "id": "g20",
+            "word": "Giorno",
+            "gender": "il"
+          },
+          {
+            "id": "g21",
+            "word": "Clima",
+            "gender": "il"
+          },
+          {
+            "id": "g22",
+            "word": "Programma",
+            "gender": "il"
+          },
+          {
+            "id": "g23",
+            "word": "Macchina",
+            "gender": "la"
+          },
+          {
+            "id": "g24",
+            "word": "Chiesa",
+            "gender": "la"
+          },
+          {
+            "id": "g25",
+            "word": "Borsa",
+            "gender": "la"
+          },
+          {
+            "id": "g26",
+            "word": "Problema",
+            "gender": "il"
+          },
+          {
+            "id": "g27",
+            "word": "Parco",
+            "gender": "il"
+          },
+          {
+            "id": "g28",
+            "word": "Pizza",
+            "gender": "la"
+          },
+          {
+            "id": "g29",
+            "word": "Auto",
+            "gender": "la"
+          },
+          {
+            "id": "g30",
+            "word": "Scuola",
+            "gender": "la"
+          },
+          {
+            "id": "g31",
+            "word": "Tavolo",
+            "gender": "il"
+          },
+          {
+            "id": "g32",
+            "word": "Letto",
+            "gender": "il"
+          },
+          {
+            "id": "g33",
+            "word": "Finestra",
+            "gender": "la"
+          },
+          {
+            "id": "g34",
+            "word": "Sole",
+            "gender": "il"
+          },
+          {
+            "id": "g35",
+            "word": "Foto",
+            "gender": "la"
+          },
+          {
+            "id": "g36",
+            "word": "Mare",
+            "gender": "il"
+          },
+          {
+            "id": "g37",
+            "word": "Telefono",
+            "gender": "il"
+          },
+          {
+            "id": "g38",
+            "word": "Anno",
+            "gender": "il"
+          },
+          {
+            "id": "g39",
+            "word": "Lavoro",
+            "gender": "il"
+          },
+          {
+            "id": "g40",
+            "word": "Museo",
+            "gender": "il"
+          },
+          {
+            "id": "g41",
+            "word": "Libro",
+            "gender": "il"
+          },
+          {
+            "id": "g42",
+            "word": "Treno",
+            "gender": "il"
+          },
+          {
+            "id": "g43",
+            "word": "Strada",
+            "gender": "la"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "n5",
+    "category": "grammar",
+    "title": "Sentence Builder",
+    "subtitle": "Tap the words in the right order — Italian word order isn't English word order!",
+    "icon": "🧩",
+    "exercises": [
+      {
+        "id": "n5e1",
+        "type": "costruttore",
+        "title": "Build the sentence",
+        "instructions": "Tap the words in the right order",
+        "items": [
+          {
+            "id": "s1",
+            "prompt_en": "I want a red car",
+            "words": [
+              "Voglio",
+              "una",
+              "macchina",
+              "rossa"
+            ],
+            "answer": "Voglio una macchina rossa"
+          },
+          {
+            "id": "s2",
+            "prompt_en": "She has a big house",
+            "words": [
+              "Lei",
+              "ha",
+              "una",
+              "casa",
+              "grande"
+            ],
+            "answer": "Lei ha una casa grande"
+          },
+          {
+            "id": "s3",
+            "prompt_en": "We eat Italian pizza",
+            "words": [
+              "Noi",
+              "mangiamo",
+              "la",
+              "pizza",
+              "italiana"
+            ],
+            "answer": "Noi mangiamo la pizza italiana"
+          },
+          {
+            "id": "s4",
+            "prompt_en": "He is a good friend",
+            "words": [
+              "Lui",
+              "è",
+              "un",
+              "buon",
+              "amico"
+            ],
+            "answer": "Lui è un buon amico"
+          },
+          {
+            "id": "s5",
+            "prompt_en": "I see a black cat",
+            "words": [
+              "Vedo",
+              "un",
+              "gatto",
+              "nero"
+            ],
+            "answer": "Vedo un gatto nero"
+          },
+          {
+            "id": "s6",
+            "prompt_en": "You have a new phone",
+            "words": [
+              "Hai",
+              "un",
+              "telefono",
+              "nuovo"
+            ],
+            "answer": "Hai un telefono nuovo"
+          },
+          {
+            "id": "s7",
+            "prompt_en": "They live in a small town",
+            "words": [
+              "Loro",
+              "vivono",
+              "in",
+              "una",
+              "piccola",
+              "città"
+            ],
+            "answer": "Loro vivono in una piccola città"
+          },
+          {
+            "id": "s8",
+            "prompt_en": "I drink cold water",
+            "words": [
+              "Bevo",
+              "l'",
+              "acqua",
+              "fredda"
+            ],
+            "answer": "Bevo l'acqua fredda"
+          },
+          {
+            "id": "s9",
+            "prompt_en": "She wears a blue dress",
+            "words": [
+              "Lei",
+              "indossa",
+              "un",
+              "vestito",
+              "blu"
+            ],
+            "answer": "Lei indossa un vestito blu"
+          },
+          {
+            "id": "s10",
+            "prompt_en": "We have two dogs",
+            "words": [
+              "Noi",
+              "abbiamo",
+              "due",
+              "cani"
+            ],
+            "answer": "Noi abbiamo due cani"
+          },
+          {
+            "id": "s11",
+            "prompt_en": "He reads an interesting book",
+            "words": [
+              "Lui",
+              "legge",
+              "un",
+              "libro",
+              "interessante"
+            ],
+            "answer": "Lui legge un libro interessante"
+          },
+          {
+            "id": "s12",
+            "prompt_en": "I want to eat pizza",
+            "words": [
+              "Voglio",
+              "mangiare",
+              "la",
+              "pizza"
+            ],
+            "answer": "Voglio mangiare la pizza"
+          },
+          {
+            "id": "s13",
+            "prompt_en": "Can you help me?",
+            "words": [
+              "Puoi",
+              "aiutarmi",
+              "?"
+            ],
+            "answer": "Puoi aiutarmi?"
+          },
+          {
+            "id": "s14",
+            "prompt_en": "Where is the station?",
+            "words": [
+              "Dov'è",
+              "la",
+              "stazione",
+              "?"
+            ],
+            "answer": "Dov'è la stazione?"
+          },
+          {
+            "id": "s15",
+            "prompt_en": "I don't understand Italian",
+            "words": [
+              "Non",
+              "capisco",
+              "l'",
+              "italiano"
+            ],
+            "answer": "Non capisco l'italiano"
+          },
+          {
+            "id": "s16",
+            "prompt_en": "What time is it?",
+            "words": [
+              "Che",
+              "ore",
+              "sono",
+              "?"
+            ],
+            "answer": "Che ore sono?"
+          },
+          {
+            "id": "s17",
+            "prompt_en": "I would like a coffee",
+            "words": [
+              "Vorrei",
+              "un",
+              "caffè"
+            ],
+            "answer": "Vorrei un caffè"
+          },
+          {
+            "id": "s18",
+            "prompt_en": "This is my best friend",
+            "words": [
+              "Questo",
+              "è",
+              "il",
+              "mio",
+              "migliore",
+              "amico"
+            ],
+            "answer": "Questo è il mio migliore amico"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "n6",
+    "category": "grammar",
+    "title": "Fill in the Blank",
+    "subtitle": "Complete real sentences using words you've already learned",
+    "icon": "📝",
+    "exercises": [
+      {
+        "id": "n6e1",
+        "type": "cloze",
+        "title": "Fill in the blank (1-15)",
+        "instructions": "Type the missing word",
+        "items": [
+          {
+            "id": "cl1",
+            "sentence": "Io <span class=\"cloze-blank\">?</span> stanco oggi.",
+            "accepted": [
+              "sono"
+            ]
+          },
+          {
+            "id": "cl2",
+            "sentence": "Tu <span class=\"cloze-blank\">?</span> un cane?",
+            "accepted": [
+              "hai"
+            ]
+          },
+          {
+            "id": "cl3",
+            "sentence": "Noi <span class=\"cloze-blank\">?</span> la pizza stasera.",
+            "accepted": [
+              "mangiamo"
+            ]
+          },
+          {
+            "id": "cl4",
+            "sentence": "Lei <span class=\"cloze-blank\">?</span> italiano molto bene.",
+            "accepted": [
+              "parla"
+            ]
+          },
+          {
+            "id": "cl5",
+            "sentence": "Il gatto è <span class=\"cloze-blank\">?</span>.",
+            "accepted": [
+              "nero"
+            ]
+          },
+          {
+            "id": "cl6",
+            "sentence": "Vado a scuola tutti i <span class=\"cloze-blank\">?</span>.",
+            "accepted": [
+              "giorni"
+            ]
+          },
+          {
+            "id": "cl7",
+            "sentence": "Fa molto <span class=\"cloze-blank\">?</span> oggi.",
+            "accepted": [
+              "caldo"
+            ]
+          },
+          {
+            "id": "cl8",
+            "sentence": "Ho <span class=\"cloze-blank\">?</span> di mangiare.",
+            "accepted": [
+              "fame"
+            ]
+          },
+          {
+            "id": "cl9",
+            "sentence": "Non <span class=\"cloze-blank\">?</span> l'italiano.",
+            "accepted": [
+              "capisco"
+            ]
+          },
+          {
+            "id": "cl10",
+            "sentence": "<span class=\"cloze-blank\">?</span> un caffè, per favore.",
+            "accepted": [
+              "vorrei"
+            ]
+          },
+          {
+            "id": "cl11",
+            "sentence": "La mia casa è molto <span class=\"cloze-blank\">?</span>.",
+            "accepted": [
+              "grande"
+            ]
+          },
+          {
+            "id": "cl12",
+            "sentence": "Domani <span class=\"cloze-blank\">?</span> al mercato.",
+            "accepted": [
+              "vado"
+            ]
+          },
+          {
+            "id": "cl13",
+            "sentence": "Lui <span class=\"cloze-blank\">?</span> trent'anni.",
+            "accepted": [
+              "ha"
+            ]
+          },
+          {
+            "id": "cl14",
+            "sentence": "Noi <span class=\"cloze-blank\">?</span> felici.",
+            "accepted": [
+              "siamo"
+            ]
+          },
+          {
+            "id": "cl15",
+            "sentence": "Che ore <span class=\"cloze-blank\">?</span>?",
+            "accepted": [
+              "sono"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "n6e2",
+        "type": "cloze",
+        "title": "Fill in the blank (16-30)",
+        "instructions": "Type the missing word",
+        "items": [
+          {
+            "id": "cl16",
+            "sentence": "Mi piace molto la musica <span class=\"cloze-blank\">?</span>.",
+            "accepted": [
+              "italiana"
+            ]
+          },
+          {
+            "id": "cl17",
+            "sentence": "Il treno arriva alle <span class=\"cloze-blank\">?</span>.",
+            "accepted": [
+              "nove"
+            ]
+          },
+          {
+            "id": "cl18",
+            "sentence": "Loro <span class=\"cloze-blank\">?</span> domani.",
+            "accepted": [
+              "vengono"
+            ]
+          },
+          {
+            "id": "cl19",
+            "sentence": "Io <span class=\"cloze-blank\">?</span> imparare l'italiano.",
+            "accepted": [
+              "voglio"
+            ]
+          },
+          {
+            "id": "cl20",
+            "sentence": "Lei è la mia <span class=\"cloze-blank\">?</span>.",
+            "accepted": [
+              "amica"
+            ]
+          },
+          {
+            "id": "cl21",
+            "sentence": "<span class=\"cloze-blank\">?</span>! (come on)",
+            "accepted": [
+              "dai"
+            ]
+          },
+          {
+            "id": "cl22",
+            "sentence": "Non lo so, <span class=\"cloze-blank\">?</span>!",
+            "accepted": [
+              "boh"
+            ]
+          },
+          {
+            "id": "cl23",
+            "sentence": "In bocca al <span class=\"cloze-blank\">?</span>!",
+            "accepted": [
+              "lupo"
+            ]
+          },
+          {
+            "id": "cl24",
+            "sentence": "Il cielo è <span class=\"cloze-blank\">?</span> oggi.",
+            "accepted": [
+              "blu",
+              "azzurro"
+            ]
+          },
+          {
+            "id": "cl25",
+            "sentence": "Ci vediamo <span class=\"cloze-blank\">?</span>.",
+            "accepted": [
+              "domani"
+            ]
+          },
+          {
+            "id": "cl26",
+            "sentence": "Lui parla <span class=\"cloze-blank\">?</span>.",
+            "accepted": [
+              "lentamente"
+            ]
+          },
+          {
+            "id": "cl27",
+            "sentence": "Ho bisogno di <span class=\"cloze-blank\">?</span>.",
+            "accepted": [
+              "riposo"
+            ]
+          },
+          {
+            "id": "cl28",
+            "sentence": "Sono <span class=\"cloze-blank\">?</span> di te.",
+            "accepted": [
+              "innamorato",
+              "innamorata"
+            ]
+          },
+          {
+            "id": "cl29",
+            "sentence": "Il mio compleanno è a <span class=\"cloze-blank\">?</span>.",
+            "accepted": [
+              "giugno"
+            ]
+          },
+          {
+            "id": "cl30",
+            "sentence": "Vorrei una <span class=\"cloze-blank\">?</span> doppia.",
+            "accepted": [
+              "camera"
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]

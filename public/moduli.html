@@ -115,7 +115,11 @@ const GROUP_ICONS = {
 };
 
 function exTile(modId, ex) {
-  const icon = ex.type === 'scelta_multipla' ? '🌟' : ex.type === 'coniugazione' ? '✍️' : '🌠';
+  const iconMap = {
+    scelta_multipla: '🌟', coniugazione: '✍️', abbinamento: '🌠',
+    genere_dnd: '⚖️', costruttore: '🧩', cloze: '📝'
+  };
+  const icon = iconMap[ex.type] || '🌠';
   return `
     <a class="ex-tile" href="/esercizio.html?modulo=${modId}&esercizio=${ex.id}">
       <div class="et-icon">${icon}</div>

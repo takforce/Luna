@@ -114,6 +114,10 @@
       </a>
     </div>
 
+    <a class="btn btn-primary btn-block" href="/review.html" id="review-btn" style="margin-bottom:4px;">
+      🔄 Daily Review <span id="review-count"></span>
+    </a>
+
     <div class="card" style="margin-top:16px;">
       <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
         <h3 style="font-size:15px;">💬 Latest messages <span class="chat-badge" style="margin-left:4px;"></span></h3>
@@ -158,6 +162,16 @@ async function loadHome() {
     `${totalOk} correct answers out of ${totalTent} exercises done`;
 }
 loadHome();
+
+// ── Conteggio ripasso giornaliero ──
+async function loadReviewCount() {
+  try {
+    const due = await fetch('/api/review/due').then(r => r.json());
+    const el = document.getElementById('review-count');
+    if (due.length > 0) el.textContent = `(${due.length} due)`;
+  } catch (e) {}
+}
+loadReviewCount();
 
 // ── Anteprima chat ──
 let miniSender = localStorage.getItem('luna_device_owner') || localStorage.getItem('luna_notif_owner') || 'luna';

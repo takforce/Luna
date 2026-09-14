@@ -50,6 +50,8 @@
   .conj-table td { padding: 10px 6px; font-size:14px; }
   .conj-table td.pron { color: var(--muted); font-weight:600; width:40%; }
   .conj-table td.form { font-weight:700; font-family:'Baloo 2',sans-serif; }
+  .conj-stem { color: var(--silver); }
+  .conj-ending { color: var(--gold); font-weight:800; }
 
   .write-prompt { text-align:center; padding: 10px 4px 20px; }
   .write-prompt .hint { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
@@ -64,6 +66,54 @@
   .write-feedback { font-size:13px; margin-bottom:14px; min-height:18px; }
   .write-feedback.ok { color:#59d694; }
   .write-feedback.no { color:#e65a5a; }
+
+  /* ── Il/La drag & drop ── */
+  .gender-zones { display:flex; gap:12px; margin-bottom:26px; }
+  .gender-zone {
+    flex:1; height:100px; border-radius:16px; border:2px dashed var(--card-border);
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:4px;
+    font-family:'Baloo 2',sans-serif; font-size:20px; font-weight:700; color:var(--muted);
+    transition: all .15s;
+  }
+  .gender-zone.il { border-color: rgba(95,184,224,0.4); }
+  .gender-zone.la { border-color: rgba(242,160,196,0.4); }
+  .gender-zone.hover.il { background: rgba(95,184,224,0.18); border-color:#5fb8e0; color:#5fb8e0; }
+  .gender-zone.hover.la { background: rgba(242,160,196,0.18); border-color:#f2a0c4; color:#f2a0c4; }
+  .gender-zone .gz-sub { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.5px; }
+  .gender-chip-wrap { display:flex; justify-content:center; padding: 10px 0 20px; touch-action: none; }
+  .gender-chip {
+    padding: 18px 34px; border-radius: 20px; background: linear-gradient(135deg, var(--gold), #f0a93a);
+    color:#2a1c00; font-family:'Baloo 2',sans-serif; font-weight:700; font-size:19px;
+    cursor: grab; user-select:none; box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    position: relative; z-index: 5; touch-action:none;
+  }
+  .gender-chip.dragging { cursor: grabbing; transition:none !important; }
+  .gender-tap-btns { display:flex; gap:12px; }
+  .gender-tap-btns button {
+    flex:1; padding:12px; border-radius:14px; border:1px solid var(--card-border);
+    background: rgba(255,255,255,0.06); color:var(--text); font-family:'Baloo 2',sans-serif;
+    font-weight:700; font-size:16px; cursor:pointer;
+  }
+
+  /* ── Sentence builder ── */
+  .sb-prompt { text-align:center; font-size:16px; font-weight:700; margin-bottom:16px; }
+  .sb-answer-row {
+    min-height: 52px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:center;
+    border-bottom: 2px solid var(--card-border); padding-bottom: 14px; margin-bottom: 18px;
+  }
+  .sb-bank { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:18px; }
+  .sb-chip {
+    padding: 9px 14px; border-radius:14px; background: rgba(255,255,255,0.08); border:1px solid var(--card-border);
+    color:var(--text); font-family:'Quicksand',sans-serif; font-weight:700; font-size:14px; cursor:pointer;
+  }
+  .sb-chip.placed { background: rgba(246,196,83,0.22); border-color: var(--gold); }
+
+  /* ── Cloze ── */
+  .cloze-sentence { font-size:17px; line-height:1.6; text-align:center; margin-bottom:18px; }
+  .cloze-blank {
+    display:inline-block; min-width:90px; border-bottom:2px solid var(--gold);
+    text-align:center; font-weight:700; color:var(--gold); padding: 0 4px;
+  }
 </style>
 </head>
 <body>
@@ -115,6 +165,9 @@ async function load() {
   if (ex.type === 'scelta_multipla') runSceltaMultipla(mod, ex);
   else if (ex.type === 'abbinamento') runAbbinamento(mod, ex);
   else if (ex.type === 'coniugazione') runConiugazione(mod, ex);
+  else if (ex.type === 'genere_dnd') runGenereDnd(mod, ex);
+  else if (ex.type === 'costruttore') runCostruttore(mod, ex);
+  else if (ex.type === 'cloze') runCloze(mod, ex);
 }
 
 function header(mod, ex, currentIdx, totalIdx) {
@@ -248,6 +301,51 @@ function normalizeAnswer(s) {
   return s.toLowerCase().trim().replace(/[.!?,;]+$/g, '').replace(/\s+/g, ' ');
 }
 
+// ── Colora le tabelle di coniugazione: radice fissa vs parte che cambia ──
+const REFLEXIVE_PRONOUNS = ['mi', 'ti', 'si', 'ci', 'vi'];
+
+function colorEndingRow(rows) {
+  // Toglie l'eventuale pronome riflessivo iniziale, trova la radice comune tra le 6 forme,
+  // colora la parte finale (la desinenza, che cambia da persona a persona).
+  const prefixes = {}, stripped = {};
+  Object.entries(rows).forEach(([pron, form]) => {
+    const sp = form.split(' ');
+    if (REFLEXIVE_PRONOUNS.includes(sp[0])) {
+      prefixes[pron] = sp[0] + ' ';
+      stripped[pron] = sp.slice(1).join(' ');
+    } else {
+      prefixes[pron] = '';
+      stripped[pron] = form;
+    }
+  });
+  const vals = Object.values(stripped);
+  let lcp = vals[0] || '';
+  for (let i = 1; i < vals.length; i++) {
+    while (lcp && !vals[i].startsWith(lcp)) lcp = lcp.slice(0, -1);
+  }
+  const out = {};
+  Object.keys(rows).forEach(pron => {
+    const rest = stripped[pron].slice(lcp.length);
+    out[pron] = `${prefixes[pron]}<span class="conj-stem">${lcp}</span><span class="conj-ending">${rest}</span>`;
+  });
+  return out;
+}
+
+function colorPassatoRow(rows) {
+  // Nel passato prossimo la parte che cambia e' l'ausiliare (ho/hai/ha.../sono/sei/e'...),
+  // non la desinenza finale: colora il primo pezzo (dopo l'eventuale pronome riflessivo).
+  const out = {};
+  Object.entries(rows).forEach(([pron, form]) => {
+    const parts = form.split(' ');
+    if (REFLEXIVE_PRONOUNS.includes(parts[0])) {
+      out[pron] = `${parts[0]} <span class="conj-ending">${parts[1]}</span> ${parts.slice(2).join(' ')}`;
+    } else {
+      out[pron] = `<span class="conj-ending">${parts[0]}</span> ${parts.slice(1).join(' ')}`;
+    }
+  });
+  return out;
+}
+
 function runConiugazione(mod, ex) {
   const tenseLabels = { presente: 'Present', passato_prossimo: 'Past', futuro_semplice: 'Future' };
   const tenseKeys = Object.keys(ex.table);
@@ -270,8 +368,9 @@ function runConiugazione(mod, ex) {
 
     const table = document.getElementById('conj-table');
     const rows = ex.table[activeTense];
-    table.innerHTML = Object.entries(rows).map(([pron, form]) => `
-      <tr><td class="pron">${pron}</td><td class="form">${form}</td></tr>
+    const colored = activeTense === 'passato_prossimo' ? colorPassatoRow(rows) : colorEndingRow(rows);
+    table.innerHTML = Object.entries(colored).map(([pron, formHtml]) => `
+      <tr><td class="pron">${pron}</td><td class="form">${formHtml}</td></tr>
     `).join('');
 
     document.getElementById('start-writing').addEventListener('click', () => { idx = 0; renderWriting(); });
@@ -317,6 +416,210 @@ function runConiugazione(mod, ex) {
   }
 
   renderStudy();
+}
+
+// ── Il/La: drag & drop (con fallback a tasti per accessibilita') ──
+function runGenereDnd(mod, ex) {
+  let idx = 0;
+  const items = [...ex.items].sort(() => Math.random() - 0.5);
+
+  function renderItem() {
+    if (idx >= items.length) { finalScreen(mod, ex); return; }
+    const item = items[idx];
+    main.innerHTML = header(mod, ex, idx, items.length) + `
+      <div class="card">
+        <div class="gender-zones">
+          <div class="gender-zone il" id="zone-il">IL <span class="gz-sub">masculine</span></div>
+          <div class="gender-zone la" id="zone-la">LA <span class="gz-sub">feminine</span></div>
+        </div>
+        <div class="gender-chip-wrap">
+          <div class="gender-chip" id="gender-chip">${item.word}</div>
+        </div>
+        <div class="gender-tap-btns">
+          <button type="button" data-g="il">👉 IL</button>
+          <button type="button" data-g="la">👈 LA</button>
+        </div>
+      </div>`;
+
+    const chip = document.getElementById('gender-chip');
+    const zoneIl = document.getElementById('zone-il');
+    const zoneLa = document.getElementById('zone-la');
+    let done = false;
+
+    function resolve(chosen) {
+      if (done) return;
+      done = true;
+      const correct = chosen === item.gender;
+      score.total++; if (correct) score.ok++;
+      saveProgress(mod.id, ex.id, item.id, correct);
+      (chosen === 'il' ? zoneIl : zoneLa).style.background = correct ? 'rgba(89,214,148,0.3)' : 'rgba(230,90,90,0.3)';
+      chip.style.opacity = '0';
+      setTimeout(() => { idx++; renderItem(); }, 700);
+    }
+
+    main.querySelectorAll('.gender-tap-btns button').forEach(b => {
+      b.addEventListener('click', () => resolve(b.dataset.g));
+    });
+
+    // Drag reale (mouse + touch, via pointer events)
+    let dragging = false, startX = 0, startY = 0, origX = 0, origY = 0;
+    chip.addEventListener('pointerdown', e => {
+      dragging = true;
+      chip.setPointerCapture(e.pointerId);
+      chip.classList.add('dragging');
+      const r = chip.getBoundingClientRect();
+      origX = r.left; origY = r.top;
+      startX = e.clientX; startY = e.clientY;
+      chip.style.position = 'fixed';
+      chip.style.left = origX + 'px';
+      chip.style.top = origY + 'px';
+      chip.style.width = r.width + 'px';
+    });
+    chip.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      const dx = e.clientX - startX, dy = e.clientY - startY;
+      chip.style.left = (origX + dx) + 'px';
+      chip.style.top = (origY + dy) + 'px';
+      const r = chip.getBoundingClientRect();
+      const cx = r.left + r.width/2, cy = r.top + r.height/2;
+      [zoneIl, zoneLa].forEach(z => {
+        const zr = z.getBoundingClientRect();
+        const over = cx >= zr.left && cx <= zr.right && cy >= zr.top && cy <= zr.bottom;
+        z.classList.toggle('hover', over);
+      });
+    });
+    chip.addEventListener('pointerup', e => {
+      if (!dragging) return;
+      dragging = false;
+      chip.classList.remove('dragging');
+      const r = chip.getBoundingClientRect();
+      const cx = r.left + r.width/2, cy = r.top + r.height/2;
+      const ilR = zoneIl.getBoundingClientRect();
+      const laR = zoneLa.getBoundingClientRect();
+      zoneIl.classList.remove('hover'); zoneLa.classList.remove('hover');
+      if (cx >= ilR.left && cx <= ilR.right && cy >= ilR.top && cy <= ilR.bottom) resolve('il');
+      else if (cx >= laR.left && cx <= laR.right && cy >= laR.top && cy <= laR.bottom) resolve('la');
+      else {
+        // torna al centro se non rilasciata su nessuna zona
+        chip.style.position = 'relative';
+        chip.style.left = '0'; chip.style.top = '0'; chip.style.width = 'auto';
+      }
+    });
+  }
+  renderItem();
+}
+
+// ── Sentence Builder: tocca le parole nell'ordine giusto ──
+function runCostruttore(mod, ex) {
+  let idx = 0;
+  const items = ex.items;
+
+  function normalizeSentence(s) {
+    return s.toLowerCase().trim().replace(/[.!?,;]+$/g, '').replace(/\s+/g, ' ');
+  }
+
+  function renderItem() {
+    if (idx >= items.length) { finalScreen(mod, ex); return; }
+    const item = items[idx];
+    const bank = [...item.words].sort(() => Math.random() - 0.5);
+    let placed = [];
+
+    main.innerHTML = header(mod, ex, idx, items.length) + `
+      <div class="card">
+        <div class="sb-prompt">${item.prompt_en}</div>
+        <div class="sb-answer-row" id="sb-answer"></div>
+        <div class="sb-bank" id="sb-bank"></div>
+        <div class="write-feedback" id="sb-feedback" style="text-align:center;"></div>
+        <button class="btn btn-primary btn-block" id="sb-check">Check</button>
+      </div>`;
+
+    const answerRow = document.getElementById('sb-answer');
+    const bankRow = document.getElementById('sb-bank');
+    const feedback = document.getElementById('sb-feedback');
+    const checkBtn = document.getElementById('sb-check');
+
+    function renderChips() {
+      answerRow.innerHTML = placed.map((bi, i) => `<button type="button" class="sb-chip placed" data-i="${i}">${bank[bi]}</button>`).join('');
+      const bankHtml = [];
+      bank.forEach((w, bi) => {
+        bankHtml.push(`<button type="button" class="sb-chip" data-bi="${bi}">${w}</button>`);
+      });
+      bankRow.innerHTML = bankHtml.join('');
+      bankRow.querySelectorAll('.sb-chip').forEach(btn => {
+        const bi = parseInt(btn.dataset.bi, 10);
+        if (placed.includes(bi)) btn.style.visibility = 'hidden';
+        btn.addEventListener('click', () => {
+          placed.push(bi);
+          renderChips();
+        });
+      });
+      answerRow.querySelectorAll('.sb-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const i = parseInt(btn.dataset.i, 10);
+          placed.splice(i, 1);
+          renderChips();
+        });
+      });
+    }
+    renderChips();
+
+    function check() {
+      const built = placed.map(bi => bank[bi]).join(' ');
+      const correct = normalizeSentence(built) === normalizeSentence(item.answer);
+      score.total++; if (correct) score.ok++;
+      saveProgress(mod.id, ex.id, item.id, correct);
+      feedback.className = 'write-feedback ' + (correct ? 'ok' : 'no');
+      feedback.textContent = correct ? '✅ Correct!' : `Correct order: "${item.answer}"`;
+      checkBtn.textContent = 'Continue →';
+      checkBtn.onclick = () => { idx++; renderItem(); };
+    }
+    checkBtn.onclick = check;
+  }
+  renderItem();
+}
+
+// ── Cloze: completa la frase ──
+function runCloze(mod, ex) {
+  let idx = 0;
+  const items = ex.items;
+
+  function normalizeAnswer(s) {
+    return s.toLowerCase().trim().replace(/[.!?,;]+$/g, '');
+  }
+
+  function renderItem() {
+    if (idx >= items.length) { finalScreen(mod, ex); return; }
+    const item = items[idx];
+    main.innerHTML = header(mod, ex, idx, items.length) + `
+      <div class="card">
+        <div class="cloze-sentence">${item.sentence}</div>
+        <input type="text" class="write-input" id="cloze-input" placeholder="Type the missing word...">
+        <div class="write-feedback" id="cloze-feedback"></div>
+        <button class="btn btn-primary btn-block" id="cloze-check">Check</button>
+      </div>`;
+
+    const input = document.getElementById('cloze-input');
+    const feedback = document.getElementById('cloze-feedback');
+    const checkBtn = document.getElementById('cloze-check');
+    input.focus();
+
+    function check() {
+      const val = normalizeAnswer(input.value);
+      const accepted = item.accepted.map(normalizeAnswer);
+      const correct = accepted.includes(val);
+      input.disabled = true;
+      input.classList.add(correct ? 'correct' : 'wrong');
+      feedback.className = 'write-feedback ' + (correct ? 'ok' : 'no');
+      feedback.textContent = correct ? '✅ Correct!' : `Correct answer: "${item.accepted[0]}"`;
+      score.total++; if (correct) score.ok++;
+      saveProgress(mod.id, ex.id, item.id, correct);
+      checkBtn.textContent = 'Continue →';
+      checkBtn.onclick = () => { idx++; renderItem(); };
+    }
+    checkBtn.onclick = check;
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); if (!input.disabled) check(); } });
+  }
+  renderItem();
 }
 
 load();

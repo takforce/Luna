@@ -203,6 +203,52 @@ app.get('/api/speak', async (req, res) => {
   }
 });
 
+// ── Ripasso giornaliero (ripetizione dilazionata / SRS) ──
+// Intervalli in giorni in base a quante volte di fila e' stata data la risposta giusta
+const SRS_BOX_INTERVALS = [0, 1, 3, 7, 16, 30];
+
+app.get('/api/review/due', (req, res) => {
+  const clozeItems = [];
+  modules.forEach(m => {
+    m.exercises.forEach(ex => {
+      if (ex.type === 'cloze') {
+        ex.items.forEach(item => {
+          clozeItems.push({
+            module_id: m.id, exercise_id: ex.id, item_id: item.id,
+            sentence: item.sentence, accepted: item.accepted
+          });
+        });
+      }
+    });
+  });
+
+  const now = Date.now();
+  const due = [];
+  for (const ci of clozeItems) {
+    const rows = db.prepare(`
+      SELECT correct, created_at FROM exercise_results
+      WHERE module_id = ? AND exercise_id = ? AND item_id = ?
+      ORDER BY created_at ASC
+    `).all(ci.module_id, ci.exercise_id, ci.item_id);
+
+    if (rows.length === 0) {
+      due.push(ci); // mai provata prima, sempre da ripassare
+      continue;
+    }
+    let streak = 0;
+    for (let i = rows.length - 1; i >= 0; i--) {
+      if (rows[i].correct) streak++; else break;
+    }
+    const lastTime = new Date(rows[rows.length - 1].created_at + 'Z').getTime();
+    const intervalDays = SRS_BOX_INTERVALS[Math.min(streak, SRS_BOX_INTERVALS.length - 1)];
+    const dueTime = lastTime + intervalDays * 24 * 60 * 60 * 1000;
+    if (now >= dueTime) due.push(ci);
+  }
+
+  due.sort(() => Math.random() - 0.5);
+  res.json(due.slice(0, 20));
+});
+
 // Traduzione inglese -> italiano (per la pagina Liste), tramite MyMemory (gratuito)
 app.get('/api/translate', async (req, res) => {
   const text = (req.query.text || '').trim();
