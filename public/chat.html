@@ -130,7 +130,7 @@
 <script src="/js/chat-shared.js"></script>
 <script>
 
-let currentSender = 'luna';
+let currentSender = localStorage.getItem('luna_device_owner') || 'luna';
 let pendingFile = null;
 
 const chatLog = document.getElementById('chat-log');
@@ -375,6 +375,19 @@ async function disableNotifications(sub) {
 }
 
 checkNotifStatus();
+
+// Applica subito il mittente giusto ai pulsanti (in base al dispositivo salvato)
+document.querySelectorAll('.sender-toggle button').forEach(b => {
+  b.classList.toggle('active', b.dataset.sender === currentSender);
+});
+
+// Al primo avvio su questo telefono, chiede una sola volta di chi è
+chatEnsureDeviceOwner(owner => {
+  currentSender = owner;
+  document.querySelectorAll('.sender-toggle button').forEach(b => {
+    b.classList.toggle('active', b.dataset.sender === owner);
+  });
+});
 </script>
 </body>
 </html>

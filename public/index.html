@@ -160,7 +160,7 @@ async function loadHome() {
 loadHome();
 
 // ── Anteprima chat ──
-let miniSender = localStorage.getItem('luna_notif_owner') || 'luna';
+let miniSender = localStorage.getItem('luna_device_owner') || localStorage.getItem('luna_notif_owner') || 'luna';
 const previewBox = document.getElementById('chat-preview');
 
 function fmtTimeShort(iso) {
@@ -226,6 +226,9 @@ function setMiniSender(s) {
   document.getElementById('mini-luna').classList.toggle('active', s === 'luna');
 }
 setMiniSender(miniSender);
+
+// Al primo avvio su questo telefono, chiede una sola volta di chi è
+chatEnsureDeviceOwner(owner => setMiniSender(owner));
 
 async function sendMini() {
   const input = document.getElementById('mini-input');

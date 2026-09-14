@@ -68,3 +68,36 @@ function markChatRead(latestId) {
   if (latestId) localStorage.setItem('luna_last_read_msg_id', String(latestId));
   document.querySelectorAll('.chat-badge').forEach(el => el.style.display = 'none');
 }
+
+// ── "Di chi è questo telefono?" — chiesto una sola volta, poi ricordato per sempre ──
+function chatGetDeviceOwner() {
+  return localStorage.getItem('luna_device_owner');
+}
+
+function chatEnsureDeviceOwner(callback) {
+  const existing = chatGetDeviceOwner();
+  if (existing) { callback(existing); return; }
+
+  const overlay = document.createElement('div');
+  overlay.className = 'device-owner-overlay';
+  overlay.innerHTML = `
+    <div class="device-owner-box">
+      <div style="font-size:34px; margin-bottom:6px;">🌙</div>
+      <h3>Whose device is this?</h3>
+      <p>So the app knows who's writing by default — you can still switch manually any time.</p>
+      <div class="device-owner-btns">
+        <button data-owner="io">🌟 Tak's</button>
+        <button data-owner="luna">🌙 Luna's</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  overlay.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const owner = btn.dataset.owner;
+      localStorage.setItem('luna_device_owner', owner);
+      overlay.remove();
+      callback(owner);
+    });
+  });
+}
