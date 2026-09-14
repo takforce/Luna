@@ -21,7 +21,7 @@
       <a href="/moduli.html?cat=grammar">Grammar</a>
       <a href="/moduli.html?cat=verbs">Verbs</a>
       <a href="/liste.html">Lists</a>
-      <a href="/chat.html">Chat</a>
+      <a href="/chat.html">Chat<span class="chat-badge"></span></a>
     </div>
   </div>
 
@@ -116,10 +116,11 @@
 
     <div class="card" style="margin-top:16px;">
       <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
-        <h3 style="font-size:15px;">💬 Latest messages</h3>
+        <h3 style="font-size:15px;">💬 Latest messages <span class="chat-badge" style="margin-left:4px;"></span></h3>
         <a href="/chat.html" style="font-size:12px; color:var(--gold); text-decoration:none; font-weight:700;">Open chat →</a>
       </div>
       <div class="chat-preview" id="chat-preview">Loading...</div>
+      <div class="sender-label">Sending as:</div>
       <div class="mini-sender-toggle">
         <button class="active" data-sender="io" id="mini-io">🌟 Io</button>
         <button data-sender="luna" id="mini-luna">🌙 Luna</button>
@@ -140,7 +141,7 @@
     <a href="/moduli.html?cat=grammar"><span class="bn-icon">✏️</span>Grammar</a>
     <a href="/moduli.html?cat=verbs"><span class="bn-icon">📖</span>Verbs</a>
     <a href="/liste.html"><span class="bn-icon">🔊</span>Lists</a>
-    <a href="/chat.html"><span class="bn-icon">💬</span>Chat</a>
+    <a href="/chat.html"><span class="bn-icon">💬<span class="chat-badge"></span></span>Chat</a>
   </div>
 </div>
 
@@ -198,7 +199,8 @@ async function loadPreview() {
   });
 }
 loadPreview();
-setInterval(loadPreview, 20000);
+checkUnreadChat();
+setInterval(() => { loadPreview(); checkUnreadChat(); }, 20000);
 
 // ── Pannello emoji lunare (mini-composer) ──
 const miniEmojiPanel = document.getElementById('mini-emoji-panel');

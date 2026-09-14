@@ -41,8 +41,10 @@
   .ex-tile.group-tile { border-color: rgba(246,196,83,0.3); }
   .ex-tile.group-tile .et-icon { background: radial-gradient(circle, rgba(139,127,209,0.35), transparent 70%); }
 
-  .group-panel { margin-bottom: 6px; }
-  .group-panel.collapsed { display:none; }
+  .back-link {
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:13px; font-weight:700; color: var(--gold); text-decoration:none;
+  }
 </style>
 </head>
 <body>
@@ -59,7 +61,7 @@
       <a href="/moduli.html?cat=grammar" id="nav-grammar">Grammar</a>
       <a href="/moduli.html?cat=verbs" id="nav-verbs">Verbs</a>
       <a href="/liste.html">Lists</a>
-      <a href="/chat.html">Chat</a>
+      <a href="/chat.html">Chat<span class="chat-badge"></span></a>
     </div>
   </div>
 
@@ -71,15 +73,19 @@
     <a href="/moduli.html?cat=grammar" id="bn-grammar"><span class="bn-icon">✏️</span>Grammar</a>
     <a href="/moduli.html?cat=verbs" id="bn-verbs"><span class="bn-icon">📖</span>Verbs</a>
     <a href="/liste.html"><span class="bn-icon">🔊</span>Lists</a>
-    <a href="/chat.html"><span class="bn-icon">💬</span>Chat</a>
+    <a href="/chat.html"><span class="bn-icon">💬<span class="chat-badge"></span></span>Chat</a>
   </div>
 </div>
 
 <script src="/js/starfield.js"></script>
+<script src="/js/moon-emojis.js"></script>
+<script src="/js/chat-shared.js"></script>
 <script>
 const params = new URLSearchParams(location.search);
 const openId = params.get('open');
 const cat = params.get('cat') || 'vocab';
+const focusMod = params.get('mod');
+const focusGroup = params.get('group');
 let progressMap = {};
 
 const navMap = { vocab: 'nav-words', grammar: 'nav-grammar', verbs: 'nav-verbs' };
@@ -87,7 +93,40 @@ if (navMap[cat]) document.getElementById(navMap[cat])?.classList.add('active');
 const bnMap = { vocab: 'bn-words', grammar: 'bn-grammar', verbs: 'bn-verbs' };
 if (bnMap[cat]) document.getElementById(bnMap[cat])?.classList.add('active');
 
+const GROUP_ICONS = {
+  '1. Essentials': '🌟',
+  '2. Movement & Travel': '🚀',
+  '3. Daily Routine & Senses': '☀️',
+  '4. Communication & Thought': '💬',
+  '5. Feelings & Relationships': '💛',
+  '6. Work & Daily Tasks': '🛠️',
+  '7. Life & Existence': '🌌',
+  '8. Leisure & Play': '🎉',
+  '1. Emotions & Feelings': '💛',
+  '2. Technology & Media': '📱',
+  '3. Nature & Animals': '🌿',
+  '4. School & Learning': '🎓',
+  '5. Money & Shopping': '💰',
+  '6. Health & Body Care': '🩺',
+  '7. Places in Town': '🏙️',
+  '8. Society & Relationships': '👥',
+  '9. Materials & Objects': '📦',
+  '10. Time Expressions & Frequency': '⏳',
+};
+
+function exTile(modId, ex) {
+  const icon = ex.type === 'scelta_multipla' ? '🌟' : ex.type === 'coniugazione' ? '✍️' : '🌠';
+  return `
+    <a class="ex-tile" href="/esercizio.html?modulo=${modId}&esercizio=${ex.id}">
+      <div class="et-icon">${icon}</div>
+      <div class="et-title">${ex.title}</div>
+    </a>
+  `;
+}
+
 async function render() {
+  if (focusMod && focusGroup !== null) return renderGroupFocus();
+
   const [allModules, progress] = await Promise.all([
     fetch('/api/modules').then(r => r.json()),
     fetch('/api/progress/summary').then(r => r.json())
@@ -118,37 +157,6 @@ async function render() {
     `;
     }).join('');
 
-  const GROUP_ICONS = {
-    '1. Essentials': '🌟',
-    '2. Movement & Travel': '🚀',
-    '3. Daily Routine & Senses': '☀️',
-    '4. Communication & Thought': '💬',
-    '5. Feelings & Relationships': '💛',
-    '6. Work & Daily Tasks': '🛠️',
-    '7. Life & Existence': '🌌',
-    '8. Leisure & Play': '🎉',
-    '1. Emotions & Feelings': '💛',
-    '2. Technology & Media': '📱',
-    '3. Nature & Animals': '🌿',
-    '4. School & Learning': '🎓',
-    '5. Money & Shopping': '💰',
-    '6. Health & Body Care': '🩺',
-    '7. Places in Town': '🏙️',
-    '8. Society & Relationships': '👥',
-    '9. Materials & Objects': '📦',
-    '10. Time Expressions & Frequency': '⏳',
-  };
-
-  function exTile(modId, ex) {
-    const icon = ex.type === 'scelta_multipla' ? '🌟' : ex.type === 'coniugazione' ? '✍️' : '🌠';
-    return `
-      <a class="ex-tile" href="/esercizio.html?modulo=${modId}&esercizio=${ex.id}">
-        <div class="et-icon">${icon}</div>
-        <div class="et-title">${ex.title}</div>
-      </a>
-    `;
-  }
-
   for (const m of modules) {
     const full = await fetch('/api/modules/' + m.id).then(r => r.json());
     const box = document.getElementById('ex-' + m.id);
@@ -160,35 +168,17 @@ async function render() {
       const groups = [];
       full.exercises.forEach(ex => { if (!groups.includes(ex.group)) groups.push(ex.group); });
 
-      let html = `<div class="ex-tile-grid">`;
-      groups.forEach((g, gi) => {
+      box.innerHTML = `<div class="ex-tile-grid">` + groups.map((g, gi) => {
         const label = g.replace(/^\d+\.\s*/, '');
         const count = full.exercises.filter(e => e.group === g).length;
         const icon = GROUP_ICONS[g] || '🌙';
-        html += `
-          <button type="button" class="ex-tile group-tile" data-group-toggle="${m.id}-${gi}">
+        return `
+          <a class="ex-tile group-tile" href="/moduli.html?cat=${cat}&mod=${m.id}&group=${gi}">
             <div class="et-icon">${icon}</div>
             <div class="et-title">${label}</div>
             <div class="et-sub">${count} exercises</div>
-          </button>`;
-      });
-      html += `</div>`;
-      groups.forEach((g, gi) => {
-        const label = g.replace(/^\d+\.\s*/, '');
-        const exs = full.exercises.filter(e => e.group === g);
-        html += `
-          <div class="group-panel collapsed" id="group-${m.id}-${gi}">
-            <div class="ex-group-label">${label}</div>
-            <div class="ex-tile-grid">${exs.map(ex => exTile(m.id, ex)).join('')}</div>
-          </div>`;
-      });
-      box.innerHTML = html;
-
-      box.querySelectorAll('[data-group-toggle]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.getElementById('group-' + btn.dataset.groupToggle)?.classList.toggle('collapsed');
-        });
-      });
+          </a>`;
+      }).join('') + `</div>`;
     }
   }
 
@@ -205,7 +195,27 @@ async function render() {
     document.getElementById('ex-' + openId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 }
+
+// Schermata dedicata a una singola categoria (es. i verbi di "Essentials")
+async function renderGroupFocus() {
+  const full = await fetch('/api/modules/' + focusMod).then(r => r.json());
+  const groups = [];
+  full.exercises.forEach(ex => { if (ex.group && !groups.includes(ex.group)) groups.push(ex.group); });
+  const groupName = groups[parseInt(focusGroup, 10)];
+  const label = groupName ? groupName.replace(/^\d+\.\s*/, '') : 'Exercises';
+  const icon = GROUP_ICONS[groupName] || '🌙';
+  const exs = groupName ? full.exercises.filter(e => e.group === groupName) : [];
+
+  const main = document.getElementById('main');
+  main.innerHTML = `
+    <a class="back-link" href="/moduli.html?cat=${cat}">← Back to ${full.title}</a>
+    <h1 style="font-size:20px; margin:12px 0 14px;">${icon} ${label}</h1>
+    <div class="ex-tile-grid">${exs.map(ex => exTile(focusMod, ex)).join('')}</div>
+  `;
+}
+
 render();
+checkUnreadChat();
 </script>
 </body>
 </html>

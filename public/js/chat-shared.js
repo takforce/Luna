@@ -49,3 +49,22 @@ function chatAttachPreview(text, container) {
   const urls = text.match(CHAT_URL_RE);
   if (urls && urls[0]) chatLoadLinkPreview(urls[0], container);
 }
+
+// ── Avviso "nuovo messaggio" (badge rosso su Chat, in ogni pagina) ──
+async function checkUnreadChat() {
+  try {
+    const msgs = await fetch('/api/chat/messages').then(r => r.json());
+    if (!msgs.length) return;
+    const newestId = msgs[msgs.length - 1].id;
+    const lastRead = parseInt(localStorage.getItem('luna_last_read_msg_id') || '0', 10);
+    const unread = newestId > lastRead;
+    document.querySelectorAll('.chat-badge').forEach(el => {
+      el.style.display = unread ? 'block' : 'none';
+    });
+  } catch (e) {}
+}
+
+function markChatRead(latestId) {
+  if (latestId) localStorage.setItem('luna_last_read_msg_id', String(latestId));
+  document.querySelectorAll('.chat-badge').forEach(el => el.style.display = 'none');
+}

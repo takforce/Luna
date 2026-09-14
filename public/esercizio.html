@@ -80,7 +80,7 @@
       <a href="/moduli.html?cat=grammar">Grammar</a>
       <a href="/moduli.html?cat=verbs">Verbs</a>
       <a href="/liste.html">Lists</a>
-      <a href="/chat.html">Chat</a>
+      <a href="/chat.html">Chat<span class="chat-badge"></span></a>
     </div>
   </div>
 
@@ -92,11 +92,13 @@
     <a href="/moduli.html?cat=grammar"><span class="bn-icon">✏️</span>Grammar</a>
     <a href="/moduli.html?cat=verbs"><span class="bn-icon">📖</span>Verbs</a>
     <a href="/liste.html"><span class="bn-icon">🔊</span>Lists</a>
-    <a href="/chat.html"><span class="bn-icon">💬</span>Chat</a>
+    <a href="/chat.html"><span class="bn-icon">💬<span class="chat-badge"></span></span>Chat</a>
   </div>
 </div>
 
 <script src="/js/starfield.js"></script>
+<script src="/js/moon-emojis.js"></script>
+<script src="/js/chat-shared.js"></script>
 <script>
 const params = new URLSearchParams(location.search);
 const moduloId = params.get('modulo');
@@ -318,6 +320,7 @@ function runConiugazione(mod, ex) {
 }
 
 load();
+checkUnreadChat();
 </script>
 </body>
 </html>

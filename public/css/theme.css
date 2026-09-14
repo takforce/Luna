@@ -361,6 +361,7 @@ h1, h2, h3, .title-font { font-family: 'Baloo 2', sans-serif; }
 .cp-msg.luna { align-self:flex-start; background: rgba(255,255,255,0.09); border:1px solid var(--card-border); }
 .cp-empty { font-size:13px; color:var(--muted); text-align:center; padding: 14px 0; }
 .mini-sender-toggle { display:flex; gap:6px; margin-bottom:8px; }
+.sender-label { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:4px; font-weight:700; }
 .mini-sender-toggle button {
   flex:1; padding:6px; border-radius:16px; border:1px solid var(--card-border);
   background: rgba(255,255,255,0.05); color: var(--muted);
@@ -399,6 +400,12 @@ h1, h2, h3, .title-font { font-family: 'Baloo 2', sans-serif; }
 /* ── Emoji lunari personalizzate (condiviso) ── */
 .moon-emoji-inline { display:inline-flex; vertical-align:-6px; margin: 0 1px; }
 .moon-emoji-inline svg { width:20px; height:20px; }
+/* ── Avviso nuovo messaggio (pallino rosso su Chat) ── */
+.chat-badge { display:none; width:7px; height:7px; border-radius:50%; background:#e0475f; }
+.bn-icon { position:relative; display:inline-block; }
+.bn-icon .chat-badge { position:absolute; top:-1px; right:-3px; border:1.5px solid rgba(11,12,42,0.95); }
+.topbar-nav a { position:relative; }
+.topbar-nav .chat-badge { margin-left:4px; vertical-align:middle; }
 .moon-emoji-btn { background: rgba(255,255,255,0.04); }
 
 /* ── Allegati nell'anteprima chat (home) ── */

@@ -82,7 +82,7 @@
       <a href="/moduli.html?cat=grammar">Grammar</a>
       <a href="/moduli.html?cat=verbs">Verbs</a>
       <a href="/liste.html">Lists</a>
-      <a href="/chat.html" class="active">Chat</a>
+      <a href="/chat.html" class="active">Chat<span class="chat-badge"></span></a>
     </div>
   </div>
 
@@ -99,6 +99,7 @@
         <span id="attach-name"></span>
         <button id="attach-remove">✕</button>
       </div>
+      <div class="sender-label">Sending as:</div>
       <div class="sender-toggle">
         <button class="io active" data-sender="io">🌟 Me</button>
         <button class="luna" data-sender="luna">🌙 Luna</button>
@@ -120,7 +121,7 @@
     <a href="/moduli.html?cat=grammar"><span class="bn-icon">✏️</span>Grammar</a>
     <a href="/moduli.html?cat=verbs"><span class="bn-icon">📖</span>Verbs</a>
     <a href="/liste.html"><span class="bn-icon">🔊</span>Lists</a>
-    <a href="/chat.html" class="active"><span class="bn-icon">💬</span>Chat</a>
+    <a href="/chat.html" class="active"><span class="bn-icon">💬<span class="chat-badge"></span></span>Chat</a>
   </div>
 </div>
 
@@ -270,6 +271,7 @@ async function loadMessages(force) {
   chatLog.innerHTML = '';
   msgs.forEach(renderMsg);
   if (force || wasNearBottom) chatLog.scrollTop = chatLog.scrollHeight;
+  markChatRead(newestId);
 }
 
 setInterval(() => loadMessages(false), 5000);
@@ -287,6 +289,7 @@ async function sendMessage() {
   renderMsg(msg);
   chatLog.scrollTop = chatLog.scrollHeight;
   lastMsgCount++; lastMsgId = msg.id;
+  markChatRead(msg.id);
 
   msgInput.value = '';
   pendingFile = null; fileInput.value = '';
