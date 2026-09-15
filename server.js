@@ -1,4 +1,5 @@
 const express = require('express');
+const rateLimit = require('express-rate-limit');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const path = require('path');
@@ -258,13 +259,21 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage, limits: { fileSize: 15 * 1024 * 1024 } });
 
+const messageRateLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minuto
+  max: 20,             // max 20 messaggi al minuto per sessione/IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many messages sent — wait a moment and try again.' },
+});
+
 // ── API: Chat ──
 app.get('/api/chat/messages', (req, res) => {
   const rows = db.prepare('SELECT * FROM chat_messages ORDER BY id ASC').all();
   res.json(rows);
 });
 
-app.post('/api/chat/messages', upload.single('attachment'), (req, res) => {
+app.post('/api/chat/messages', messageRateLimiter, upload.single('attachment'), (req, res) => {
   const { sender, text } = req.body;
   if (!sender || (!text && !req.file)) {
     return res.status(400).json({ error: 'sender e (text o allegato) richiesti' });

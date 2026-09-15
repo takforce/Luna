@@ -3,7 +3,12 @@
 const CHAT_URL_RE = /(https?:\/\/[^\s<]+)/g;
 
 function chatLinkify(text) {
-  const escaped = text.replace(/</g, '&lt;');
+  const escaped = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
   return escaped.replace(CHAT_URL_RE, url => `<a href="${url}" target="_blank" rel="noopener" class="chat-link">${url}</a>`);
 }
 

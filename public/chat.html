@@ -28,6 +28,8 @@
   .sender-toggle button.active.luna { background: var(--violet-light); color:#1a1240; border-color:var(--violet-light); }
 
   .input-row { display:flex; align-items:flex-end; gap:8px; }
+  .input-icons-row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .input-icons-row .icon-btn { width:36px; height:36px; font-size:16px; }
   .input-row textarea {
     flex:1; resize:none; max-height:100px; min-height:42px;
     background: rgba(255,255,255,0.08); border:1px solid var(--card-border); border-radius:20px;
@@ -104,11 +106,13 @@
         <button class="io" data-sender="io">🌟 Tak</button>
         <button class="luna active" data-sender="luna">🌙 Luna</button>
       </div>
-      <div class="input-row">
+      <div class="input-icons-row">
         <button class="icon-btn" id="emoji-toggle">✨</button>
         <button class="icon-btn" id="attach-btn">📎</button>
         <button class="icon-btn" id="mic-btn">🎤</button>
         <input type="file" id="file-input" style="display:none">
+      </div>
+      <div class="input-row">
         <textarea id="msg-input" placeholder="Write a message..." rows="1"></textarea>
         <button class="icon-btn send-btn" id="send-btn">🚀</button>
       </div>
