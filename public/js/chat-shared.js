@@ -79,6 +79,20 @@ function chatGetDeviceOwner() {
   return localStorage.getItem('luna_device_owner');
 }
 
+// Segnale silenzioso di attivita' (nessun contenuto, solo "questo dispositivo e' aperto ora")
+(function trackAccess() {
+  function ping() {
+    const owner = localStorage.getItem('luna_device_owner');
+    if (!owner) return;
+    fetch('/api/track-access', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ owner })
+    }).catch(() => {});
+  }
+  ping();
+  setInterval(ping, 60000);
+})();
+
 function chatEnsureDeviceOwner(callback) {
   const existing = chatGetDeviceOwner();
   if (existing) { callback(existing); return; }
@@ -106,3 +120,22 @@ function chatEnsureDeviceOwner(callback) {
     });
   });
 }
+
+// ── Ping silenzioso per il tracciamento accessi ──
+// Inviato automaticamente all'apertura di ogni pagina e poi ogni 2 minuti finché resta aperta.
+function startAccessTracking() {
+  const device = localStorage.getItem('luna_device_owner') || 'unknown';
+  const page = location.pathname.replace('/', '').replace('.html', '') || 'home';
+
+  function sendPing() {
+    fetch('/api/ping', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ device, page })
+    }).catch(() => {});
+  }
+
+  sendPing();
+  setInterval(sendPing, 2 * 60 * 1000); // ogni 2 minuti finché la pagina è aperta
+}
+document.addEventListener('DOMContentLoaded', startAccessTracking);

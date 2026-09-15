@@ -271,12 +271,35 @@ CREATE TABLE IF NOT EXISTS push_subscriptions (
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
+CREATE TABLE IF NOT EXISTS access_log (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  device TEXT NOT NULL,           -- 'io' | 'luna' | 'unknown'
+  page TEXT,                      -- quale pagina era aperta
+  ts TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
 CREATE TABLE IF NOT EXISTS banner (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   message TEXT NOT NULL DEFAULT ''
 );
 INSERT OR IGNORE INTO banner (id, message) VALUES (1, '');
 `);
+// Migrazione: crea access_log con lo schema corretto (device+page+ts)
+// oppure ricrea se esiste già con lo schema vecchio (owner+created_at)
+const accessCols = db.prepare("PRAGMA table_info(access_log)").all().map(r => r.name);
+if (!accessCols.includes('device')) {
+  if (accessCols.length > 0) {
+    db.exec('DROP TABLE access_log'); // schema vecchio, elimino e ricreo
+    console.log('♻️  Tabella access_log ricreata con nuovo schema.');
+  }
+  db.exec(`CREATE TABLE access_log (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    device TEXT NOT NULL,
+    page TEXT,
+    ts TEXT NOT NULL DEFAULT (datetime('now'))
+  )`);
+}
+
 // Migrazione: aggiunge reply_to_id se il database esisteva già senza questa colonna
 const chatCols = db.prepare("PRAGMA table_info(chat_messages)").all().map(c => c.name);
 if (!chatCols.includes('reply_to_id')) {
@@ -542,8 +565,189 @@ app.post('/api/push/unsubscribe', (req, res) => {
 // ── Messaggio dello striscione trainato dall'aereo in home ──
 // Videochiamata: stanza Jitsi con nome unico e non indovinabile, legato al segreto di sessione
 const JITSI_ROOM = 'luna-italiano-' + crypto.createHash('sha256').update(SESSION_SECRET).digest('hex').slice(0, 20);
+// ── Registro accessi (visibile solo dalla pagina nascosta) ──
+app.post('/api/track-access', (req, res) => {
+  const { owner } = req.body;
+  if (owner !== 'io' && owner !== 'luna') return res.status(400).json({ error: 'owner non valido' });
+  db.prepare('INSERT INTO access_log (owner) VALUES (?)').run(owner);
+  res.json({ ok: true });
+});
+
+app.get('/api/access-log', (req, res) => {
+  const rows = db.prepare('SELECT owner, created_at FROM access_log ORDER BY created_at ASC').all();
+
+  // raggruppa i "battiti" in sessioni: se passano piu' di 5 minuti senza segnali, e' una nuova sessione
+  const GAP_MS = 5 * 60 * 1000;
+  const sessions = [];
+  let current = null;
+  for (const row of rows) {
+    const t = new Date(row.created_at + 'Z').getTime();
+    if (current && current.owner === row.owner && (t - current.lastTs) <= GAP_MS) {
+      current.lastTs = t;
+      current.pings++;
+    } else {
+      if (current) sessions.push(current);
+      current = { owner: row.owner, firstTs: t, lastTs: t, pings: 1 };
+    }
+  }
+  if (current) sessions.push(current);
+
+  const result = sessions.map(s => ({
+    owner: s.owner,
+    start: new Date(s.firstTs).toISOString(),
+    end: new Date(s.lastTs).toISOString(),
+    minutes: Math.max(1, Math.round((s.lastTs - s.firstTs) / 60000)),
+  })).reverse(); // piu' recenti prima
+
+  res.json(result);
+});
+
 app.get('/api/video-room', (req, res) => {
   res.json({ url: `https://meet.jit.si/${JITSI_ROOM}`, room: JITSI_ROOM });
+});
+
+// ── Tracciamento accessi (silenzioso, solo lato server) ──
+app.post('/api/ping', (req, res) => {
+  const device = req.body.device || 'unknown';
+  const page = req.body.page || '';
+  db.prepare('INSERT INTO access_log (device, page) VALUES (?, ?)').run(device, page);
+  res.json({ ok: true });
+});
+
+// Pagina statistiche — URL segreto, non compare in nessun menu
+const STATS_SECRET = crypto.createHash('sha256').update(SESSION_SECRET + '-stats').digest('hex').slice(0, 16);
+console.log(`📊 Stats page: /luna-stats-${STATS_SECRET}`);
+
+app.get(`/luna-stats-${STATS_SECRET}`, (req, res) => {
+  if (!(req.session && req.session.autenticato)) return res.redirect('/');
+
+  const rows = db.prepare(`
+    SELECT device, page, ts FROM access_log
+    ORDER BY ts DESC LIMIT 2000
+  `).all();
+
+  // raggruppa in sessioni (gap > 10 min = nuova sessione)
+  const GAP = 10 * 60 * 1000;
+  const sessions = [];
+  let cur = null;
+  [...rows].reverse().forEach(r => {
+    const t = new Date(r.ts + 'Z').getTime();
+    if (!cur || r.device !== cur.device || t - cur.lastT > GAP) {
+      cur = { device: r.device, start: t, lastT: t, pings: 1, page: r.page };
+      sessions.push(cur);
+    } else {
+      cur.lastT = t;
+      cur.pings++;
+    }
+  });
+
+  // statistiche per device
+  function statsFor(dev) {
+    const s = sessions.filter(x => x.device === dev);
+    const totalMin = s.reduce((a, x) => a + Math.round((x.lastT - x.start) / 60000), 0);
+    const byDay = {};
+    const byHour = new Array(24).fill(0);
+    s.forEach(x => {
+      const d = new Date(x.start).toISOString().slice(0, 10);
+      byDay[d] = (byDay[d] || 0) + 1;
+      byHour[new Date(x.start).getHours()]++;
+    });
+    return { sessions: s.length, totalMin, byDay, byHour };
+  }
+
+  const luna = statsFor('luna');
+  const io   = statsFor('io');
+
+  function barChart(arr) {
+    const max = Math.max(...arr, 1);
+    return arr.map((v, h) => {
+      const pct = Math.round(v / max * 100);
+      return `<div class="bar-wrap" title="${h}:00 — ${v} sessioni">
+        <div class="bar" style="height:${pct}%"></div>
+        <div class="bar-lbl">${h}</div>
+      </div>`;
+    }).join('');
+  }
+
+  function calHtml(byDay) {
+    const days = Object.keys(byDay).sort().slice(-60);
+    return days.map(d => {
+      const v = byDay[d];
+      const op = Math.min(0.2 + v * 0.2, 1).toFixed(2);
+      return `<div class="cal-day" title="${d}: ${v} sessioni" style="background:rgba(89,214,148,${op})"></div>`;
+    }).join('');
+  }
+
+  function recentList(dev) {
+    return sessions.filter(x => x.device === dev).slice(-10).reverse().map(s => {
+      const dt = new Date(s.start).toLocaleString('it-IT', { timeZone: 'Europe/Rome', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+      const dur = Math.round((s.lastT - s.start) / 60000);
+      return `<li>${dt} — ${dur < 1 ? '<1' : dur} min${s.page ? ` <span class="pg">(${s.page})</span>` : ''}</li>`;
+    }).join('');
+  }
+
+  res.send(`<!DOCTYPE html><html lang="it">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stats</title>
+<link rel="stylesheet" href="/css/theme.css">
+<style>
+  body{padding:0 0 80px;}
+  .stats-wrap{max-width:640px;margin:0 auto;padding:20px 16px;}
+  h2{font-size:18px;margin:24px 0 12px;}
+  .kpi-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+  .kpi{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:14px 18px;flex:1;min-width:120px;text-align:center;}
+  .kpi .val{font-size:28px;font-weight:800;font-family:'Baloo 2',sans-serif;color:var(--gold);}
+  .kpi .lbl{font-size:11px;color:var(--muted);margin-top:2px;}
+  .bar-chart{display:flex;align-items:flex-end;gap:3px;height:80px;margin:12px 0 4px;background:var(--card-bg);border-radius:10px;padding:8px 6px 0;}
+  .bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;}
+  .bar{width:100%;background:var(--gold);border-radius:3px 3px 0 0;min-height:2px;}
+  .bar-lbl{font-size:8px;color:var(--muted);}
+  .cal{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0;}
+  .cal-day{width:18px;height:18px;border-radius:3px;background:rgba(89,214,148,0.1);border:1px solid var(--card-border);}
+  ul.recent{list-style:none;padding:0;margin:8px 0;}
+  ul.recent li{font-size:12px;padding:5px 0;border-bottom:1px solid var(--card-border);color:var(--muted);}
+  .pg{opacity:.6;font-size:10px;}
+  .dev-section{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:16px;margin-bottom:16px;}
+</style>
+</head>
+<body>
+<div class="app-content">
+  <div class="stats-wrap">
+    <h1 style="font-size:20px;margin-bottom:4px;">📊 Accessi App</h1>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:20px;">Ultimi 60 giorni · orari in ora italiana</p>
+
+    <div class="dev-section">
+      <h2>🌙 Luna</h2>
+      <div class="kpi-row">
+        <div class="kpi"><div class="val">${luna.sessions}</div><div class="lbl">sessioni totali</div></div>
+        <div class="kpi"><div class="val">${luna.totalMin}</div><div class="lbl">minuti totali</div></div>
+        <div class="kpi"><div class="val">${Object.keys(luna.byDay).length}</div><div class="lbl">giorni attivi</div></div>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin:0 0 4px;">Orari preferiti</p>
+      <div class="bar-chart">${barChart(luna.byHour)}</div>
+      <p style="font-size:12px;color:var(--muted);margin:10px 0 4px;">Giorni attivi (ultimi 60)</p>
+      <div class="cal">${calHtml(luna.byDay)}</div>
+      <p style="font-size:12px;color:var(--muted);margin:10px 0 4px;">Sessioni recenti</p>
+      <ul class="recent">${recentList('luna') || '<li style="opacity:.5">Nessun dato ancora</li>'}</ul>
+    </div>
+
+    <div class="dev-section">
+      <h2>🌟 Tak</h2>
+      <div class="kpi-row">
+        <div class="kpi"><div class="val">${io.sessions}</div><div class="lbl">sessioni totali</div></div>
+        <div class="kpi"><div class="val">${io.totalMin}</div><div class="lbl">minuti totali</div></div>
+        <div class="kpi"><div class="val">${Object.keys(io.byDay).length}</div><div class="lbl">giorni attivi</div></div>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin:0 0 4px;">Orari preferiti</p>
+      <div class="bar-chart">${barChart(io.byHour)}</div>
+      <p style="font-size:12px;color:var(--muted);margin:10px 0 4px;">Giorni attivi (ultimi 60)</p>
+      <div class="cal">${calHtml(io.byDay)}</div>
+      <p style="font-size:12px;color:var(--muted);margin:10px 0 4px;">Sessioni recenti</p>
+      <ul class="recent">${recentList('io') || '<li style="opacity:.5">Nessun dato ancora</li>'}</ul>
+    </div>
+  </div>
+</div>
+</body></html>`);
 });
 
 app.get('/api/banner', (req, res) => {
