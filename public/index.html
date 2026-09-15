@@ -29,22 +29,7 @@
     <div class="hero">
       <div class="sky-stage">
         <div class="moon-system">
-          <svg class="moon-main" viewBox="0 0 100 100" width="92" height="92">
-            <defs>
-              <radialGradient id="moonGrad" cx="35%" cy="32%" r="72%">
-                <stop offset="0%" stop-color="#f2f2ef"/>
-                <stop offset="50%" stop-color="#c9c9c2"/>
-                <stop offset="100%" stop-color="#8d8d86"/>
-              </radialGradient>
-            </defs>
-            <circle cx="50" cy="50" r="46" fill="url(#moonGrad)"/>
-            <circle cx="34" cy="30" r="7" fill="#00000018"/>
-            <circle cx="61" cy="40" r="10" fill="#00000016"/>
-            <circle cx="46" cy="66" r="6" fill="#00000013"/>
-            <circle cx="67" cy="66" r="4" fill="#00000013"/>
-            <circle cx="27" cy="56" r="3.5" fill="#00000013"/>
-            <circle cx="55" cy="26" r="2.5" fill="#00000010"/>
-          </svg>
+          <img class="moon-main" src="/img/moon-photo.png" alt="Moon" width="92" height="92">
           <div class="moon-orbit">
             <svg class="moon-satellite" viewBox="0 0 24 24">
               <defs>
@@ -76,66 +61,63 @@
     </div>
 
     <div class="card" style="margin-bottom:16px; display:flex; align-items:center; gap:14px;">
-      <div style="font-size:34px;">🪐</div>
+      <div style="width:46px;height:46px;flex-shrink:0;"><img src="/img/icons/progress.png" alt="" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"></div>
       <div style="flex:1;">
         <h3 style="font-size:15px; margin-bottom:2px;">Your progress</h3>
         <p id="progress-text" style="font-size:13px; color:var(--muted);">Loading...</p>
       </div>
+      <button class="reset-all-btn" id="reset-all-btn" title="Reset all progress">↺</button>
     </div>
 
     <div class="topic-grid">
       <a class="topic-btn" href="/moduli.html?cat=vocab">
-        <div class="t-icon">📚</div>
+        <div class="t-icon"><img src="/img/icons/cube.png" alt=""></div>
         <div class="t-info">
           <h3>Learn new words</h3>
           <p>Vocabulary modules, from greetings to travel</p>
         </div>
       </a>
       <a class="topic-btn" href="/moduli.html?cat=grammar">
-        <div class="t-icon">✏️</div>
+        <div class="t-icon"><img src="/img/icons/temple.png" alt=""></div>
         <div class="t-info">
           <h3>Grammar</h3>
           <p>Easy basics: pronouns, verbs, articles</p>
         </div>
       </a>
       <a class="topic-btn" href="/moduli.html?cat=verbs">
-        <div class="t-icon">📖</div>
+        <div class="t-icon"><img src="/img/icons/molecule.png" alt=""></div>
         <div class="t-info">
           <h3>Verb Practice</h3>
           <p>Learn the forms, then write your own sentences</p>
         </div>
       </a>
       <a class="topic-btn" href="/liste.html">
-        <div class="t-icon">🔊</div>
+        <div class="t-icon"><img src="/img/icons/swirl.png" alt=""></div>
         <div class="t-info">
           <h3>Word lists</h3>
           <p>Type words and hear them said in Italian</p>
         </div>
       </a>
+      <a class="topic-btn" href="/review.html">
+        <div class="t-icon"><img src="/img/icons/ringed.png" alt=""></div>
+        <div class="t-info">
+          <h3>Daily Review</h3>
+          <p id="review-count-text">Spaced-repetition practice</p>
+        </div>
+      </a>
+      <a class="topic-btn" href="/moduli.html?cat=extra">
+        <div class="t-icon"><img src="/img/icons/planets.png" alt=""></div>
+        <div class="t-info">
+          <h3>Extra Practice</h3>
+          <p>False friends, tu/lei, sentence builder & more</p>
+        </div>
+      </a>
     </div>
 
-    <a class="btn btn-primary btn-block" href="/review.html" id="review-btn" style="margin-bottom:4px;">
-      🔄 Daily Review <span id="review-count"></span>
-    </a>
-
     <div class="card" style="margin-top:16px;">
-      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
-        <h3 style="font-size:15px;">💬 Latest messages <span class="chat-badge" style="margin-left:4px;"></span></h3>
-        <a href="/chat.html" style="font-size:12px; color:var(--gold); text-decoration:none; font-weight:700;">Open chat →</a>
-      </div>
-      <div class="chat-preview" id="chat-preview">Loading...</div>
-      <div class="sender-label">Sending as:</div>
-      <div class="mini-sender-toggle">
-        <button data-sender="io" id="mini-io">🌟 Tak</button>
-        <button class="active" data-sender="luna" id="mini-luna">🌙 Luna</button>
-      </div>
-      <div class="mini-emoji-panel" id="mini-emoji-panel"></div>
-      <div class="mini-composer">
-        <button id="mini-emoji-toggle" class="mini-emoji-btn">✨</button>
-        <input type="text" id="mini-input" placeholder="Write a quick message...">
-        <button id="mini-send">🚀</button>
-      </div>
-      <p class="mini-composer-hint">Send a quick hello to your study buddy 👋</p>
+      <h3 style="font-size:15px; margin-bottom:10px;">💬 Latest message <span class="chat-badge" style="margin-left:4px;"></span></h3>
+      <div class="chat-preview-single" id="chat-preview">Loading...</div>
+      <a href="/chat.html" class="btn btn-primary btn-block" style="margin-top:12px;">Open Chat →</a>
     </div>
   </div>
 
@@ -163,104 +145,53 @@ async function loadHome() {
 }
 loadHome();
 
-// ── Conteggio ripasso giornaliero ──
+document.getElementById('reset-all-btn').addEventListener('click', async () => {
+  if (!confirm('Reset ALL progress across every module? This cannot be undone.')) return;
+  await fetch('/api/progress', { method: 'DELETE' });
+  loadHome();
+  loadReviewCount();
+});
+
+// -- Conteggio ripasso giornaliero --
 async function loadReviewCount() {
   try {
     const due = await fetch('/api/review/due').then(r => r.json());
-    const el = document.getElementById('review-count');
-    if (due.length > 0) el.textContent = `(${due.length} due)`;
+    const el = document.getElementById('review-count-text');
+    el.textContent = due.length > 0 ? `${due.length} due today` : 'All caught up!';
   } catch (e) {}
 }
 loadReviewCount();
 
-// ── Anteprima chat ──
-let miniSender = localStorage.getItem('luna_device_owner') || localStorage.getItem('luna_notif_owner') || 'luna';
+// -- Anteprima chat: solo l'ultimo messaggio --
 const previewBox = document.getElementById('chat-preview');
-
-function fmtTimeShort(iso) {
-  const d = new Date(iso + 'Z');
-  return d.toLocaleString('en-GB', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
-}
 
 async function loadPreview() {
   const msgs = await fetch('/api/chat/messages').then(r => r.json());
-  const last = msgs.slice(-8);
-  if (!last.length) {
-    previewBox.innerHTML = '<div class="cp-empty">No messages yet — say hi! 👋</div>';
+  if (!msgs.length) {
+    previewBox.innerHTML = '<div class="cp-empty">No messages yet -- say hi! 👋</div>';
     return;
   }
-  previewBox.innerHTML = last.map(m => {
-    let attHtml = '';
-    if (m.attachment_path) {
-      if (m.attachment_type && m.attachment_type.startsWith('image/')) {
-        attHtml = `<img class="cp-att" src="${m.attachment_path}" alt="${m.attachment_name}">`;
-      } else if (m.attachment_type && m.attachment_type.startsWith('audio/')) {
-        attHtml = `<audio class="att-audio" controls src="${m.attachment_path}"></audio>`;
-      } else {
-        attHtml = `<a class="cp-att-file" href="${m.attachment_path}" target="_blank">📎 ${m.attachment_name}</a>`;
-      }
+  const m = msgs[msgs.length - 1];
+  let attHtml = '';
+  if (m.attachment_path) {
+    if (m.attachment_type && m.attachment_type.startsWith('image/')) {
+      attHtml = `<img class="cp-att" src="${m.attachment_path}" alt="${m.attachment_name}">`;
+    } else if (m.attachment_type && m.attachment_type.startsWith('audio/')) {
+      attHtml = `<audio class="att-audio" controls src="${m.attachment_path}"></audio>`;
+    } else {
+      attHtml = `<a class="cp-att-file" href="${m.attachment_path}" target="_blank">📎 ${m.attachment_name}</a>`;
     }
-    return `<div class="cp-msg ${m.sender}" data-text="${m.text ? encodeURIComponent(m.text) : ''}">
-      ${attHtml}
-      ${m.text ? chatFormatText(m.text) : ''}
-    </div>`;
-  }).join('');
-  previewBox.scrollTop = previewBox.scrollHeight;
-
-  previewBox.querySelectorAll('.cp-msg').forEach(el => {
-    const raw = el.dataset.text;
-    if (raw) chatAttachPreview(decodeURIComponent(raw), el);
-  });
+  }
+  previewBox.innerHTML = `<div class="cp-msg ${m.sender}">
+    ${attHtml}
+    ${m.text ? chatFormatText(m.text) : ''}
+  </div>`;
+  const bubble = previewBox.querySelector('.cp-msg');
+  if (m.text && bubble) chatAttachPreview(m.text, bubble);
 }
 loadPreview();
 checkUnreadChat();
 setInterval(() => { loadPreview(); checkUnreadChat(); }, 20000);
-
-// ── Pannello emoji lunare (mini-composer) ──
-const miniEmojiPanel = document.getElementById('mini-emoji-panel');
-const miniInput = document.getElementById('mini-input');
-miniEmojiPanel.innerHTML = MOON_EMOJIS.map(m =>
-  `<button type="button" class="moon-emoji-btn" data-code="${m.code}" title="${m.label}">${m.svg}</button>`
-).join('');
-miniEmojiPanel.querySelectorAll('button').forEach(btn => {
-  btn.addEventListener('click', () => {
-    miniInput.value += btn.dataset.code;
-    miniInput.focus();
-  });
-});
-document.getElementById('mini-emoji-toggle').addEventListener('click', () => {
-  miniEmojiPanel.classList.toggle('open');
-});
-
-document.getElementById('mini-io').addEventListener('click', () => setMiniSender('io'));
-document.getElementById('mini-luna').addEventListener('click', () => setMiniSender('luna'));
-function setMiniSender(s) {
-  miniSender = s;
-  document.getElementById('mini-io').classList.toggle('active', s === 'io');
-  document.getElementById('mini-luna').classList.toggle('active', s === 'luna');
-}
-setMiniSender(miniSender);
-
-// Al primo avvio su questo telefono, chiede una sola volta di chi è
-chatEnsureDeviceOwner(owner => setMiniSender(owner));
-
-async function sendMini() {
-  const input = document.getElementById('mini-input');
-  const text = input.value.trim();
-  if (!text) return;
-  const formData = new FormData();
-  formData.append('sender', miniSender);
-  formData.append('text', text);
-  const res = await fetch('/api/chat/messages', { method: 'POST', body: formData });
-  const msg = await res.json();
-  input.value = '';
-  loadPreview();
-  markChatRead(msg.id);
-}
-document.getElementById('mini-send').addEventListener('click', sendMini);
-document.getElementById('mini-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') { e.preventDefault(); sendMini(); }
-});
 
 // ── Messaggio striscione ──
 async function loadBanner() {

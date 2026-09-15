@@ -21,7 +21,7 @@ function buildStarfield() {
     const sh = document.createElement('div');
     sh.className = 'shooting-star';
     sh.style.left = (5 + Math.random() * 60) + '%';
-    sh.style.top = (2 + Math.random() * 40) + '%';
+    sh.style.top = (2 + Math.random() * 75) + '%';
     sh.style.setProperty('--dist', (180 + Math.random() * 110) + 'px');
     sh.style.setProperty('--angle', (26 + Math.random() * 18) + 'deg');
     sh.style.animationDuration = (4 + Math.random() * 2.5) + 's';

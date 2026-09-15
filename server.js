@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
@@ -18,6 +19,165 @@ const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'data', 'luna.db');
 const UPLOAD_DIR = path.join(__dirname, 'public', 'uploads');
 
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+
+// ── Accesso segreto: 4 tap veloci + password, solo per Io/Luna ──
+app.set('trust proxy', 1); // necessario su Railway perche' i cookie 'secure' funzionino dietro il proxy HTTPS
+
+let PASSWORD_ACCESSO = process.env.PASSWORD_ACCESSO;
+if (!PASSWORD_ACCESSO) {
+  PASSWORD_ACCESSO = crypto.randomBytes(6).toString('hex');
+  console.log('⚠️  PASSWORD_ACCESSO non impostata su Railway. Password generata per questo avvio: ' + PASSWORD_ACCESSO);
+  console.log('   Impostala come variabile d\'ambiente su Railway per renderla permanente e scegliere la tua.');
+}
+let SESSION_SECRET = process.env.SESSION_SECRET;
+if (!SESSION_SECRET) {
+  SESSION_SECRET = crypto.randomBytes(32).toString('hex');
+  console.log('⚠️  SESSION_SECRET non impostato: generato casualmente (le sessioni non sopravvivono a un riavvio finche\' non lo imposti su Railway).');
+}
+
+const TEMPO_MASSIMO_SEQUENZA = 1500; // ms per completare i 4 tap
+const MAX_TENTATIVI = 5;
+const BLOCCO_MINUTI = 15;
+
+app.use(session({
+  secret: SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production' || !!process.env.RAILWAY_ENVIRONMENT,
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 * 30, // 30 giorni
+  }
+}));
+app.use(express.urlencoded({ extended: true }));
+
+const GATE_HTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Luna Italiano</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/css/theme.css">
+<style>
+  body { display:flex; align-items:center; justify-content:center; height:100vh; margin:0; text-align:center; }
+  #touch-zone { position:fixed; inset:0; z-index:5; -webkit-tap-highlight-color: transparent; }
+  #gate-message {
+    position:relative; z-index:2; padding:0 30px; font-family:'Quicksand',sans-serif;
+    color: var(--muted); font-size:15px; max-width:320px; line-height:1.6;
+  }
+  #box-password {
+    display:none; position:relative; z-index:6;
+    background: var(--card-bg); border:1px solid var(--card-border); border-radius: var(--radius);
+    padding: 30px 26px; max-width:280px; text-align:center; backdrop-filter: blur(8px);
+  }
+  #box-password h3 { font-family:'Baloo 2',sans-serif; margin-bottom:16px; color:var(--text); font-size:18px; }
+  #box-password input {
+    padding:12px 14px; font-size:16px; border:1px solid var(--card-border); border-radius:12px;
+    outline:none; margin-bottom:14px; width:100%; box-sizing:border-box;
+    background: rgba(255,255,255,0.08); color:var(--text); font-family:'Quicksand',sans-serif;
+  }
+  #box-password button {
+    padding:12px 24px; font-size:15px; font-weight:700;
+    background: linear-gradient(135deg, var(--gold), #f0a93a); color:#2a1c00;
+    border:none; border-radius:26px; cursor:pointer; width:100%;
+    font-family:'Quicksand',sans-serif;
+  }
+  #gate-error { color:#e65a5a; font-size:13px; margin-top:-6px; margin-bottom:10px; min-height:16px; }
+</style>
+</head>
+<body>
+  <div id="touch-zone"></div>
+  <div id="gate-message">Unless you're Luna, get lost; nobody wants you here. 🌙</div>
+  <div id="box-password">
+    <h3>🌙 Enter password</h3>
+    <div id="gate-error">__ERROR__</div>
+    <form action="/login" method="POST">
+      <input type="password" name="password" placeholder="••••••••" required autofocus>
+      <button type="submit">Unlock</button>
+    </form>
+  </div>
+  <script src="/js/starfield.js"></script>
+  <script>
+    const zone = document.getElementById('touch-zone');
+    async function registraTap(e) {
+      if (e.type === 'touchstart') e.preventDefault();
+      try {
+        const response = await fetch('/registra-tap', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+        const data = await response.json();
+        if (data.success) {
+          zone.style.display = 'none';
+          document.getElementById('gate-message').style.display = 'none';
+          document.getElementById('box-password').style.display = 'block';
+        }
+      } catch (err) {}
+    }
+    zone.addEventListener('touchstart', registraTap, { passive: false });
+    zone.addEventListener('mousedown', (e) => { if (e.detail === 0) return; registraTap(e); });
+  </script>
+</body>
+</html>`;
+
+app.get('/', (req, res, next) => {
+  if (req.session && req.session.autenticato) return next(); // passa allo static, servira' index.html
+  req.session.taps = 0;
+  req.session.primoTapTime = 0;
+  const errorMsg = req.session.gateError ? 'Wrong password. Try again.' : '';
+  req.session.gateError = false;
+  res.send(GATE_HTML.replace('__ERROR__', errorMsg));
+});
+
+app.post('/registra-tap', (req, res) => {
+  const adesso = Date.now();
+  if (!req.session.taps || req.session.taps === 0 || (adesso - req.session.primoTapTime > TEMPO_MASSIMO_SEQUENZA)) {
+    req.session.taps = 1;
+    req.session.primoTapTime = adesso;
+  } else {
+    req.session.taps += 1;
+  }
+  if (req.session.taps === 4 && (adesso - req.session.primoTapTime <= TEMPO_MASSIMO_SEQUENZA)) {
+    req.session.sequenzaSuperata = true;
+    req.session.taps = 0;
+    return res.json({ success: true });
+  }
+  res.json({ success: false });
+});
+
+app.post('/login', (req, res) => {
+  const { password } = req.body;
+  if (!req.session.sequenzaSuperata) return res.redirect('/');
+
+  const now = Date.now();
+  if (req.session.lockUntil && now < req.session.lockUntil) {
+    req.session.sequenzaSuperata = false;
+    return res.redirect('/');
+  }
+
+  if (password === PASSWORD_ACCESSO) {
+    req.session.autenticato = true;
+    req.session.sequenzaSuperata = false;
+    req.session.tentativiFalliti = 0;
+    return res.redirect('/');
+  }
+
+  req.session.tentativiFalliti = (req.session.tentativiFalliti || 0) + 1;
+  if (req.session.tentativiFalliti >= MAX_TENTATIVI) {
+    req.session.lockUntil = now + BLOCCO_MINUTI * 60 * 1000;
+    req.session.tentativiFalliti = 0;
+  }
+  req.session.sequenzaSuperata = false;
+  req.session.gateError = true;
+  res.redirect('/');
+});
+
+// Da qui in poi, tutto (pagine statiche + API) richiede sessione autenticata,
+// tranne le risorse condivise necessarie alla schermata del cancello.
+const PUBLIC_GATE_ASSETS = ['/css/theme.css', '/js/starfield.js', '/favicon.svg'];
+app.use((req, res, next) => {
+  if (req.session && req.session.autenticato) return next();
+  if (PUBLIC_GATE_ASSETS.includes(req.path)) return next();
+  res.status(401).send('Not authorized');
+});
 const DB_DIR = path.dirname(DB_PATH);
 if (!fs.existsSync(DB_DIR)) fs.mkdirSync(DB_DIR, { recursive: true });
 

@@ -13617,7 +13617,7 @@
   },
   {
     "id": "n1",
-    "category": "vocab",
+    "category": "extra",
     "title": "False Friends",
     "subtitle": "Italian words that look English but trick you",
     "icon": "🎭",
@@ -13979,7 +13979,7 @@
   },
   {
     "id": "n2",
-    "category": "vocab",
+    "category": "extra",
     "title": "Everyday Slang",
     "subtitle": "How Italians actually talk to each other",
     "icon": "💬",
@@ -14242,7 +14242,7 @@
   },
   {
     "id": "n3",
-    "category": "grammar",
+    "category": "extra",
     "title": "Tu vs. Lei",
     "subtitle": "Formal or informal? Pick the right one for the situation",
     "icon": "🎩",
@@ -14367,7 +14367,7 @@
   },
   {
     "id": "n4",
-    "category": "grammar",
+    "category": "extra",
     "title": "Il or La?",
     "subtitle": "Sort each word into the right gender bucket",
     "icon": "⚖️",
@@ -14599,7 +14599,7 @@
   },
   {
     "id": "n5",
-    "category": "grammar",
+    "category": "extra",
     "title": "Sentence Builder",
     "subtitle": "Tap the words in the right order — Italian word order isn't English word order!",
     "icon": "🧩",
@@ -14821,7 +14821,7 @@
   },
   {
     "id": "n6",
-    "category": "grammar",
+    "category": "extra",
     "title": "Fill in the Blank",
     "subtitle": "Complete real sentences using words you've already learned",
     "icon": "📝",

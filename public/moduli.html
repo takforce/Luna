@@ -139,7 +139,7 @@ async function render() {
   progressMap = {};
   progress.forEach(p => progressMap[p.module_id] = p);
 
-  const pageTitle = cat === 'grammar' ? '✏️ Grammar' : cat === 'verbs' ? '📖 Verb Practice' : '📚 Learn new words';
+  const pageTitle = cat === 'grammar' ? '✏️ Grammar' : cat === 'verbs' ? '📖 Verb Practice' : cat === 'extra' ? '🎁 Extra Practice' : '📚 Learn new words';
 
   const main = document.getElementById('main');
   main.innerHTML = `<h1 style="font-size:20px; margin-bottom:14px;">${pageTitle}</h1>` +
