@@ -64,7 +64,14 @@ const GATE_HTML = `<!DOCTYPE html>
   #touch-zone { position:fixed; inset:0; z-index:5; -webkit-tap-highlight-color: transparent; }
   #gate-message {
     position:relative; z-index:2; padding:0 30px; font-family:'Quicksand',sans-serif;
-    color: var(--muted); font-size:15px; max-width:320px; line-height:1.6;
+    color: var(--muted); font-size:15px; max-width:340px; line-height:1.6;
+  }
+  #gate-message .gate-title {
+    display:block; color: var(--text); font-size:22px; font-weight:700;
+    font-family:'Baloo 2',sans-serif; margin-bottom:8px; line-height:1.4;
+  }
+  #gate-mask {
+    display:block; width:140px; height:auto; margin:0 auto 18px; opacity:0.75;
   }
   #box-password {
     display:none; position:relative; z-index:6;
@@ -88,7 +95,11 @@ const GATE_HTML = `<!DOCTYPE html>
 </head>
 <body>
   <div id="touch-zone"></div>
-  <div id="gate-message">Unless you're Luna, get lost; nobody wants you here. 🌙</div>
+  <div id="gate-message">
+    <img id="gate-mask" src="/img/icons/scary-mask.png" alt="">
+    <span class="gate-title">Unless you're Luna,<br>get lost.</span>
+    Nobody wants you here. 🌙
+  </div>
   <div id="box-password">
     <h3>🌙 Enter password</h3>
     <div id="gate-error">__ERROR__</div>
@@ -172,7 +183,7 @@ app.post('/login', (req, res) => {
 
 // Da qui in poi, tutto (pagine statiche + API) richiede sessione autenticata,
 // tranne le risorse condivise necessarie alla schermata del cancello.
-const PUBLIC_GATE_ASSETS = ['/css/theme.css', '/js/starfield.js', '/favicon.svg'];
+const PUBLIC_GATE_ASSETS = ['/css/theme.css', '/js/starfield.js', '/favicon.svg', '/img/icons/scary-mask.png'];
 app.use((req, res, next) => {
   if (req.session && req.session.autenticato) return next();
   if (PUBLIC_GATE_ASSETS.includes(req.path)) return next();
