@@ -12,10 +12,11 @@
     .chat-wrap { height: calc(100dvh - 62px - 60px); }
   }
   .chat-log { flex:1; overflow-y:auto; padding: 16px; display:flex; flex-direction:column; gap:10px; }
-  .msg { max-width: 78%; padding: 10px 14px; border-radius: 16px; font-size:14px; line-height:1.4; position:relative; white-space: pre-wrap; }
+  .msg { max-width: 78%; padding: 10px 14px; border-radius: 16px; font-size:14px; line-height:1.4; position:relative; }
   .msg.io { align-self:flex-end; background: linear-gradient(135deg, var(--gold), #f0a93a); color:#2a1c00; border-bottom-right-radius:4px; }
   .msg.luna { align-self:flex-start; background: rgba(255,255,255,0.09); border:1px solid var(--card-border); border-bottom-left-radius:4px; }
   .msg .meta { font-size:10px; opacity:.6; margin-top:4px; display:flex; gap:8px; align-items:center; }
+  .msg-text { white-space: pre-wrap; }
   .msg img.att { max-width: 100%; border-radius:10px; margin-bottom:6px; display:block; }
   .msg a.att-file { display:flex; align-items:center; gap:6px; font-size:13px; text-decoration:underline; margin-bottom:4px; }
   .msg .del-btn { background:none; border:none; color:inherit; opacity:.5; cursor:pointer; font-size:11px; }
@@ -347,7 +348,7 @@ function renderMsg(m) {
   div.innerHTML = `
     ${quoteHtml}
     ${attHtml}
-    ${m.text ? `<div>${chatFormatText(m.text)}</div>` : ''}
+    ${m.text ? `<div class="msg-text">${chatFormatText(m.text.trim())}</div>` : ''}
     <div class="meta">
       <span>${fmtTime(m.created_at)}</span>
       <button class="reply-btn" data-id="${m.id}">↩️ reply</button>

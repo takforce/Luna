@@ -196,7 +196,7 @@ async function loadPreview() {
   }
   previewBox.innerHTML = `<div class="cp-msg ${m.sender}">
     ${attHtml}
-    ${m.text ? chatFormatText(m.text) : ''}
+    ${m.text ? chatFormatText(m.text.trim()) : ''}
   </div>`;
   const bubble = previewBox.querySelector('.cp-msg');
   if (m.text && bubble) chatAttachPreview(m.text, bubble);
