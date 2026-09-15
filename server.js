@@ -214,6 +214,7 @@ CREATE TABLE IF NOT EXISTS chat_messages (
   attachment_path TEXT,
   attachment_name TEXT,
   attachment_type TEXT,
+  reply_to_id INTEGER,               -- id del messaggio a cui si risponde (o NULL)
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
@@ -240,6 +241,12 @@ CREATE TABLE IF NOT EXISTS banner (
 );
 INSERT OR IGNORE INTO banner (id, message) VALUES (1, '');
 `);
+// Migrazione: aggiunge reply_to_id se il database esisteva già senza questa colonna
+const chatCols = db.prepare("PRAGMA table_info(chat_messages)").all().map(c => c.name);
+if (!chatCols.includes('reply_to_id')) {
+  db.exec('ALTER TABLE chat_messages ADD COLUMN reply_to_id INTEGER');
+}
+
 // Ripulisce il vecchio messaggio di default impostato per errore in una versione precedente
 db.prepare("UPDATE banner SET message = '' WHERE message = 'Ti amo Luna! 💛'").run();
 
@@ -274,18 +281,19 @@ app.get('/api/chat/messages', (req, res) => {
 });
 
 app.post('/api/chat/messages', messageRateLimiter, upload.single('attachment'), (req, res) => {
-  const { sender, text } = req.body;
+  const { sender, text, reply_to_id } = req.body;
   if (!sender || (!text && !req.file)) {
     return res.status(400).json({ error: 'sender e (text o allegato) richiesti' });
   }
   const attachment_path = req.file ? '/uploads/' + req.file.filename : null;
   const attachment_name = req.file ? req.file.originalname : null;
   const attachment_type = req.file ? req.file.mimetype : null;
+  const replyToId = reply_to_id ? parseInt(reply_to_id, 10) : null;
 
   const info = db.prepare(`
-    INSERT INTO chat_messages (sender, text, attachment_path, attachment_name, attachment_type)
-    VALUES (?, ?, ?, ?, ?)
-  `).run(sender, text || null, attachment_path, attachment_name, attachment_type);
+    INSERT INTO chat_messages (sender, text, attachment_path, attachment_name, attachment_type, reply_to_id)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `).run(sender, text || null, attachment_path, attachment_name, attachment_type, replyToId);
 
   const row = db.prepare('SELECT * FROM chat_messages WHERE id = ?').get(info.lastInsertRowid);
   res.json(row);
@@ -478,6 +486,12 @@ app.post('/api/push/unsubscribe', (req, res) => {
 });
 
 // ── Messaggio dello striscione trainato dall'aereo in home ──
+// Videochiamata: stanza Jitsi con nome unico e non indovinabile, legato al segreto di sessione
+const JITSI_ROOM = 'luna-italiano-' + crypto.createHash('sha256').update(SESSION_SECRET).digest('hex').slice(0, 20);
+app.get('/api/video-room', (req, res) => {
+  res.json({ url: `https://meet.jit.si/${JITSI_ROOM}`, room: JITSI_ROOM });
+});
+
 app.get('/api/banner', (req, res) => {
   const row = db.prepare('SELECT message FROM banner WHERE id = 1').get();
   res.json({ message: row ? row.message : '' });

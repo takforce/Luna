@@ -67,6 +67,29 @@
     padding:5px 12px; font-family:'Quicksand',sans-serif; font-weight:700; font-size:11px; cursor:pointer;
     margin-left:auto; white-space:nowrap;
   }
+  .video-call-bar {
+    display:flex; align-items:center; justify-content:center; gap:6px;
+    padding: 10px 16px; background: rgba(89,214,148,0.12); border-bottom:1px solid var(--card-border);
+    color: #59d694; font-family:'Quicksand',sans-serif; font-weight:700; font-size:13px;
+    text-decoration:none;
+  }
+  .video-call-bar:hover { background: rgba(89,214,148,0.2); }
+
+  .msg-quote {
+    border-left: 3px solid rgba(255,255,255,0.4); padding: 4px 8px; margin-bottom: 6px;
+    font-size: 12px; opacity: 0.8; border-radius: 4px; background: rgba(0,0,0,0.12);
+  }
+  .meta .reply-btn {
+    background:none; border:none; color:inherit; opacity:.6; cursor:pointer; font-size:11px; margin-right: 8px;
+  }
+  .meta .reply-btn:hover { opacity: 1; }
+  .reply-preview-bar {
+    display:none; align-items:center; gap:8px; background: rgba(255,255,255,0.08);
+    border-left: 3px solid var(--gold); border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; font-size: 12px;
+  }
+  .reply-preview-bar.show { display:flex; }
+  .reply-preview-bar span { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .reply-preview-bar button { background:none; border:none; color:var(--muted); cursor:pointer; font-size:14px; }
 
   .chat-link { color: inherit; text-decoration: underline; word-break: break-all; }
 </style>
@@ -94,10 +117,17 @@
       <span id="notif-status">🔔 Get notified here when a new message arrives</span>
       <button id="notif-btn">Enable</button>
     </div>
+    <a href="#" target="_blank" rel="noopener" id="video-call-link" class="video-call-bar">
+      📹 Start a video call with Luna
+    </a>
     <div class="chat-log" id="chat-log"></div>
 
     <div class="composer">
       <div class="emoji-panel" id="emoji-panel"></div>
+      <div class="reply-preview-bar" id="reply-preview-bar">
+        <span id="reply-preview-text"></span>
+        <button id="reply-preview-cancel">✕</button>
+      </div>
       <div class="attach-preview" id="attach-preview">
         <span id="attach-name"></span>
         <button id="attach-remove">✕</button>
@@ -164,6 +194,7 @@ document.querySelectorAll('.sender-toggle button').forEach(btn => {
     currentSender = btn.dataset.sender;
     document.querySelectorAll('.sender-toggle button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+    loadVideoCallLink();
   });
 });
 
@@ -235,7 +266,11 @@ function fmtTime(iso) {
   return d.toLocaleString('it-IT', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
 }
 
+const messagesById = {};
+let replyingTo = null;
+
 function renderMsg(m) {
+  messagesById[m.id] = m;
   const div = document.createElement('div');
   div.className = 'msg ' + m.sender;
   let attHtml = '';
@@ -248,19 +283,47 @@ function renderMsg(m) {
       attHtml = `<a class="att-file" href="${m.attachment_path}" target="_blank">📎 ${m.attachment_name}</a>`;
     }
   }
+
+  let quoteHtml = '';
+  if (m.reply_to_id && messagesById[m.reply_to_id]) {
+    const orig = messagesById[m.reply_to_id];
+    const originalWho = orig.sender === 'io' ? 'Tak' : 'Luna';
+    const snippet = orig.text ? orig.text.slice(0, 60) : (orig.attachment_name ? '📎 ' + orig.attachment_name : '');
+    quoteHtml = `<div class="msg-quote"><b>${originalWho}</b>: ${snippet.replace(/</g,'&lt;')}</div>`;
+  }
+
   div.innerHTML = `
+    ${quoteHtml}
     ${attHtml}
     ${m.text ? `<div>${chatFormatText(m.text)}</div>` : ''}
-    <div class="meta"><span>${fmtTime(m.created_at)}</span><button class="del-btn" data-id="${m.id}">delete</button></div>
+    <div class="meta">
+      <span>${fmtTime(m.created_at)}</span>
+      <button class="reply-btn" data-id="${m.id}">↩️ reply</button>
+      <button class="del-btn" data-id="${m.id}">delete</button>
+    </div>
   `;
   div.querySelector('.del-btn').addEventListener('click', async () => {
     await fetch('/api/chat/messages/' + m.id, { method: 'DELETE' });
     div.remove();
     lastMsgCount = Math.max(0, lastMsgCount - 1);
   });
+  div.querySelector('.reply-btn').addEventListener('click', () => startReply(m));
   chatLog.appendChild(div);
 
   if (m.text) chatAttachPreview(m.text, div);
+}
+
+function startReply(m) {
+  replyingTo = m;
+  const who = m.sender === 'io' ? 'Tak' : 'Luna';
+  const snippet = m.text ? m.text.slice(0, 50) : (m.attachment_name ? '📎 ' + m.attachment_name : '');
+  document.getElementById('reply-preview-text').textContent = `Replying to ${who}: ${snippet}`;
+  document.getElementById('reply-preview-bar').classList.add('show');
+  msgInput.focus();
+}
+function cancelReply() {
+  replyingTo = null;
+  document.getElementById('reply-preview-bar').classList.remove('show');
 }
 
 let lastMsgCount = -1;
@@ -289,6 +352,7 @@ async function sendMessage() {
   formData.append('sender', currentSender);
   formData.append('text', text);
   if (pendingFile) formData.append('attachment', pendingFile);
+  if (replyingTo) formData.append('reply_to_id', replyingTo.id);
 
   const res = await fetch('/api/chat/messages', { method: 'POST', body: formData });
   const msg = await res.json();
@@ -301,7 +365,9 @@ async function sendMessage() {
   pendingFile = null; fileInput.value = '';
   attachPreview.classList.remove('show');
   emojiPanel.classList.remove('open');
+  cancelReply();
 }
+document.getElementById('reply-preview-cancel').addEventListener('click', cancelReply);
 
 document.getElementById('send-btn').addEventListener('click', sendMessage);
 msgInput.addEventListener('keydown', e => {
@@ -382,6 +448,18 @@ async function disableNotifications(sub) {
 
 checkNotifStatus();
 
+// ── Videochiamata ──
+async function loadVideoCallLink() {
+  try {
+    const r = await fetch('/api/video-room').then(r => r.json());
+    const link = document.getElementById('video-call-link');
+    link.href = r.url;
+    const other = currentSender === 'io' ? 'Luna' : 'Tak';
+    link.textContent = `📹 Start a video call with ${other}`;
+  } catch (e) {}
+}
+loadVideoCallLink();
+
 // Applica subito il mittente giusto ai pulsanti (in base al dispositivo salvato)
 document.querySelectorAll('.sender-toggle button').forEach(b => {
   b.classList.toggle('active', b.dataset.sender === currentSender);
@@ -393,6 +471,7 @@ chatEnsureDeviceOwner(owner => {
   document.querySelectorAll('.sender-toggle button').forEach(b => {
     b.classList.toggle('active', b.dataset.sender === owner);
   });
+  loadVideoCallLink();
 });
 </script>
 </body>
