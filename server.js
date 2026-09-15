@@ -18,9 +18,33 @@ webpush.setVapidDetails('mailto:luna-italiano@example.com', VAPID_PUBLIC_KEY, VA
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'data', 'luna.db');
+const DB_DIR = path.dirname(DB_PATH);
 const UPLOAD_DIR = path.join(__dirname, 'public', 'uploads');
 
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+
+// Su Railway il Volume persistente a volte non e' ancora montato nell'istante esatto
+// in cui il server parte: se lo tocco subito e fallisce, aspetto un attimo e riprovo,
+// invece di far crashare tutto il processo (sia le sessioni che il database vivono li').
+function sleepSync(ms) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
+function ensureDirWithRetry(dir, maxAttempts = 6, delayMs = 1000) {
+  let lastErr;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      return;
+    } catch (err) {
+      lastErr = err;
+      console.log(`⚠️  Tentativo ${attempt}/${maxAttempts} di preparare ${dir} fallito (${err.message}). Riprovo tra ${delayMs}ms...`);
+      if (attempt < maxAttempts) sleepSync(delayMs);
+    }
+  }
+  throw lastErr;
+}
+ensureDirWithRetry(DB_DIR);
+ensureDirWithRetry(path.join(DB_DIR, 'sessions'));
 
 // ── Accesso segreto: 4 tap veloci + password, solo per Io/Luna ──
 app.set('trust proxy', 1); // necessario su Railway perche' i cookie 'secure' funzionino dietro il proxy HTTPS
@@ -199,11 +223,23 @@ app.use((req, res, next) => {
   }
   res.status(401).json({ error: 'Not authorized' });
 });
-const DB_DIR = path.dirname(DB_PATH);
-if (!fs.existsSync(DB_DIR)) fs.mkdirSync(DB_DIR, { recursive: true });
+
+function openDatabaseWithRetry(dbPath, maxAttempts = 3, delayMs = 500) {
+  let lastErr;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      return new Database(dbPath);
+    } catch (err) {
+      lastErr = err;
+      console.log(`⚠️  Tentativo ${attempt}/${maxAttempts} di apertura database fallito (${err.message}). Riprovo tra ${delayMs}ms...`);
+      if (attempt < maxAttempts) sleepSync(delayMs);
+    }
+  }
+  throw lastErr;
+}
 
 // ── DB ──
-const db = new Database(DB_PATH);
+const db = openDatabaseWithRetry(DB_PATH);
 db.pragma('journal_mode = WAL');
 
 db.exec(`
