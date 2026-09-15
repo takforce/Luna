@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
@@ -40,6 +41,10 @@ const MAX_TENTATIVI = 5;
 const BLOCCO_MINUTI = 15;
 
 app.use(session({
+  store: new FileStore({
+    path: path.join(path.dirname(DB_PATH), 'sessions'),
+    logFn: () => {}, // niente log rumorosi in console
+  }),
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
@@ -184,10 +189,14 @@ app.post('/login', (req, res) => {
 // Da qui in poi, tutto (pagine statiche + API) richiede sessione autenticata,
 // tranne le risorse condivise necessarie alla schermata del cancello.
 const PUBLIC_GATE_ASSETS = ['/css/theme.css', '/js/starfield.js', '/favicon.svg', '/img/icons/scary-mask.png'];
+const APP_PAGES = ['/', '/chat.html', '/moduli.html', '/esercizio.html', '/liste.html', '/review.html'];
 app.use((req, res, next) => {
   if (req.session && req.session.autenticato) return next();
   if (PUBLIC_GATE_ASSETS.includes(req.path)) return next();
-  res.status(401).send('Not authorized');
+  if (req.method === 'GET' && APP_PAGES.includes(req.path)) {
+    return res.redirect('/'); // sessione scaduta: torna al cancello invece di una pagina rotta
+  }
+  res.status(401).json({ error: 'Not authorized' });
 });
 const DB_DIR = path.dirname(DB_PATH);
 if (!fs.existsSync(DB_DIR)) fs.mkdirSync(DB_DIR, { recursive: true });
