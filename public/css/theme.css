@@ -207,9 +207,12 @@ h1, h2, h3, .title-font { font-family: 'Baloo 2', sans-serif; }
   0%   { left: 108%; }
   100% { left: -22%; }
 }
+.moon-bob-wrap {
+  animation: moonBob 5s ease-in-out infinite;
+}
 .moon-main {
   display: block;
-  animation: moonBob 5s ease-in-out infinite;
+  border-radius: 50%;
 }
 @keyframes moonBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 .moon-orbit {

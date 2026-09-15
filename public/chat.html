@@ -28,7 +28,13 @@
   .sender-toggle button.active.luna { background: var(--violet-light); color:#1a1240; border-color:var(--violet-light); }
 
   .input-row { display:flex; align-items:flex-end; gap:8px; }
-  .controls-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; flex-wrap:nowrap; }
+  .controls-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; flex-wrap:wrap; }
+  .video-call-pill {
+    display:flex; align-items:center; gap:4px; height:34px; padding:0 12px; border-radius:17px;
+    background: rgba(89,214,148,0.18); border:1px solid rgba(89,214,148,0.4); color:#59d694;
+    font-family:'Quicksand',sans-serif; font-weight:700; font-size:12px; text-decoration:none; white-space:nowrap;
+  }
+  .video-call-pill:hover { background: rgba(89,214,148,0.28); }
   .input-icons-row { display:flex; align-items:center; gap:6px; flex-shrink:0; }
   .input-icons-row .icon-btn { width:34px; height:34px; font-size:15px; }
   .input-row textarea {
@@ -67,13 +73,6 @@
     padding:5px 12px; font-family:'Quicksand',sans-serif; font-weight:700; font-size:11px; cursor:pointer;
     margin-left:auto; white-space:nowrap;
   }
-  .video-call-bar {
-    display:flex; align-items:center; justify-content:center; gap:6px;
-    padding: 10px 16px; background: rgba(89,214,148,0.12); border-bottom:1px solid var(--card-border);
-    color: #59d694; font-family:'Quicksand',sans-serif; font-weight:700; font-size:13px;
-    text-decoration:none;
-  }
-  .video-call-bar:hover { background: rgba(89,214,148,0.2); }
 
   .msg-quote {
     border-left: 3px solid rgba(255,255,255,0.4); padding: 4px 8px; margin-bottom: 6px;
@@ -117,9 +116,6 @@
       <span id="notif-status">🔔 Get notified here when a new message arrives</span>
       <button id="notif-btn">Enable</button>
     </div>
-    <a href="#" target="_blank" rel="noopener" id="video-call-link" class="video-call-bar">
-      📹 Start a video call with Luna
-    </a>
     <div class="chat-log" id="chat-log"></div>
 
     <div class="composer">
@@ -141,11 +137,12 @@
           <button class="icon-btn" id="emoji-toggle">✨</button>
           <button class="icon-btn" id="attach-btn">📎</button>
           <button class="icon-btn" id="mic-btn">🎤</button>
+          <a href="#" target="_blank" rel="noopener" id="video-call-link" class="video-call-pill">📹 Videocall</a>
           <input type="file" id="file-input" style="display:none">
         </div>
       </div>
       <div class="input-row">
-        <textarea id="msg-input" placeholder="Write a message..." rows="1"></textarea>
+        <textarea id="msg-input" placeholder="Write a message..." rows="1" autocapitalize="off" autocorrect="off" spellcheck="false"></textarea>
         <button class="icon-btn send-btn" id="send-btn">🚀</button>
       </div>
     </div>
@@ -454,8 +451,6 @@ async function loadVideoCallLink() {
     const r = await fetch('/api/video-room').then(r => r.json());
     const link = document.getElementById('video-call-link');
     link.href = r.url;
-    const other = currentSender === 'io' ? 'Luna' : 'Tak';
-    link.textContent = `📹 Start a video call with ${other}`;
   } catch (e) {}
 }
 loadVideoCallLink();

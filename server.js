@@ -405,14 +405,30 @@ app.get('/api/speak', async (req, res) => {
 const SRS_BOX_INTERVALS = [0, 1, 3, 7, 16, 30];
 
 app.get('/api/review/due', (req, res) => {
-  const clozeItems = [];
+  // Pesca da TUTTO il vocabolario gia' imparato (scelta multipla + abbinamento),
+  // non da un set fisso di frasi: il pozzo cosi' non si esaurisce mai.
+  const REVIEW_CATEGORIES = ['vocab', 'grammar', 'verbs'];
+  const poolItems = [];
   modules.forEach(m => {
+    if (!REVIEW_CATEGORIES.includes(m.category || 'vocab')) return;
     m.exercises.forEach(ex => {
-      if (ex.type === 'cloze') {
+      if (ex.type === 'scelta_multipla') {
         ex.items.forEach(item => {
-          clozeItems.push({
+          // Escludo risposte con spiegazioni lunghe (es. falsi amici) non adatte a scrivere a memoria
+          if (item.answer.includes('/') || item.answer.includes('(')) return;
+          poolItems.push({
             module_id: m.id, exercise_id: ex.id, item_id: item.id,
-            sentence: item.sentence, accepted: item.accepted
+            sentence: `How do you say <b>"${item.prompt}"</b> in Italian?`,
+            accepted: [item.answer]
+          });
+        });
+      } else if (ex.type === 'abbinamento') {
+        ex.pairs.forEach(pair => {
+          if (pair.en.includes('/') || pair.en.includes('(')) return;
+          poolItems.push({
+            module_id: m.id, exercise_id: ex.id, item_id: pair.id,
+            sentence: `How do you say <b>"${pair.en}"</b> in Italian?`,
+            accepted: [pair.it]
           });
         });
       }
@@ -421,7 +437,7 @@ app.get('/api/review/due', (req, res) => {
 
   const now = Date.now();
   const due = [];
-  for (const ci of clozeItems) {
+  for (const ci of poolItems) {
     const rows = db.prepare(`
       SELECT correct, created_at FROM exercise_results
       WHERE module_id = ? AND exercise_id = ? AND item_id = ?

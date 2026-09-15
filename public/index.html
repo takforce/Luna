@@ -29,17 +29,19 @@
     <div class="hero">
       <div class="sky-stage">
         <div class="moon-system">
-          <img class="moon-main" src="/img/moon-photo.png" alt="Moon" width="92" height="92">
+          <div class="moon-bob-wrap">
+            <img class="moon-main" src="/img/moon-photo.png" alt="Moon" width="92" height="92">
+          </div>
           <div class="moon-orbit">
             <svg class="moon-satellite" viewBox="0 0 24 24">
               <defs>
-                <radialGradient id="heartGrad" cx="35%" cy="30%" r="75%">
-                  <stop offset="0%" stop-color="#ffffff"/>
-                  <stop offset="60%" stop-color="#f2b8d6"/>
-                  <stop offset="100%" stop-color="#d980af"/>
+                <radialGradient id="starGrad" cx="40%" cy="35%" r="75%">
+                  <stop offset="0%" stop-color="#fffbe8"/>
+                  <stop offset="55%" stop-color="#f6c453"/>
+                  <stop offset="100%" stop-color="#e0a02a"/>
                 </radialGradient>
               </defs>
-              <path d="M12 21s-8-4.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 6.5-8 11-8 11z" fill="url(#heartGrad)"/>
+              <path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z" fill="url(#starGrad)" style="filter:drop-shadow(0 0 4px rgba(246,196,83,0.85))"/>
             </svg>
           </div>
         </div>

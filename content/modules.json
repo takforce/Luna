@@ -220,8 +220,9 @@
   },
   {
     "id": "m2",
-    "title": "Numbers 1-20",
-    "subtitle": "Count from one to twenty",
+    "category": "vocab",
+    "title": "Numbers 1-100",
+    "subtitle": "Count from one to a hundred",
     "icon": "🔢",
     "exercises": [
       {
@@ -232,135 +233,1103 @@
         "items": [
           {
             "id": "i1",
-            "prompt": "One",
+            "prompt": "1",
             "options": [
-              "Due",
+              "Ventuno",
+              "Cinquantadue",
               "Uno",
-              "Tre",
-              "Zero"
+              "Quarantatré"
             ],
             "answer": "Uno"
           },
           {
             "id": "i2",
-            "prompt": "Two",
+            "prompt": "2",
             "options": [
               "Due",
-              "Quattro",
-              "Uno",
-              "Dieci"
+              "Nove",
+              "Quarantotto",
+              "Settantasei"
             ],
             "answer": "Due"
           },
           {
             "id": "i3",
-            "prompt": "Three",
+            "prompt": "3",
             "options": [
+              "Dieci",
               "Tre",
-              "Sei",
-              "Otto",
-              "Due"
+              "Cinquantasette",
+              "Cinquantacinque"
             ],
             "answer": "Tre"
           },
           {
             "id": "i4",
-            "prompt": "Four",
+            "prompt": "4",
             "options": [
               "Quattro",
-              "Sette",
               "Nove",
-              "Due"
+              "Diciassette",
+              "Settantaquattro"
             ],
             "answer": "Quattro"
           },
           {
             "id": "i5",
-            "prompt": "Five",
+            "prompt": "5",
             "options": [
+              "Settantasei",
+              "Cinquantadue",
               "Cinque",
-              "Sette",
-              "Nove",
-              "Quattro"
+              "Settantacinque"
             ],
             "answer": "Cinque"
           },
           {
             "id": "i6",
-            "prompt": "Six",
+            "prompt": "6",
             "options": [
-              "Sei",
-              "Sette",
-              "Due",
-              "Otto"
+              "Diciannove",
+              "Trentanove",
+              "Settantatré",
+              "Sei"
             ],
             "answer": "Sei"
           },
           {
             "id": "i7",
-            "prompt": "Seven",
+            "prompt": "7",
             "options": [
               "Sette",
-              "Otto",
-              "Sei",
-              "Nove"
+              "Settantatré",
+              "Settantacinque",
+              "Quarantuno"
             ],
             "answer": "Sette"
           },
           {
             "id": "i8",
-            "prompt": "Eight",
+            "prompt": "8",
             "options": [
+              "Quattordici",
               "Otto",
-              "Sette",
-              "Nove",
-              "Dieci"
+              "Settantadue",
+              "Quarantanove"
             ],
             "answer": "Otto"
           },
           {
             "id": "i9",
-            "prompt": "Nine",
+            "prompt": "9",
             "options": [
-              "Nove",
-              "Dieci",
-              "Otto",
-              "Sette"
+              "Ottantuno",
+              "Sessantacinque",
+              "Ventotto",
+              "Nove"
             ],
             "answer": "Nove"
           },
           {
             "id": "i10",
-            "prompt": "Ten",
+            "prompt": "10",
             "options": [
+              "Sessanta",
               "Dieci",
-              "Cento",
-              "Uno",
-              "Sei"
+              "Settantasei",
+              "Quarantotto"
             ],
             "answer": "Dieci"
           },
           {
             "id": "i11",
-            "prompt": "Fifteen",
+            "prompt": "11",
             "options": [
-              "Quindici",
-              "Cinquanta",
-              "Cinque",
-              "Venti"
+              "Novantuno",
+              "Trentatré",
+              "Undici",
+              "Dodici"
+            ],
+            "answer": "Undici"
+          },
+          {
+            "id": "i12",
+            "prompt": "12",
+            "options": [
+              "Novantacinque",
+              "Quarantacinque",
+              "Dodici",
+              "Cinquantanove"
+            ],
+            "answer": "Dodici"
+          },
+          {
+            "id": "i13",
+            "prompt": "13",
+            "options": [
+              "Cinquantacinque",
+              "Diciassette",
+              "Tredici",
+              "Sessantasette"
+            ],
+            "answer": "Tredici"
+          },
+          {
+            "id": "i14",
+            "prompt": "14",
+            "options": [
+              "Quattordici",
+              "Cinquantacinque",
+              "Sei",
+              "Sessantaquattro"
+            ],
+            "answer": "Quattordici"
+          },
+          {
+            "id": "i15",
+            "prompt": "15",
+            "options": [
+              "Quarantacinque",
+              "Novanta",
+              "Quarantasei",
+              "Quindici"
             ],
             "answer": "Quindici"
           },
           {
-            "id": "i12",
-            "prompt": "Twenty",
+            "id": "i16",
+            "prompt": "16",
             "options": [
               "Dodici",
+              "Nove",
+              "Trentasei",
+              "Sedici"
+            ],
+            "answer": "Sedici"
+          },
+          {
+            "id": "i17",
+            "prompt": "17",
+            "options": [
+              "Otto",
+              "Novantacinque",
+              "Diciassette",
+              "Novantuno"
+            ],
+            "answer": "Diciassette"
+          },
+          {
+            "id": "i18",
+            "prompt": "18",
+            "options": [
+              "Diciotto",
+              "Novantatré",
+              "Trentotto",
+              "Cinquantuno"
+            ],
+            "answer": "Diciotto"
+          },
+          {
+            "id": "i19",
+            "prompt": "19",
+            "options": [
+              "Ottanta",
+              "Diciannove",
+              "Ventitré",
+              "Quarantasette"
+            ],
+            "answer": "Diciannove"
+          },
+          {
+            "id": "i20",
+            "prompt": "20",
+            "options": [
               "Venti",
-              "Due",
-              "Dieci"
+              "Ventinove",
+              "Trentotto",
+              "Cento"
             ],
             "answer": "Venti"
+          },
+          {
+            "id": "i21",
+            "prompt": "21",
+            "options": [
+              "Cinquantadue",
+              "Undici",
+              "Ventuno",
+              "Sessantacinque"
+            ],
+            "answer": "Ventuno"
+          },
+          {
+            "id": "i22",
+            "prompt": "22",
+            "options": [
+              "Settantadue",
+              "Trentasette",
+              "Diciotto",
+              "Ventidue"
+            ],
+            "answer": "Ventidue"
+          },
+          {
+            "id": "i23",
+            "prompt": "23",
+            "options": [
+              "Cinquantacinque",
+              "Quarantasette",
+              "Novantadue",
+              "Ventitré"
+            ],
+            "answer": "Ventitré"
+          },
+          {
+            "id": "i24",
+            "prompt": "24",
+            "options": [
+              "Ventiquattro",
+              "Undici",
+              "Venti",
+              "Ventitré"
+            ],
+            "answer": "Ventiquattro"
+          },
+          {
+            "id": "i25",
+            "prompt": "25",
+            "options": [
+              "Due",
+              "Settantasette",
+              "Venticinque",
+              "Sessantaquattro"
+            ],
+            "answer": "Venticinque"
+          },
+          {
+            "id": "i26",
+            "prompt": "26",
+            "options": [
+              "Uno",
+              "Diciannove",
+              "Ventisei",
+              "Cinquantacinque"
+            ],
+            "answer": "Ventisei"
+          },
+          {
+            "id": "i27",
+            "prompt": "27",
+            "options": [
+              "Ventisette",
+              "Sessantasette",
+              "Novanta",
+              "Diciassette"
+            ],
+            "answer": "Ventisette"
+          },
+          {
+            "id": "i28",
+            "prompt": "28",
+            "options": [
+              "Cinquantadue",
+              "Cinquantatré",
+              "Quattordici",
+              "Ventotto"
+            ],
+            "answer": "Ventotto"
+          },
+          {
+            "id": "i29",
+            "prompt": "29",
+            "options": [
+              "Nove",
+              "Otto",
+              "Ventinove",
+              "Venticinque"
+            ],
+            "answer": "Ventinove"
+          },
+          {
+            "id": "i30",
+            "prompt": "30",
+            "options": [
+              "Quarantacinque",
+              "Settantotto",
+              "Trenta",
+              "Quindici"
+            ],
+            "answer": "Trenta"
+          },
+          {
+            "id": "i31",
+            "prompt": "31",
+            "options": [
+              "Settanta",
+              "Trentuno",
+              "Venti",
+              "Settantaquattro"
+            ],
+            "answer": "Trentuno"
+          },
+          {
+            "id": "i32",
+            "prompt": "32",
+            "options": [
+              "Ottanta",
+              "Ventisette",
+              "Dieci",
+              "Trentadue"
+            ],
+            "answer": "Trentadue"
+          },
+          {
+            "id": "i33",
+            "prompt": "33",
+            "options": [
+              "Settantanove",
+              "Quarantotto",
+              "Quarantasei",
+              "Trentatré"
+            ],
+            "answer": "Trentatré"
+          },
+          {
+            "id": "i34",
+            "prompt": "34",
+            "options": [
+              "Sessantatré",
+              "Sessantaquattro",
+              "Sessantuno",
+              "Trentaquattro"
+            ],
+            "answer": "Trentaquattro"
+          },
+          {
+            "id": "i35",
+            "prompt": "35",
+            "options": [
+              "Diciannove",
+              "Quattordici",
+              "Trentacinque",
+              "Novantasette"
+            ],
+            "answer": "Trentacinque"
+          },
+          {
+            "id": "i36",
+            "prompt": "36",
+            "options": [
+              "Ventuno",
+              "Novanta",
+              "Trentasei",
+              "Sessantatré"
+            ],
+            "answer": "Trentasei"
+          },
+          {
+            "id": "i37",
+            "prompt": "37",
+            "options": [
+              "Trentasette",
+              "Novanta",
+              "Settantuno",
+              "Diciannove"
+            ],
+            "answer": "Trentasette"
+          },
+          {
+            "id": "i38",
+            "prompt": "38",
+            "options": [
+              "Ottantaquattro",
+              "Dodici",
+              "Trentotto",
+              "Novantuno"
+            ],
+            "answer": "Trentotto"
+          },
+          {
+            "id": "i39",
+            "prompt": "39",
+            "options": [
+              "Ventidue",
+              "Trentanove",
+              "Cento",
+              "Quarantasette"
+            ],
+            "answer": "Trentanove"
+          },
+          {
+            "id": "i40",
+            "prompt": "40",
+            "options": [
+              "Ottanta",
+              "Quaranta",
+              "Ottantatré",
+              "Ventinove"
+            ],
+            "answer": "Quaranta"
+          },
+          {
+            "id": "i41",
+            "prompt": "41",
+            "options": [
+              "Ventisei",
+              "Novantasei",
+              "Trenta",
+              "Quarantuno"
+            ],
+            "answer": "Quarantuno"
+          },
+          {
+            "id": "i42",
+            "prompt": "42",
+            "options": [
+              "Quarantadue",
+              "Trentasei",
+              "Quattro",
+              "Sessantadue"
+            ],
+            "answer": "Quarantadue"
+          },
+          {
+            "id": "i43",
+            "prompt": "43",
+            "options": [
+              "Novantaquattro",
+              "Quarantatré",
+              "Cinquantanove",
+              "Quarantasei"
+            ],
+            "answer": "Quarantatré"
+          },
+          {
+            "id": "i44",
+            "prompt": "44",
+            "options": [
+              "Sessantadue",
+              "Quattordici",
+              "Quarantaquattro",
+              "Trenta"
+            ],
+            "answer": "Quarantaquattro"
+          },
+          {
+            "id": "i45",
+            "prompt": "45",
+            "options": [
+              "Quarantacinque",
+              "Ottanta",
+              "Ottantuno",
+              "Sessantatré"
+            ],
+            "answer": "Quarantacinque"
+          },
+          {
+            "id": "i46",
+            "prompt": "46",
+            "options": [
+              "Ottantasei",
+              "Quarantasei",
+              "Undici",
+              "Ottantaquattro"
+            ],
+            "answer": "Quarantasei"
+          },
+          {
+            "id": "i47",
+            "prompt": "47",
+            "options": [
+              "Quarantasette",
+              "Ventitré",
+              "Sessantatré",
+              "Cinquantasette"
+            ],
+            "answer": "Quarantasette"
+          },
+          {
+            "id": "i48",
+            "prompt": "48",
+            "options": [
+              "Cinquantatré",
+              "Quarantotto",
+              "Novantasette",
+              "Sessantuno"
+            ],
+            "answer": "Quarantotto"
+          },
+          {
+            "id": "i49",
+            "prompt": "49",
+            "options": [
+              "Ventidue",
+              "Quarantanove",
+              "Quattro",
+              "Diciassette"
+            ],
+            "answer": "Quarantanove"
+          },
+          {
+            "id": "i50",
+            "prompt": "50",
+            "options": [
+              "Ottantacinque",
+              "Diciannove",
+              "Ottanta",
+              "Cinquanta"
+            ],
+            "answer": "Cinquanta"
+          },
+          {
+            "id": "i51",
+            "prompt": "51",
+            "options": [
+              "Settantadue",
+              "Diciassette",
+              "Cinquantuno",
+              "Venti"
+            ],
+            "answer": "Cinquantuno"
+          },
+          {
+            "id": "i52",
+            "prompt": "52",
+            "options": [
+              "Novantasette",
+              "Diciotto",
+              "Sessantanove",
+              "Cinquantadue"
+            ],
+            "answer": "Cinquantadue"
+          },
+          {
+            "id": "i53",
+            "prompt": "53",
+            "options": [
+              "Trentatré",
+              "Quattro",
+              "Cinquantatré",
+              "Ventotto"
+            ],
+            "answer": "Cinquantatré"
+          },
+          {
+            "id": "i54",
+            "prompt": "54",
+            "options": [
+              "Novantanove",
+              "Settantasette",
+              "Cinquantaquattro",
+              "Quarantadue"
+            ],
+            "answer": "Cinquantaquattro"
+          },
+          {
+            "id": "i55",
+            "prompt": "55",
+            "options": [
+              "Diciassette",
+              "Cinquantacinque",
+              "Otto",
+              "Novantasei"
+            ],
+            "answer": "Cinquantacinque"
+          },
+          {
+            "id": "i56",
+            "prompt": "56",
+            "options": [
+              "Cinquantasei",
+              "Sessantasei",
+              "Settanta",
+              "Diciassette"
+            ],
+            "answer": "Cinquantasei"
+          },
+          {
+            "id": "i57",
+            "prompt": "57",
+            "options": [
+              "Ventiquattro",
+              "Settantanove",
+              "Cinquantasette",
+              "Cinquantotto"
+            ],
+            "answer": "Cinquantasette"
+          },
+          {
+            "id": "i58",
+            "prompt": "58",
+            "options": [
+              "Sessantadue",
+              "Cinquantotto",
+              "Ottantuno",
+              "Diciannove"
+            ],
+            "answer": "Cinquantotto"
+          },
+          {
+            "id": "i59",
+            "prompt": "59",
+            "options": [
+              "Ottantanove",
+              "Sessantotto",
+              "Quarantadue",
+              "Cinquantanove"
+            ],
+            "answer": "Cinquantanove"
+          },
+          {
+            "id": "i60",
+            "prompt": "60",
+            "options": [
+              "Trentasei",
+              "Venticinque",
+              "Sessanta",
+              "Trentadue"
+            ],
+            "answer": "Sessanta"
+          },
+          {
+            "id": "i61",
+            "prompt": "61",
+            "options": [
+              "Sessantuno",
+              "Novantanove",
+              "Quattro",
+              "Settantatré"
+            ],
+            "answer": "Sessantuno"
+          },
+          {
+            "id": "i62",
+            "prompt": "62",
+            "options": [
+              "Ottanta",
+              "Sessantadue",
+              "Settantanove",
+              "Sessantasei"
+            ],
+            "answer": "Sessantadue"
+          },
+          {
+            "id": "i63",
+            "prompt": "63",
+            "options": [
+              "Sessantasette",
+              "Cinquantotto",
+              "Settanta",
+              "Sessantatré"
+            ],
+            "answer": "Sessantatré"
+          },
+          {
+            "id": "i64",
+            "prompt": "64",
+            "options": [
+              "Trentaquattro",
+              "Novantuno",
+              "Sessantaquattro",
+              "Sessantotto"
+            ],
+            "answer": "Sessantaquattro"
+          },
+          {
+            "id": "i65",
+            "prompt": "65",
+            "options": [
+              "Cinquantuno",
+              "Cinquantaquattro",
+              "Sedici",
+              "Sessantacinque"
+            ],
+            "answer": "Sessantacinque"
+          },
+          {
+            "id": "i66",
+            "prompt": "66",
+            "options": [
+              "Cinquantacinque",
+              "Trentuno",
+              "Sessantasei",
+              "Ottantasette"
+            ],
+            "answer": "Sessantasei"
+          },
+          {
+            "id": "i67",
+            "prompt": "67",
+            "options": [
+              "Sessantasette",
+              "Venti",
+              "Sedici",
+              "Novantatré"
+            ],
+            "answer": "Sessantasette"
+          },
+          {
+            "id": "i68",
+            "prompt": "68",
+            "options": [
+              "Sessantotto",
+              "Ventinove",
+              "Sessanta",
+              "Diciotto"
+            ],
+            "answer": "Sessantotto"
+          },
+          {
+            "id": "i69",
+            "prompt": "69",
+            "options": [
+              "Ventuno",
+              "Sessantanove",
+              "Ventinove",
+              "Ottantasette"
+            ],
+            "answer": "Sessantanove"
+          },
+          {
+            "id": "i70",
+            "prompt": "70",
+            "options": [
+              "Quarantaquattro",
+              "Cinquantadue",
+              "Sessantasei",
+              "Settanta"
+            ],
+            "answer": "Settanta"
+          },
+          {
+            "id": "i71",
+            "prompt": "71",
+            "options": [
+              "Settantuno",
+              "Dodici",
+              "Quarantuno",
+              "Novantaquattro"
+            ],
+            "answer": "Settantuno"
+          },
+          {
+            "id": "i72",
+            "prompt": "72",
+            "options": [
+              "Settantadue",
+              "Cinquantasette",
+              "Cinquantanove",
+              "Settantuno"
+            ],
+            "answer": "Settantadue"
+          },
+          {
+            "id": "i73",
+            "prompt": "73",
+            "options": [
+              "Ottantuno",
+              "Trentotto",
+              "Settantatré",
+              "Sessantasette"
+            ],
+            "answer": "Settantatré"
+          },
+          {
+            "id": "i74",
+            "prompt": "74",
+            "options": [
+              "Undici",
+              "Settantaquattro",
+              "Quattordici",
+              "Trentaquattro"
+            ],
+            "answer": "Settantaquattro"
+          },
+          {
+            "id": "i75",
+            "prompt": "75",
+            "options": [
+              "Trentacinque",
+              "Novantotto",
+              "Diciassette",
+              "Settantacinque"
+            ],
+            "answer": "Settantacinque"
+          },
+          {
+            "id": "i76",
+            "prompt": "76",
+            "options": [
+              "Cinquantadue",
+              "Venti",
+              "Sessantanove",
+              "Settantasei"
+            ],
+            "answer": "Settantasei"
+          },
+          {
+            "id": "i77",
+            "prompt": "77",
+            "options": [
+              "Otto",
+              "Dodici",
+              "Settantasette",
+              "Trentasei"
+            ],
+            "answer": "Settantasette"
+          },
+          {
+            "id": "i78",
+            "prompt": "78",
+            "options": [
+              "Ottantatré",
+              "Settantotto",
+              "Tre",
+              "Trentacinque"
+            ],
+            "answer": "Settantotto"
+          },
+          {
+            "id": "i79",
+            "prompt": "79",
+            "options": [
+              "Settantanove",
+              "Ventinove",
+              "Settantotto",
+              "Nove"
+            ],
+            "answer": "Settantanove"
+          },
+          {
+            "id": "i80",
+            "prompt": "80",
+            "options": [
+              "Settantuno",
+              "Due",
+              "Quarantaquattro",
+              "Ottanta"
+            ],
+            "answer": "Ottanta"
+          },
+          {
+            "id": "i81",
+            "prompt": "81",
+            "options": [
+              "Ottantuno",
+              "Novantadue",
+              "Sei",
+              "Sessantotto"
+            ],
+            "answer": "Ottantuno"
+          },
+          {
+            "id": "i82",
+            "prompt": "82",
+            "options": [
+              "Trentaquattro",
+              "Ventiquattro",
+              "Ottantadue",
+              "Sette"
+            ],
+            "answer": "Ottantadue"
+          },
+          {
+            "id": "i83",
+            "prompt": "83",
+            "options": [
+              "Ottantatré",
+              "Sessantotto",
+              "Novantanove",
+              "Ventisette"
+            ],
+            "answer": "Ottantatré"
+          },
+          {
+            "id": "i84",
+            "prompt": "84",
+            "options": [
+              "Quarantacinque",
+              "Ottantaquattro",
+              "Trentacinque",
+              "Tre"
+            ],
+            "answer": "Ottantaquattro"
+          },
+          {
+            "id": "i85",
+            "prompt": "85",
+            "options": [
+              "Tre",
+              "Ottantacinque",
+              "Sessantacinque",
+              "Novantacinque"
+            ],
+            "answer": "Ottantacinque"
+          },
+          {
+            "id": "i86",
+            "prompt": "86",
+            "options": [
+              "Trentadue",
+              "Cinquantotto",
+              "Quattordici",
+              "Ottantasei"
+            ],
+            "answer": "Ottantasei"
+          },
+          {
+            "id": "i87",
+            "prompt": "87",
+            "options": [
+              "Cinquantuno",
+              "Settanta",
+              "Ottantasette",
+              "Sessantacinque"
+            ],
+            "answer": "Ottantasette"
+          },
+          {
+            "id": "i88",
+            "prompt": "88",
+            "options": [
+              "Trenta",
+              "Ventisei",
+              "Ottantotto",
+              "Quarantaquattro"
+            ],
+            "answer": "Ottantotto"
+          },
+          {
+            "id": "i89",
+            "prompt": "89",
+            "options": [
+              "Ottantanove",
+              "Diciassette",
+              "Due",
+              "Sette"
+            ],
+            "answer": "Ottantanove"
+          },
+          {
+            "id": "i90",
+            "prompt": "90",
+            "options": [
+              "Novanta",
+              "Ventuno",
+              "Otto",
+              "Cinquantasei"
+            ],
+            "answer": "Novanta"
+          },
+          {
+            "id": "i91",
+            "prompt": "91",
+            "options": [
+              "Sessantacinque",
+              "Novantuno",
+              "Trentasette",
+              "Ottantasei"
+            ],
+            "answer": "Novantuno"
+          },
+          {
+            "id": "i92",
+            "prompt": "92",
+            "options": [
+              "Sei",
+              "Ventiquattro",
+              "Novantadue",
+              "Cinquantanove"
+            ],
+            "answer": "Novantadue"
+          },
+          {
+            "id": "i93",
+            "prompt": "93",
+            "options": [
+              "Uno",
+              "Trentaquattro",
+              "Novantatré",
+              "Quarantasette"
+            ],
+            "answer": "Novantatré"
+          },
+          {
+            "id": "i94",
+            "prompt": "94",
+            "options": [
+              "Quaranta",
+              "Trentadue",
+              "Novantaquattro",
+              "Cinque"
+            ],
+            "answer": "Novantaquattro"
+          },
+          {
+            "id": "i95",
+            "prompt": "95",
+            "options": [
+              "Novantacinque",
+              "Quarantanove",
+              "Quarantatré",
+              "Uno"
+            ],
+            "answer": "Novantacinque"
+          },
+          {
+            "id": "i96",
+            "prompt": "96",
+            "options": [
+              "Novantasei",
+              "Sessantacinque",
+              "Ventisei",
+              "Ottantaquattro"
+            ],
+            "answer": "Novantasei"
+          },
+          {
+            "id": "i97",
+            "prompt": "97",
+            "options": [
+              "Trentaquattro",
+              "Dodici",
+              "Diciannove",
+              "Novantasette"
+            ],
+            "answer": "Novantasette"
+          },
+          {
+            "id": "i98",
+            "prompt": "98",
+            "options": [
+              "Tre",
+              "Cinquantuno",
+              "Novantotto",
+              "Trentanove"
+            ],
+            "answer": "Novantotto"
+          },
+          {
+            "id": "i99",
+            "prompt": "99",
+            "options": [
+              "Undici",
+              "Novantanove",
+              "Sessantotto",
+              "Settantacinque"
+            ],
+            "answer": "Novantanove"
+          },
+          {
+            "id": "i100",
+            "prompt": "100",
+            "options": [
+              "Novantatré",
+              "Quarantadue",
+              "Novantotto",
+              "Cento"
+            ],
+            "answer": "Cento"
           }
         ]
       },
@@ -368,52 +1337,91 @@
         "id": "m2e2",
         "type": "abbinamento",
         "title": "Matching",
-        "instructions": "Match the Italian word to its English meaning",
+        "instructions": "Match the number to the Italian word",
         "pairs": [
           {
             "id": "p1",
             "it": "Uno",
-            "en": "One"
+            "en": "1"
           },
           {
             "id": "p2",
-            "it": "Due",
-            "en": "Two"
+            "it": "Tre",
+            "en": "3"
           },
           {
             "id": "p3",
-            "it": "Tre",
-            "en": "Three"
+            "it": "Sette",
+            "en": "7"
           },
           {
             "id": "p4",
-            "it": "Quattro",
-            "en": "Four"
+            "it": "Undici",
+            "en": "11"
           },
           {
             "id": "p5",
-            "it": "Cinque",
-            "en": "Five"
+            "it": "Quindici",
+            "en": "15"
           },
           {
             "id": "p6",
-            "it": "Sei",
-            "en": "Six"
+            "it": "Venti",
+            "en": "20"
           },
           {
             "id": "p7",
-            "it": "Sette",
-            "en": "Seven"
+            "it": "Ventitré",
+            "en": "23"
           },
           {
             "id": "p8",
-            "it": "Dieci",
-            "en": "Ten"
+            "it": "Trentaquattro",
+            "en": "34"
+          },
+          {
+            "id": "p9",
+            "it": "Quarantacinque",
+            "en": "45"
+          },
+          {
+            "id": "p10",
+            "it": "Cinquantotto",
+            "en": "58"
+          },
+          {
+            "id": "p11",
+            "it": "Sessantasette",
+            "en": "67"
+          },
+          {
+            "id": "p12",
+            "it": "Settantanove",
+            "en": "79"
+          },
+          {
+            "id": "p13",
+            "it": "Ottantotto",
+            "en": "88"
+          },
+          {
+            "id": "p14",
+            "it": "Novantadue",
+            "en": "92"
+          },
+          {
+            "id": "p15",
+            "it": "Novantanove",
+            "en": "99"
+          },
+          {
+            "id": "p16",
+            "it": "Cento",
+            "en": "100"
           }
         ]
       }
-    ],
-    "category": "vocab"
+    ]
   },
   {
     "id": "m3",

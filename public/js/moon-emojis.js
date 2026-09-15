@@ -275,9 +275,9 @@ MOON_EMOJIS.push({
 function replaceMoonShortcodes(text) {
   let out = text;
   MOON_EMOJIS.forEach(m => {
-    if (out.includes(m.code)) {
-      out = out.split(m.code).join(`<span class="moon-emoji-inline">${m.svg}</span>`);
-    }
+    // Case-insensitive: alcune tastiere mobile mettono la maiuscola automatica al codice
+    const re = new RegExp(m.code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    out = out.replace(re, `<span class="moon-emoji-inline">${m.svg}</span>`);
   });
   return out;
 }
