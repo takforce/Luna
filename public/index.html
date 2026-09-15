@@ -50,14 +50,24 @@
         </div>
       </div>
 
-      <h1>Hi Luna!</h1>
-      <p>Every new word is a star you light up in your Italian sky.</p>
-
-      <div class="greeting-composer">
-        <input type="text" id="greeting-input" placeholder="Write a message for the banner..." maxlength="60">
-        <button id="greeting-send">🚀</button>
+      <div style="display:flex; align-items:center; justify-content:center; gap:6px;">
+        <h1 style="margin:0;">Hi Luna!</h1>
+        <button id="banner-edit-btn" class="pen-icon-btn" title="Write a message for the banner">
+          <img src="/img/icons/pen.png" alt="">
+        </button>
       </div>
-      <p class="mini-composer-hint">This message flies on the banner behind the plane, for both of you ✈️</p>
+      <p class="hero-sub-full">Every new word is a star you light up in your Italian sky.</p>
+      <p class="hero-sub-short">Every word is a star in your Italian sky.</p>
+    </div>
+
+    <div class="modal-overlay" id="banner-modal">
+      <div class="modal-box">
+        <h3>✈️ Banner message</h3>
+        <p class="modal-hint">This message flies on the banner behind the plane, for both of you</p>
+        <input type="text" id="greeting-input" placeholder="Write a message for the banner..." maxlength="60">
+        <button id="greeting-send" class="btn btn-primary btn-block" style="margin-bottom:8px;">Save</button>
+        <button id="banner-modal-close" class="btn btn-ghost btn-block">Cancel</button>
+      </div>
     </div>
 
     <div class="card" style="margin-bottom:16px; display:flex; align-items:center; gap:14px;">
@@ -194,6 +204,8 @@ checkUnreadChat();
 setInterval(() => { loadPreview(); checkUnreadChat(); }, 20000);
 
 // ── Messaggio striscione ──
+const bannerModal = document.getElementById('banner-modal');
+
 async function loadBanner() {
   const r = await fetch('/api/banner').then(r => r.json());
   document.getElementById('tow-banner').textContent = r.message || '✍️ Write a message below';
@@ -201,6 +213,17 @@ async function loadBanner() {
   document.getElementById('greeting-input').placeholder = r.message || 'Write a message for the banner...';
 }
 loadBanner();
+
+document.getElementById('banner-edit-btn').addEventListener('click', () => {
+  bannerModal.classList.add('open');
+  document.getElementById('greeting-input').focus();
+});
+document.getElementById('banner-modal-close').addEventListener('click', () => {
+  bannerModal.classList.remove('open');
+});
+bannerModal.addEventListener('click', (e) => {
+  if (e.target === bannerModal) bannerModal.classList.remove('open');
+});
 
 document.getElementById('greeting-send').addEventListener('click', async () => {
   const input = document.getElementById('greeting-input');
@@ -211,6 +234,7 @@ document.getElementById('greeting-send').addEventListener('click', async () => {
     body: JSON.stringify({ message: text })
   });
   loadBanner();
+  bannerModal.classList.remove('open');
 });
 document.getElementById('greeting-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') { e.preventDefault(); document.getElementById('greeting-send').click(); }
