@@ -22,14 +22,15 @@
   .msg .del-btn:hover { opacity:1; }
 
   .composer { border-top:1px solid var(--card-border); background: rgba(11,12,42,0.85); backdrop-filter: blur(10px); padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); position:relative; }
-  .sender-toggle { display:flex; gap:6px; margin-bottom:8px; }
-  .sender-toggle button { flex:1; padding:6px; border-radius:20px; border:1px solid var(--card-border); background:rgba(255,255,255,0.05); color:var(--muted); font-family:'Quicksand',sans-serif; font-weight:700; font-size:12px; cursor:pointer; }
+  .sender-toggle { display:flex; gap:5px; flex-shrink:1; min-width:0; }
+  .sender-toggle button { padding:6px 10px; border-radius:16px; border:1px solid var(--card-border); background:rgba(255,255,255,0.05); color:var(--muted); font-family:'Quicksand',sans-serif; font-weight:700; font-size:11px; cursor:pointer; white-space:nowrap; }
   .sender-toggle button.active.io { background: var(--gold); color:#2a1c00; border-color:var(--gold); }
   .sender-toggle button.active.luna { background: var(--violet-light); color:#1a1240; border-color:var(--violet-light); }
 
   .input-row { display:flex; align-items:flex-end; gap:8px; }
-  .input-icons-row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
-  .input-icons-row .icon-btn { width:36px; height:36px; font-size:16px; }
+  .controls-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; flex-wrap:nowrap; }
+  .input-icons-row { display:flex; align-items:center; gap:6px; flex-shrink:0; }
+  .input-icons-row .icon-btn { width:34px; height:34px; font-size:15px; }
   .input-row textarea {
     flex:1; resize:none; max-height:100px; min-height:42px;
     background: rgba(255,255,255,0.08); border:1px solid var(--card-border); border-radius:20px;
@@ -101,16 +102,17 @@
         <span id="attach-name"></span>
         <button id="attach-remove">✕</button>
       </div>
-      <div class="sender-label">Sending as:</div>
-      <div class="sender-toggle">
-        <button class="io" data-sender="io">🌟 Tak</button>
-        <button class="luna active" data-sender="luna">🌙 Luna</button>
-      </div>
-      <div class="input-icons-row">
-        <button class="icon-btn" id="emoji-toggle">✨</button>
-        <button class="icon-btn" id="attach-btn">📎</button>
-        <button class="icon-btn" id="mic-btn">🎤</button>
-        <input type="file" id="file-input" style="display:none">
+      <div class="controls-row">
+        <div class="sender-toggle">
+          <button class="io" data-sender="io">🌟 Tak</button>
+          <button class="luna active" data-sender="luna">🌙 Luna</button>
+        </div>
+        <div class="input-icons-row">
+          <button class="icon-btn" id="emoji-toggle">✨</button>
+          <button class="icon-btn" id="attach-btn">📎</button>
+          <button class="icon-btn" id="mic-btn">🎤</button>
+          <input type="file" id="file-input" style="display:none">
+        </div>
       </div>
       <div class="input-row">
         <textarea id="msg-input" placeholder="Write a message..." rows="1"></textarea>
