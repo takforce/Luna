@@ -414,8 +414,9 @@ app.get('/api/review/due', (req, res) => {
     m.exercises.forEach(ex => {
       if (ex.type === 'scelta_multipla') {
         ex.items.forEach(item => {
-          // Escludo risposte con spiegazioni lunghe (es. falsi amici) non adatte a scrivere a memoria
+          // Escludo domande o risposte ambigue con più significati (es. "to / at", falsi amici)
           if (item.answer.includes('/') || item.answer.includes('(')) return;
+          if (item.prompt.includes('/') || item.prompt.includes('(')) return;
           poolItems.push({
             module_id: m.id, exercise_id: ex.id, item_id: item.id,
             sentence: `How do you say <b>"${item.prompt}"</b> in Italian?`,
@@ -425,6 +426,7 @@ app.get('/api/review/due', (req, res) => {
       } else if (ex.type === 'abbinamento') {
         ex.pairs.forEach(pair => {
           if (pair.en.includes('/') || pair.en.includes('(')) return;
+          if (pair.it.includes('/') || pair.it.includes('(')) return;
           poolItems.push({
             module_id: m.id, exercise_id: ex.id, item_id: pair.id,
             sentence: `How do you say <b>"${pair.en}"</b> in Italian?`,

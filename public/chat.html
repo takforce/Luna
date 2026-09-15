@@ -12,7 +12,7 @@
     .chat-wrap { height: calc(100dvh - 62px - 60px); }
   }
   .chat-log { flex:1; overflow-y:auto; padding: 16px; display:flex; flex-direction:column; gap:10px; }
-  .msg { max-width: 78%; padding: 10px 14px; border-radius: 16px; font-size:14px; line-height:1.4; position:relative; }
+  .msg { max-width: 78%; padding: 10px 14px; border-radius: 16px; font-size:14px; line-height:1.4; position:relative; white-space: pre-wrap; }
   .msg.io { align-self:flex-end; background: linear-gradient(135deg, var(--gold), #f0a93a); color:#2a1c00; border-bottom-right-radius:4px; }
   .msg.luna { align-self:flex-start; background: rgba(255,255,255,0.09); border:1px solid var(--card-border); border-bottom-left-radius:4px; }
   .msg .meta { font-size:10px; opacity:.6; margin-top:4px; display:flex; gap:8px; align-items:center; }
@@ -37,11 +37,17 @@
   .video-call-pill:hover { background: rgba(89,214,148,0.28); }
   .input-icons-row { display:flex; align-items:center; gap:6px; flex-shrink:0; }
   .input-icons-row .icon-btn { width:34px; height:34px; font-size:15px; }
-  .input-row textarea {
-    flex:1; resize:none; max-height:100px; min-height:42px;
+  .input-row .msg-input-editable {
+    flex:1; max-height:100px; min-height:42px; overflow-y:auto;
     background: rgba(255,255,255,0.08); border:1px solid var(--card-border); border-radius:20px;
-    color:var(--text); font-family:'Quicksand',sans-serif; font-size:14px; padding:10px 14px;
+    color:var(--text); font-family:'Quicksand',sans-serif; font-size:16px; line-height:1.4;
+    padding:10px 14px; outline:none; box-sizing:border-box; word-break:break-word;
   }
+  .msg-input-editable:empty:before {
+    content: attr(data-placeholder); color: var(--muted); pointer-events:none;
+  }
+  .msg-input-editable .composer-emoji { display:inline-block; vertical-align:-6px; margin:0 1px; }
+  .msg-input-editable .composer-emoji svg { width:20px; height:20px; }
   .icon-btn { width:42px; height:42px; border-radius:50%; border:1px solid var(--card-border); background: rgba(255,255,255,0.08); color:var(--text); font-size:18px; cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
   .send-btn { background: linear-gradient(135deg, var(--gold), #f0a93a); color:#2a1c00; border:none; }
   #mic-btn.recording { background: #e0475f; border-color:#e0475f; animation: micPulse 1.1s ease-in-out infinite; }
@@ -142,7 +148,8 @@
         </div>
       </div>
       <div class="input-row">
-        <textarea id="msg-input" placeholder="Write a message..." rows="1" autocapitalize="off" autocorrect="off" spellcheck="false"></textarea>
+        <div id="msg-input" class="msg-input-editable" contenteditable="true"
+             data-placeholder="Write a message..." autocapitalize="off" autocorrect="off" spellcheck="false"></div>
         <button class="icon-btn send-btn" id="send-btn">🚀</button>
       </div>
     </div>
@@ -178,13 +185,61 @@ const emojiButtonsHtml =
 emojiPanel.innerHTML = emojiButtonsHtml;
 emojiPanel.querySelectorAll('button').forEach(btn => {
   btn.addEventListener('click', () => {
-    msgInput.value += btn.dataset.code;
-    msgInput.focus();
+    insertEmojiAtCursor(btn.dataset.code, btn.innerHTML);
   });
 });
 document.getElementById('emoji-toggle').addEventListener('click', () => {
   emojiPanel.classList.toggle('open');
 });
+
+// Inserisce il disegno dell'emoji nel punto esatto dove si trova il cursore
+function insertEmojiAtCursor(code, svgHtml) {
+  msgInput.focus();
+  const sel = window.getSelection();
+  let range;
+  if (sel.rangeCount > 0 && msgInput.contains(sel.anchorNode)) {
+    range = sel.getRangeAt(0);
+  } else {
+    range = document.createRange();
+    range.selectNodeContents(msgInput);
+    range.collapse(false);
+  }
+  range.deleteContents();
+  const span = document.createElement('span');
+  span.className = 'composer-emoji';
+  span.contentEditable = 'false';
+  span.dataset.code = code;
+  span.innerHTML = svgHtml;
+  range.insertNode(span);
+  range.setStartAfter(span);
+  range.collapse(true);
+  sel.removeAllRanges();
+  sel.addRange(range);
+}
+
+// Ricostruisce il testo con i codici emoji (es. :moon_happy:) da inviare al server,
+// leggendo sia il testo scritto sia i disegni inseriti
+function getComposerText() {
+  let text = '';
+  function walk(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      text += node.nodeValue;
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      if (node.dataset && node.dataset.code) {
+        text += node.dataset.code;
+      } else if (node.tagName === 'BR') {
+        text += '\n';
+      } else if (node.tagName === 'DIV' || node.tagName === 'P') {
+        if (text.length > 0 && !text.endsWith('\n')) text += '\n';
+        node.childNodes.forEach(walk);
+      } else {
+        node.childNodes.forEach(walk);
+      }
+    }
+  }
+  msgInput.childNodes.forEach(walk);
+  return text.trim();
+}
 
 document.querySelectorAll('.sender-toggle button').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -342,7 +397,7 @@ async function loadMessages(force) {
 
 setInterval(() => loadMessages(false), 5000);
 async function sendMessage() {
-  const text = msgInput.value.trim();
+  const text = getComposerText();
   if (!text && !pendingFile) return;
 
   const formData = new FormData();
@@ -358,7 +413,7 @@ async function sendMessage() {
   lastMsgCount++; lastMsgId = msg.id;
   markChatRead(msg.id);
 
-  msgInput.value = '';
+  msgInput.innerHTML = '';
   pendingFile = null; fileInput.value = '';
   attachPreview.classList.remove('show');
   emojiPanel.classList.remove('open');
@@ -368,11 +423,13 @@ document.getElementById('reply-preview-cancel').addEventListener('click', cancel
 
 document.getElementById('send-btn').addEventListener('click', sendMessage);
 msgInput.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-});
-msgInput.addEventListener('input', () => {
-  msgInput.style.height = 'auto';
-  msgInput.style.height = Math.min(msgInput.scrollHeight, 100) + 'px';
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  } else if (e.key === 'Enter' && e.shiftKey) {
+    e.preventDefault();
+    document.execCommand('insertLineBreak');
+  }
 });
 
 loadMessages(true);
