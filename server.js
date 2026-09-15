@@ -614,11 +614,10 @@ app.post('/api/ping', (req, res) => {
   res.json({ ok: true });
 });
 
-// Pagina statistiche — URL segreto, non compare in nessun menu
-const STATS_SECRET = crypto.createHash('sha256').update(SESSION_SECRET + '-stats').digest('hex').slice(0, 16);
-console.log(`📊 Stats page: /luna-stats-${STATS_SECRET}`);
+// Pagina statistiche — URL fisso e segreto, non compare in nessun menu
+const STATS_PATH = '/tak-private-stats-9f4e2a';
 
-app.get(`/luna-stats-${STATS_SECRET}`, (req, res) => {
+app.get(STATS_PATH, (req, res) => {
   if (!(req.session && req.session.autenticato)) return res.redirect('/');
 
   const rows = db.prepare(`
