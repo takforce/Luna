@@ -350,6 +350,13 @@ h1, h2, h3, .title-font { font-family: 'Baloo 2', sans-serif; }
 }
 .bottom-nav a .bn-icon { font-size: 17px; }
 .bottom-nav a.active { color: var(--gold); }
+.bn-exit {
+  flex:1; display:flex; flex-direction:column; align-items:center; gap:2px;
+  background:none; border:none; color: var(--muted); font-size: 9.5px; font-weight:600;
+  padding: 4px 1px; min-width:0; cursor:pointer; font-family:'Quicksand',sans-serif;
+}
+.bn-exit .bn-icon { font-size: 17px; }
+.bn-exit:hover { color: #e65a5a; }
 
 @media (min-width: 640px) {
   .bottom-nav { display:none; }

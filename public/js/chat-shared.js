@@ -139,3 +139,14 @@ function startAccessTracking() {
   setInterval(sendPing, 2 * 60 * 1000); // ogni 2 minuti finché la pagina è aperta
 }
 document.addEventListener('DOMContentLoaded', startAccessTracking);
+
+// ── Tasto Exit nel bottom-nav (tutte le pagine) ──
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('bn-exit-btn');
+  if (!btn) return;
+  btn.addEventListener('click', async () => {
+    if (!confirm('Are you sure you want to exit and lock the app?')) return;
+    await fetch('/logout', { method: 'POST' });
+    location.href = '/';
+  });
+});
