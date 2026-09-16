@@ -279,6 +279,12 @@ CREATE TABLE IF NOT EXISTS access_log (
   ts TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
+CREATE TABLE IF NOT EXISTS read_status (
+  device TEXT PRIMARY KEY,
+  last_read_id INTEGER NOT NULL DEFAULT 0,
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
 CREATE TABLE IF NOT EXISTS banner (
   id INTEGER PRIMARY KEY CHECK (id = 1),
   message TEXT NOT NULL DEFAULT ''
@@ -313,6 +319,9 @@ const chatCols = db.prepare("PRAGMA table_info(chat_messages)").all().map(c => c
 if (!chatCols.includes('reply_to_id')) {
   db.exec('ALTER TABLE chat_messages ADD COLUMN reply_to_id INTEGER');
 }
+if (!chatCols.includes('edited')) {
+  db.exec('ALTER TABLE chat_messages ADD COLUMN edited INTEGER NOT NULL DEFAULT 0');
+}
 
 // Ripulisce il vecchio messaggio di default impostato per errore in una versione precedente
 db.prepare("UPDATE banner SET message = '' WHERE message = 'Ti amo Luna! 💛'").run();
@@ -331,6 +340,14 @@ const stmt = {
     `),
     getById: db.prepare('SELECT * FROM chat_messages WHERE id = ?'),
     deleteById: db.prepare('DELETE FROM chat_messages WHERE id = ?'),
+    updateText: db.prepare('UPDATE chat_messages SET text = ?, edited = 1 WHERE id = ?'),
+  },
+  read: {
+    upsert: db.prepare(`
+      INSERT INTO read_status (device, last_read_id) VALUES (?, ?)
+      ON CONFLICT(device) DO UPDATE SET last_read_id = excluded.last_read_id, updated_at = datetime('now')
+    `),
+    getAll: db.prepare('SELECT device, last_read_id FROM read_status'),
   },
   push: {
     listOtherOwner: db.prepare('SELECT * FROM push_subscriptions WHERE owner != ?'),
@@ -445,6 +462,38 @@ app.delete('/api/chat/messages/:id', (req, res) => {
   }
   stmt.chat.deleteById.run(req.params.id);
   res.json({ ok: true });
+});
+
+// Modifica testo di un messaggio esistente
+app.patch('/api/chat/messages/:id', (req, res) => {
+  const { text } = req.body;
+  if (!text || !text.trim()) return res.status(400).json({ error: 'testo mancante' });
+  stmt.chat.updateText.run(text.trim(), req.params.id);
+  const row = stmt.chat.getById.get(req.params.id);
+  res.json(row);
+});
+
+// Aggiorna stato di lettura (chiamato quando si apre la chat)
+app.post('/api/chat/read', (req, res) => {
+  const { device, last_read_id } = req.body;
+  if (!device || !last_read_id) return res.status(400).json({ error: 'dati mancanti' });
+  stmt.read.upsert.run(device, last_read_id);
+  res.json({ ok: true });
+});
+
+// Stato di lettura di entrambi i device (per mostrare "Seen")
+app.get('/api/chat/read-status', (req, res) => {
+  const rows = stmt.read.getAll.all();
+  const status = {};
+  rows.forEach(r => { status[r.device] = r.last_read_id; });
+  res.json(status);
+});
+
+// Logout — distrugge la sessione e rimanda al cancello
+app.post('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/');
+  });
 });
 
 // ── API: Moduli ed esercizi ──

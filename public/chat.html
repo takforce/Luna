@@ -86,9 +86,28 @@
     font-size: 12px; opacity: 0.8; border-radius: 4px; background: rgba(0,0,0,0.12);
   }
   .meta .reply-btn {
-    background:none; border:none; color:inherit; opacity:.6; cursor:pointer; font-size:11px; margin-right: 8px;
+    background:none; border:none; color:inherit; opacity:.6; cursor:pointer; font-size:11px; margin-right: 2px;
   }
   .meta .reply-btn:hover { opacity: 1; }
+  .meta .edit-btn {
+    background:none; border:none; color:inherit; opacity:.5; cursor:pointer; font-size:11px; margin-right: 2px;
+  }
+  .meta .edit-btn:hover { opacity: 1; }
+  .seen-tick { font-size:10px; opacity:.75; color:#59d694; }
+  .edited-label { font-size:10px; opacity:.55; margin-left:4px; font-style:italic; }
+  .edit-area { margin-top:6px; }
+  .edit-textarea {
+    width:100%; box-sizing:border-box; background: rgba(0,0,0,0.2); border:1px solid var(--card-border);
+    border-radius:10px; color:var(--text); font-family:'Quicksand',sans-serif; font-size:13px;
+    padding:8px 10px; resize:none; min-height:60px;
+  }
+  .edit-btns { display:flex; gap:6px; margin-top:5px; }
+  .edit-save-btn, .edit-cancel-btn {
+    padding:5px 12px; border-radius:10px; border:none; cursor:pointer;
+    font-family:'Quicksand',sans-serif; font-size:12px; font-weight:700;
+  }
+  .edit-save-btn { background: var(--gold); color:#2a1c00; }
+  .edit-cancel-btn { background: rgba(255,255,255,0.1); color:var(--text); }
   .reply-preview-bar {
     display:none; align-items:center; gap:8px; background: rgba(255,255,255,0.08);
     border-left: 3px solid var(--gold); border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; font-size: 12px;
@@ -320,7 +339,27 @@ function fmtTime(iso) {
 }
 
 const messagesById = {};
-let replyingTo = null;
+let readStatus = {}; // { io: lastReadId, luna: lastReadId }
+
+async function updateReadStatus() {
+  try {
+    readStatus = await fetch('/api/chat/read-status').then(r => r.json());
+  } catch(e) {}
+}
+
+async function markAllRead() {
+  const msgs = Object.values(messagesById);
+  if (!msgs.length) return;
+  const maxId = Math.max(...msgs.map(m => m.id));
+  try {
+    await fetch('/api/chat/read', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ device: currentSender, last_read_id: maxId })
+    });
+    readStatus[currentSender] = maxId;
+  } catch(e) {}
+}
 
 function renderMsg(m) {
   messagesById[m.id] = m;
@@ -345,13 +384,28 @@ function renderMsg(m) {
     quoteHtml = `<div class="msg-quote"><b>${originalWho}</b>: ${snippet.replace(/</g,'&lt;')}</div>`;
   }
 
+  // "Seen" — visibile solo sui propri messaggi, quando l'altro li ha letti
+  const seenHtml = (m.sender === currentSender && readStatus[m.sender === 'io' ? 'luna' : 'io'] >= m.id)
+    ? '<span class="seen-tick">✓ Seen</span>' : '';
+
+  const editedLabel = m.edited ? '<span class="edited-label">(edited)</span>' : '';
+
   div.innerHTML = `
     ${quoteHtml}
     ${attHtml}
-    ${m.text ? `<div class="msg-text">${chatFormatText(m.text.trim())}</div>` : ''}
+    ${m.text ? `<div class="msg-text">${chatFormatText(m.text.trim())}${editedLabel}</div>` : ''}
+    <div class="edit-area" style="display:none;">
+      <textarea class="edit-textarea"></textarea>
+      <div class="edit-btns">
+        <button class="edit-save-btn">Save</button>
+        <button class="edit-cancel-btn">Cancel</button>
+      </div>
+    </div>
     <div class="meta">
       <span>${fmtTime(m.created_at)}</span>
+      ${seenHtml}
       <button class="reply-btn" data-id="${m.id}">↩️ reply</button>
+      ${m.text ? `<button class="edit-btn" data-id="${m.id}">✏️ edit</button>` : ''}
       <button class="del-btn" data-id="${m.id}">delete</button>
     </div>
   `;
@@ -361,8 +415,41 @@ function renderMsg(m) {
     lastMsgCount = Math.max(0, lastMsgCount - 1);
   });
   div.querySelector('.reply-btn').addEventListener('click', () => startReply(m));
-  chatLog.appendChild(div);
 
+  const editBtn = div.querySelector('.edit-btn');
+  if (editBtn) {
+    editBtn.addEventListener('click', () => {
+      const textDiv = div.querySelector('.msg-text');
+      const editArea = div.querySelector('.edit-area');
+      const editTA = div.querySelector('.edit-textarea');
+      editTA.value = m.text || '';
+      textDiv.style.display = 'none';
+      editArea.style.display = 'block';
+      editTA.focus();
+    });
+    div.querySelector('.edit-cancel-btn').addEventListener('click', () => {
+      div.querySelector('.msg-text').style.display = '';
+      div.querySelector('.edit-area').style.display = 'none';
+    });
+    div.querySelector('.edit-save-btn').addEventListener('click', async () => {
+      const newText = div.querySelector('.edit-textarea').value.trim();
+      if (!newText) return;
+      const updated = await fetch('/api/chat/messages/' + m.id, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: newText })
+      }).then(r => r.json());
+      m.text = updated.text;
+      m.edited = updated.edited;
+      const textDiv = div.querySelector('.msg-text');
+      textDiv.innerHTML = chatFormatText(newText.trim()) + '<span class="edited-label">(edited)</span>';
+      textDiv.style.display = '';
+      div.querySelector('.edit-area').style.display = 'none';
+      if (newText) chatAttachPreview(newText, div);
+    });
+  }
+
+  chatLog.appendChild(div);
   if (m.text) chatAttachPreview(m.text, div);
 }
 
@@ -381,11 +468,13 @@ function cancelReply() {
 
 let lastMsgCount = -1;
 let lastMsgId = -1;
+let replyingTo = null;
 
 async function loadMessages(force) {
+  await updateReadStatus();
   const msgs = await fetch('/api/chat/messages').then(r => r.json());
   const newestId = msgs.length ? msgs[msgs.length - 1].id : 0;
-  if (!force && msgs.length === lastMsgCount && newestId === lastMsgId) return; // nulla di nuovo, non ridisegnare
+  if (!force && msgs.length === lastMsgCount && newestId === lastMsgId) return;
   lastMsgCount = msgs.length;
   lastMsgId = newestId;
 
@@ -394,6 +483,7 @@ async function loadMessages(force) {
   msgs.forEach(renderMsg);
   if (force || wasNearBottom) chatLog.scrollTop = chatLog.scrollHeight;
   markChatRead(newestId);
+  markAllRead(); // registra sul server fino a dove ha letto questo device
 }
 
 setInterval(() => loadMessages(false), 5000);

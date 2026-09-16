@@ -79,6 +79,7 @@
         <p id="progress-text" style="font-size:13px; color:var(--muted);">Loading...</p>
       </div>
       <button class="reset-all-btn" id="reset-all-btn" title="Reset all progress">↺</button>
+      <button class="logout-btn" id="logout-btn" title="Lock app">🔒</button>
     </div>
 
     <div class="topic-grid">
@@ -162,6 +163,11 @@ document.getElementById('reset-all-btn').addEventListener('click', async () => {
   await fetch('/api/progress', { method: 'DELETE' });
   loadHome();
   loadReviewCount();
+});
+
+document.getElementById('logout-btn').addEventListener('click', async () => {
+  await fetch('/logout', { method: 'POST' });
+  location.href = '/';
 });
 
 // -- Conteggio ripasso giornaliero --
