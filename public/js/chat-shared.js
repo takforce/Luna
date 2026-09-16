@@ -140,13 +140,15 @@ function startAccessTracking() {
 }
 document.addEventListener('DOMContentLoaded', startAccessTracking);
 
-// ── Tasto Exit nel bottom-nav (tutte le pagine) ──
+// ── Tasto Exit nel bottom-nav (mobile) e topbar (desktop) ──
 document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.getElementById('bn-exit-btn');
-  if (!btn) return;
-  btn.addEventListener('click', async () => {
+  async function doLogout() {
     if (!confirm('Are you sure you want to exit and lock the app?')) return;
     await fetch('/logout', { method: 'POST' });
     location.href = '/';
-  });
+  }
+  const btnBottom = document.getElementById('bn-exit-btn');
+  if (btnBottom) btnBottom.addEventListener('click', doLogout);
+  const btnTop = document.getElementById('topbar-exit-btn');
+  if (btnTop) btnTop.addEventListener('click', doLogout);
 });

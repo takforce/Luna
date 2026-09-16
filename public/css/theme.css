@@ -112,6 +112,12 @@ h1, h2, h3, .title-font { font-family: 'Baloo 2', sans-serif; }
   font-weight: 600;
   padding: 8px 12px;
   border-radius: 20px;
+.topbar-exit {
+  background: none; border: 1px solid var(--card-border); border-radius: 20px;
+  color: var(--muted); font-size: 13px; font-weight: 600; padding: 6px 12px;
+  cursor: pointer; font-family: 'Quicksand', sans-serif; margin-left: 4px;
+}
+.topbar-exit:hover { color: #e65a5a; border-color: #e65a5a; }
   transition: all .15s;
 }
 .topbar-nav a:hover, .topbar-nav a.active {

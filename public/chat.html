@@ -134,6 +134,8 @@
       <a href="/moduli.html?cat=verbs">Verbs</a>
       <a href="/liste.html">Lists</a>
       <a href="/chat.html" class="active">Chat<span class="chat-badge"></span></a>
+    
+    <button class="topbar-exit" id="topbar-exit-btn" title="Exit">⏏ Exit</button>
     </div>
   </div>
 
@@ -341,6 +343,7 @@ function fmtTime(iso) {
 
 const messagesById = {};
 let readStatus = {}; // { io: lastReadId, luna: lastReadId }
+let lastReadStatusKey = ''; // stringa per rilevare cambiamenti
 
 async function updateReadStatus() {
   try {
@@ -475,16 +478,21 @@ async function loadMessages(force) {
   await updateReadStatus();
   const msgs = await fetch('/api/chat/messages').then(r => r.json());
   const newestId = msgs.length ? msgs[msgs.length - 1].id : 0;
-  if (!force && msgs.length === lastMsgCount && newestId === lastMsgId) return;
+  const newReadKey = JSON.stringify(readStatus);
+  const readChanged = newReadKey !== lastReadStatusKey;
+
+  if (!force && msgs.length === lastMsgCount && newestId === lastMsgId && !readChanged) return;
+
   lastMsgCount = msgs.length;
   lastMsgId = newestId;
+  lastReadStatusKey = newReadKey;
 
   const wasNearBottom = (chatLog.scrollHeight - chatLog.scrollTop - chatLog.clientHeight) < 80;
   chatLog.innerHTML = '';
   msgs.forEach(renderMsg);
   if (force || wasNearBottom) chatLog.scrollTop = chatLog.scrollHeight;
   markChatRead(newestId);
-  markAllRead(); // registra sul server fino a dove ha letto questo device
+  markAllRead();
 }
 
 setInterval(() => loadMessages(false), 5000);
