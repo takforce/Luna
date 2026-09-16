@@ -514,7 +514,7 @@ async function loadMessages(force) {
   msgs.forEach(renderMsg);
   if (force || wasNearBottom) chatLog.scrollTop = chatLog.scrollHeight;
   markChatRead(newestId);
-  markAllRead();
+  // NON chiamare markAllRead qui: lo fa solo visibilitychange/focus
 }
 
 setInterval(() => loadMessages(false), 5000);
@@ -554,7 +554,7 @@ msgInput.addEventListener('keydown', e => {
   }
 });
 
-loadMessages(true);
+loadMessages(true).then(() => markAllRead());
 
 // ── Notifiche push ──
 function urlBase64ToUint8Array(base64String) {

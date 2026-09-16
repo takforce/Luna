@@ -67,38 +67,6 @@ db.exec(`CREATE TABLE IF NOT EXISTS sessions (
   expired INTEGER
 )`);
 
-// Session store in SQLite (stesso database, nessuna directory extra, crash-safe)
-class SQLiteStore extends session.Store {
-  get(sid, cb) {
-    try {
-      const row = db.prepare('SELECT sess, expired FROM sessions WHERE sid = ?').get(sid);
-      if (!row) return cb(null, null);
-      if (row.expired && Date.now() > row.expired) {
-        db.prepare('DELETE FROM sessions WHERE sid = ?').run(sid);
-        return cb(null, null);
-      }
-      cb(null, JSON.parse(row.sess));
-    } catch(e) { cb(e); }
-  }
-  set(sid, sess, cb) {
-    try {
-      const maxAge = sess.cookie && sess.cookie.maxAge ? sess.cookie.maxAge * 1000 : 2592000000;
-      db.prepare('INSERT OR REPLACE INTO sessions (sid, sess, expired) VALUES (?, ?, ?)').run(sid, JSON.stringify(sess), Date.now() + maxAge);
-      cb(null);
-    } catch(e) { cb(e); }
-  }
-  destroy(sid, cb) {
-    try { db.prepare('DELETE FROM sessions WHERE sid = ?').run(sid); cb(null); } catch(e) { cb(e); }
-  }
-  touch(sid, sess, cb) {
-    try {
-      const maxAge = sess.cookie && sess.cookie.maxAge ? sess.cookie.maxAge * 1000 : 2592000000;
-      db.prepare('UPDATE sessions SET expired = ? WHERE sid = ?').run(Date.now() + maxAge, sid);
-      cb(null);
-    } catch(e) { cb(e); }
-  }
-}
-
 // ── Accesso segreto: 4 tap veloci + password, solo per Io/Luna ──
 app.set('trust proxy', 1); // necessario su Railway perche' i cookie 'secure' funzionino dietro il proxy HTTPS
 
@@ -119,7 +87,8 @@ const MAX_TENTATIVI = 5;
 const BLOCCO_MINUTI = 15;
 
 app.use(session({
-  store: new SQLiteStore(),
+  // store non impostato = MemoryStore (semplice e crash-safe; sessioni durano in RAM,
+  // si perde il login solo al riavvio del server che avviene solo sui deploy)
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
@@ -357,6 +326,10 @@ if (!chatCols.includes('reply_to_id')) {
 if (!chatCols.includes('edited')) {
   db.exec('ALTER TABLE chat_messages ADD COLUMN edited INTEGER NOT NULL DEFAULT 0');
 }
+
+// Pulizia dati sporchi: versioni precedenti scrivevano read_status con device sbagliato.
+// Reset a 0 così il seen repart da zero pulito.
+db.prepare("DELETE FROM read_status").run();
 
 // Ripulisce il vecchio messaggio di default impostato per errore in una versione precedente
 db.prepare("UPDATE banner SET message = '' WHERE message = 'Ti amo Luna! 💛'").run();
