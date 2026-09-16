@@ -35,6 +35,12 @@
 
   .input-row { display:flex; align-items:flex-end; gap:8px; }
   .controls-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; flex-wrap:wrap; }
+  .change-device-btn {
+    font-size:10px; padding:4px 8px; border-radius:10px; border:1px solid rgba(255,100,100,0.4);
+    background:rgba(255,100,100,0.1); color:rgba(255,150,150,0.9); cursor:pointer;
+    font-family:'Quicksand',sans-serif; font-weight:700; white-space:nowrap;
+  }
+  .change-device-btn:hover { background:rgba(255,100,100,0.2); }
   .video-call-pill {
     display:flex; align-items:center; gap:4px; height:34px; padding:0 12px; border-radius:17px;
     background: rgba(89,214,148,0.18); border:1px solid rgba(89,214,148,0.4); color:#59d694;
@@ -167,6 +173,7 @@
           <button class="io" data-sender="io">🌟 Tak</button>
           <button class="luna active" data-sender="luna">🌙 Luna</button>
         </div>
+        <button class="change-device-btn" id="change-device-btn" title="Change device identity">⚠️ Not you?</button>
         <div class="input-icons-row">
           <button class="icon-btn" id="emoji-toggle">✨</button>
           <button class="icon-btn" id="attach-btn">📎</button>
@@ -640,6 +647,25 @@ chatEnsureDeviceOwner(owner => {
   });
   loadVideoCallLink();
 });
+
+// Tasto "Not you?" — resetta il device owner e mostra di nuovo la scelta
+document.getElementById('change-device-btn').addEventListener('click', () => {
+  if (!confirm('Reset your device identity? You will be asked who you are again.')) return;
+  localStorage.removeItem('luna_device_owner');
+  chatEnsureDeviceOwner(owner => {
+    currentSender = owner;
+    document.querySelectorAll('.sender-toggle button').forEach(b => {
+      b.classList.toggle('active', b.dataset.sender === owner);
+    });
+    markAllRead();
+  });
+});
+
+// Marca come letti SOLO quando la pagina è visibile e in primo piano
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') markAllRead();
+});
+window.addEventListener('focus', () => markAllRead());
 </script>
 </body>
 </html>

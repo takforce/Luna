@@ -1,7 +1,6 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const session = require('express-session');
-const FileStore = require('session-file-store')(session);
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
@@ -44,7 +43,61 @@ function ensureDirWithRetry(dir, maxAttempts = 6, delayMs = 1000) {
   throw lastErr;
 }
 ensureDirWithRetry(DB_DIR);
-ensureDirWithRetry(path.join(DB_DIR, 'sessions'));
+
+// ── Database: aperto subito con retry, prima di qualsiasi altro middleware ──
+// (in questo modo anche il session store SQLite può usarlo immediatamente)
+function openDatabaseWithRetry(dbPath, maxAttempts = 10, delayMs = 1000) {
+  let lastErr;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      return new Database(dbPath);
+    } catch (err) {
+      lastErr = err;
+      console.log(`⚠️  DB tentativo ${attempt}/${maxAttempts} fallito (${err.message}). Riprovo...`);
+      if (attempt < maxAttempts) sleepSync(delayMs);
+    }
+  }
+  throw lastErr;
+}
+const db = openDatabaseWithRetry(DB_PATH);
+db.pragma('journal_mode = WAL');
+db.exec(`CREATE TABLE IF NOT EXISTS sessions (
+  sid TEXT PRIMARY KEY,
+  sess TEXT NOT NULL,
+  expired INTEGER
+)`);
+
+// Session store in SQLite (stesso database, nessuna directory extra, crash-safe)
+class SQLiteStore extends session.Store {
+  get(sid, cb) {
+    try {
+      const row = db.prepare('SELECT sess, expired FROM sessions WHERE sid = ?').get(sid);
+      if (!row) return cb(null, null);
+      if (row.expired && Date.now() > row.expired) {
+        db.prepare('DELETE FROM sessions WHERE sid = ?').run(sid);
+        return cb(null, null);
+      }
+      cb(null, JSON.parse(row.sess));
+    } catch(e) { cb(e); }
+  }
+  set(sid, sess, cb) {
+    try {
+      const maxAge = sess.cookie && sess.cookie.maxAge ? sess.cookie.maxAge * 1000 : 2592000000;
+      db.prepare('INSERT OR REPLACE INTO sessions (sid, sess, expired) VALUES (?, ?, ?)').run(sid, JSON.stringify(sess), Date.now() + maxAge);
+      cb(null);
+    } catch(e) { cb(e); }
+  }
+  destroy(sid, cb) {
+    try { db.prepare('DELETE FROM sessions WHERE sid = ?').run(sid); cb(null); } catch(e) { cb(e); }
+  }
+  touch(sid, sess, cb) {
+    try {
+      const maxAge = sess.cookie && sess.cookie.maxAge ? sess.cookie.maxAge * 1000 : 2592000000;
+      db.prepare('UPDATE sessions SET expired = ? WHERE sid = ?').run(Date.now() + maxAge, sid);
+      cb(null);
+    } catch(e) { cb(e); }
+  }
+}
 
 // ── Accesso segreto: 4 tap veloci + password, solo per Io/Luna ──
 app.set('trust proxy', 1); // necessario su Railway perche' i cookie 'secure' funzionino dietro il proxy HTTPS
@@ -65,19 +118,8 @@ const TEMPO_MASSIMO_SEQUENZA = 1500; // ms per completare i 4 tap
 const MAX_TENTATIVI = 5;
 const BLOCCO_MINUTI = 15;
 
-let sessionStore;
-try {
-  sessionStore = new FileStore({
-    path: path.join(path.dirname(DB_PATH), 'sessions'),
-    logFn: () => {},
-  });
-} catch (err) {
-  console.log('⚠️  FileStore non disponibile, uso memoria (sessioni non persistenti):', err.message);
-  sessionStore = undefined; // express-session usa MemoryStore di default
-}
-
 app.use(session({
-  store: sessionStore,
+  store: new SQLiteStore(),
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
@@ -232,23 +274,7 @@ app.use((req, res, next) => {
   res.status(401).json({ error: 'Not authorized' });
 });
 
-function openDatabaseWithRetry(dbPath, maxAttempts = 10, delayMs = 1000) {
-  let lastErr;
-  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    try {
-      return new Database(dbPath);
-    } catch (err) {
-      lastErr = err;
-      console.log(`⚠️  Tentativo ${attempt}/${maxAttempts} di apertura database fallito (${err.message}). Riprovo tra ${delayMs}ms...`);
-      if (attempt < maxAttempts) sleepSync(delayMs);
-    }
-  }
-  throw lastErr;
-}
-
-// ── DB ──
-const db = openDatabaseWithRetry(DB_PATH);
-db.pragma('journal_mode = WAL');
+// ── DB ── (database già aperto in cima, qui solo il blocco CREATE TABLE)
 
 db.exec(`
 CREATE TABLE IF NOT EXISTS chat_messages (
