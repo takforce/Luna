@@ -65,18 +65,26 @@ const TEMPO_MASSIMO_SEQUENZA = 1500; // ms per completare i 4 tap
 const MAX_TENTATIVI = 5;
 const BLOCCO_MINUTI = 15;
 
-app.use(session({
-  store: new FileStore({
+let sessionStore;
+try {
+  sessionStore = new FileStore({
     path: path.join(path.dirname(DB_PATH), 'sessions'),
-    logFn: () => {}, // niente log rumorosi in console
-  }),
+    logFn: () => {},
+  });
+} catch (err) {
+  console.log('⚠️  FileStore non disponibile, uso memoria (sessioni non persistenti):', err.message);
+  sessionStore = undefined; // express-session usa MemoryStore di default
+}
+
+app.use(session({
+  store: sessionStore,
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
     secure: process.env.NODE_ENV === 'production' || !!process.env.RAILWAY_ENVIRONMENT,
     httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24 * 30, // 30 giorni
+    maxAge: 1000 * 60 * 60 * 24 * 30,
   }
 }));
 app.use(express.urlencoded({ extended: true }));
@@ -224,7 +232,7 @@ app.use((req, res, next) => {
   res.status(401).json({ error: 'Not authorized' });
 });
 
-function openDatabaseWithRetry(dbPath, maxAttempts = 3, delayMs = 500) {
+function openDatabaseWithRetry(dbPath, maxAttempts = 10, delayMs = 1000) {
   let lastErr;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {

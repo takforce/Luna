@@ -93,7 +93,8 @@
     background:none; border:none; color:inherit; opacity:.5; cursor:pointer; font-size:11px; margin-right: 2px;
   }
   .meta .edit-btn:hover { opacity: 1; }
-  .seen-tick { font-size:10px; opacity:.75; color:#59d694; }
+  .seen-tick { font-size:11px; font-weight:700; color:#59d694; margin-left:4px; }
+  .delivered-tick { font-size:11px; color:var(--muted); margin-left:4px; }
   .edited-label { font-size:10px; opacity:.55; margin-left:4px; font-style:italic; }
   .edit-area { margin-top:6px; }
   .edit-textarea {
@@ -129,13 +130,13 @@
     </div>
     <div class="topbar-nav">
       <a href="/">Home</a>
+      <button class="topbar-exit" id="topbar-exit-btn">⏏ Exit</button>
       <a href="/moduli.html">Words</a>
       <a href="/moduli.html?cat=grammar">Grammar</a>
       <a href="/moduli.html?cat=verbs">Verbs</a>
       <a href="/liste.html">Lists</a>
       <a href="/chat.html" class="active">Chat<span class="chat-badge"></span></a>
     
-    <button class="topbar-exit" id="topbar-exit-btn" title="Exit">⏏ Exit</button>
     </div>
   </div>
 
@@ -388,9 +389,15 @@ function renderMsg(m) {
     quoteHtml = `<div class="msg-quote"><b>${originalWho}</b>: ${snippet.replace(/</g,'&lt;')}</div>`;
   }
 
-  // "Seen" — visibile solo sui propri messaggi, quando l'altro li ha letti
-  const seenHtml = (m.sender === currentSender && readStatus[m.sender === 'io' ? 'luna' : 'io'] >= m.id)
-    ? '<span class="seen-tick">✓ Seen</span>' : '';
+  // Stato lettura sui propri messaggi: ✓✓ grigio = inviato, ✓✓ verde = letto
+  let seenHtml = '';
+  if (m.sender === currentSender) {
+    const other = m.sender === 'io' ? 'luna' : 'io';
+    const isRead = readStatus[other] && readStatus[other] >= m.id;
+    seenHtml = isRead
+      ? '<span class="seen-tick">✓✓</span>'
+      : '<span class="delivered-tick">✓✓</span>';
+  }
 
   const editedLabel = m.edited ? '<span class="edited-label">(edited)</span>' : '';
 

@@ -112,14 +112,15 @@ h1, h2, h3, .title-font { font-family: 'Baloo 2', sans-serif; }
   font-weight: 600;
   padding: 8px 12px;
   border-radius: 20px;
-.topbar-exit {
-  background: none; border: 1px solid var(--card-border); border-radius: 20px;
-  color: var(--muted); font-size: 13px; font-weight: 600; padding: 6px 12px;
-  cursor: pointer; font-family: 'Quicksand', sans-serif; margin-left: 4px;
-}
-.topbar-exit:hover { color: #e65a5a; border-color: #e65a5a; }
   transition: all .15s;
 }
+.topbar-exit {
+  background: none; border: none;
+  color: var(--muted); font-size: 13px; font-weight: 600; padding: 8px 12px;
+  border-radius: 20px; cursor: pointer; font-family: 'Quicksand', sans-serif;
+  transition: all .15s;
+}
+.topbar-exit:hover { color: var(--deep); background: #e65a5a; }
 .topbar-nav a:hover, .topbar-nav a.active {
   color: var(--deep);
   background: var(--gold);
