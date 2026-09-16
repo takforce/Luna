@@ -273,7 +273,8 @@ CREATE TABLE IF NOT EXISTS push_subscriptions (
 
 CREATE TABLE IF NOT EXISTS access_log (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  device TEXT NOT NULL,           -- 'io' | 'luna' | 'unknown'
+  owner TEXT,                     -- 'io' | 'luna' (usato da /api/track-access)
+  device TEXT,                    -- 'io' | 'luna' | 'unknown' (usato da /api/ping)
   page TEXT,                      -- quale pagina era aperta
   ts TEXT NOT NULL DEFAULT (datetime('now'))
 );
@@ -284,20 +285,27 @@ CREATE TABLE IF NOT EXISTS banner (
 );
 INSERT OR IGNORE INTO banner (id, message) VALUES (1, '');
 `);
-// Migrazione: crea access_log con lo schema corretto (device+page+ts)
-// oppure ricrea se esiste già con lo schema vecchio (owner+created_at)
+// Migrazione: access_log deve coprire sia il tracciamento per proprietario (owner),
+// usato da /api/track-access, sia quello per dispositivo/pagina (device/page), usato
+// da /api/ping — in precedenza le due funzionalità scrivevano sulla stessa tabella con
+// schemi incompatibili, causando errori continui su /api/track-access. Ricostruisco la
+// tabella con uno schema unico che copre entrambi i casi, senza perdere i dati raccolti.
 const accessCols = db.prepare("PRAGMA table_info(access_log)").all().map(r => r.name);
-if (!accessCols.includes('device')) {
-  if (accessCols.length > 0) {
-    db.exec('DROP TABLE access_log'); // schema vecchio, elimino e ricreo
-    console.log('♻️  Tabella access_log ricreata con nuovo schema.');
-  }
-  db.exec(`CREATE TABLE access_log (
+if (!accessCols.includes('owner') || !accessCols.includes('device')) {
+  db.exec(`CREATE TABLE access_log_new (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    device TEXT NOT NULL,
+    owner TEXT,
+    device TEXT,
     page TEXT,
     ts TEXT NOT NULL DEFAULT (datetime('now'))
   )`);
+  const oldCols = ['owner', 'device', 'page', 'ts'].filter(c => accessCols.includes(c));
+  if (oldCols.length > 0) {
+    db.exec(`INSERT INTO access_log_new (${oldCols.join(', ')}) SELECT ${oldCols.join(', ')} FROM access_log`);
+  }
+  db.exec('DROP TABLE access_log');
+  db.exec('ALTER TABLE access_log_new RENAME TO access_log');
+  console.log('♻️  Tabella access_log migrata: ora supporta sia owner che device/page, senza perdere dati.');
 }
 
 // Migrazione: aggiunge reply_to_id se il database esisteva già senza questa colonna
@@ -308,6 +316,61 @@ if (!chatCols.includes('reply_to_id')) {
 
 // Ripulisce il vecchio messaggio di default impostato per errore in una versione precedente
 db.prepare("UPDATE banner SET message = '' WHERE message = 'Ti amo Luna! 💛'").run();
+
+// ── Query preparate una sola volta all'avvio e riusate ad ogni richiesta ──
+// (invece di richiamare db.prepare() dentro ogni handler: preparare uno statement
+// crea un oggetto nativo lato SQLite che va poi ripulito da Node; farlo di continuo,
+// ad ogni singola richiesta, è lo schema che più facilmente causa crash nativi di
+// better-sqlite3 sotto carico prolungato — qui lo prepariamo una volta e lo riusiamo)
+const stmt = {
+  chat: {
+    listAll: db.prepare('SELECT * FROM chat_messages ORDER BY id ASC'),
+    insert: db.prepare(`
+      INSERT INTO chat_messages (sender, text, attachment_path, attachment_name, attachment_type, reply_to_id)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `),
+    getById: db.prepare('SELECT * FROM chat_messages WHERE id = ?'),
+    deleteById: db.prepare('DELETE FROM chat_messages WHERE id = ?'),
+  },
+  push: {
+    listOtherOwner: db.prepare('SELECT * FROM push_subscriptions WHERE owner != ?'),
+    insertOrUpdate: db.prepare(`
+      INSERT INTO push_subscriptions (owner, endpoint, subscription)
+      VALUES (?, ?, ?)
+      ON CONFLICT(endpoint) DO UPDATE SET owner = excluded.owner, subscription = excluded.subscription
+    `),
+    deleteById: db.prepare('DELETE FROM push_subscriptions WHERE id = ?'),
+    deleteByEndpoint: db.prepare('DELETE FROM push_subscriptions WHERE endpoint = ?'),
+  },
+  progress: {
+    insert: db.prepare(`
+      INSERT INTO exercise_results (module_id, exercise_id, item_id, correct)
+      VALUES (?, ?, ?, ?)
+    `),
+    summary: db.prepare(`
+      SELECT module_id, COUNT(*) as tentativi, SUM(correct) as corretti
+      FROM exercise_results
+      GROUP BY module_id
+    `),
+    deleteByModule: db.prepare('DELETE FROM exercise_results WHERE module_id = ?'),
+    deleteAll: db.prepare('DELETE FROM exercise_results'),
+    resultsFor: db.prepare(`
+      SELECT correct, created_at FROM exercise_results
+      WHERE module_id = ? AND exercise_id = ? AND item_id = ?
+      ORDER BY created_at ASC
+    `),
+  },
+  access: {
+    trackOwner: db.prepare('INSERT INTO access_log (owner) VALUES (?)'),
+    logByOwner: db.prepare("SELECT owner, ts FROM access_log WHERE owner IS NOT NULL ORDER BY ts ASC"),
+    ping: db.prepare('INSERT INTO access_log (device, page) VALUES (?, ?)'),
+    statsRows: db.prepare('SELECT device, page, ts FROM access_log ORDER BY ts DESC LIMIT 2000'),
+  },
+  banner: {
+    get: db.prepare('SELECT message FROM banner WHERE id = 1'),
+    update: db.prepare('UPDATE banner SET message = ? WHERE id = 1'),
+  },
+};
 
 // ── Contenuti moduli (JSON statico, facile da modificare) ──
 const modules = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'modules.json'), 'utf-8'));
@@ -335,7 +398,7 @@ const messageRateLimiter = rateLimit({
 
 // ── API: Chat ──
 app.get('/api/chat/messages', (req, res) => {
-  const rows = db.prepare('SELECT * FROM chat_messages ORDER BY id ASC').all();
+  const rows = stmt.chat.listAll.all();
   res.json(rows);
 });
 
@@ -349,12 +412,9 @@ app.post('/api/chat/messages', messageRateLimiter, upload.single('attachment'), 
   const attachment_type = req.file ? req.file.mimetype : null;
   const replyToId = reply_to_id ? parseInt(reply_to_id, 10) : null;
 
-  const info = db.prepare(`
-    INSERT INTO chat_messages (sender, text, attachment_path, attachment_name, attachment_type, reply_to_id)
-    VALUES (?, ?, ?, ?, ?, ?)
-  `).run(sender, text || null, attachment_path, attachment_name, attachment_type, replyToId);
+  const info = stmt.chat.insert.run(sender, text || null, attachment_path, attachment_name, attachment_type, replyToId);
 
-  const row = db.prepare('SELECT * FROM chat_messages WHERE id = ?').get(info.lastInsertRowid);
+  const row = stmt.chat.getById.get(info.lastInsertRowid);
   res.json(row);
 
   // Notifica push a chi non ha scritto il messaggio
@@ -362,7 +422,7 @@ app.post('/api/chat/messages', messageRateLimiter, upload.single('attachment'), 
 });
 
 async function notifyNewMessage(row) {
-  const subs = db.prepare('SELECT * FROM push_subscriptions WHERE owner != ?').all(row.sender);
+  const subs = stmt.push.listOtherOwner.all(row.sender);
   const title = row.sender === 'io' ? 'New message from Ivano' : 'New message from Luna';
   const body = row.text ? row.text.slice(0, 120) : '📎 Sent an attachment';
   for (const s of subs) {
@@ -371,19 +431,19 @@ async function notifyNewMessage(row) {
       await webpush.sendNotification(subscription, JSON.stringify({ title, body }));
     } catch (err) {
       if (err.statusCode === 404 || err.statusCode === 410) {
-        db.prepare('DELETE FROM push_subscriptions WHERE id = ?').run(s.id);
+        stmt.push.deleteById.run(s.id);
       }
     }
   }
 }
 
 app.delete('/api/chat/messages/:id', (req, res) => {
-  const row = db.prepare('SELECT * FROM chat_messages WHERE id = ?').get(req.params.id);
+  const row = stmt.chat.getById.get(req.params.id);
   if (row && row.attachment_path) {
     const filePath = path.join(__dirname, 'public', row.attachment_path);
     if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
   }
-  db.prepare('DELETE FROM chat_messages WHERE id = ?').run(req.params.id);
+  stmt.chat.deleteById.run(req.params.id);
   res.json({ ok: true });
 });
 
@@ -406,36 +466,27 @@ app.get('/api/modules/:id', (req, res) => {
 // ── API: Progressi ──
 app.post('/api/progress', (req, res) => {
   const { module_id, exercise_id, item_id, correct } = req.body;
-  if (!module_id || !exercise_id || !item_id === undefined) {
+  if (!module_id || !exercise_id || item_id === undefined) {
     return res.status(400).json({ error: 'dati mancanti' });
   }
-  db.prepare(`
-    INSERT INTO exercise_results (module_id, exercise_id, item_id, correct)
-    VALUES (?, ?, ?, ?)
-  `).run(module_id, exercise_id, item_id, correct ? 1 : 0);
+  stmt.progress.insert.run(module_id, exercise_id, item_id, correct ? 1 : 0);
   res.json({ ok: true });
 });
 
 app.get('/api/progress/summary', (req, res) => {
-  const rows = db.prepare(`
-    SELECT module_id,
-           COUNT(*) as tentativi,
-           SUM(correct) as corretti
-    FROM exercise_results
-    GROUP BY module_id
-  `).all();
+  const rows = stmt.progress.summary.all();
   res.json(rows);
 });
 
 // Reset progressi di un singolo modulo
 app.delete('/api/progress/:moduleId', (req, res) => {
-  db.prepare('DELETE FROM exercise_results WHERE module_id = ?').run(req.params.moduleId);
+  stmt.progress.deleteByModule.run(req.params.moduleId);
   res.json({ ok: true });
 });
 
 // Reset di tutti i progressi
 app.delete('/api/progress', (req, res) => {
-  db.prepare('DELETE FROM exercise_results').run();
+  stmt.progress.deleteAll.run();
   res.json({ ok: true });
 });
 
@@ -499,11 +550,7 @@ app.get('/api/review/due', (req, res) => {
   const now = Date.now();
   const due = [];
   for (const ci of poolItems) {
-    const rows = db.prepare(`
-      SELECT correct, created_at FROM exercise_results
-      WHERE module_id = ? AND exercise_id = ? AND item_id = ?
-      ORDER BY created_at ASC
-    `).all(ci.module_id, ci.exercise_id, ci.item_id);
+    const rows = stmt.progress.resultsFor.all(ci.module_id, ci.exercise_id, ci.item_id);
 
     if (rows.length === 0) {
       due.push(ci); // mai provata prima, sempre da ripassare
@@ -548,17 +595,13 @@ app.post('/api/push/subscribe', (req, res) => {
   if (!owner || !subscription || !subscription.endpoint) {
     return res.status(400).json({ error: 'dati mancanti' });
   }
-  db.prepare(`
-    INSERT INTO push_subscriptions (owner, endpoint, subscription)
-    VALUES (?, ?, ?)
-    ON CONFLICT(endpoint) DO UPDATE SET owner = excluded.owner, subscription = excluded.subscription
-  `).run(owner, subscription.endpoint, JSON.stringify(subscription));
+  stmt.push.insertOrUpdate.run(owner, subscription.endpoint, JSON.stringify(subscription));
   res.json({ ok: true });
 });
 
 app.post('/api/push/unsubscribe', (req, res) => {
   const { endpoint } = req.body;
-  if (endpoint) db.prepare('DELETE FROM push_subscriptions WHERE endpoint = ?').run(endpoint);
+  if (endpoint) stmt.push.deleteByEndpoint.run(endpoint);
   res.json({ ok: true });
 });
 
@@ -569,19 +612,19 @@ const JITSI_ROOM = 'luna-italiano-' + crypto.createHash('sha256').update(SESSION
 app.post('/api/track-access', (req, res) => {
   const { owner } = req.body;
   if (owner !== 'io' && owner !== 'luna') return res.status(400).json({ error: 'owner non valido' });
-  db.prepare('INSERT INTO access_log (owner) VALUES (?)').run(owner);
+  stmt.access.trackOwner.run(owner);
   res.json({ ok: true });
 });
 
 app.get('/api/access-log', (req, res) => {
-  const rows = db.prepare('SELECT owner, created_at FROM access_log ORDER BY created_at ASC').all();
+  const rows = stmt.access.logByOwner.all();
 
   // raggruppa i "battiti" in sessioni: se passano piu' di 5 minuti senza segnali, e' una nuova sessione
   const GAP_MS = 5 * 60 * 1000;
   const sessions = [];
   let current = null;
   for (const row of rows) {
-    const t = new Date(row.created_at + 'Z').getTime();
+    const t = new Date(row.ts + 'Z').getTime();
     if (current && current.owner === row.owner && (t - current.lastTs) <= GAP_MS) {
       current.lastTs = t;
       current.pings++;
@@ -610,7 +653,7 @@ app.get('/api/video-room', (req, res) => {
 app.post('/api/ping', (req, res) => {
   const device = req.body.device || 'unknown';
   const page = req.body.page || '';
-  db.prepare('INSERT INTO access_log (device, page) VALUES (?, ?)').run(device, page);
+  stmt.access.ping.run(device, page);
   res.json({ ok: true });
 });
 
@@ -620,10 +663,7 @@ const STATS_PATH = '/tak-private-stats-9f4e2a';
 app.get(STATS_PATH, (req, res) => {
   if (!(req.session && req.session.autenticato)) return res.redirect('/');
 
-  const rows = db.prepare(`
-    SELECT device, page, ts FROM access_log
-    ORDER BY ts DESC LIMIT 2000
-  `).all();
+  const rows = stmt.access.statsRows.all();
 
   // raggruppa in sessioni (gap > 10 min = nuova sessione)
   const GAP = 10 * 60 * 1000;
@@ -750,7 +790,7 @@ app.get(STATS_PATH, (req, res) => {
 });
 
 app.get('/api/banner', (req, res) => {
-  const row = db.prepare('SELECT message FROM banner WHERE id = 1').get();
+  const row = stmt.banner.get.get();
   res.json({ message: row ? row.message : '' });
 });
 
@@ -758,7 +798,7 @@ app.post('/api/banner', (req, res) => {
   const { message } = req.body;
   if (!message || !message.trim()) return res.status(400).json({ error: 'messaggio mancante' });
   const trimmed = message.trim().slice(0, 60);
-  db.prepare('UPDATE banner SET message = ? WHERE id = 1').run(trimmed);
+  stmt.banner.update.run(trimmed);
   res.json({ message: trimmed });
 });
 
