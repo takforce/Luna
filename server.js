@@ -221,7 +221,7 @@ app.post('/login', (req, res) => {
 
 // Da qui in poi, tutto (pagine statiche + API) richiede sessione autenticata,
 // tranne le risorse condivise necessarie alla schermata del cancello.
-const PUBLIC_GATE_ASSETS = ['/css/theme.css', '/js/starfield.js', '/favicon.svg', '/img/icons/scary-mask.png'];
+const PUBLIC_GATE_ASSETS = ['/css/theme.css', '/js/starfield.js', '/favicon.svg', '/img/icons/scary-mask.png', '/service-worker.js'];
 const APP_PAGES = ['/', '/chat.html', '/moduli.html', '/esercizio.html', '/liste.html', '/review.html'];
 app.use((req, res, next) => {
   if (req.session && req.session.autenticato) return next();
