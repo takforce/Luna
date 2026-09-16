@@ -15,7 +15,12 @@
   .msg { max-width: 78%; padding: 10px 14px; border-radius: 16px; font-size:14px; line-height:1.4; position:relative; }
   .msg.io { align-self:flex-end; background: linear-gradient(135deg, var(--gold), #f0a93a); color:#2a1c00; border-bottom-right-radius:4px; }
   .msg.luna { align-self:flex-start; background: rgba(255,255,255,0.09); border:1px solid var(--card-border); border-bottom-left-radius:4px; }
-  .msg .meta { font-size:10px; opacity:.6; margin-top:4px; display:flex; gap:8px; align-items:center; }
+  .msg .meta { font-size:10px; margin-top:4px; display:flex; gap:8px; align-items:center; opacity:.7; }
+  .msg.io .meta { color:#2a1c00; }
+  .msg.luna .meta { color:var(--muted); }
+  .msg.io .delivered-tick, .msg.io .seen-tick { color:#2a1c00; }
+  .msg.io .seen-tick { font-weight:800; }
+  .msg.io .reply-btn, .msg.io .edit-btn, .msg.io .del-btn { color:#2a1c00; }
   .msg-text { white-space: pre-wrap; }
   .msg img.att { max-width: 100%; border-radius:10px; margin-bottom:6px; display:block; }
   .msg a.att-file { display:flex; align-items:center; gap:6px; font-size:13px; text-decoration:underline; margin-bottom:4px; }
@@ -353,16 +358,19 @@ async function updateReadStatus() {
 }
 
 async function markAllRead() {
+  const confirmedDevice = localStorage.getItem('luna_device_owner');
+  if (!confirmedDevice) return; // non ancora confermato chi è questo device → non marcare nulla
   const msgs = Object.values(messagesById);
   if (!msgs.length) return;
   const maxId = Math.max(...msgs.map(m => m.id));
+  if (readStatus[confirmedDevice] >= maxId) return; // già aggiornato, evita richieste inutili
   try {
     await fetch('/api/chat/read', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ device: currentSender, last_read_id: maxId })
+      body: JSON.stringify({ device: confirmedDevice, last_read_id: maxId })
     });
-    readStatus[currentSender] = maxId;
+    readStatus[confirmedDevice] = maxId;
   } catch(e) {}
 }
 

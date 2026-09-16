@@ -306,6 +306,7 @@ INSERT OR IGNORE INTO banner (id, message) VALUES (1, '');
 // tabella con uno schema unico che copre entrambi i casi, senza perdere i dati raccolti.
 const accessCols = db.prepare("PRAGMA table_info(access_log)").all().map(r => r.name);
 if (!accessCols.includes('owner') || !accessCols.includes('device')) {
+  db.exec('DROP TABLE IF EXISTS access_log_new'); // pulisce eventuali resti di migrazioni precedenti fallite
   db.exec(`CREATE TABLE access_log_new (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     owner TEXT,
@@ -317,9 +318,9 @@ if (!accessCols.includes('owner') || !accessCols.includes('device')) {
   if (oldCols.length > 0) {
     db.exec(`INSERT INTO access_log_new (${oldCols.join(', ')}) SELECT ${oldCols.join(', ')} FROM access_log`);
   }
-  db.exec('DROP TABLE access_log');
+  db.exec('DROP TABLE IF EXISTS access_log');
   db.exec('ALTER TABLE access_log_new RENAME TO access_log');
-  console.log('♻️  Tabella access_log migrata: ora supporta sia owner che device/page, senza perdere dati.');
+  console.log('♻️  Tabella access_log migrata.');
 }
 
 // Migrazione: aggiunge reply_to_id se il database esisteva già senza questa colonna
