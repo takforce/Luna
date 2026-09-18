@@ -42,6 +42,9 @@ function chatRenderPreviewCard(data, container) {
     </div>
   `;
   container.appendChild(card);
+  scrollToBottomIfPinned(); // la card cambia l'altezza subito, anche prima che l'immagine carichi
+  const cardImg = card.querySelector('img');
+  if (cardImg) cardImg.addEventListener('load', scrollToBottomIfPinned);
 }
 
 // Combina emoji lunari + link cliccabili per il testo di un messaggio
